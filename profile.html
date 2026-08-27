@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Profile — PriceHunt</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- App Header -->
+  <header class="navbar">
+    <div class="container navbar-container">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">🎯</div>
+        Price<span>Hunt</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="search.html">Search</a></li>
+        <li><a href="favorites.html">Wishlist</a></li>
+        <li><a href="alerts.html">Price Alerts</a></li>
+        <li><a href="profile.html" class="active">Profile</a></li>
+      </ul>
+
+      <div class="nav-actions" id="navActions">
+        <button id="logoutBtn" class="btn btn-outline btn-sm">Log Out</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" id="profileContainer" style="padding: 2.5rem 1.5rem; flex: 1; max-width: 800px;">
+    
+    <div style="margin-bottom: 2rem;">
+      <h1 style="font-size: 1.85rem; font-weight: 800; color: var(--secondary);">Account Settings</h1>
+      <p style="color: var(--text-muted); font-size: 0.95rem;">Manage your PriceHunt profile, email, and security settings.</p>
+    </div>
+
+    <!-- Profile Overview Card -->
+    <div class="card" style="margin-bottom: 2rem;">
+      <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1.5rem;">Personal Information</h3>
+
+      <div class="form-group">
+        <label class="form-label" for="profileName">Full Name</label>
+        <input type="text" id="profileName" class="form-control" value="John Doe">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="profileEmail">Email Address</label>
+        <input type="email" id="profileEmail" class="form-control" value="demo@pricehunt.com">
+      </div>
+
+      <div class="grid-3" style="margin-top: 1.5rem; background: var(--bg-surface-subtle); padding: 1.25rem; border-radius: var(--radius-md);">
+        <div>
+          <small style="color: var(--text-muted);">Saved Wishlist</small>
+          <div id="profileFavCount" style="font-size: 1.4rem; font-weight: 800; color: var(--secondary);">2</div>
+        </div>
+        <div>
+          <small style="color: var(--text-muted);">Active Alerts</small>
+          <div id="profileAlertCount" style="font-size: 1.4rem; font-weight: 800; color: var(--secondary);">1</div>
+        </div>
+        <div>
+          <small style="color: var(--text-muted);">Account Tier</small>
+          <div style="font-size: 1.4rem; font-weight: 800; color: var(--primary);">Standard</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Security & Password Card -->
+    <div class="card">
+      <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1.5rem;">Security</h3>
+      <form id="changePasswordForm">
+        <div class="form-group">
+          <label class="form-label" for="currentPassword">Current Password</label>
+          <input type="password" id="currentPassword" class="form-control" placeholder="••••••••">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="newPassword">New Password</label>
+          <input type="password" id="newPassword" class="form-control" placeholder="Min. 6 characters">
+        </div>
+
+        <button type="submit" class="btn btn-secondary">Update Password</button>
+      </form>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-bottom">
+      <div>&copy; 2026 PriceHunt. All rights reserved.</div>
+      <div>"Hunt the Best Price."</div>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — PriceHunt</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- App Header -->
+  <header class="navbar">
+    <div class="container navbar-container">
+      <a href="dashboard.html" class="logo">
+        <div class="logo-icon">🎯</div>
+        Price<span>Hunt</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="dashboard.html" class="active">Dashboard</a></li>
+        <li><a href="search.html">Search Products</a></li>
+        <li><a href="favorites.html">Wishlist</a></li>
+        <li><a href="alerts.html">Price Alerts</a></li>
+        <li><a href="profile.html">Profile</a></li>
+      </ul>
+
+      <div class="nav-actions" id="navActions">
+        <button id="logoutBtn" class="btn btn-outline btn-sm">Log Out</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Dashboard Main Content -->
+  <main class="container" style="padding: 2.5rem 1.5rem; flex: 1;">
+    
+    <!-- Welcome Banner & Search -->
+    <div style="background: linear-gradient(135deg, #0284c7, #0369a1); color: white; border-radius: var(--radius-lg); padding: 2.5rem 2rem; margin-bottom: 2.5rem; box-shadow: var(--shadow-md);">
+      <div style="max-width: 680px;">
+        <h1 style="font-size: 2.2rem; font-weight: 800; margin-bottom: 0.5rem;">Welcome to PriceHunt</h1>
+        <p style="color: #e0f2fe; margin-bottom: 1.75rem; font-size: 1.05rem;">Search and compare live prices across multiple e-commerce sources to find today's lowest deal.</p>
+        
+        <form class="search-form" action="search.html" method="GET" style="display: flex; gap: 0.5rem; background: white; border-radius: var(--radius-full); padding: 0.35rem 0.5rem 0.35rem 1.25rem;">
+          <input type="text" class="search-input" name="q" placeholder="What are you looking for? (e.g. iPhone 15, MacBook Air, Sony XM5)" required style="border: none; outline: none; flex: 1; color: var(--text-main);">
+          <button type="submit" class="btn btn-primary" style="border-radius: var(--radius-full);">Search</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Quick Stats Metric Cards -->
+    <div class="grid-3" style="margin-bottom: 3rem;">
+      <div class="card" style="display: flex; align-items: center; gap: 1.25rem; padding: 1.5rem;">
+        <div style="width: 52px; height: 52px; border-radius: var(--radius-md); background: #e0f2fe; color: #0284c7; display: flex; align-items: center; justify-content: center; font-size: 1.75rem;">🔔</div>
+        <div>
+          <div style="font-size: 1.75rem; font-weight: 800; color: var(--secondary);" id="statAlerts">1</div>
+          <div style="color: var(--text-muted); font-size: 0.875rem;">Active Price Alerts</div>
+        </div>
+      </div>
+
+      <div class="card" style="display: flex; align-items: center; gap: 1.25rem; padding: 1.5rem;">
+        <div style="width: 52px; height: 52px; border-radius: var(--radius-md); background: #fee2e2; color: #ef4444; display: flex; align-items: center; justify-content: center; font-size: 1.75rem;">❤️</div>
+        <div>
+          <div style="font-size: 1.75rem; font-weight: 800; color: var(--secondary);" id="statWishlist">2</div>
+          <div style="color: var(--text-muted); font-size: 0.875rem;">Saved to Wishlist</div>
+        </div>
+      </div>
+
+      <div class="card" style="display: flex; align-items: center; gap: 1.25rem; padding: 1.5rem;">
+        <div style="width: 52px; height: 52px; border-radius: var(--radius-md); background: #d1fae5; color: #10b981; display: flex; align-items: center; justify-content: center; font-size: 1.75rem;">⚡</div>
+        <div>
+          <div style="font-size: 1.75rem; font-weight: 800; color: var(--secondary);">₹15,901</div>
+          <div style="color: var(--text-muted); font-size: 0.875rem;">Total Estimated Savings</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hot Deals Section -->
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem;">
+      <div>
+        <h2 style="font-size: 1.6rem; font-weight: 800; color: var(--secondary);">Today's Top Value Deals</h2>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">Highest rated deals scored by our multi-factor comparison algorithm.</p>
+      </div>
+      <a href="search.html" class="btn btn-outline btn-sm">View All Products ➔</a>
+    </div>
+
+    <div class="product-grid" id="searchResultsGrid">
+      <!-- Dynamic product cards rendered by search.js -->
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-bottom">
+      <div>&copy; 2026 PriceHunt. All rights reserved.</div>
+      <div>"Hunt the Best Price."</div>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/search.js"></script>
+</body>
+</html>

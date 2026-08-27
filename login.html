@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Log In — PriceHunt</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="container navbar-container">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">🎯</div>
+        Price<span>Hunt</span>
+      </a>
+      <div>
+        <span style="color: var(--text-muted); font-size: 0.9rem;">Don't have an account?</span>
+        <a href="signup.html" class="btn btn-outline btn-sm" style="margin-left: 0.5rem;">Sign Up</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="auth-wrapper">
+    <div class="auth-card">
+      <div class="auth-header">
+        <h1>Welcome Back</h1>
+        <p>Log in to access your saved deals, wishlist, and price alerts.</p>
+      </div>
+
+      <div id="alertBox" class="alert-box"></div>
+
+      <form id="loginForm">
+        <div class="form-group">
+          <label class="form-label" for="email">Email Address</label>
+          <input type="email" id="email" class="form-control" placeholder="name@example.com" required autocomplete="email" value="demo@pricehunt.com">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="password">Password</label>
+          <div class="input-group">
+            <input type="password" id="password" class="form-control" placeholder="••••••••" required autocomplete="current-password" value="password123">
+            <button type="button" id="togglePassword" class="password-toggle-btn" title="Show/Hide Password">👁️</button>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label class="checkbox-label">
+            <input type="checkbox" id="rememberMe" checked>
+            <span>Remember me</span>
+          </label>
+          <a href="forgot-password.html" style="font-size: 0.85rem;">Forgot Password?</a>
+        </div>
+
+        <button type="submit" id="submitBtn" class="btn btn-primary" style="width: 100%; padding: 0.8rem;">
+          Sign In
+        </button>
+      </form>
+
+      <div style="text-align: center; margin-top: 1.5rem; font-size: 0.85rem; color: var(--text-muted);">
+        Demo Credentials pre-filled: <strong>demo@pricehunt.com</strong> / <strong>password123</strong>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>
