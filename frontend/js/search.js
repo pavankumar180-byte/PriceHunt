@@ -1,6 +1,6 @@
 /**
  * ============================================================================
- * PRICEHUNT LUXURY DARK CARD RENDER ENGINE
+ * PRICEHUNT 5D HYPER-DIMENSIONAL CARD & ALGORITHM ENGINE
  * ============================================================================
  */
 
@@ -50,8 +50,8 @@ async function loadAndRenderProducts(query = '', category = '') {
 
   grid.innerHTML = `
     <div style="grid-column: 1/-1; text-align: center; padding: 4rem 0;">
-      <div style="font-size: 2rem; margin-bottom: 0.5rem; color: var(--accent-violet);">✦</div>
-      <p style="color: var(--text-muted); font-size: 14px;">Scanning live prices across stores...</p>
+      <div style="font-size: 2rem; margin-bottom: 0.5rem; color: var(--accent-cyan);">✦</div>
+      <p style="color: var(--text-muted); font-size: 14px;">Evaluating 5-Factor Deal Scores & Jaro-Winkler Matching...</p>
     </div>
   `;
 
@@ -60,18 +60,18 @@ async function loadAndRenderProducts(query = '', category = '') {
     allProducts = await Api.request(endpoint);
 
     if (countEl) countEl.textContent = allProducts.length;
-    renderDarkCards(allProducts);
+    render5DCards(allProducts);
     populateFilterDropdowns(allProducts);
   } catch (err) {
     grid.innerHTML = `
-      <div style="grid-column: 1/-1; text-align: center; padding: 3rem; color: var(--accent-violet);">
-        <p>Could not load products at this moment.</p>
+      <div style="grid-column: 1/-1; text-align: center; padding: 3rem; color: var(--accent-rose);">
+        <p>Could not load product catalog.</p>
       </div>
     `;
   }
 }
 
-function renderDarkCards(products) {
+function render5DCards(products) {
   const grid = document.getElementById('searchResultsGrid');
   if (!grid) return;
 
@@ -79,9 +79,9 @@ function renderDarkCards(products) {
     grid.innerHTML = `
       <div style="grid-column: 1/-1; text-align: center; padding: 4rem 1rem; background: var(--bg-card); border-radius: var(--radius-card); border: 1px solid var(--border-dark);">
         <div style="font-size: 2.5rem; margin-bottom: 1rem;">🛍️</div>
-        <h4 style="font-weight: 600; font-size: 18px; color: var(--text-pure); margin-bottom: 0.5rem;">No items found</h4>
+        <h4 style="font-weight: 700; font-size: 18px; color: var(--text-pure); margin-bottom: 0.5rem;">No items found</h4>
         <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 1.5rem;">Try searching for shoes, watches, laptops, or smartphones</p>
-        <button class="btn-hunt-now" onclick="resetFilters()">Reset Filters</button>
+        <button class="btn-hunt-5d" onclick="resetFilters()">Reset Filters</button>
       </div>
     `;
     return;
@@ -90,25 +90,31 @@ function renderDarkCards(products) {
   grid.innerHTML = products.map(p => {
     const priceFormatted = p.minPrice ? `₹${p.minPrice.toLocaleString('en-IN')}` : 'Check Prices';
     const isFav = checkIfFav(p.id);
+    
+    // Algorithmic Buy Signal Generator
+    const isBuyNow = (p.maxDiscount && p.maxDiscount > 15) || (p.minPrice < 30000);
+    const signalBadge = isBuyNow ? 
+      `<span class="badge-buy-now">🟢 BUY NOW</span>` : 
+      `<span class="badge-wait">🟡 FAIR PRICE</span>`;
 
     return `
-      <div class="hot-product-card">
-        <div class="hot-card-head">
-          <span class="tag-new">${p.maxDiscount ? `${Math.round(p.maxDiscount)}% OFF` : 'Best Deal'}</span>
-          <span class="price-tag">${priceFormatted}</span>
+      <div class="hot-product-card-5d">
+        <div style="display: flex; align-items: center; justify-content: space-between; padding: 14px 16px 0;">
+          ${signalBadge}
+          <span style="font-size: 15px; font-weight: 800; color: var(--text-pure);">${priceFormatted}</span>
         </div>
 
-        <div class="hot-card-img-wrap">
-          <img src="${p.imageUrl}" alt="${p.name}" loading="lazy" onerror="this.src='https://placehold.co/400x300?text=Product'">
-          <a href="product.html?id=${p.id}" class="hot-card-pill-btn">
+        <div style="height: 185px; display: flex; align-items: center; justify-content: center; padding: 1rem; position: relative;">
+          <img src="${p.imageUrl}" alt="${p.name}" loading="lazy" style="max-height: 100%; object-fit: contain; filter: drop-shadow(0 12px 24px rgba(0,0,0,0.5));" onerror="this.src='https://placehold.co/400x300?text=Product'">
+          <a href="product.html?id=${p.id}" class="btn-hunt-5d" style="position: absolute; bottom: 8px; padding: 4px 14px; font-size: 11px; box-shadow: var(--shadow-5d-card);">
             • Compare ${priceFormatted}
           </a>
         </div>
 
-        <div class="hot-card-body">
-          <div class="hot-card-title" title="${p.name}">${p.name}</div>
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 4px;">
-            <div class="hot-card-stars">★★★★★ <span style="color: var(--text-muted); font-size: 11px;">(${p.bestRating || '4.6'})</span></div>
+        <div style="padding: 14px 16px 16px; border-top: 1px solid var(--border-dark);">
+          <div style="font-size: 14px; font-weight: 700; color: var(--text-pure); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 4px;" title="${p.name}">${p.name}</div>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="font-size: 10px; color: #f59e0b;">★★★★★ <span style="color: var(--text-muted); font-size: 11px;">(${p.bestRating || '4.7'})</span></div>
             <button onclick="toggleFavorite(${p.id}, this)" style="background: none; border: none; cursor: pointer; font-size: 14px; color: ${isFav ? '#ef4444' : 'var(--text-muted)'};">
               ${isFav ? '❤️' : '🤍'}
             </button>
@@ -158,7 +164,7 @@ function applyActiveFilters() {
   const countEl = document.getElementById('resultCount');
   if (countEl) countEl.textContent = filtered.length;
 
-  renderDarkCards(filtered);
+  render5DCards(filtered);
 }
 
 function populateFilterDropdowns(products) {
@@ -201,7 +207,7 @@ function resetFilters() {
   }
   if (sortSelect) sortSelect.value = 'best_deal';
 
-  renderDarkCards(allProducts);
+  render5DCards(allProducts);
 }
 
 function checkIfFav(productId) {
