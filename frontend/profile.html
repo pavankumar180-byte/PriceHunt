@@ -3,97 +3,96 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>User Profile — PriceHunt</title>
+  <title>Account Profile — PriceHunt</title>
   <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <!-- App Header -->
-  <header class="navbar">
-    <div class="container navbar-container">
-      <a href="index.html" class="logo">
-        <div class="logo-icon">🎯</div>
-        Price<span>Hunt</span>
-      </a>
+  <!-- Top App Download Banner -->
+  <aside class="app-download-banner">
+    <span>📱 Download PriceHunt app • Available on iOS & Android</span>
+  </aside>
 
-      <ul class="nav-links">
-        <li><a href="dashboard.html">Dashboard</a></li>
-        <li><a href="search.html">Search</a></li>
-        <li><a href="favorites.html">Wishlist</a></li>
-        <li><a href="alerts.html">Price Alerts</a></li>
-        <li><a href="profile.html" class="active">Profile</a></li>
-      </ul>
-
-      <div class="nav-actions" id="navActions">
-        <button id="logoutBtn" class="btn btn-outline btn-sm">Log Out</button>
-      </div>
-    </div>
-  </header>
-
-  <main class="container" id="profileContainer" style="padding: 2.5rem 1.5rem; flex: 1; max-width: 800px;">
+  <div class="app-shell">
     
-    <div style="margin-bottom: 2rem;">
-      <h1 style="font-size: 1.85rem; font-weight: 800; color: var(--secondary);">Account Settings</h1>
-      <p style="color: var(--text-muted); font-size: 0.95rem;">Manage your PriceHunt profile, email, and security settings.</p>
-    </div>
+    <!-- Persistent Sidebar Nav Rail -->
+    <aside class="sidebar-rail">
+      <div>
+        <a href="index.html" class="nav-rail-logo">PH<span style="color: var(--shop-violet);">.</span></a>
+        <ul class="nav-rail-items">
+          <li><a href="index.html" class="nav-rail-btn" title="Home">🏠</a></li>
+          <li><a href="search.html" class="nav-rail-btn" title="Search">🔍</a></li>
+          <li><a href="dashboard.html" class="nav-rail-btn" title="Dashboard">⚡</a></li>
+          <li><a href="favorites.html" class="nav-rail-btn" title="Wishlist">🤍</a></li>
+          <li><a href="alerts.html" class="nav-rail-btn" title="Alerts">🔔</a></li>
+        </ul>
+      </div>
+      <div>
+        <a href="profile.html" class="nav-rail-avatar active">👤</a>
+      </div>
+    </aside>
 
-    <!-- Profile Overview Card -->
-    <div class="card" style="margin-bottom: 2rem;">
-      <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1.5rem;">Personal Information</h3>
+    <!-- Main Viewport -->
+    <main class="main-viewport">
+      <div class="container" id="profileContainer" style="padding: 3rem 1.5rem; max-width: 700px;">
+        
+        <div style="margin-bottom: 2rem;">
+          <h1 style="font-size: 24px; font-weight: 500; letter-spacing: -0.05em;">Account & Security</h1>
+          <p style="color: var(--muted-gray); font-size: 14px;">Manage your PriceHunt profile settings.</p>
+        </div>
 
-      <div class="form-group">
-        <label class="form-label" for="profileName">Full Name</label>
-        <input type="text" id="profileName" class="form-control" value="John Doe">
+        <div style="background: var(--pure-white); border-radius: var(--radius-card); box-shadow: var(--shadow-elevated-card); padding: 32px; margin-bottom: 24px;">
+          <h3 style="font-size: 18px; font-weight: 500; letter-spacing: -0.031em; margin-bottom: 20px;">Profile Information</h3>
+
+          <div style="margin-bottom: 16px;">
+            <label style="display: block; font-size: 12px; color: var(--muted-gray); margin-bottom: 6px;">NAME</label>
+            <input type="text" id="profileName" class="shop-select" value="John Doe">
+          </div>
+
+          <div style="margin-bottom: 20px;">
+            <label style="display: block; font-size: 12px; color: var(--muted-gray); margin-bottom: 6px;">EMAIL</label>
+            <input type="email" id="profileEmail" class="shop-select" value="demo@pricehunt.com">
+          </div>
+
+          <div class="shop-grid-3" style="background: var(--canvas-mist); padding: 16px; border-radius: var(--radius-inner); text-align: center;">
+            <div>
+              <div style="font-size: 11px; color: var(--muted-gray);">SAVED ITEMS</div>
+              <div id="profileFavCount" style="font-size: 20px; font-weight: 600; color: var(--ink-black);">2</div>
+            </div>
+            <div>
+              <div style="font-size: 11px; color: var(--muted-gray);">ACTIVE ALERTS</div>
+              <div id="profileAlertCount" style="font-size: 20px; font-weight: 600; color: var(--ink-black);">1</div>
+            </div>
+            <div>
+              <div style="font-size: 11px; color: var(--muted-gray);">MEMBERSHIP</div>
+              <div style="font-size: 20px; font-weight: 600; color: var(--shop-violet);">Standard</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="background: var(--pure-white); border-radius: var(--radius-card); box-shadow: var(--shadow-elevated-card); padding: 32px;">
+          <h3 style="font-size: 18px; font-weight: 500; letter-spacing: -0.031em; margin-bottom: 20px;">Update Password</h3>
+          <div style="margin-bottom: 16px;">
+            <label style="display: block; font-size: 12px; color: var(--muted-gray); margin-bottom: 6px;">CURRENT PASSWORD</label>
+            <input type="password" class="shop-select" placeholder="••••••••">
+          </div>
+          <div style="margin-bottom: 20px;">
+            <label style="display: block; font-size: 12px; color: var(--muted-gray); margin-bottom: 6px;">NEW PASSWORD</label>
+            <input type="password" class="shop-select" placeholder="Min. 6 characters">
+          </div>
+          <button class="pill-btn pill-btn-black">Save Changes</button>
+        </div>
+
       </div>
 
-      <div class="form-group">
-        <label class="form-label" for="profileEmail">Email Address</label>
-        <input type="email" id="profileEmail" class="form-control" value="demo@pricehunt.com">
-      </div>
-
-      <div class="grid-3" style="margin-top: 1.5rem; background: var(--bg-surface-subtle); padding: 1.25rem; border-radius: var(--radius-md);">
-        <div>
-          <small style="color: var(--text-muted);">Saved Wishlist</small>
-          <div id="profileFavCount" style="font-size: 1.4rem; font-weight: 800; color: var(--secondary);">2</div>
+      <footer class="shop-footer">
+        <div class="container" style="font-size: 11px; text-align: center; color: var(--cool-stone);">
+          &copy; 2026 PriceHunt. Pillow-soft shopping discovery.
         </div>
-        <div>
-          <small style="color: var(--text-muted);">Active Alerts</small>
-          <div id="profileAlertCount" style="font-size: 1.4rem; font-weight: 800; color: var(--secondary);">1</div>
-        </div>
-        <div>
-          <small style="color: var(--text-muted);">Account Tier</small>
-          <div style="font-size: 1.4rem; font-weight: 800; color: var(--primary);">Standard</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Security & Password Card -->
-    <div class="card">
-      <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1.5rem;">Security</h3>
-      <form id="changePasswordForm">
-        <div class="form-group">
-          <label class="form-label" for="currentPassword">Current Password</label>
-          <input type="password" id="currentPassword" class="form-control" placeholder="••••••••">
-        </div>
-
-        <div class="form-group">
-          <label class="form-label" for="newPassword">New Password</label>
-          <input type="password" id="newPassword" class="form-control" placeholder="Min. 6 characters">
-        </div>
-
-        <button type="submit" class="btn btn-secondary">Update Password</button>
-      </form>
-    </div>
-
-  </main>
-
-  <footer class="footer">
-    <div class="container footer-bottom">
-      <div>&copy; 2026 PriceHunt. All rights reserved.</div>
-      <div>"Hunt the Best Price."</div>
-    </div>
-  </footer>
+      </footer>
+    </main>
+  </div>
 
   <script src="js/api.js"></script>
   <script src="js/auth.js"></script>
