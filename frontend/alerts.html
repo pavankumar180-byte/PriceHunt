@@ -3,55 +3,53 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Price Alerts — PriceHunt</title>
+  <title>Price Alerts — PriceHunt® Store</title>
   <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <!-- Top App Download Banner -->
-  <aside class="app-download-banner">
-    <span>📱 Download PriceHunt app • Available on iOS & Android</span>
-  </aside>
-
-  <div class="app-shell">
+  <div class="page-canvas">
     
-    <!-- Persistent Sidebar Nav Rail -->
-    <aside class="sidebar-rail">
-      <div>
-        <a href="index.html" class="nav-rail-logo">PH<span style="color: var(--shop-violet);">.</span></a>
-        <ul class="nav-rail-items">
-          <li><a href="index.html" class="nav-rail-btn" title="Home">🏠</a></li>
-          <li><a href="search.html" class="nav-rail-btn" title="Search">🔍</a></li>
-          <li><a href="dashboard.html" class="nav-rail-btn" title="Dashboard">⚡</a></li>
-          <li><a href="favorites.html" class="nav-rail-btn" title="Wishlist">🤍</a></li>
-          <li><a href="alerts.html" class="nav-rail-btn active" title="Alerts">🔔</a></li>
-        </ul>
-      </div>
-      <div>
-        <a href="profile.html" class="nav-rail-avatar">👤</a>
-      </div>
-    </aside>
+    <!-- Top Header -->
+    <header class="fabrid-nav">
+      <a href="index.html" class="nav-brand">
+        pricehunt<span class="sup">®</span>
+      </a>
 
-    <!-- Main Viewport -->
-    <main class="main-viewport">
-      <div class="container" style="padding: 3rem 1.5rem;">
-        
-        <div style="margin-bottom: 2rem;">
-          <h1 style="font-size: 24px; font-weight: 500; letter-spacing: -0.05em;">Active Price Drop Triggers</h1>
-          <p style="color: var(--muted-gray); font-size: 14px;">Instant alerts when prices drop to your target threshold.</p>
+      <ul class="nav-menu">
+        <li><a href="index.html">Shop</a></li>
+        <li><a href="search.html">Categories</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="favorites.html">Wishlist</a></li>
+        <li><a href="alerts.html" class="active">Alerts</a></li>
+      </ul>
+
+      <div class="nav-right-actions">
+        <a href="profile.html" class="nav-icon-btn">👤</a>
+        <a href="search.html" class="btn-hunt-now"><span>•</span> Hunt Now</a>
+      </div>
+    </header>
+
+    <main class="container" style="padding: 3rem 1.5rem;">
+      <div class="section-header-row">
+        <div>
+          <h2>Active Price Drop Alerts</h2>
+          <p>Instant notification triggers when prices reach your budget threshold.</p>
         </div>
-
-        <div id="alertsContainer" style="display: flex; flex-direction: column; gap: 16px;"></div>
-
       </div>
 
-      <footer class="shop-footer">
-        <div class="container" style="font-size: 11px; text-align: center; color: var(--cool-stone);">
-          &copy; 2026 PriceHunt. Pillow-soft shopping discovery.
-        </div>
-      </footer>
+      <div id="alertsContainer" style="display: flex; flex-direction: column; gap: 16px;"></div>
     </main>
+
+    <!-- Clean Dark Footer -->
+    <footer class="fabrid-footer">
+      <div class="container footer-bottom-bar">
+        <div>&copy; 2026 PriceHunt® Store. All rights reserved.</div>
+        <div>Luxury Dark E-Commerce Architecture</div>
+      </div>
+    </footer>
+
   </div>
 
   <script src="js/api.js"></script>
@@ -63,31 +61,31 @@
         const alerts = await Api.request('/alerts');
         if (!alerts || alerts.length === 0) {
           container.innerHTML = `
-            <div style="text-align: center; padding: 4rem 1rem; background: white; border-radius: var(--radius-card); box-shadow: var(--shadow-elevated-card);">
+            <div style="text-align: center; padding: 4rem 1rem; background: var(--bg-card); border-radius: var(--radius-card); border: 1px solid var(--border-dark);">
               <div style="font-size: 2.5rem; margin-bottom: 1rem;">🔔</div>
-              <h4 style="font-weight: 500; font-size: 18px; margin-bottom: 0.5rem;">No active alerts</h4>
-              <p style="color: var(--muted-gray); font-size: 14px; margin-bottom: 1.5rem;">Set a target price on any product to track it automatically.</p>
-              <a href="search.html" class="pill-btn pill-btn-violet">Discover Items</a>
+              <h4 style="font-weight: 700; font-size: 18px; color: var(--text-pure); margin-bottom: 0.5rem;">No active price alerts</h4>
+              <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 1.5rem;">Set a target budget on any product to track it automatically.</p>
+              <a href="search.html" class="btn-hunt-now">Find Items to Track</a>
             </div>
           `;
           return;
         }
 
         container.innerHTML = alerts.map(a => `
-          <div style="background: var(--pure-white); border-radius: var(--radius-card); box-shadow: var(--shadow-elevated-card); padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+          <div style="background: var(--bg-card); border: 1px solid var(--border-dark); border-radius: var(--radius-card); box-shadow: var(--shadow-card); padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
             <div style="display: flex; align-items: center; gap: 16px;">
-              <img src="${a.product.imageUrl}" alt="${a.product.name}" style="width: 52px; height: 52px; object-fit: contain; border-radius: var(--radius-inner); background: #fafafa; padding: 4px;">
+              <img src="${a.product.imageUrl}" alt="${a.product.name}" style="width: 56px; height: 56px; object-fit: contain; border-radius: var(--radius-inner); background: rgba(255, 255, 255, 0.03); padding: 4px;">
               <div>
-                <h4 style="font-size: 16px; font-weight: 500; letter-spacing: -0.031em;">${a.product.name}</h4>
-                <div style="font-size: 13px; color: var(--muted-gray); margin-top: 2px;">
-                  Target: <strong style="color: var(--shop-violet);">₹${a.targetPrice.toLocaleString('en-IN')}</strong> • Status: <span style="background: #f6f5ff; color: var(--shop-violet); padding: 2px 8px; border-radius: var(--radius-pill); font-size: 11px;">Active</span>
+                <h4 style="font-size: 16px; font-weight: 700; color: var(--text-pure);">${a.product.name}</h4>
+                <div style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">
+                  Target: <strong style="color: var(--accent-lavender);">₹${a.targetPrice.toLocaleString('en-IN')}</strong> • Status: <span style="background: rgba(124, 58, 237, 0.2); color: var(--accent-lavender); padding: 2px 8px; border-radius: var(--radius-pill); font-size: 11px; font-weight: 600;">Active</span>
                 </div>
               </div>
             </div>
 
-            <div style="display: flex; gap: 8px;">
-              <a href="product.html?id=${a.product.id}" class="pill-btn pill-btn-white" style="font-size: 12px; padding: 6px 14px;">View Comparisons</a>
-              <button class="pill-btn pill-btn-white" style="font-size: 12px; padding: 6px 14px; color: #ef4444;" onclick="deleteAlert(${a.id})">Delete</button>
+            <div style="display: flex; gap: 10px;">
+              <a href="product.html?id=${a.product.id}" class="btn-hunt-now" style="font-size: 12px; padding: 6px 14px; background: rgba(255, 255, 255, 0.1); box-shadow: none;">Compare Rates</a>
+              <button class="btn-hunt-now" style="font-size: 12px; padding: 6px 14px; background: rgba(239, 68, 68, 0.2); color: #f87171; box-shadow: none;" onclick="deleteAlert(${a.id})">Delete</button>
             </div>
           </div>
         `).join('');

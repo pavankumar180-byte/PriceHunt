@@ -1,48 +1,47 @@
 /* ==========================================================================
-   PRICEHUNT DESIGN SYSTEM — SHOP STYLE SPECIFICATION
-   "Floating shopping constellation on white marble"
+   PRICEHUNT — LUXURY DARK E-COMMERCE DESIGN SYSTEM
+   Inspired by Fabrid Store Dark Architecture & Fluid Animated Constellations
    ========================================================================== */
 
 :root {
-  /* Exact Color Palette */
-  --canvas-mist: #f2f4f5;
-  --pure-white: #ffffff;
-  --ink-black: #000000;
-  --faint-border: #ebebeb;
-  --muted-gray: #787574;
-  --cool-stone: #cccccc;
-  --warm-fog: #acb0aa;
-  --shop-violet: #5433eb;
-  --violet-wash: #c0b5f3;
-  --slate-ink: #332f2d;
-  --ash-veil: #665a54;
+  /* Dark Luxury Palette */
+  --bg-canvas: #06040e;         /* Deepest Obsidian Canvas */
+  --bg-page: #0d0a1a;           /* Inner App Container Surface */
+  --bg-card: #151126;           /* Elevated Squircle Card */
+  --bg-card-hover: #1c1733;
+  --bg-glass: rgba(21, 17, 38, 0.7);
+  --bg-pill: rgba(255, 255, 255, 0.08);
 
-  /* Semantic Mappings */
-  --bg-page: var(--canvas-mist);
-  --bg-surface: var(--pure-white);
-  --text-main: var(--ink-black);
-  --text-muted: var(--muted-gray);
-  --border-subtle: var(--faint-border);
-  --accent: var(--shop-violet);
+  --accent-violet: #7c3aed;     /* Electric Saturated Violet */
+  --accent-violet-hover: #6d28d9;
+  --accent-violet-glow: rgba(124, 58, 237, 0.45);
+  --accent-lavender: #c4b5fd;
+  --accent-gradient: linear-gradient(135deg, #7c3aed 0%, #4f46e5 50%, #06b6d4 100%);
+  --hero-mesh: radial-gradient(circle at 70% 30%, rgba(124, 58, 237, 0.35) 0%, rgba(79, 70, 229, 0.2) 40%, rgba(13, 10, 26, 0) 75%);
 
-  /* Elevation Shadows */
-  --shadow-elevated-card: 0px 4px 6px -1px rgba(0, 0, 0, 0.1), 0px 2px 4px -2px rgba(0, 0, 0, 0.1);
-  --shadow-card-hover: 0 20px 30px -10px rgba(0, 0, 0, 0.12), 0 10px 15px -5px rgba(0, 0, 0, 0.05);
-  --shadow-violet-submit: 0px 4px 24px rgba(69, 36, 219, 0.34);
-  --shadow-pill: 0px 2px 8px rgba(0, 0, 0, 0.06);
-  --shadow-carousel-arrow: 0px 4px 24px rgba(0, 0, 0, 0.12);
+  --text-pure: #ffffff;
+  --text-main: #f3f0ff;
+  --text-muted: #9d96b8;
+  --text-subtle: #675f85;
 
-  /* Geometry & Pillow-Soft Radii */
+  --border-dark: rgba(255, 255, 255, 0.08);
+  --border-glow: rgba(124, 58, 237, 0.3);
+  --border-pill: rgba(255, 255, 255, 0.12);
+
+  /* Shadows & Glows */
+  --shadow-card: 0 10px 30px -5px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.06);
+  --shadow-card-hover: 0 20px 40px -10px rgba(124, 58, 237, 0.3), 0 0 0 1px rgba(124, 58, 237, 0.4);
+  --shadow-violet-glow: 0 8px 32px rgba(124, 58, 237, 0.45);
+  --shadow-pill: 0 4px 16px rgba(0, 0, 0, 0.3);
+
+  /* Radii */
   --radius-card: 28px;
   --radius-inner: 20px;
   --radius-pill: 9999px;
-  --radius-chip: 9999px;
-  --radius-input: 9999px;
 
   /* Typography */
   --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --max-width: 1200px;
-  --section-gap: 64px;
+  --max-width: 1240px;
 }
 
 /* Reset & Base */
@@ -59,25 +58,25 @@ html {
 
 body {
   font-family: var(--font-family);
-  background-color: var(--bg-page);
+  background-color: var(--bg-canvas);
   color: var(--text-main);
-  line-height: 1.33;
-  letter-spacing: -0.031em;
-  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.025em;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 a {
   color: inherit;
   text-decoration: none;
-  transition: opacity 0.15s ease;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 a:hover {
-  opacity: 0.8;
+  color: var(--text-pure);
 }
 
 img {
@@ -86,732 +85,862 @@ img {
   display: block;
 }
 
-/* Layout Shell with 64px Persistent Sidebar Nav Rail */
-.app-shell {
-  display: flex;
-  min-height: 100vh;
-}
-
-.sidebar-rail {
-  width: 64px;
-  background-color: var(--pure-white);
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1.25rem 0;
-  z-index: 100;
-  flex-shrink: 0;
-}
-
-.nav-rail-logo {
-  font-size: 1.35rem;
-  font-weight: 900;
-  color: var(--ink-black);
-  margin-bottom: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.nav-rail-logo span {
-  color: var(--shop-violet);
-}
-
-.nav-rail-items {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  list-style: none;
-}
-
-.nav-rail-btn {
-  width: 48px;
-  height: 48px;
-  border-radius: var(--radius-inner);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--ink-black);
-  font-size: 1.3rem;
-  transition: background-color 0.15s ease, transform 0.15s ease;
-}
-
-.nav-rail-btn:hover {
-  background-color: var(--canvas-mist);
-  transform: scale(1.05);
-}
-
-.nav-rail-btn.active {
-  background-color: var(--canvas-mist);
-}
-
-.nav-rail-avatar {
-  width: 32px;
-  height: 32px;
-  border-radius: var(--radius-pill);
-  border: 1px solid var(--faint-border);
-  background-color: var(--canvas-mist);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.85rem;
-  font-weight: 600;
-}
-
-.main-viewport {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
+/* Outer Wrapper & Canvas Container */
+.page-canvas {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 1.5rem auto 3rem;
+  background-color: var(--bg-page);
+  border-radius: 36px;
+  border: 1px solid var(--border-dark);
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8), 0 0 80px rgba(124, 58, 237, 0.12);
+  overflow: hidden;
+  position: relative;
 }
 
 .container {
   width: 100%;
-  max-width: var(--max-width);
+  max-width: 1140px;
   margin: 0 auto;
   padding: 0 1.5rem;
 }
 
-/* App Download Top Banner */
-.app-download-banner {
-  background-color: var(--ink-black);
-  height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  color: var(--pure-white);
-  font-size: 14px;
-  letter-spacing: -0.023em;
-  padding: 0 1rem;
-}
-
-.app-download-banner a {
-  color: var(--pure-white);
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-}
-
-.app-download-banner small {
-  color: var(--cool-stone);
-  font-size: 10px;
-}
-
 /* ==========================================================================
-   FLOATING SHOPPING CONSTELLATION HERO (3D ANIMATED)
+   NAVIGATION BAR (FLOATING PILL / GLASS)
    ========================================================================== */
-.constellation-hero {
-  padding: 5rem 0 3.5rem;
-  position: relative;
-  text-align: center;
-  overflow: hidden;
-  perspective: 1000px;
-}
-
-.constellation-grid {
-  position: relative;
-  max-width: 1000px;
-  height: 320px;
-  margin: 0 auto 1.5rem;
+.fabrid-nav {
   display: flex;
   align-items: center;
-  justify-content: center;
-}
-
-/* 3D Floating Animation Keyframes */
-@keyframes float-1 {
-  0%, 100% { transform: translateY(0px) rotate(-2deg) rotateY(-4deg); }
-  50% { transform: translateY(-14px) rotate(1deg) rotateY(4deg); }
-}
-
-@keyframes float-2 {
-  0%, 100% { transform: translateY(0px) rotate(3deg) rotateY(6deg); }
-  50% { transform: translateY(-18px) rotate(-1deg) rotateY(-3deg); }
-}
-
-@keyframes float-3 {
-  0%, 100% { transform: translateY(0px) rotate(-3deg) rotateX(4deg); }
-  50% { transform: translateY(-12px) rotate(2deg) rotateX(-4deg); }
-}
-
-@keyframes float-4 {
-  0%, 100% { transform: translateY(0px) rotate(2deg); }
-  50% { transform: translateY(-16px) rotate(-2deg); }
-}
-
-.floating-tile {
-  position: absolute;
-  background-color: var(--pure-white);
-  border-radius: var(--radius-card);
-  box-shadow: var(--shadow-elevated-card);
-  padding: 0;
-  overflow: hidden;
-  width: 160px;
-  cursor: pointer;
-  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
-  transform-style: preserve-3d;
-  will-change: transform;
-}
-
-.floating-tile:hover {
-  transform: translateY(-24px) scale(1.12) rotate(0deg) !important;
-  box-shadow: var(--shadow-card-hover);
-  z-index: 50 !important;
-}
-
-.floating-tile-1 {
-  top: 10px;
-  left: 6%;
-  animation: float-1 6s ease-in-out infinite;
-  z-index: 2;
-}
-
-.floating-tile-2 {
-  bottom: 10px;
-  left: 20%;
-  animation: float-2 7s ease-in-out infinite 0.5s;
-  z-index: 3;
-}
-
-.floating-tile-3 {
-  top: 20px;
-  right: 20%;
-  animation: float-3 6.5s ease-in-out infinite 1s;
-  z-index: 3;
-}
-
-.floating-tile-4 {
-  bottom: 15px;
-  right: 6%;
-  animation: float-4 7.5s ease-in-out infinite 1.5s;
-  z-index: 2;
-}
-
-.floating-tile-img {
-  width: 100%;
-  height: 140px;
-  object-fit: cover;
-  border-radius: var(--radius-inner);
-  padding: 6px;
-  background-color: #fafafa;
-}
-
-.floating-tile-meta {
-  padding: 0.5rem 0.75rem 0.75rem;
-  text-align: left;
-}
-
-.floating-tile-brand {
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: -0.014em;
-  color: var(--ink-black);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.floating-tile-stars {
-  font-size: 9px;
-  letter-spacing: -0.058em;
-  color: var(--muted-gray);
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-  margin-top: 0.2rem;
-}
-
-/* Centered Brand Wordmark */
-.brand-wordmark {
-  font-size: 4.5rem;
-  font-weight: 400;
-  letter-spacing: -0.06em;
-  color: var(--ink-black);
-  margin-bottom: 0.25rem;
-  display: inline-flex;
-  align-items: baseline;
-  user-select: none;
-}
-
-.brand-wordmark .violet-dot {
-  width: 16px;
-  height: 16px;
-  background-color: var(--shop-violet);
-  border-radius: var(--radius-pill);
-  display: inline-block;
-  margin-left: 4px;
-  box-shadow: var(--shadow-violet-submit);
-}
-
-.hero-tagline-text {
-  font-size: 16px;
-  color: var(--muted-gray);
-  letter-spacing: -0.031em;
-  margin-bottom: 2rem;
-}
-
-/* ==========================================================================
-   PILL SEARCH INPUT WITH VIOLET SUBMIT
-   ========================================================================== */
-.search-pill-wrapper {
-  max-width: 620px;
-  margin: 0 auto 2rem;
-  position: relative;
-}
-
-.search-pill-container {
-  display: flex;
-  align-items: center;
-  background-color: var(--pure-white);
-  border-radius: var(--radius-search, 9999px);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  padding: 4px 4px 4px 20px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.search-pill-container:focus-within {
-  border-color: var(--ink-black);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-}
-
-.search-pill-input {
-  flex: 1;
-  border: none;
-  outline: none;
-  background: transparent;
-  font-size: 16px;
-  color: var(--ink-black);
-  letter-spacing: -0.031em;
-}
-
-.search-pill-input::placeholder {
-  color: var(--muted-gray);
-}
-
-.search-violet-submit {
-  width: 48px;
-  height: 48px;
-  border-radius: var(--radius-pill);
-  background-color: var(--shop-violet);
-  color: var(--pure-white);
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.15rem;
-  box-shadow: var(--shadow-violet-submit);
-  transition: transform 0.15s ease, background-color 0.15s ease;
-  flex-shrink: 0;
-}
-
-.search-violet-submit:hover {
-  transform: scale(1.06);
-  background-color: #4828d9;
-}
-
-/* Category Quick Access Pills */
-.category-pill-row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-top: 1rem;
-}
-
-.category-pill {
-  background-color: var(--pure-white);
-  border: 1px solid var(--faint-border);
-  border-radius: var(--radius-chips, 9999px);
-  box-shadow: var(--shadow-pill);
-  padding: 6px 16px 6px 8px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 16px;
-  letter-spacing: -0.031em;
-  color: var(--ink-black);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-  cursor: pointer;
-}
-
-.category-pill:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
-
-.category-pill-icon {
-  width: 24px;
-  height: 24px;
-  border-radius: var(--radius-pill);
-  background-color: var(--canvas-mist);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.85rem;
-}
-
-/* ==========================================================================
-   PRODUCT DISCOVERY GRIDS & 28px CARDS
-   ========================================================================== */
-.content-section {
-  padding: 3rem 0;
-}
-
-.section-title-row {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 20px;
-  font-weight: 500;
-  letter-spacing: -0.05em;
-  color: var(--ink-black);
-  margin-bottom: 24px;
-}
-
-.section-title-row span.chevron {
-  font-size: 16px;
-  color: var(--ink-black);
-}
-
-.shop-grid-4 {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-}
-
-.shop-grid-3 {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-}
-
-/* 28px Pillow-Soft Product Card */
-.shop-card {
-  background-color: var(--pure-white);
-  border-radius: var(--radius-card);
-  box-shadow: var(--shadow-elevated-card);
-  padding: 0;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
-  position: relative;
-}
-
-.shop-card:hover {
-  transform: translateY(-8px) scale(1.01);
-  box-shadow: var(--shadow-card-hover);
-}
-
-.shop-card-image-wrap {
-  width: 100%;
-  height: 240px;
-  background-color: #fafafa;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 12px;
-  position: relative;
-}
-
-.shop-card-image-wrap img {
-  max-height: 100%;
-  width: 100%;
-  object-fit: contain;
-  border-radius: var(--radius-inner);
-}
-
-.shop-card-badge {
-  position: absolute;
-  top: 16px;
-  left: 16px;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(4px);
-  border-radius: var(--radius-pill);
-  padding: 4px 10px;
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: -0.014em;
-  box-shadow: var(--shadow-pill);
-}
-
-.shop-card-fav {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  width: 32px;
-  height: 32px;
-  border-radius: var(--radius-pill);
-  background: rgba(255, 255, 255, 0.95);
-  border: none;
-  box-shadow: var(--shadow-pill);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-size: 0.9rem;
-  transition: transform 0.15s ease;
-}
-
-.shop-card-fav:hover {
-  transform: scale(1.1);
-}
-
-.shop-card-body {
-  padding: 16px 20px 20px;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-
-.shop-card-brand {
-  font-size: 12px;
-  color: var(--muted-gray);
-  letter-spacing: -0.017em;
-  margin-bottom: 2px;
-  text-transform: uppercase;
-}
-
-.shop-card-title {
-  font-size: 16px;
-  font-weight: 500;
-  letter-spacing: -0.031em;
-  color: var(--ink-black);
-  margin-bottom: 8px;
-  line-height: 1.25;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.shop-card-rating {
-  font-size: 11px;
-  color: var(--muted-gray);
-  margin-bottom: 12px;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.shop-card-footer {
-  margin-top: auto;
-  display: flex;
-  align-items: baseline;
   justify-content: space-between;
-  padding-top: 12px;
-  border-top: 1px solid var(--faint-border);
+  padding: 1.25rem 2rem;
+  background: rgba(13, 10, 26, 0.85);
+  backdrop-filter: blur(16px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid var(--border-dark);
 }
 
-.shop-card-price {
-  font-size: 18px;
-  font-weight: 600;
-  letter-spacing: -0.031em;
-  color: var(--ink-black);
-}
-
-.shop-card-action {
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--shop-violet);
+.nav-brand {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--text-pure);
+  letter-spacing: -0.05em;
   display: flex;
   align-items: center;
   gap: 2px;
 }
 
-/* ==========================================================================
-   PILL BUTTONS & CONTROLS
-   ========================================================================== */
-.pill-btn {
-  display: inline-flex;
+.nav-brand span.sup {
+  font-size: 0.75rem;
+  color: var(--accent-violet);
+  font-weight: 700;
+  vertical-align: super;
+  margin-left: 2px;
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  list-style: none;
+}
+
+.nav-menu a {
+  font-size: 14px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.nav-menu a:hover,
+.nav-menu a.active {
+  color: var(--text-pure);
+}
+
+.nav-right-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav-icon-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-pill);
+  background: var(--bg-pill);
+  border: 1px solid var(--border-pill);
+  display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  border-radius: var(--radius-pill);
-  padding: 8px 20px;
-  font-size: 14px;
-  letter-spacing: -0.014em;
-  font-weight: 500;
+  color: var(--text-pure);
+  font-size: 0.95rem;
   cursor: pointer;
-  border: 1px solid transparent;
-  transition: transform 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+  transition: all 0.2s ease;
 }
 
-.pill-btn-violet {
-  background-color: var(--shop-violet);
-  color: var(--pure-white);
-  box-shadow: var(--shadow-violet-submit);
+.nav-icon-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: scale(1.05);
 }
 
-.pill-btn-violet:hover {
-  background-color: #4828d9;
-  transform: translateY(-1px);
+.btn-hunt-now {
+  background: var(--accent-violet);
+  color: var(--text-pure);
+  border-radius: var(--radius-pill);
+  padding: 8px 22px;
+  font-size: 13px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: var(--shadow-violet-glow);
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border: none;
+  cursor: pointer;
 }
 
-.pill-btn-white {
-  background-color: var(--pure-white);
-  color: var(--ink-black);
-  border: 1px solid var(--faint-border);
-  box-shadow: var(--shadow-pill);
-}
-
-.pill-btn-white:hover {
-  background-color: var(--canvas-mist);
-}
-
-.pill-btn-black {
-  background-color: var(--ink-black);
-  color: var(--pure-white);
-}
-
-.pill-btn-black:hover {
-  opacity: 0.9;
+.btn-hunt-now:hover {
+  background: var(--accent-violet-hover);
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 10px 30px rgba(124, 58, 237, 0.6);
+  color: var(--text-pure);
 }
 
 /* ==========================================================================
-   COMPARISON MATRIX (PILLOW-SOFT TABLE)
+   HERO BANNER (DARK FLUID MESH WITH FABRID STORE EMBOSS)
    ========================================================================== */
-.shop-table-card {
-  background-color: var(--pure-white);
+.fabrid-hero {
+  position: relative;
+  margin: 1.5rem;
+  border-radius: 32px;
+  background: #110d24;
+  background-image: var(--hero-mesh), url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200&auto=format&fit=crop&q=80');
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: overlay;
+  padding: 4rem 3.5rem 3.5rem;
+  overflow: hidden;
+  min-height: 440px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.6), var(--shadow-card);
+}
+
+/* Fluid Animated Mesh Glow */
+@keyframes ambient-glow {
+  0%, 100% { transform: scale(1) translate(0, 0); opacity: 0.5; }
+  50% { transform: scale(1.15) translate(-20px, 15px); opacity: 0.8; }
+}
+
+.hero-ambient-glow {
+  position: absolute;
+  top: -20%;
+  right: -10%;
+  width: 550px;
+  height: 550px;
+  background: radial-gradient(circle, rgba(124, 58, 237, 0.5) 0%, rgba(99, 102, 241, 0.25) 50%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(60px);
+  animation: ambient-glow 8s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+/* Giant Embossed Watermark "pricehunt® Store" */
+.hero-watermark {
+  font-size: clamp(3.5rem, 8vw, 6.5rem);
+  font-weight: 900;
+  letter-spacing: -0.06em;
+  color: rgba(255, 255, 255, 0.95);
+  line-height: 0.95;
+  user-select: none;
+  display: flex;
+  align-items: baseline;
+  text-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.hero-watermark span.sub-store {
+  font-size: clamp(1.5rem, 3.5vw, 2.8rem);
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.6);
+  margin-left: 12px;
+  letter-spacing: -0.03em;
+}
+
+.hero-floating-elements {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 2rem;
+  position: relative;
+  z-index: 10;
+}
+
+/* Floating Showcase Card Widget */
+@keyframes float-gentle {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.hero-showcase-widget {
+  background: rgba(18, 14, 38, 0.8);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24px;
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+  animation: float-gentle 6s ease-in-out infinite;
+  max-width: 280px;
+}
+
+.widget-thumb {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-inner);
+  background: #1e1938;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.widget-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.widget-info h5 {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-pure);
+}
+
+.widget-info small {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.widget-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--accent-violet);
+  color: white;
+  border-radius: var(--radius-pill);
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+/* 70+ Trusted Stores Pill */
+.hero-stat-pill {
+  text-align: right;
+}
+
+.hero-stat-pill h3 {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: var(--text-pure);
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.hero-stat-pill p {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* ==========================================================================
+   SMOOTH FLOATING SEARCH BAR
+   ========================================================================== */
+.fabrid-search-bar {
+  background: rgba(22, 18, 42, 0.9);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border-dark);
+  border-radius: var(--radius-pill);
+  padding: 6px 6px 6px 24px;
+  display: flex;
+  align-items: center;
+  box-shadow: var(--shadow-card);
+  max-width: 680px;
+  margin: -1.75rem auto 3rem;
+  position: relative;
+  z-index: 20;
+  transition: all 0.3s ease;
+}
+
+.fabrid-search-bar:focus-within {
+  border-color: var(--accent-violet);
+  box-shadow: 0 10px 40px rgba(124, 58, 237, 0.35);
+  transform: translateY(-2px);
+}
+
+.fabrid-search-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  color: var(--text-pure);
+  letter-spacing: -0.02em;
+}
+
+.fabrid-search-input::placeholder {
+  color: var(--text-muted);
+}
+
+.fabrid-search-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-pill);
+  background: var(--accent-violet);
+  color: white;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  cursor: pointer;
+  box-shadow: var(--shadow-violet-glow);
+  transition: transform 0.2s ease;
+}
+
+.fabrid-search-btn:hover {
+  transform: scale(1.08);
+}
+
+/* ==========================================================================
+   FEATURED CATEGORIES SECTION (4 SQUIRCLE TILES WITH TOP-RIGHT ARROWS)
+   ========================================================================== */
+.section-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 1.75rem;
+}
+
+.section-header-row h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: var(--text-pure);
+}
+
+.section-header-row p {
+  color: var(--text-muted);
+  font-size: 13px;
+  margin-top: 2px;
+}
+
+.link-arrow {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent-lavender);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.link-arrow:hover {
+  color: var(--text-pure);
+  transform: translateX(3px);
+}
+
+.category-squircle-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 4rem;
+}
+
+.category-squircle-card {
+  background: var(--bg-card);
   border-radius: var(--radius-card);
-  box-shadow: var(--shadow-elevated-card);
+  border: 1px solid var(--border-dark);
+  padding: 1.25rem;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: var(--shadow-card);
+  cursor: pointer;
+}
+
+.category-squircle-card:hover {
+  transform: translateY(-8px);
+  background: var(--bg-card-hover);
+  border-color: var(--border-glow);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.corner-arrow {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  transition: all 0.25s ease;
+}
+
+.category-squircle-card:hover .corner-arrow {
+  background: var(--accent-violet);
+  color: white;
+  transform: rotate(45deg);
+  box-shadow: var(--shadow-violet-glow);
+}
+
+.cat-image-wrap {
+  width: 100%;
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem 0;
+  transition: transform 0.35s ease;
+}
+
+.cat-image-wrap img {
+  max-height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.4));
+}
+
+.category-squircle-card:hover .cat-image-wrap img {
+  transform: scale(1.08) translateY(-4px);
+}
+
+.cat-card-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-pure);
+  letter-spacing: -0.02em;
+}
+
+.cat-card-sub {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* ==========================================================================
+   HOT PICKS & PRODUCT CARDS (LUXURY SQUIRCLE)
+   ========================================================================== */
+.tab-filter-pills {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.tab-pill {
+  background: var(--bg-card);
+  border: 1px solid var(--border-dark);
+  border-radius: var(--radius-pill);
+  padding: 6px 18px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tab-pill.active,
+.tab-pill:hover {
+  background: var(--accent-violet);
+  color: var(--text-pure);
+  border-color: var(--accent-violet);
+  box-shadow: var(--shadow-violet-glow);
+}
+
+.hot-picks-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 4rem;
+}
+
+.hot-product-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-card);
+  border: 1px solid var(--border-dark);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: var(--shadow-card);
+}
+
+.hot-product-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--border-glow);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.hot-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px 0;
+}
+
+.tag-new {
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: var(--radius-pill);
+  padding: 2px 8px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.price-tag {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-pure);
+}
+
+.hot-card-img-wrap {
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  position: relative;
+}
+
+.hot-card-img-wrap img {
+  max-height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.35));
+  transition: transform 0.3s ease;
+}
+
+.hot-product-card:hover .hot-card-img-wrap img {
+  transform: scale(1.06);
+}
+
+.hot-card-pill-btn {
+  position: absolute;
+  bottom: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #0d0a1a;
+  border-radius: var(--radius-pill);
+  padding: 4px 14px;
+  font-size: 11px;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.2s ease;
+}
+
+.hot-card-pill-btn:hover {
+  background: var(--accent-violet);
+  color: white;
+  transform: scale(1.05);
+}
+
+.hot-card-body {
+  padding: 12px 16px 16px;
+  border-top: 1px solid var(--border-dark);
+}
+
+.hot-card-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-pure);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 4px;
+}
+
+.hot-card-stars {
+  font-size: 10px;
+  color: #f59e0b;
+}
+
+/* Promo Banner Tile */
+.promo-story-card {
+  background: linear-gradient(180deg, rgba(124, 58, 237, 0.3) 0%, rgba(13, 10, 26, 0.95) 100%), url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80');
+  background-size: cover;
+  background-position: center;
+  border-radius: var(--radius-card);
+  border: 1px solid var(--border-dark);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  box-shadow: var(--shadow-card);
+}
+
+.promo-story-card h4 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-pure);
+  margin-bottom: 4px;
+}
+
+.promo-story-card p {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+/* ==========================================================================
+   BENTO PROMO ROW (SAVE 40% & LIFESTYLE ESSENTIALS)
+   ========================================================================== */
+.bento-promo-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1.25rem;
+  margin-bottom: 4rem;
+}
+
+.bento-large-card {
+  background: #130f26 url('https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=800&auto=format&fit=crop&q=80') right center no-repeat;
+  background-size: contain;
+  border-radius: var(--radius-card);
+  border: 1px solid var(--border-dark);
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: var(--shadow-card);
+}
+
+.bento-large-card h3 {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: var(--text-pure);
+  margin-bottom: 8px;
+  max-width: 320px;
+}
+
+.bento-large-card p {
+  color: var(--text-muted);
+  font-size: 14px;
+  max-width: 300px;
+  margin-bottom: 20px;
+}
+
+.bento-small-card {
+  background: linear-gradient(135deg, #1b1633 0%, #110d24 100%);
+  border-radius: var(--radius-card);
+  border: 1px solid var(--border-dark);
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: var(--shadow-card);
+}
+
+.bento-small-card small {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: var(--accent-lavender);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+
+.bento-small-card h4 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-pure);
+  line-height: 1.25;
+  margin-bottom: 16px;
+}
+
+/* ==========================================================================
+   COMPARISON TABLE (DARK GLASS STYLE)
+   ========================================================================== */
+.dark-table-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-card);
+  border: 1px solid var(--border-dark);
+  box-shadow: var(--shadow-card);
   overflow: hidden;
   margin: 2rem 0;
 }
 
-.shop-table {
+.dark-table {
   width: 100%;
   border-collapse: collapse;
   text-align: left;
 }
 
-.shop-table th {
+.dark-table th {
   padding: 16px 20px;
-  font-size: 12px;
-  letter-spacing: -0.017em;
-  color: var(--muted-gray);
-  border-bottom: 1px solid var(--faint-border);
-  font-weight: 500;
+  font-size: 11px;
+  font-weight: 700;
   text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border-dark);
+  background: rgba(255, 255, 255, 0.02);
 }
 
-.shop-table td {
+.dark-table td {
   padding: 18px 20px;
-  border-bottom: 1px solid var(--faint-border);
+  border-bottom: 1px solid var(--border-dark);
   font-size: 14px;
-  letter-spacing: -0.014em;
   vertical-align: middle;
 }
 
-.shop-table tr:last-child td {
+.dark-table tr:last-child td {
   border-bottom: none;
 }
 
-.shop-table tr.highlight-best-deal {
-  background-color: rgba(84, 51, 235, 0.03);
+.dark-table tr.highlight-best-deal {
+  background: rgba(124, 58, 237, 0.08);
 }
 
-.shop-badge-deal {
-  background-color: var(--shop-violet);
-  color: var(--pure-white);
+.deal-score-dark-badge {
+  background: var(--accent-violet);
+  color: white;
   border-radius: var(--radius-pill);
   padding: 4px 10px;
   font-size: 11px;
-  font-weight: 500;
+  font-weight: 700;
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  box-shadow: 0 2px 10px rgba(84, 51, 235, 0.25);
+  box-shadow: var(--shadow-violet-glow);
 }
 
 /* ==========================================================================
-   FOOTER (CLEAN DARK BAND)
+   FOOTER (LUXURY DARK SLATE)
    ========================================================================== */
-.shop-footer {
-  background-color: var(--ink-black);
-  color: var(--cool-stone);
+.fabrid-footer {
+  background: #080612;
+  border-top: 1px solid var(--border-dark);
   padding: 4rem 0 2rem;
-  margin-top: auto;
+  margin-top: 4rem;
 }
 
-.shop-footer-grid {
+.footer-grid {
   display: grid;
   grid-template-columns: 2fr repeat(3, 1fr);
   gap: 3rem;
   margin-bottom: 3rem;
 }
 
-.shop-footer-brand h3 {
-  color: var(--pure-white);
-  font-size: 1.5rem;
+.footer-brand h3 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--text-pure);
   letter-spacing: -0.05em;
-  margin-bottom: 0.75rem;
+  margin-bottom: 8px;
 }
 
-.shop-footer-brand h3 span {
-  color: var(--shop-violet);
+.footer-brand h3 span {
+  color: var(--accent-violet);
 }
 
-.shop-footer-col h5 {
-  color: var(--pure-white);
-  font-size: 14px;
+.footer-brand p {
+  color: var(--text-muted);
+  font-size: 13px;
+  max-width: 320px;
+  line-height: 1.5;
+}
+
+.footer-col h5 {
+  color: var(--text-pure);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   margin-bottom: 1rem;
 }
 
-.shop-footer-col ul {
+.footer-col ul {
   list-style: none;
 }
 
-.shop-footer-col li {
-  margin-bottom: 0.5rem;
+.footer-col li {
+  margin-bottom: 0.6rem;
 }
 
-.shop-footer-col a {
-  color: var(--cool-stone);
-  font-size: 12px;
+.footer-col a {
+  color: var(--text-muted);
+  font-size: 13px;
 }
 
-.shop-footer-col a:hover {
-  color: var(--pure-white);
+.footer-col a:hover {
+  color: var(--text-pure);
+}
+
+.footer-bottom-bar {
+  border-top: 1px solid var(--border-dark);
+  padding-top: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--text-subtle);
 }
 
 /* ==========================================================================
    RESPONSIVE
    ========================================================================== */
 @media (max-width: 1024px) {
-  .shop-grid-4 {
+  .category-squircle-grid,
+  .hot-picks-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+  .bento-promo-row {
+    grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 768px) {
-  .sidebar-rail {
+  .page-canvas {
+    margin: 0;
+    border-radius: 0;
+    border: none;
+  }
+  .nav-menu {
     display: none;
   }
-  .constellation-grid {
-    height: auto;
+  .hero-watermark {
+    font-size: 2.8rem;
+  }
+  .hero-watermark span.sub-store {
+    font-size: 1.4rem;
+  }
+  .hero-floating-elements {
     flex-direction: column;
-    gap: 1rem;
+    align-items: flex-start;
+    gap: 1.5rem;
   }
-  .floating-tile {
-    position: static;
-    animation: none;
-    width: 100%;
-    max-width: 280px;
-  }
-  .shop-grid-4, .shop-grid-3 {
+  .category-squircle-grid,
+  .hot-picks-grid {
     grid-template-columns: 1fr;
   }
-  .shop-footer-grid {
+  .footer-grid {
     grid-template-columns: 1fr;
   }
 }

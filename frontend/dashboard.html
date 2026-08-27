@@ -3,89 +3,88 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard — PriceHunt</title>
+  <title>Dashboard — PriceHunt® Store</title>
   <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <!-- Top App Download Banner -->
-  <aside class="app-download-banner">
-    <span>📱 Download PriceHunt app • Available on iOS & Android</span>
-  </aside>
-
-  <div class="app-shell">
+  <div class="page-canvas">
     
-    <!-- Persistent Sidebar Nav Rail -->
-    <aside class="sidebar-rail">
-      <div>
-        <a href="index.html" class="nav-rail-logo">PH<span style="color: var(--shop-violet);">.</span></a>
-        <ul class="nav-rail-items">
-          <li><a href="index.html" class="nav-rail-btn" title="Home">🏠</a></li>
-          <li><a href="search.html" class="nav-rail-btn" title="Search">🔍</a></li>
-          <li><a href="dashboard.html" class="nav-rail-btn active" title="Dashboard">⚡</a></li>
-          <li><a href="favorites.html" class="nav-rail-btn" title="Wishlist">🤍</a></li>
-          <li><a href="alerts.html" class="nav-rail-btn" title="Alerts">🔔</a></li>
-        </ul>
-      </div>
-      <div>
-        <a href="profile.html" class="nav-rail-avatar">👤</a>
-      </div>
-    </aside>
+    <!-- Top Header -->
+    <header class="fabrid-nav">
+      <a href="index.html" class="nav-brand">
+        pricehunt<span class="sup">®</span>
+      </a>
 
-    <!-- Main Viewport -->
-    <main class="main-viewport">
+      <ul class="nav-menu">
+        <li><a href="index.html">Shop</a></li>
+        <li><a href="search.html">Categories</a></li>
+        <li><a href="dashboard.html" class="active">Dashboard</a></li>
+        <li><a href="favorites.html">Wishlist</a></li>
+        <li><a href="alerts.html">Alerts</a></li>
+      </ul>
+
+      <div class="nav-right-actions">
+        <a href="profile.html" class="nav-icon-btn">👤</a>
+        <button id="logoutBtn" class="btn-hunt-now" style="background: rgba(255, 255, 255, 0.1); box-shadow: none;">Log Out</button>
+      </div>
+    </header>
+
+    <main class="container" style="padding: 3rem 1.5rem;">
       
-      <div class="container" style="padding: 3rem 1.5rem;">
+      <!-- Welcome Hero Card -->
+      <div style="background: var(--bg-card); border: 1px solid var(--border-dark); border-radius: var(--radius-card); box-shadow: var(--shadow-card); padding: 36px; margin-bottom: 2rem;">
+        <h1 style="font-size: 28px; font-weight: 800; color: var(--text-pure); margin-bottom: 8px;">
+          Welcome back to <span style="color: var(--accent-lavender);">PriceHunt® Store</span>
+        </h1>
+        <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 24px;">Your centralized hub for tracking deals, price alerts, and multi-store comparisons.</p>
         
-        <!-- Welcome Hero -->
-        <div style="background-color: var(--pure-white); border-radius: var(--radius-card); box-shadow: var(--shadow-elevated-card); padding: 36px; margin-bottom: 32px;">
-          <h1 style="font-size: 28px; font-weight: 500; letter-spacing: -0.05em; margin-bottom: 8px;">
-            Welcome back, <span style="color: var(--shop-violet);">Shopper</span>
-          </h1>
-          <p style="color: var(--muted-gray); font-size: 14px; margin-bottom: 24px;">Search and compare live prices across e-commerce sources in your floating constellation.</p>
-          
-          <form class="search-form search-pill-container" action="search.html" method="GET" style="max-width: 600px;">
-            <input type="text" class="search-pill-input" name="q" placeholder="Search brands, products, models...">
-            <button type="submit" class="search-violet-submit">➔</button>
-          </form>
-        </div>
-
-        <!-- Metric Badges -->
-        <div class="shop-grid-3" style="margin-bottom: 3rem;">
-          <div style="background: var(--pure-white); border-radius: var(--radius-card); box-shadow: var(--shadow-elevated-card); padding: 24px;">
-            <div style="font-size: 12px; color: var(--muted-gray); text-transform: uppercase;">Active Alerts</div>
-            <div style="font-size: 28px; font-weight: 600; color: var(--ink-black); margin-top: 4px;">1</div>
-          </div>
-          <div style="background: var(--pure-white); border-radius: var(--radius-card); box-shadow: var(--shadow-elevated-card); padding: 24px;">
-            <div style="font-size: 12px; color: var(--muted-gray); text-transform: uppercase;">Saved Wishlist</div>
-            <div style="font-size: 28px; font-weight: 600; color: var(--ink-black); margin-top: 4px;">2</div>
-          </div>
-          <div style="background: var(--pure-white); border-radius: var(--radius-card); box-shadow: var(--shadow-elevated-card); padding: 24px;">
-            <div style="font-size: 12px; color: var(--muted-gray); text-transform: uppercase;">Total Savings</div>
-            <div style="font-size: 28px; font-weight: 600; color: var(--shop-violet); margin-top: 4px;">₹15,901</div>
-          </div>
-        </div>
-
-        <!-- Top Deals -->
-        <div class="section-title-row">
-          <span>Today's Highest Scored Deals</span>
-          <span class="chevron">›</span>
-        </div>
-
-        <div class="shop-grid-4" id="searchResultsGrid">
-          <!-- Rendered by search.js -->
-        </div>
-
+        <form class="fabrid-search-bar search-form" action="search.html" method="GET" style="margin: 0; max-width: 600px;">
+          <input type="text" class="fabrid-search-input" name="q" placeholder="Search shoes, watches, laptops, phones...">
+          <button type="submit" class="fabrid-search-btn">➔</button>
+        </form>
       </div>
 
-      <footer class="shop-footer">
-        <div class="container" style="font-size: 11px; text-align: center; color: var(--cool-stone);">
-          &copy; 2026 PriceHunt. Pillow-soft shopping discovery.
+      <!-- Quick Metrics -->
+      <div class="category-squircle-grid" style="grid-template-columns: repeat(3, 1fr); margin-bottom: 3rem;">
+        <div class="category-squircle-card" style="padding: 24px; text-align: left; align-items: flex-start;">
+          <div style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">Active Alerts</div>
+          <div style="font-size: 32px; font-weight: 800; color: var(--text-pure); margin-top: 4px;">2</div>
         </div>
-      </footer>
+        <div class="category-squircle-card" style="padding: 24px; text-align: left; align-items: flex-start;">
+          <div style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">Saved Wishlist</div>
+          <div style="font-size: 32px; font-weight: 800; color: var(--text-pure); margin-top: 4px;">3</div>
+        </div>
+        <div class="category-squircle-card" style="padding: 24px; text-align: left; align-items: flex-start;">
+          <div style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">Total Saved</div>
+          <div style="font-size: 32px; font-weight: 800; color: var(--accent-lavender); margin-top: 4px;">₹18,400</div>
+        </div>
+      </div>
+
+      <!-- Today's Highest Deal Score Products -->
+      <div class="section-header-row">
+        <div>
+          <h2>Today's Recommended Deals</h2>
+          <p>Highest calculated deal scores across Amazon, Flipkart, and Myntra.</p>
+        </div>
+        <a href="search.html" class="link-arrow">View All Deals ➔</a>
+      </div>
+
+      <div class="hot-picks-grid" id="searchResultsGrid">
+        <!-- Rendered by search.js -->
+      </div>
 
     </main>
+
+    <!-- Clean Dark Footer -->
+    <footer class="fabrid-footer">
+      <div class="container footer-bottom-bar">
+        <div>&copy; 2026 PriceHunt® Store. All rights reserved.</div>
+        <div>Luxury Dark E-Commerce Architecture</div>
+      </div>
+    </footer>
+
   </div>
 
   <script src="js/api.js"></script>

@@ -1,7 +1,6 @@
 /**
  * ============================================================================
- * PRICEHUNT SEARCH & SHOP CARD RENDER ENGINE
- * Renders 28px pillow-soft elevated cards with dual-layer soft shadows
+ * PRICEHUNT LUXURY DARK CARD RENDER ENGINE
  * ============================================================================
  */
 
@@ -51,8 +50,8 @@ async function loadAndRenderProducts(query = '', category = '') {
 
   grid.innerHTML = `
     <div style="grid-column: 1/-1; text-align: center; padding: 4rem 0;">
-      <div style="font-size: 1.75rem; margin-bottom: 0.5rem;">✦</div>
-      <p style="color: var(--muted-gray); font-size: 14px;">Discovering lowest prices across platforms...</p>
+      <div style="font-size: 2rem; margin-bottom: 0.5rem; color: var(--accent-violet);">✦</div>
+      <p style="color: var(--text-muted); font-size: 14px;">Scanning live prices across stores...</p>
     </div>
   `;
 
@@ -61,62 +60,58 @@ async function loadAndRenderProducts(query = '', category = '') {
     allProducts = await Api.request(endpoint);
 
     if (countEl) countEl.textContent = allProducts.length;
-    renderShopCards(allProducts);
+    renderDarkCards(allProducts);
     populateFilterDropdowns(allProducts);
   } catch (err) {
     grid.innerHTML = `
-      <div style="grid-column: 1/-1; text-align: center; padding: 3rem; color: var(--shop-violet);">
+      <div style="grid-column: 1/-1; text-align: center; padding: 3rem; color: var(--accent-violet);">
         <p>Could not load products at this moment.</p>
       </div>
     `;
   }
 }
 
-function renderShopCards(products) {
+function renderDarkCards(products) {
   const grid = document.getElementById('searchResultsGrid');
   if (!grid) return;
 
   if (products.length === 0) {
     grid.innerHTML = `
-      <div style="grid-column: 1/-1; text-align: center; padding: 4rem 1rem; background: white; border-radius: var(--radius-card); box-shadow: var(--shadow-elevated-card);">
+      <div style="grid-column: 1/-1; text-align: center; padding: 4rem 1rem; background: var(--bg-card); border-radius: var(--radius-card); border: 1px solid var(--border-dark);">
         <div style="font-size: 2.5rem; margin-bottom: 1rem;">🛍️</div>
-        <h4 style="font-weight: 500; font-size: 18px; margin-bottom: 0.5rem;">No items found</h4>
-        <p style="color: var(--muted-gray); font-size: 14px; margin-bottom: 1.5rem;">Try searching for iPhone 15, MacBook, or Sony XM5</p>
-        <button class="pill-btn pill-btn-violet" onclick="resetFilters()">Reset Filters</button>
+        <h4 style="font-weight: 600; font-size: 18px; color: var(--text-pure); margin-bottom: 0.5rem;">No items found</h4>
+        <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 1.5rem;">Try searching for shoes, watches, laptops, or smartphones</p>
+        <button class="btn-hunt-now" onclick="resetFilters()">Reset Filters</button>
       </div>
     `;
     return;
   }
 
   grid.innerHTML = products.map(p => {
-    const priceFormatted = p.minPrice ? `₹${p.minPrice.toLocaleString('en-IN')}` : 'Check';
+    const priceFormatted = p.minPrice ? `₹${p.minPrice.toLocaleString('en-IN')}` : 'Check Prices';
     const isFav = checkIfFav(p.id);
 
     return `
-      <div class="shop-card">
-        <div class="shop-card-image-wrap">
-          ${p.bestDealListing ? `<div class="shop-card-badge">⚡ Best Deal</div>` : ''}
-          <button class="shop-card-fav" onclick="toggleFavorite(${p.id}, this)" title="Save">
-            ${isFav ? '❤️' : '🤍'}
-          </button>
-          <img src="${p.imageUrl}" alt="${p.name}" loading="lazy" onerror="this.src='https://placehold.co/400x300?text=Product'">
+      <div class="hot-product-card">
+        <div class="hot-card-head">
+          <span class="tag-new">${p.maxDiscount ? `${Math.round(p.maxDiscount)}% OFF` : 'Best Deal'}</span>
+          <span class="price-tag">${priceFormatted}</span>
         </div>
 
-        <div class="shop-card-body">
-          <div class="shop-card-brand">${p.brand} • ${p.category}</div>
-          <h3 class="shop-card-title" title="${p.name}">${p.name}</h3>
+        <div class="hot-card-img-wrap">
+          <img src="${p.imageUrl}" alt="${p.name}" loading="lazy" onerror="this.src='https://placehold.co/400x300?text=Product'">
+          <a href="product.html?id=${p.id}" class="hot-card-pill-btn">
+            • Compare ${priceFormatted}
+          </a>
+        </div>
 
-          <div class="shop-card-rating">
-            <span style="color: var(--shop-violet);">★</span>
-            <span>${p.bestRating || '4.6'}</span>
-            <span>(${p.listingCount || 3} stores)</span>
-          </div>
-
-          <div class="shop-card-footer">
-            <div class="shop-card-price">${priceFormatted}</div>
-            <a href="product.html?id=${p.id}" class="shop-card-action">
-              Compare ➔
-            </a>
+        <div class="hot-card-body">
+          <div class="hot-card-title" title="${p.name}">${p.name}</div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 4px;">
+            <div class="hot-card-stars">★★★★★ <span style="color: var(--text-muted); font-size: 11px;">(${p.bestRating || '4.6'})</span></div>
+            <button onclick="toggleFavorite(${p.id}, this)" style="background: none; border: none; cursor: pointer; font-size: 14px; color: ${isFav ? '#ef4444' : 'var(--text-muted)'};">
+              ${isFav ? '❤️' : '🤍'}
+            </button>
           </div>
         </div>
       </div>
@@ -163,7 +158,7 @@ function applyActiveFilters() {
   const countEl = document.getElementById('resultCount');
   if (countEl) countEl.textContent = filtered.length;
 
-  renderShopCards(filtered);
+  renderDarkCards(filtered);
 }
 
 function populateFilterDropdowns(products) {
@@ -206,7 +201,7 @@ function resetFilters() {
   }
   if (sortSelect) sortSelect.value = 'best_deal';
 
-  renderShopCards(allProducts);
+  renderDarkCards(allProducts);
 }
 
 function checkIfFav(productId) {
@@ -219,9 +214,11 @@ function toggleFavorite(productId, btn) {
   if (favs.includes(productId)) {
     favs = favs.filter(id => id !== productId);
     btn.textContent = '🤍';
+    btn.style.color = 'var(--text-muted)';
   } else {
     favs.push(productId);
     btn.textContent = '❤️';
+    btn.style.color = '#ef4444';
   }
   localStorage.setItem('pricehunt_favorites', JSON.stringify(favs));
 }

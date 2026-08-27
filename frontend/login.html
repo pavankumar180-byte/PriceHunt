@@ -3,43 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Log In — PriceHunt</title>
+  <title>Sign In — PriceHunt® Store</title>
   <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
-<body style="background-color: var(--canvas-mist);">
+<body style="background-color: var(--bg-canvas);">
 
   <div style="min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem 1rem;">
     
-    <a href="index.html" style="font-size: 2rem; font-weight: 400; letter-spacing: -0.06em; margin-bottom: 2rem;">
-      pricehunt<span style="display: inline-block; width: 10px; height: 10px; border-radius: 9999px; background: var(--shop-violet); margin-left: 2px;"></span>
+    <a href="index.html" class="nav-brand" style="font-size: 2.2rem; margin-bottom: 2rem;">
+      pricehunt<span class="sup">®</span>
     </a>
 
-    <div style="background: var(--pure-white); border-radius: var(--radius-card); box-shadow: var(--shadow-elevated-card); width: 100%; max-width: 420px; padding: 36px;">
+    <div style="background: var(--bg-card); border: 1px solid var(--border-dark); border-radius: var(--radius-card); box-shadow: var(--shadow-card); width: 100%; max-width: 420px; padding: 36px;">
       
-      <h2 style="font-size: 22px; font-weight: 500; letter-spacing: -0.04em; margin-bottom: 6px;">Sign In</h2>
-      <p style="color: var(--muted-gray); font-size: 14px; margin-bottom: 24px;">Access your saved deals and price alerts.</p>
+      <h2 style="font-size: 24px; font-weight: 700; color: var(--text-pure); margin-bottom: 6px;">Sign In</h2>
+      <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 24px;">Access your saved wishlist and price drop triggers.</p>
 
       <div id="alertBox" class="alert-box"></div>
 
       <form id="loginForm">
         <div style="margin-bottom: 16px;">
-          <label style="display: block; font-size: 12px; color: var(--muted-gray); margin-bottom: 6px;">EMAIL</label>
-          <input type="email" id="email" class="shop-select" placeholder="name@example.com" value="demo@pricehunt.com" required>
+          <label style="display: block; font-size: 11px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; font-weight: 700;">EMAIL</label>
+          <input type="email" id="email" class="dark-select" placeholder="name@example.com" value="demo@pricehunt.com" required style="width: 100%; background: #110d24; border: 1px solid var(--border-dark); border-radius: var(--radius-pill); padding: 10px 16px; color: var(--text-pure);">
         </div>
 
-        <div style="margin-bottom: 20px;">
-          <label style="display: block; font-size: 12px; color: var(--muted-gray); margin-bottom: 6px;">PASSWORD</label>
-          <input type="password" id="password" class="shop-select" placeholder="••••••••" value="password123" required>
+        <div style="margin-bottom: 24px;">
+          <label style="display: block; font-size: 11px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; font-weight: 700;">PASSWORD</label>
+          <input type="password" id="password" class="dark-select" placeholder="••••••••" value="password123" required style="width: 100%; background: #110d24; border: 1px solid var(--border-dark); border-radius: var(--radius-pill); padding: 10px 16px; color: var(--text-pure);">
         </div>
 
-        <button type="submit" id="submitBtn" class="pill-btn pill-btn-violet" style="width: 100%; padding: 12px;">
+        <button type="submit" id="submitBtn" class="btn-hunt-now" style="width: 100%; padding: 12px; font-size: 14px; justify-content: center;">
           Sign In
         </button>
       </form>
 
-      <div style="text-align: center; margin-top: 24px; font-size: 13px; color: var(--muted-gray);">
-        Don't have an account? <a href="signup.html" style="color: var(--shop-violet); font-weight: 500;">Sign Up</a>
+      <div style="text-align: center; margin-top: 24px; font-size: 13px; color: var(--text-muted);">
+        Don't have an account? <a href="signup.html" style="color: var(--accent-lavender); font-weight: 600;">Create Account</a>
       </div>
 
     </div>

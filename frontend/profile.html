@@ -3,95 +3,96 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Account Profile — PriceHunt</title>
+  <title>Account Profile — PriceHunt® Store</title>
   <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <!-- Top App Download Banner -->
-  <aside class="app-download-banner">
-    <span>📱 Download PriceHunt app • Available on iOS & Android</span>
-  </aside>
-
-  <div class="app-shell">
+  <div class="page-canvas">
     
-    <!-- Persistent Sidebar Nav Rail -->
-    <aside class="sidebar-rail">
-      <div>
-        <a href="index.html" class="nav-rail-logo">PH<span style="color: var(--shop-violet);">.</span></a>
-        <ul class="nav-rail-items">
-          <li><a href="index.html" class="nav-rail-btn" title="Home">🏠</a></li>
-          <li><a href="search.html" class="nav-rail-btn" title="Search">🔍</a></li>
-          <li><a href="dashboard.html" class="nav-rail-btn" title="Dashboard">⚡</a></li>
-          <li><a href="favorites.html" class="nav-rail-btn" title="Wishlist">🤍</a></li>
-          <li><a href="alerts.html" class="nav-rail-btn" title="Alerts">🔔</a></li>
-        </ul>
-      </div>
-      <div>
-        <a href="profile.html" class="nav-rail-avatar active">👤</a>
-      </div>
-    </aside>
+    <!-- Top Header -->
+    <header class="fabrid-nav">
+      <a href="index.html" class="nav-brand">
+        pricehunt<span class="sup">®</span>
+      </a>
 
-    <!-- Main Viewport -->
-    <main class="main-viewport">
-      <div class="container" id="profileContainer" style="padding: 3rem 1.5rem; max-width: 700px;">
+      <ul class="nav-menu">
+        <li><a href="index.html">Shop</a></li>
+        <li><a href="search.html">Categories</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="favorites.html">Wishlist</a></li>
+        <li><a href="alerts.html">Alerts</a></li>
+      </ul>
+
+      <div class="nav-right-actions">
+        <a href="profile.html" class="nav-icon-btn">👤</a>
+        <a href="search.html" class="btn-hunt-now"><span>•</span> Hunt Now</a>
+      </div>
+    </header>
+
+    <main class="container" id="profileContainer" style="padding: 3rem 1.5rem; max-width: 760px;">
+      
+      <div style="margin-bottom: 2rem;">
+        <h1 style="font-size: 26px; font-weight: 800; color: var(--text-pure);">Account Profile & Settings</h1>
+        <p style="color: var(--text-muted); font-size: 13px;">Manage your personal profile and security configurations.</p>
+      </div>
+
+      <div style="background: var(--bg-card); border: 1px solid var(--border-dark); border-radius: var(--radius-card); box-shadow: var(--shadow-card); padding: 32px; margin-bottom: 24px;">
+        <h3 style="font-size: 18px; font-weight: 700; color: var(--text-pure); margin-bottom: 20px;">Profile Information</h3>
+
+        <div style="margin-bottom: 16px;">
+          <label style="display: block; font-size: 11px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; font-weight: 700;">NAME</label>
+          <input type="text" id="profileName" class="dark-select" value="John Doe" style="width: 100%; padding: 10px 16px; background: #110d24; border: 1px solid var(--border-dark); border-radius: var(--radius-pill); color: var(--text-pure);">
+        </div>
+
+        <div style="margin-bottom: 24px;">
+          <label style="display: block; font-size: 11px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; font-weight: 700;">EMAIL</label>
+          <input type="email" id="profileEmail" class="dark-select" value="demo@pricehunt.com" style="width: 100%; padding: 10px 16px; background: #110d24; border: 1px solid var(--border-dark); border-radius: var(--radius-pill); color: var(--text-pure);">
+        </div>
+
+        <div class="category-squircle-grid" style="grid-template-columns: repeat(3, 1fr); margin-bottom: 0; background: rgba(255, 255, 255, 0.02); border-radius: var(--radius-inner); padding: 16px;">
+          <div style="text-align: center;">
+            <div style="font-size: 11px; color: var(--text-muted); text-transform: uppercase;">Saved Wishlist</div>
+            <div id="profileFavCount" style="font-size: 22px; font-weight: 800; color: var(--text-pure);">3</div>
+          </div>
+          <div style="text-align: center;">
+            <div style="font-size: 11px; color: var(--text-muted); text-transform: uppercase;">Active Alerts</div>
+            <div id="profileAlertCount" style="font-size: 22px; font-weight: 800; color: var(--text-pure);">2</div>
+          </div>
+          <div style="text-align: center;">
+            <div style="font-size: 11px; color: var(--text-muted); text-transform: uppercase;">Membership</div>
+            <div style="font-size: 22px; font-weight: 800; color: var(--accent-lavender);">VIP Hunter</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="background: var(--bg-card); border: 1px solid var(--border-dark); border-radius: var(--radius-card); box-shadow: var(--shadow-card); padding: 32px;">
+        <h3 style="font-size: 18px; font-weight: 700; color: var(--text-pure); margin-bottom: 20px;">Security & Password</h3>
         
-        <div style="margin-bottom: 2rem;">
-          <h1 style="font-size: 24px; font-weight: 500; letter-spacing: -0.05em;">Account & Security</h1>
-          <p style="color: var(--muted-gray); font-size: 14px;">Manage your PriceHunt profile settings.</p>
+        <div style="margin-bottom: 16px;">
+          <label style="display: block; font-size: 11px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; font-weight: 700;">CURRENT PASSWORD</label>
+          <input type="password" class="dark-select" placeholder="••••••••" style="width: 100%; padding: 10px 16px; background: #110d24; border: 1px solid var(--border-dark); border-radius: var(--radius-pill); color: var(--text-pure);">
         </div>
 
-        <div style="background: var(--pure-white); border-radius: var(--radius-card); box-shadow: var(--shadow-elevated-card); padding: 32px; margin-bottom: 24px;">
-          <h3 style="font-size: 18px; font-weight: 500; letter-spacing: -0.031em; margin-bottom: 20px;">Profile Information</h3>
-
-          <div style="margin-bottom: 16px;">
-            <label style="display: block; font-size: 12px; color: var(--muted-gray); margin-bottom: 6px;">NAME</label>
-            <input type="text" id="profileName" class="shop-select" value="John Doe">
-          </div>
-
-          <div style="margin-bottom: 20px;">
-            <label style="display: block; font-size: 12px; color: var(--muted-gray); margin-bottom: 6px;">EMAIL</label>
-            <input type="email" id="profileEmail" class="shop-select" value="demo@pricehunt.com">
-          </div>
-
-          <div class="shop-grid-3" style="background: var(--canvas-mist); padding: 16px; border-radius: var(--radius-inner); text-align: center;">
-            <div>
-              <div style="font-size: 11px; color: var(--muted-gray);">SAVED ITEMS</div>
-              <div id="profileFavCount" style="font-size: 20px; font-weight: 600; color: var(--ink-black);">2</div>
-            </div>
-            <div>
-              <div style="font-size: 11px; color: var(--muted-gray);">ACTIVE ALERTS</div>
-              <div id="profileAlertCount" style="font-size: 20px; font-weight: 600; color: var(--ink-black);">1</div>
-            </div>
-            <div>
-              <div style="font-size: 11px; color: var(--muted-gray);">MEMBERSHIP</div>
-              <div style="font-size: 20px; font-weight: 600; color: var(--shop-violet);">Standard</div>
-            </div>
-          </div>
+        <div style="margin-bottom: 20px;">
+          <label style="display: block; font-size: 11px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; font-weight: 700;">NEW PASSWORD</label>
+          <input type="password" class="dark-select" placeholder="Min. 6 characters" style="width: 100%; padding: 10px 16px; background: #110d24; border: 1px solid var(--border-dark); border-radius: var(--radius-pill); color: var(--text-pure);">
         </div>
 
-        <div style="background: var(--pure-white); border-radius: var(--radius-card); box-shadow: var(--shadow-elevated-card); padding: 32px;">
-          <h3 style="font-size: 18px; font-weight: 500; letter-spacing: -0.031em; margin-bottom: 20px;">Update Password</h3>
-          <div style="margin-bottom: 16px;">
-            <label style="display: block; font-size: 12px; color: var(--muted-gray); margin-bottom: 6px;">CURRENT PASSWORD</label>
-            <input type="password" class="shop-select" placeholder="••••••••">
-          </div>
-          <div style="margin-bottom: 20px;">
-            <label style="display: block; font-size: 12px; color: var(--muted-gray); margin-bottom: 6px;">NEW PASSWORD</label>
-            <input type="password" class="shop-select" placeholder="Min. 6 characters">
-          </div>
-          <button class="pill-btn pill-btn-black">Save Changes</button>
-        </div>
-
+        <button class="btn-hunt-now">Save Profile Changes</button>
       </div>
 
-      <footer class="shop-footer">
-        <div class="container" style="font-size: 11px; text-align: center; color: var(--cool-stone);">
-          &copy; 2026 PriceHunt. Pillow-soft shopping discovery.
-        </div>
-      </footer>
     </main>
+
+    <!-- Clean Dark Footer -->
+    <footer class="fabrid-footer">
+      <div class="container footer-bottom-bar">
+        <div>&copy; 2026 PriceHunt® Store. All rights reserved.</div>
+        <div>Luxury Dark E-Commerce Architecture</div>
+      </div>
+    </footer>
+
   </div>
 
   <script src="js/api.js"></script>

@@ -3,29 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Discover Deals — PriceHunt</title>
+  <title>Discover & Compare — PriceHunt® Store</title>
   <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
-    .shop-search-layout {
+    .dark-search-layout {
       display: grid;
-      grid-template-columns: 240px 1fr;
+      grid-template-columns: 260px 1fr;
       gap: 24px;
-      padding: 2.5rem 0;
+      padding: 2rem 0;
     }
-    .shop-filter-panel {
-      background: var(--pure-white);
+    .dark-filter-panel {
+      background: var(--bg-card);
       border-radius: var(--radius-card);
-      box-shadow: var(--shadow-elevated-card);
+      border: 1px solid var(--border-dark);
       padding: 24px;
       height: fit-content;
       position: sticky;
-      top: 24px;
+      top: 90px;
+      box-shadow: var(--shadow-card);
     }
     .filter-item {
       margin-bottom: 20px;
       padding-bottom: 16px;
-      border-bottom: 1px solid var(--faint-border);
+      border-bottom: 1px solid var(--border-dark);
     }
     .filter-item:last-child {
       border-bottom: none;
@@ -33,28 +34,31 @@
       padding-bottom: 0;
     }
     .filter-label {
-      font-size: 12px;
-      color: var(--muted-gray);
-      margin-bottom: 8px;
-      font-weight: 500;
+      font-size: 11px;
       text-transform: uppercase;
-      letter-spacing: -0.017em;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      font-weight: 700;
     }
-    .shop-select {
+    .dark-select {
       width: 100%;
+      background: #110d24;
+      border: 1px solid var(--border-dark);
       border-radius: var(--radius-pill);
-      border: 1px solid var(--faint-border);
       padding: 8px 14px;
-      font-size: 14px;
-      background: var(--pure-white);
-      color: var(--ink-black);
+      font-size: 13px;
+      color: var(--text-pure);
       outline: none;
     }
+    .dark-select:focus {
+      border-color: var(--accent-violet);
+    }
     @media (max-width: 900px) {
-      .shop-search-layout {
+      .dark-search-layout {
         grid-template-columns: 1fr;
       }
-      .shop-filter-panel {
+      .dark-filter-panel {
         position: static;
       }
     }
@@ -62,111 +66,113 @@
 </head>
 <body>
 
-  <!-- Top App Download Banner -->
-  <aside class="app-download-banner">
-    <span>📱 Download PriceHunt app • Available on iOS & Android</span>
-  </aside>
-
-  <div class="app-shell">
+  <div class="page-canvas">
     
-    <!-- Persistent Sidebar Nav Rail -->
-    <aside class="sidebar-rail">
-      <div>
-        <a href="index.html" class="nav-rail-logo">PH<span style="color: var(--shop-violet);">.</span></a>
-        <ul class="nav-rail-items">
-          <li><a href="index.html" class="nav-rail-btn" title="Home">🏠</a></li>
-          <li><a href="search.html" class="nav-rail-btn active" title="Search">🔍</a></li>
-          <li><a href="dashboard.html" class="nav-rail-btn" title="Dashboard">⚡</a></li>
-          <li><a href="favorites.html" class="nav-rail-btn" title="Wishlist">🤍</a></li>
-          <li><a href="alerts.html" class="nav-rail-btn" title="Alerts">🔔</a></li>
-        </ul>
-      </div>
-      <div>
-        <a href="profile.html" class="nav-rail-avatar">👤</a>
-      </div>
-    </aside>
+    <!-- Top Header -->
+    <header class="fabrid-nav">
+      <a href="index.html" class="nav-brand">
+        pricehunt<span class="sup">®</span>
+      </a>
 
-    <!-- Main Viewport -->
-    <main class="main-viewport">
+      <ul class="nav-menu">
+        <li><a href="index.html">Shop</a></li>
+        <li><a href="search.html" class="active">Categories</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="favorites.html">Wishlist</a></li>
+        <li><a href="alerts.html">Alerts</a></li>
+      </ul>
+
+      <div class="nav-right-actions">
+        <a href="profile.html" class="nav-icon-btn">👤</a>
+        <a href="favorites.html" class="nav-icon-btn">🤍</a>
+        <a href="search.html" class="btn-hunt-now"><span>•</span> Hunt Now</a>
+      </div>
+    </header>
+
+    <!-- Top Floating Search Header -->
+    <div style="padding: 2rem 0 1rem;">
+      <div class="container">
+        <form class="fabrid-search-bar search-form" style="margin: 0 auto; max-width: 720px;">
+          <input type="text" id="searchQueryInput" class="fabrid-search-input" name="q" placeholder="Search shoes, watches, laptops, phones, headphones...">
+          <button type="submit" class="fabrid-search-btn">➔</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Main Results Layout -->
+    <div class="container dark-search-layout">
       
-      <!-- Top Search Bar Header -->
-      <div style="background-color: var(--pure-white); border-bottom: 1px solid var(--faint-border); padding: 1.5rem 0;">
-        <div class="container">
-          <form class="search-form search-pill-container" style="max-width: 700px; margin: 0 auto;">
-            <input type="text" id="searchQueryInput" class="search-pill-input" name="q" placeholder="Search across all platforms...">
-            <button type="submit" class="search-violet-submit" title="Search">➔</button>
-          </form>
+      <!-- Filter Sidebar -->
+      <aside class="dark-filter-panel">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 16px;">
+          <div style="font-size: 16px; font-weight: 700; color: var(--text-pure);">Filter Catalog</div>
+          <button class="btn-hunt-now" style="padding: 3px 10px; font-size: 11px;" onclick="resetFilters()">Reset</button>
         </div>
-      </div>
 
-      <div class="container shop-search-layout">
-        
-        <!-- Filter Panel -->
-        <aside class="shop-filter-panel">
-          <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 16px;">
-            <div style="font-size: 16px; font-weight: 500; letter-spacing: -0.031em;">Filters</div>
-            <button class="pill-btn pill-btn-white" style="padding: 4px 10px; font-size: 11px;" onclick="resetFilters()">Reset</button>
+        <div class="filter-item">
+          <div class="filter-label">Category</div>
+          <select id="categoryFilter" class="dark-select">
+            <option value="">All Categories</option>
+          </select>
+        </div>
+
+        <div class="filter-item">
+          <div class="filter-label">Brand</div>
+          <select id="brandFilter" class="dark-select">
+            <option value="">All Brands</option>
+          </select>
+        </div>
+
+        <div class="filter-item">
+          <div class="filter-label" style="display: flex; justify-content: space-between;">
+            <span>Max Price</span>
+            <span id="priceDisplay" style="color: var(--accent-lavender); font-weight: 700;">₹2,50,000</span>
+          </div>
+          <input type="range" id="priceRange" min="5000" max="250000" step="5000" value="250000" style="width: 100%; accent-color: var(--accent-violet); cursor: pointer;">
+        </div>
+
+        <div style="background: rgba(124, 58, 237, 0.1); border: 1px solid rgba(124, 58, 237, 0.2); border-radius: var(--radius-inner); padding: 12px; font-size: 12px; color: var(--accent-lavender); line-height: 1.4;">
+          ⚡ <strong>Live Matching:</strong> Scanning Amazon, Flipkart, Myntra, and Croma in real time.
+        </div>
+      </aside>
+
+      <!-- Products Grid Results -->
+      <section>
+        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 20px; flex-wrap: wrap; gap: 12px;">
+          <div>
+            <div style="font-size: 20px; font-weight: 700; color: var(--text-pure);">
+              Results for <span id="queryDisplay" style="color: var(--accent-lavender);">All Products</span>
+            </div>
+            <small style="color: var(--text-muted); font-size: 12px;"><span id="resultCount">0</span> live verified deals</small>
           </div>
 
-          <div class="filter-item">
-            <div class="filter-label">Category</div>
-            <select id="categoryFilter" class="shop-select">
-              <option value="">All Categories</option>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 12px; color: var(--text-muted);">Sort:</span>
+            <select id="sortBy" class="dark-select" style="width: auto;">
+              <option value="best_deal">⚡ Best Value Deal</option>
+              <option value="price_asc">💰 Lowest Price</option>
+              <option value="price_desc">💵 Highest Price</option>
+              <option value="rating_desc">★ Highest Rated</option>
+              <option value="discount_desc">🏷️ Highest Discount</option>
             </select>
           </div>
-
-          <div class="filter-item">
-            <div class="filter-label">Brand</div>
-            <select id="brandFilter" class="shop-select">
-              <option value="">All Brands</option>
-            </select>
-          </div>
-
-          <div class="filter-item">
-            <div class="filter-label" style="display: flex; justify-content: space-between;">
-              <span>Max Price</span>
-              <span id="priceDisplay" style="color: var(--shop-violet); font-weight: 600;">₹2,50,000</span>
-            </div>
-            <input type="range" id="priceRange" min="10000" max="250000" step="5000" value="250000" style="width: 100%; accent-color: var(--shop-violet); cursor: pointer;">
-          </div>
-        </aside>
-
-        <!-- Product Grid Results -->
-        <section>
-          <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 20px; flex-wrap: wrap; gap: 12px;">
-            <div>
-              <div style="font-size: 20px; font-weight: 500; letter-spacing: -0.05em;">
-                Results for <span id="queryDisplay" style="color: var(--shop-violet);">All Products</span>
-              </div>
-              <small style="color: var(--muted-gray); font-size: 12px;"><span id="resultCount">0</span> items available</small>
-            </div>
-
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <span style="font-size: 12px; color: var(--muted-gray);">Sort:</span>
-              <select id="sortBy" class="shop-select" style="width: auto;">
-                <option value="best_deal">⚡ Best Deal Score</option>
-                <option value="price_asc">💰 Lowest Price</option>
-                <option value="price_desc">💵 Highest Price</option>
-                <option value="rating_desc">★ Highest Rated</option>
-                <option value="discount_desc">🏷️ Highest Discount</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="shop-grid-3" id="searchResultsGrid">
-            <!-- Dynamic 28px Shop Cards -->
-          </div>
-        </section>
-
-      </div>
-
-      <footer class="shop-footer">
-        <div class="container" style="font-size: 11px; text-align: center; color: var(--cool-stone);">
-          &copy; 2026 PriceHunt. Pillow-soft shopping discovery.
         </div>
-      </footer>
 
-    </main>
+        <div class="hot-picks-grid" id="searchResultsGrid">
+          <!-- Rendered dynamically by search.js -->
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Clean Dark Footer -->
+    <footer class="fabrid-footer">
+      <div class="container footer-bottom-bar">
+        <div>&copy; 2026 PriceHunt® Store. All rights reserved.</div>
+        <div>Luxury Dark E-Commerce Architecture</div>
+      </div>
+    </footer>
+
   </div>
 
   <script src="js/api.js"></script>

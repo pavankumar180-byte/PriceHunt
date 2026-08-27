@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PriceHunt — Floating Shopping Constellation</title>
+  <title>PriceHunt® Store — Hunt the Best Price</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,205 +11,301 @@
 </head>
 <body>
 
-  <!-- Top App Download Banner -->
-  <aside class="app-download-banner">
-    <span style="font-size: 1.1rem;">📱</span>
-    <span>Download PriceHunt app</span>
-    <small>• Available on iOS & Android</small>
-    <a href="#">➔</a>
-  </aside>
-
-  <div class="app-shell">
+  <!-- Outer Floating Page Canvas -->
+  <div class="page-canvas">
     
-    <!-- 64px Persistent Sidebar Nav Rail -->
-    <aside class="sidebar-rail">
-      <div>
-        <a href="index.html" class="nav-rail-logo" title="PriceHunt">
-          PH<span style="color: var(--shop-violet);">.</span>
+    <!-- Top Floating Header -->
+    <header class="fabrid-nav">
+      <a href="index.html" class="nav-brand">
+        pricehunt<span class="sup">®</span>
+      </a>
+
+      <ul class="nav-menu">
+        <li><a href="index.html" class="active">Shop</a></li>
+        <li><a href="search.html">Categories ▾</a></li>
+        <li><a href="#featured">Featured</a></li>
+        <li><a href="#hot-picks">Hot Picks</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+      </ul>
+
+      <div class="nav-right-actions">
+        <a href="profile.html" class="nav-icon-btn" title="Profile">👤</a>
+        <a href="favorites.html" class="nav-icon-btn" title="Saved Wishlist">🤍</a>
+        <a href="search.html" class="btn-hunt-now">
+          <span>•</span> Hunt Now
         </a>
-        <ul class="nav-rail-items">
-          <li><a href="index.html" class="nav-rail-btn active" title="Home">🏠</a></li>
-          <li><a href="search.html" class="nav-rail-btn" title="Discover Deals">🔍</a></li>
-          <li><a href="dashboard.html" class="nav-rail-btn" title="Dashboard">⚡</a></li>
-          <li><a href="favorites.html" class="nav-rail-btn" title="Wishlist">🤍</a></li>
-          <li><a href="alerts.html" class="nav-rail-btn" title="Price Alerts">🔔</a></li>
-        </ul>
       </div>
+    </header>
 
+    <!-- Luxury Dark Hero Banner ("pricehunt® Store") -->
+    <section class="fabrid-hero">
+      <div class="hero-ambient-glow"></div>
+
+      <!-- Top Label & Big Watermark -->
       <div>
-        <a href="profile.html" class="nav-rail-avatar" title="Account Profile">👤</a>
+        <div style="font-size: 13px; color: var(--accent-lavender); text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; margin-bottom: 0.5rem;">
+          Real-Time Multi-Store Price Engine
+        </div>
+        <div class="hero-watermark">
+          pricehunt<span style="font-size: 0.5em; color: var(--accent-violet); vertical-align: super;">®</span>
+          <span class="sub-store">Store</span>
+        </div>
       </div>
-    </aside>
 
-    <!-- Main Viewport -->
-    <main class="main-viewport">
-      
-      <!-- Floating Shopping Constellation Hero -->
-      <section class="constellation-hero" id="constellationSection">
-        <div class="container">
-          
-          <!-- 3D Floating Product Constellation -->
-          <div class="constellation-grid" id="constellationGrid">
-            
-            <!-- Floating Tile 1: Air Jordan 1 -->
-            <a href="product.html?id=6" class="floating-tile floating-tile-1" data-tilt title="Nike Air Jordan 1">
-              <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&auto=format&fit=crop&q=80" alt="Air Jordan 1" class="floating-tile-img">
-              <div class="floating-tile-meta">
-                <div class="floating-tile-brand">Air Jordan 1</div>
-                <div class="floating-tile-stars">★ 4.8 • ₹14,995</div>
-              </div>
-            </a>
-
-            <!-- Floating Tile 2: MacBook Air M3 -->
-            <a href="product.html?id=3" class="floating-tile floating-tile-2" data-tilt title="MacBook Air M3">
-              <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400&auto=format&fit=crop&q=80" alt="MacBook M3" class="floating-tile-img">
-              <div class="floating-tile-meta">
-                <div class="floating-tile-brand">MacBook Air M3</div>
-                <div class="floating-tile-stars">★ 4.7 • ₹1,02,990</div>
-              </div>
-            </a>
-
-            <!-- Center Brand Core -->
-            <div style="z-index: 10; position: relative;">
-              <div class="brand-wordmark">
-                pricehunt<span class="violet-dot"></span>
-              </div>
-              <p class="hero-tagline-text">Hunt the best price across Amazon, Flipkart, Myntra & more.</p>
-            </div>
-
-            <!-- Floating Tile 3: Apple Watch Ultra 2 -->
-            <a href="product.html?id=9" class="floating-tile floating-tile-3" data-tilt title="Apple Watch Ultra 2">
-              <img src="https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=400&auto=format&fit=crop&q=80" alt="Apple Watch Ultra 2" class="floating-tile-img">
-              <div class="floating-tile-meta">
-                <div class="floating-tile-brand">Watch Ultra 2</div>
-                <div class="floating-tile-stars">★ 4.8 • ₹84,900</div>
-              </div>
-            </a>
-
-            <!-- Floating Tile 4: Sony WH-1000XM5 -->
-            <a href="product.html?id=12" class="floating-tile floating-tile-4" data-tilt title="Sony WH-1000XM5">
-              <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&auto=format&fit=crop&q=80" alt="Sony XM5" class="floating-tile-img">
-              <div class="floating-tile-meta">
-                <div class="floating-tile-brand">Sony XM5 ANC</div>
-                <div class="floating-tile-stars">★ 4.6 • ₹25,990</div>
-              </div>
-            </a>
-
-          </div>
-
-          <!-- Search Pill with Circular Violet Submit -->
-          <div class="search-pill-wrapper">
-            <form class="search-form search-pill-container" action="search.html" method="GET">
-              <input type="text" class="search-pill-input" name="q" placeholder="Search shoes, watches, laptops, phones..." required autocomplete="off">
-              <button type="submit" class="search-violet-submit" title="Hunt Best Deal">
-                ➔
-              </button>
-            </form>
-
-            <!-- Category Quick-Access Chips -->
-            <div class="category-pill-row">
-              <a href="search.html?category=Shoes" class="category-pill">
-                <span class="category-pill-icon">👟</span>
-                <span>Shoes</span>
-              </a>
-              <a href="search.html?category=Watches" class="category-pill">
-                <span class="category-pill-icon">⌚</span>
-                <span>Watches</span>
-              </a>
-              <a href="search.html?category=Laptops" class="category-pill">
-                <span class="category-pill-icon">💻</span>
-                <span>Laptops</span>
-              </a>
-              <a href="search.html?category=Smartphones" class="category-pill">
-                <span class="category-pill-icon">📱</span>
-                <span>Smartphones</span>
-              </a>
-              <a href="search.html?category=Headphones" class="category-pill">
-                <span class="category-pill-icon">🎧</span>
-                <span>Audio</span>
-              </a>
-            </div>
-          </div>
-
+      <!-- Floating Bottom Elements (70+ Stores Pill & Smartwatch Widget) -->
+      <div class="hero-floating-elements">
+        
+        <!-- Left Stats -->
+        <div class="hero-stat-pill" style="text-align: left;">
+          <h3>70+</h3>
+          <p>Verified Retailers & Stores</p>
         </div>
-      </section>
 
-      <!-- Featured Product Constellation Grid -->
-      <section class="content-section">
-        <div class="container">
-          
-          <div class="section-title-row">
-            <span>Trending Discoveries</span>
-            <span class="chevron">›</span>
+        <!-- Right Floating Showcase Widget -->
+        <a href="product.html?id=9" class="hero-showcase-widget">
+          <div class="widget-thumb">
+            <img src="https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=200&auto=format&fit=crop&q=80" alt="Apple Watch Ultra 2">
           </div>
-
-          <div class="shop-grid-4" id="searchResultsGrid">
-            <!-- Dynamic 28px soft product cards -->
+          <div class="widget-info">
+            <h5>Apple Watch Ultra 2</h5>
+            <small>Titanium with ocean strap</small>
+            <div>
+              <span class="widget-btn">• Buy ₹84,900</span>
+            </div>
           </div>
+        </a>
 
+      </div>
+    </section>
+
+    <!-- Floating Global Search Bar -->
+    <div class="container">
+      <form class="fabrid-search-bar search-form" action="search.html" method="GET">
+        <input type="text" class="fabrid-search-input" name="q" placeholder="Search shoes, watches, laptops, smartphones, headphones..." required autocomplete="off">
+        <button type="submit" class="fabrid-search-btn" title="Search Best Price">
+          ➔
+        </button>
+      </form>
+    </div>
+
+    <!-- Section 1: Featured Categories (4 Squircle Cards with Diagonal Top-Right Arrow) -->
+    <section class="container" id="featured" style="margin-bottom: 3.5rem;">
+      <div class="section-header-row">
+        <div>
+          <h2>Featured categories</h2>
+          <p>Shop and compare by your favourite category in seconds.</p>
         </div>
-      </section>
+        <a href="search.html" class="link-arrow">Check All Categories ➔</a>
+      </div>
 
-      <!-- Clean Shop Dark Footer -->
-      <footer class="shop-footer">
-        <div class="container">
-          <div class="shop-footer-grid">
-            <div class="shop-footer-brand">
-              <h3>pricehunt<span>.</span></h3>
-              <p style="font-size: 14px; max-width: 320px; line-height: 1.5;">Floating shopping constellation intelligence. Real-time multi-platform price ranking.</p>
-            </div>
-            <div class="shop-footer-col">
-              <h5>Categories</h5>
-              <ul>
-                <li><a href="search.html?category=Shoes">Shoes & Sneakers</a></li>
-                <li><a href="search.html?category=Watches">Watches</a></li>
-                <li><a href="search.html?category=Laptops">Laptops</a></li>
-                <li><a href="search.html?category=Smartphones">Smartphones</a></li>
-                <li><a href="search.html?category=Headphones">Audio & Headphones</a></li>
-              </ul>
-            </div>
-            <div class="shop-footer-col">
-              <h5>Account</h5>
-              <ul>
-                <li><a href="dashboard.html">Dashboard</a></li>
-                <li><a href="favorites.html">Wishlist</a></li>
-                <li><a href="alerts.html">Price Alerts</a></li>
-              </ul>
-            </div>
-            <div class="shop-footer-col">
-              <h5>Legal</h5>
-              <ul>
-                <li><a href="#">Privacy Policy</a></li>
-                <li><a href="#">Terms of Service</a></li>
-              </ul>
-            </div>
+      <div class="category-squircle-grid">
+        
+        <!-- Card 1: Footwear -->
+        <a href="search.html?category=Shoes" class="category-squircle-card">
+          <div class="corner-arrow">➔</div>
+          <div class="cat-image-wrap">
+            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&auto=format&fit=crop&q=80" alt="Footwear">
           </div>
-          <div style="font-size: 11px; color: var(--muted-gray); border-top: 1px solid #262626; padding-top: 1.5rem; display: flex; justify-content: space-between;">
-            <div>&copy; 2026 PriceHunt Inc. All rights reserved.</div>
-            <div>Pillow-soft shopping experience</div>
+          <div class="cat-card-title">Footwear</div>
+          <div class="cat-card-sub">Air Jordans, Ultraboost & Sneakers</div>
+        </a>
+
+        <!-- Card 2: Laptops -->
+        <a href="search.html?category=Laptops" class="category-squircle-card">
+          <div class="corner-arrow">➔</div>
+          <div class="cat-image-wrap">
+            <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400&auto=format&fit=crop&q=80" alt="Laptops">
+          </div>
+          <div class="cat-card-title">Laptops</div>
+          <div class="cat-card-sub">MacBook M3, Dell XPS & Gaming</div>
+        </a>
+
+        <!-- Card 3: Headphones -->
+        <a href="search.html?category=Headphones" class="category-squircle-card">
+          <div class="corner-arrow">➔</div>
+          <div class="cat-image-wrap">
+            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&auto=format&fit=crop&q=80" alt="Headphones">
+          </div>
+          <div class="cat-card-title">Headphones</div>
+          <div class="cat-card-sub">Sony XM5, AirPods Pro & ANC</div>
+        </a>
+
+        <!-- Card 4: Phones & Watches -->
+        <a href="search.html?category=Watches" class="category-squircle-card">
+          <div class="corner-arrow">➔</div>
+          <div class="cat-image-wrap">
+            <img src="https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=400&auto=format&fit=crop&q=80" alt="Watches">
+          </div>
+          <div class="cat-card-title">Watches & Tech</div>
+          <div class="cat-card-sub">Apple Watch, Galaxy Watch & Fossil</div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- Section 2: Hot Picks For You -->
+    <section class="container" id="hot-picks">
+      <div class="section-header-row">
+        <div>
+          <h2>Hot picks for you</h2>
+          <p>Lowest price deals verified across Amazon, Flipkart, and Myntra.</p>
+        </div>
+        
+        <!-- Tab Pills -->
+        <div class="tab-filter-pills" style="margin-bottom: 0;">
+          <button class="tab-pill active" onclick="filterHotPicks('all', this)">All Deals</button>
+          <button class="tab-pill" onclick="filterHotPicks('Smartphones', this)">Gadgets & Tech</button>
+          <button class="tab-pill" onclick="filterHotPicks('Shoes', this)">Footwear</button>
+          <button class="tab-pill" onclick="filterHotPicks('Watches', this)">Watches</button>
+        </div>
+      </div>
+
+      <div class="hot-picks-grid" id="hotPicksContainer">
+        
+        <!-- Hot Pick 1: Nike Jordan 1 -->
+        <div class="hot-product-card" data-category="Shoes">
+          <div class="hot-card-head">
+            <span class="tag-new">Hot Deal</span>
+            <span class="price-tag">₹14,995</span>
+          </div>
+          <div class="hot-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&auto=format&fit=crop&q=80" alt="Nike Air Jordan 1">
+            <a href="product.html?id=6" class="hot-card-pill-btn">• Compare ₹14,995</a>
+          </div>
+          <div class="hot-card-body">
+            <div class="hot-card-title">Nike Air Jordan 1 Retro High OG</div>
+            <div class="hot-card-stars">★★★★★ <span style="color: var(--text-muted); font-size: 11px;">(4.8)</span></div>
           </div>
         </div>
-      </footer>
 
-    </main>
+        <!-- Hot Pick 2: Apple MacBook Air M3 -->
+        <div class="hot-product-card" data-category="Laptops">
+          <div class="hot-card-head">
+            <span class="tag-new" style="background: rgba(124, 58, 237, 0.2); color: var(--accent-lavender); border-color: rgba(124, 58, 237, 0.4);">Save 10%</span>
+            <span class="price-tag">₹1,02,990</span>
+          </div>
+          <div class="hot-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400&auto=format&fit=crop&q=80" alt="MacBook Air M3">
+            <a href="product.html?id=3" class="hot-card-pill-btn">• Compare ₹1,02,990</a>
+          </div>
+          <div class="hot-card-body">
+            <div class="hot-card-title">Apple MacBook Air M3 (13.6-inch)</div>
+            <div class="hot-card-stars">★★★★★ <span style="color: var(--text-muted); font-size: 11px;">(4.7)</span></div>
+          </div>
+        </div>
+
+        <!-- Hot Pick 3: Sony WH-1000XM5 -->
+        <div class="hot-product-card" data-category="Headphones">
+          <div class="hot-card-head">
+            <span class="tag-new" style="background: rgba(16, 185, 129, 0.2); color: #34d399; border-color: rgba(16, 185, 129, 0.4);">26% OFF</span>
+            <span class="price-tag">₹25,990</span>
+          </div>
+          <div class="hot-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&auto=format&fit=crop&q=80" alt="Sony XM5">
+            <a href="product.html?id=12" class="hot-card-pill-btn">• Compare ₹25,990</a>
+          </div>
+          <div class="hot-card-body">
+            <div class="hot-card-title">Sony WH-1000XM5 Noise Canceling</div>
+            <div class="hot-card-stars">★★★★★ <span style="color: var(--text-muted); font-size: 11px;">(4.6)</span></div>
+          </div>
+        </div>
+
+        <!-- Hot Pick 4: Promo Story Card -->
+        <div class="promo-story-card">
+          <h4>Explore 50+ more live deals</h4>
+          <p>Scored and verified by our multi-factor price comparison algorithm.</p>
+          <a href="search.html" class="btn-hunt-now" style="width: fit-content; padding: 6px 16px; font-size: 12px;">
+            • View Collection
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 3: Bento Promo Row -->
+    <section class="container">
+      <div class="bento-promo-row">
+        
+        <div class="bento-large-card">
+          <h3>Never overpay for electronics again.</h3>
+          <p>PriceHunt continuously monitors price drops across Flipkart, Amazon, Myntra, and Croma.</p>
+          <a href="search.html" class="btn-hunt-now" style="width: fit-content;">Start Comparing ➔</a>
+        </div>
+
+        <div class="bento-small-card">
+          <small>Limited Time Only</small>
+          <h4>Save up to 47% on select lifestyle & tech essentials.</h4>
+          <a href="search.html" class="link-arrow">Browse Discounts ➔</a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Clean Dark Footer -->
+    <footer class="fabrid-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <h3>pricehunt<span>®</span></h3>
+            <p>Smart e-commerce price comparison and deals intelligence platform.</p>
+          </div>
+          <div class="footer-col">
+            <h5>Categories</h5>
+            <ul>
+              <li><a href="search.html?category=Shoes">Footwear & Sneakers</a></li>
+              <li><a href="search.html?category=Watches">Smartwatches</a></li>
+              <li><a href="search.html?category=Laptops">Laptops & Computers</a></li>
+              <li><a href="search.html?category=Smartphones">Smartphones</a></li>
+              <li><a href="search.html?category=Headphones">Audio & ANC</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h5>Platform</h5>
+            <ul>
+              <li><a href="dashboard.html">Dashboard</a></li>
+              <li><a href="favorites.html">Saved Wishlist</a></li>
+              <li><a href="alerts.html">Price Drop Alerts</a></li>
+              <li><a href="profile.html">Account Settings</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h5>Legal</h5>
+            <ul>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Terms of Service</a></li>
+              <li><a href="#">Affiliate Disclosure</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom-bar">
+          <div>&copy; 2026 PriceHunt Inc. All rights reserved.</div>
+          <div>Dark luxury e-commerce experience</div>
+        </div>
+      </div>
+    </footer>
+
   </div>
 
   <script src="js/api.js"></script>
   <script src="js/auth.js"></script>
   <script src="js/search.js"></script>
-  
-  <!-- Interactive 3D Card Parallax Script -->
-  <script>
-    document.addEventListener('mousemove', (e) => {
-      const cards = document.querySelectorAll('[data-tilt]');
-      const mouseX = (e.clientX / window.innerWidth - 0.5) * 20;
-      const mouseY = (e.clientY / window.innerHeight - 0.5) * 20;
 
-      cards.forEach((card, i) => {
-        const factor = (i + 1) * 0.4;
-        card.style.transform = `translate3d(${mouseX * factor}px, ${mouseY * factor}px, 0px)`;
+  <!-- Interactive Hot Picks Filter Script -->
+  <script>
+    function filterHotPicks(cat, btn) {
+      document.querySelectorAll('.tab-pill').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+
+      const cards = document.querySelectorAll('.hot-product-card');
+      cards.forEach(card => {
+        if (cat === 'all' || card.getAttribute('data-category') === cat) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
       });
-    });
+    }
   </script>
 </body>
 </html>
