@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PriceHunt — Hunt the Best Price | Smart E-Commerce Comparison</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container navbar-container">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">🎯</div>
+        Price<span>Hunt</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="search.html">Explore Deals</a></li>
+      </ul>
+
+      <div class="nav-actions" id="navActions">
+        <a href="login.html" class="btn btn-secondary">Log In</a>
+        <a href="signup.html" class="btn btn-primary">Sign Up</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-tagline">
+        <span>⚡</span> Intelligent Multi-Platform Price Intelligence
+      </div>
+      <h1 class="hero-title">
+        Find the Best Price. <span>Every Time.</span>
+      </h1>
+      <p class="hero-subtitle">
+        Search once and compare real-time prices, verified seller ratings, delivery speeds, and historical price drops across Amazon, Flipkart, Croma, and more.
+      </p>
+
+      <!-- Global Hero Search Form -->
+      <div class="search-wrapper">
+        <form class="search-form search-bar" action="search.html" method="GET">
+          <span class="search-icon">🔍</span>
+          <input type="text" class="search-input" name="q" placeholder="What are you looking for? (e.g. iPhone 15, MacBook Air M3, Sony XM5)" required>
+          <button type="submit" class="btn btn-primary search-btn">Hunt Best Price</button>
+        </form>
+        
+        <div class="search-tags">
+          <span>Popular Hunts:</span>
+          <a href="search.html?q=iPhone+15" class="tag-pill">iPhone 15</a>
+          <a href="search.html?q=MacBook+Air" class="tag-pill">MacBook Air M3</a>
+          <a href="search.html?q=Galaxy+S24" class="tag-pill">Galaxy S24</a>
+          <a href="search.html?q=Sony+XM5" class="tag-pill">Sony WH-1000XM5</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="section" id="features">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Why PriceHunt</div>
+        <h2 class="section-title">Engineered to Save You Money</h2>
+        <p class="section-subtitle">We analyze multiple data points beyond just the sticker price to ensure you receive the true best value.</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <div class="feature-icon">📊</div>
+          <h3 class="feature-title">Compare Across Stores</h3>
+          <p class="feature-desc">Instantly view real-time listings side-by-side from top e-commerce retailers in a unified, transparent view.</p>
+        </div>
+
+        <div class="card">
+          <div class="feature-icon">⚡</div>
+          <h3 class="feature-title">Smart Best Deal Score</h3>
+          <p class="feature-desc">Our 5-factor scoring algorithm evaluates price, discount, seller rating, and delivery cost to highlight authentic deals.</p>
+        </div>
+
+        <div class="card">
+          <div class="feature-icon">🧠</div>
+          <h3 class="feature-title">Smart Variant Matching</h3>
+          <p class="feature-desc">Fuzzy token matching recognizes identical products regardless of how vendor titles and color names are formatted.</p>
+        </div>
+
+        <div class="card">
+          <div class="feature-icon">📉</div>
+          <h3 class="feature-title">Interactive Price History</h3>
+          <p class="feature-desc">Inspect 90-day price trend graphs to know if today's price is genuinely a bargain or artificially inflated.</p>
+        </div>
+
+        <div class="card">
+          <div class="feature-icon">🔔</div>
+          <h3 class="feature-title">Automated Price Alerts</h3>
+          <p class="feature-desc">Set your target budget and receive instant notification alerts when the price dips to your desired amount.</p>
+        </div>
+
+        <div class="card">
+          <div class="feature-icon">❤️</div>
+          <h3 class="feature-title">Unified Wishlist</h3>
+          <p class="feature-desc">Save products to your personal watchlist to track price drops across all platforms effortlessly in one place.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="section" id="how-it-works" style="background-color: var(--bg-surface-subtle);">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Simple 4-Step Process</div>
+        <h2 class="section-title">How PriceHunt Works</h2>
+        <p class="section-subtitle">Get the lowest verified price in seconds.</p>
+      </div>
+
+      <div class="grid-4">
+        <div class="card step-card">
+          <div class="step-badge">1</div>
+          <h4 style="margin-bottom: 0.5rem; font-size: 1.15rem;">Search Product</h4>
+          <p style="font-size: 0.9rem; color: var(--text-muted);">Enter any smartphone, laptop, or gadget name in our search engine.</p>
+        </div>
+
+        <div class="card step-card">
+          <div class="step-badge">2</div>
+          <h4 style="margin-bottom: 0.5rem; font-size: 1.15rem;">Multi-Store Scan</h4>
+          <p style="font-size: 0.9rem; color: var(--text-muted);">PriceHunt scans and normalizes live listings across major platforms.</p>
+        </div>
+
+        <div class="card step-card">
+          <div class="step-badge">3</div>
+          <h4 style="margin-bottom: 0.5rem; font-size: 1.15rem;">AI Comparison</h4>
+          <p style="font-size: 0.9rem; color: var(--text-muted);">Our engine ranks listings by lowest price, shipping speed, and seller reliability.</p>
+        </div>
+
+        <div class="card step-card">
+          <div class="step-badge">4</div>
+          <h4 style="margin-bottom: 0.5rem; font-size: 1.15rem;">Buy & Save</h4>
+          <p style="font-size: 0.9rem; color: var(--text-muted);">Click through directly to the best retailer and save your hard-earned money.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="section" style="text-align: center; background: linear-gradient(135deg, var(--secondary), #1e293b); color: white;">
+    <div class="container">
+      <h2 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem;">Ready to Hunt the Best Price?</h2>
+      <p style="color: #94a3b8; font-size: 1.15rem; max-width: 600px; margin: 0 auto 2rem;">Join thousands of smart shoppers saving up to 30% on electronics and everyday gadgets.</p>
+      <a href="search.html" class="btn btn-primary btn-lg">Start Hunting Now ➔</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <div class="logo-icon">🎯</div>
+            Price<span>Hunt</span>
+          </a>
+          <p class="footer-tagline">"Hunt the Best Price."<br>A smart e-commerce intelligence and price comparison platform.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="search.html?category=Smartphones">Smartphones</a></li>
+            <li><a href="search.html?category=Laptops">Laptops</a></li>
+            <li><a href="search.html?category=Headphones">Headphones</a></li>
+            <li><a href="search.html">All Categories</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Account</h4>
+          <ul>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="favorites.html">Wishlist</a></li>
+            <li><a href="alerts.html">Price Alerts</a></li>
+            <li><a href="login.html">Login / Signup</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Legal & Support</h4>
+          <ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">Affiliate Disclosure</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 PriceHunt. All rights reserved.</div>
+        <div>Built for smart shoppers worldwide.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/search.js"></script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Price Alerts — PriceHunt</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- App Header -->
+  <header class="navbar">
+    <div class="container navbar-container">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">🎯</div>
+        Price<span>Hunt</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="search.html">Search</a></li>
+        <li><a href="favorites.html">Wishlist</a></li>
+        <li><a href="alerts.html" class="active">Price Alerts</a></li>
+        <li><a href="profile.html">Profile</a></li>
+      </ul>
+
+      <div class="nav-actions" id="navActions">
+        <button id="logoutBtn" class="btn btn-outline btn-sm">Log Out</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" style="padding: 2.5rem 1.5rem; flex: 1;">
+    <div style="margin-bottom: 2rem;">
+      <h1 style="font-size: 1.85rem; font-weight: 800; color: var(--secondary);">Active Price Drop Alerts</h1>
+      <p style="color: var(--text-muted); font-size: 0.95rem;">Receive automated triggers when retailer prices fall to your budget.</p>
+    </div>
+
+    <!-- Alerts List -->
+    <div id="alertsContainer" style="display: flex; flex-direction: column; gap: 1rem;">
+      <!-- Dynamic alert cards -->
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-bottom">
+      <div>&copy; 2026 PriceHunt. All rights reserved.</div>
+      <div>"Hunt the Best Price."</div>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const container = document.getElementById('alertsContainer');
+      try {
+        const alerts = await Api.request('/alerts');
+        if (!alerts || alerts.length === 0) {
+          container.innerHTML = `
+            <div style="text-align: center; padding: 4rem 1rem; background: white; border-radius: var(--radius-lg); border: 1px solid var(--border-color);">
+              <div style="font-size: 3rem; margin-bottom: 1rem;">🔔</div>
+              <h3>No price alerts set</h3>
+              <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Browse products and set target price triggers to save big.</p>
+              <a href="search.html" class="btn btn-primary">Find Products to Track</a>
+            </div>
+          `;
+          return;
+        }
+
+        container.innerHTML = alerts.map(a => `
+          <div class="card" style="display: flex; align-items: center; justify-content: space-between; padding: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+            <div style="display: flex; align-items: center; gap: 1.25rem;">
+              <img src="${a.product.imageUrl}" alt="${a.product.name}" style="width: 60px; height: 60px; object-fit: contain; background: #f8fafc; border-radius: var(--radius-sm); padding: 0.25rem;">
+              <div>
+                <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--secondary);">${a.product.name}</h4>
+                <div style="font-size: 0.85rem; color: var(--text-muted);">
+                  Target: <strong style="color: var(--primary);">₹${a.targetPrice.toLocaleString('en-IN')}</strong> • Status: <span class="badge ${a.active ? 'badge-deal' : 'badge-store'}">${a.active ? 'Active' : 'Paused'}</span>
+                </div>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 0.75rem; align-items: center;">
+              <a href="product.html?id=${a.product.id}" class="btn btn-secondary btn-sm">View Comparisons</a>
+              <button class="btn btn-danger btn-sm" onclick="deleteAlert(${a.id})">Delete</button>
+            </div>
+          </div>
+        `).join('');
+      } catch (err) {
+        console.warn(err);
+      }
+    });
+
+    async function deleteAlert(id) {
+      if (confirm('Are you sure you want to delete this price alert?')) {
+        await Api.request(`/alerts/${id}`, { method: 'DELETE' });
+        window.location.reload();
+      }
+    }
+  </script>
+</body>
+</html>

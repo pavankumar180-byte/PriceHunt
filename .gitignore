@@ -1,0 +1,19 @@
+# Operating System Files
+.DS_Store
+Thumbs.db
+
+# IDE / Editor Files
+.vscode/
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Java & Maven Build Output
+backend/target/
+backend/.mvn/
+backend/*.jar
+backend/*.war
+
+# Logs & Temporary Data
+*.log

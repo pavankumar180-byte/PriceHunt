@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Deals — PriceHunt</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    .search-layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 2rem;
+      padding: 2.5rem 0;
+    }
+    .filter-sidebar {
+      background: white;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      height: fit-content;
+      position: sticky;
+      top: 90px;
+    }
+    .filter-group {
+      margin-bottom: 1.75rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .filter-group:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    .filter-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--secondary);
+      margin-bottom: 0.85rem;
+    }
+    @media (max-width: 992px) {
+      .search-layout {
+        grid-template-columns: 1fr;
+      }
+      .filter-sidebar {
+        position: static;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container navbar-container">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">🎯</div>
+        Price<span>Hunt</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="search.html" class="active">Search</a></li>
+        <li><a href="favorites.html">Wishlist</a></li>
+        <li><a href="alerts.html">Price Alerts</a></li>
+      </ul>
+
+      <div class="nav-actions" id="navActions">
+        <a href="login.html" class="btn btn-secondary">Log In</a>
+        <a href="signup.html" class="btn btn-primary">Sign Up</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Top Search Bar Container -->
+  <div style="background-color: white; border-bottom: 1px solid var(--border-color); padding: 1.25rem 0;">
+    <div class="container">
+      <form class="search-form search-bar" style="box-shadow: var(--shadow-sm); max-width: 800px; margin: 0 auto;">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchQueryInput" class="search-input" name="q" placeholder="Search by product name, brand, or model...">
+        <button type="submit" class="btn btn-primary search-btn">Search</button>
+      </form>
+    </div>
+  </div>
+
+  <main class="container search-layout">
+    
+    <!-- Sidebar Filters -->
+    <aside class="filter-sidebar">
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem;">
+        <h3 style="font-size: 1.15rem; font-weight: 800;">Filters</h3>
+        <button class="btn btn-sm btn-secondary" onclick="resetFilters()">Reset</button>
+      </div>
+
+      <!-- Category Filter -->
+      <div class="filter-group">
+        <div class="filter-title">Category</div>
+        <select id="categoryFilter" class="form-control">
+          <option value="">All Categories</option>
+        </select>
+      </div>
+
+      <!-- Brand Filter -->
+      <div class="filter-group">
+        <div class="filter-title">Brand</div>
+        <select id="brandFilter" class="form-control">
+          <option value="">All Brands</option>
+        </select>
+      </div>
+
+      <!-- Max Price Slider -->
+      <div class="filter-group">
+        <div class="filter-title" style="display: flex; justify-content: space-between;">
+          <span>Max Price</span>
+          <span id="priceDisplay" style="color: var(--primary); font-weight: 800;">₹2,50,000</span>
+        </div>
+        <input type="range" id="priceRange" min="10000" max="250000" step="5000" value="250000" style="width: 100%; cursor: pointer;">
+      </div>
+
+      <!-- Information Card -->
+      <div style="background: var(--primary-light); padding: 1rem; border-radius: var(--radius-md); font-size: 0.85rem; color: var(--primary-dark); line-height: 1.5;">
+        💡 <strong>Deal Scoring Active:</strong> We continuously compare prices across Amazon, Flipkart, Croma, and Reliance Digital.
+      </div>
+    </aside>
+
+    <!-- Main Results Container -->
+    <section>
+      <!-- Results Header & Sort Controls -->
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <h2 style="font-size: 1.4rem; font-weight: 800;">
+            Results for <span id="queryDisplay" style="color: var(--primary);">All Products</span>
+          </h2>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">
+            Showing <strong id="resultCount">0</strong> verified product deals
+          </p>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <label for="sortBy" style="font-size: 0.9rem; font-weight: 600; color: var(--text-muted);">Sort By:</label>
+          <select id="sortBy" class="form-control" style="width: auto; padding: 0.45rem 1rem;">
+            <option value="best_deal">⚡ Best Value Deal</option>
+            <option value="price_asc">💰 Lowest Price</option>
+            <option value="price_desc">💵 Highest Price</option>
+            <option value="rating_desc">★ Highest Rated</option>
+            <option value="discount_desc">🏷️ Highest Discount</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Results Grid -->
+      <div class="product-grid" id="searchResultsGrid">
+        <!-- Injected dynamically by search.js -->
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-bottom">
+      <div>&copy; 2026 PriceHunt. All rights reserved.</div>
+      <div>"Hunt the Best Price."</div>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/search.js"></script>
+</body>
+</html>

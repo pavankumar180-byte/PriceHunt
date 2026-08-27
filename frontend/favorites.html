@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wishlist & Saved Deals — PriceHunt</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- App Header -->
+  <header class="navbar">
+    <div class="container navbar-container">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">🎯</div>
+        Price<span>Hunt</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="search.html">Search</a></li>
+        <li><a href="favorites.html" class="active">Wishlist</a></li>
+        <li><a href="alerts.html">Price Alerts</a></li>
+        <li><a href="profile.html">Profile</a></li>
+      </ul>
+
+      <div class="nav-actions" id="navActions">
+        <button id="logoutBtn" class="btn btn-outline btn-sm">Log Out</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" style="padding: 2.5rem 1.5rem; flex: 1;">
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem;">
+      <div>
+        <h1 style="font-size: 1.85rem; font-weight: 800; color: var(--secondary);">My Saved Wishlist</h1>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">Track prices across your favorite electronics and gadgets.</p>
+      </div>
+      <a href="search.html" class="btn btn-primary btn-sm">+ Add More Products</a>
+    </div>
+
+    <!-- Favorites Grid -->
+    <div class="product-grid" id="favoritesGrid">
+      <!-- Injected via JavaScript -->
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-bottom">
+      <div>&copy; 2026 PriceHunt. All rights reserved.</div>
+      <div>"Hunt the Best Price."</div>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const grid = document.getElementById('favoritesGrid');
+      try {
+        const favs = await Api.request('/favorites');
+        if (!favs || favs.length === 0) {
+          grid.innerHTML = `
+            <div style="grid-column: 1/-1; text-align: center; padding: 4rem 1rem; background: white; border-radius: var(--radius-lg); border: 1px solid var(--border-color);">
+              <div style="font-size: 3rem; margin-bottom: 1rem;">❤️</div>
+              <h3>Your wishlist is empty</h3>
+              <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Save products while browsing to keep track of price drops.</p>
+              <a href="search.html" class="btn btn-primary">Browse Hot Deals</a>
+            </div>
+          `;
+          return;
+        }
+
+        grid.innerHTML = favs.map(f => {
+          const p = f.product;
+          return `
+            <div class="product-card">
+              <div class="product-img-wrapper">
+                <img src="${p.imageUrl}" alt="${p.name}" class="product-img" onerror="this.src='https://placehold.co/400x300?text=Product'">
+              </div>
+              <div class="product-content">
+                <div class="product-category">${p.category} • ${p.brand}</div>
+                <h3 class="product-name">${p.name}</h3>
+                <div class="product-pricing">
+                  <div class="price-row">
+                    <span class="current-price">₹${(p.minPrice || 64999).toLocaleString('en-IN')}</span>
+                  </div>
+                  <a href="product.html?id=${p.id}" class="btn btn-primary" style="width: 100%;">
+                    Compare Prices ➔
+                  </a>
+                </div>
+              </div>
+            </div>
+          `;
+        }).join('');
+      } catch (err) {
+        console.warn(err);
+      }
+    });
+  </script>
+</body>
+</html>
