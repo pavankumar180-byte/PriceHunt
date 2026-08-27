@@ -3,170 +3,119 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PriceHunt® 5D Store — Multi-Platform Price Intelligence Engine</title>
+  <title>PriceHunt — Hunt the Best Price</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <!-- Outer 5D Perspective Stage -->
-  <div class="page-canvas-5d" id="stage5D">
+  <div class="container">
     
-    <!-- Top 5D Navigation Bar -->
-    <header class="fabrid-nav">
-      <a href="index.html" class="nav-brand-5d">
-        pricehunt<span class="holo-dot"></span>
-        <span style="font-size: 0.65rem; color: var(--accent-lavender); vertical-align: super; margin-left: 4px; font-weight: 700;">5D</span>
+    <!-- Minimal Header -->
+    <header class="minimal-nav">
+      <a href="index.html" class="minimal-brand">
+        pricehunt<span class="dot"></span>
       </a>
 
-      <ul class="nav-menu">
+      <ul class="minimal-menu">
         <li><a href="index.html" class="active">Shop</a></li>
-        <li><a href="search.html">Categories ▾</a></li>
-        <li><a href="#featured">Featured 5D</a></li>
-        <li><a href="#hot-picks">Algorithmic Picks</a></li>
+        <li><a href="search.html">Categories</a></li>
         <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="favorites.html">Wishlist</a></li>
+        <li><a href="alerts.html">Alerts</a></li>
       </ul>
 
-      <div style="display: flex; align-items: center; gap: 1rem;">
-        <a href="profile.html" style="color: var(--text-pure); font-size: 1.1rem;" title="Profile">👤</a>
-        <a href="favorites.html" style="color: var(--text-pure); font-size: 1.1rem;" title="Wishlist">🤍</a>
-        <a href="search.html" class="btn-hunt-5d">
-          <span>⚡</span> Hunt Best Price
-        </a>
+      <div class="minimal-actions">
+        <a href="profile.html" style="font-size: 14px; color: var(--text-muted);">Account</a>
+        <a href="search.html" class="btn-minimal-pill">Explore Deals</a>
       </div>
     </header>
 
-    <!-- 5D Depth Stage (Hero Banner) -->
-    <section class="hero-stage-5d" id="heroDepthStage">
-      <div class="hero-ambient-smoke"></div>
+    <!-- Minimal Hero Statement -->
+    <section class="minimal-hero">
+      <span class="minimal-hero-tag">Price Comparison Engine</span>
+      <h1 class="minimal-hero-title">Hunt the best price across every store.</h1>
+      <p class="minimal-hero-sub">Compare real-time prices for shoes, laptops, watches, and phones across Amazon, Flipkart, and Myntra in seconds.</p>
 
-      <!-- Hero Watermark Title -->
-      <div>
-        <div style="font-size: 13px; color: var(--accent-cyan); text-transform: uppercase; letter-spacing: 0.12em; font-weight: 700; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 6px;">
-          <span>✦</span> Algorithmic Jaro-Winkler Matching & 5D Best Deal Scoring
-        </div>
-        <div class="hero-watermark-5d">
-          pricehunt<span style="font-size: 0.45em; color: var(--accent-violet); vertical-align: super;">®</span>
-          <span class="sub-store">5D Store</span>
-        </div>
-      </div>
-
-      <!-- Live Recommendation Ticker & Floating Widget -->
-      <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 2rem; flex-wrap: wrap; gap: 20px;">
-        
-        <!-- Live AI Ticker -->
-        <div style="background: rgba(11, 7, 24, 0.85); backdrop-filter: blur(20px); border: 1px solid var(--border-holo); border-radius: var(--radius-inner); padding: 14px 20px;">
-          <div style="font-size: 11px; color: var(--text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">LIVE ALGORITHMIC RECOMMENDATION</div>
-          <div style="font-size: 16px; font-weight: 800; color: #34d399; margin-top: 2px;">
-            🟢 BUY NOW • 98% Historic Low Signal
-          </div>
-          <small style="color: var(--text-muted); font-size: 11px;">Scraped & cross-referenced from 70+ retailers</small>
-        </div>
-
-        <!-- Floating Showcase Widget -->
-        <a href="product.html?id=9" class="hero-5d-widget">
-          <div style="width: 54px; height: 54px; border-radius: var(--radius-inner); background: #1a1338; display: flex; align-items: center; justify-content: center; overflow: hidden;">
-            <img src="https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=200&auto=format&fit=crop&q=80" alt="Apple Watch Ultra 2" style="width: 100%; height: 100%; object-fit: cover;">
-          </div>
-          <div>
-            <h5 style="font-size: 14px; font-weight: 700; color: var(--text-pure);">Apple Watch Ultra 2</h5>
-            <small style="color: var(--text-muted); font-size: 11px;">Titanium • Lowest in 90 Days</small>
-            <div style="margin-top: 4px;">
-              <span class="btn-hunt-5d" style="padding: 3px 10px; font-size: 11px;">Buy ₹84,900</span>
-            </div>
-          </div>
-        </a>
-
-      </div>
-    </section>
-
-    <!-- Floating Global Search Bar -->
-    <div class="container">
-      <form class="search-bar-5d search-form" action="search.html" method="GET">
-        <input type="text" class="search-input-5d" name="q" placeholder="Search shoes, watches, laptops, smartphones, headphones..." required autocomplete="off">
-        <button type="submit" class="btn-hunt-5d" style="padding: 10px 18px; border-radius: var(--radius-pill);">
+      <!-- Minimal Search Pill -->
+      <form class="minimal-search-pill search-form" action="search.html" method="GET">
+        <input type="text" class="minimal-search-input" name="q" placeholder="Search shoes, watches, laptops, smartphones..." required autocomplete="off">
+        <button type="submit" class="minimal-search-btn" title="Search">
           ➔
         </button>
       </form>
-    </div>
+    </section>
 
-    <!-- Section 1: Featured Categories (4 Squircle 5D Cards) -->
-    <section class="container" id="featured" style="margin-bottom: 4rem;">
-      <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2rem;">
-        <div>
-          <h2 style="font-size: 1.6rem; font-weight: 800; color: var(--text-pure); letter-spacing: -0.04em;">Featured 5D Categories</h2>
-          <p style="color: var(--text-muted); font-size: 13px; margin-top: 2px;">Multi-platform price intelligence mapped across top product lines.</p>
-        </div>
-        <a href="search.html" style="color: var(--accent-cyan); font-weight: 700; font-size: 13px;">View Catalog ➔</a>
+    <!-- Section 1: Categories -->
+    <section style="margin-bottom: 4rem;">
+      <div class="section-title">
+        <span>Featured Categories</span>
+        <a href="search.html" style="font-size: 13px; font-weight: 400; color: var(--text-muted);">View all ➔</a>
       </div>
 
-      <div class="category-squircle-grid">
+      <div class="minimal-category-grid">
         
-        <!-- Card 1: Footwear -->
-        <a href="search.html?category=Shoes" class="category-squircle-card-5d" data-depth="0.3">
-          <div class="corner-arrow-5d">➔</div>
-          <div class="cat-image-wrap-5d">
-            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&auto=format&fit=crop&q=80" alt="Footwear">
+        <!-- Footwear -->
+        <a href="search.html?category=Shoes" class="minimal-category-card">
+          <span class="category-arrow-icon">↗</span>
+          <div class="category-img-wrap">
+            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&auto=format&fit=crop&q=80" alt="Shoes">
           </div>
-          <div style="font-size: 16px; font-weight: 800; color: var(--text-pure);">Footwear & Sneakers</div>
-          <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">Air Jordan, Ultraboost & NB 550</div>
+          <div class="category-title">Shoes & Sneakers</div>
+          <div class="category-count">Nike, Adidas, New Balance</div>
         </a>
 
-        <!-- Card 2: Laptops -->
-        <a href="search.html?category=Laptops" class="category-squircle-card-5d" data-depth="0.5">
-          <div class="corner-arrow-5d">➔</div>
-          <div class="cat-image-wrap-5d">
+        <!-- Laptops -->
+        <a href="search.html?category=Laptops" class="minimal-category-card">
+          <span class="category-arrow-icon">↗</span>
+          <div class="category-img-wrap">
             <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400&auto=format&fit=crop&q=80" alt="Laptops">
           </div>
-          <div style="font-size: 16px; font-weight: 800; color: var(--text-pure);">Computing & Laptops</div>
-          <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">MacBook M3, Dell XPS & ROG</div>
+          <div class="category-title">Laptops</div>
+          <div class="category-count">MacBook, Dell, ASUS</div>
         </a>
 
-        <!-- Card 3: Headphones -->
-        <a href="search.html?category=Headphones" class="category-squircle-card-5d" data-depth="0.4">
-          <div class="corner-arrow-5d">➔</div>
-          <div class="cat-image-wrap-5d">
+        <!-- Audio -->
+        <a href="search.html?category=Headphones" class="minimal-category-card">
+          <span class="category-arrow-icon">↗</span>
+          <div class="category-img-wrap">
             <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&auto=format&fit=crop&q=80" alt="Audio">
           </div>
-          <div style="font-size: 16px; font-weight: 800; color: var(--text-pure);">Audio & Headphones</div>
-          <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">Sony XM5, AirPods Pro 2 & ANC</div>
+          <div class="category-title">Headphones</div>
+          <div class="category-count">Sony XM5, AirPods Pro</div>
         </a>
 
-        <!-- Card 4: Watches -->
-        <a href="search.html?category=Watches" class="category-squircle-card-5d" data-depth="0.6">
-          <div class="corner-arrow-5d">➔</div>
-          <div class="cat-image-wrap-5d">
+        <!-- Watches -->
+        <a href="search.html?category=Watches" class="minimal-category-card">
+          <span class="category-arrow-icon">↗</span>
+          <div class="category-img-wrap">
             <img src="https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=400&auto=format&fit=crop&q=80" alt="Watches">
           </div>
-          <div style="font-size: 16px; font-weight: 800; color: var(--text-pure);">Watches & Wearables</div>
-          <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">Apple Watch Ultra, Galaxy Watch 6</div>
+          <div class="category-title">Watches</div>
+          <div class="category-count">Apple Watch, Fossil</div>
         </a>
 
       </div>
     </section>
 
-    <!-- Section 2: Algorithmic Best Deals -->
-    <section class="container" id="hot-picks">
-      <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2rem;">
-        <div>
-          <h2 style="font-size: 1.6rem; font-weight: 800; color: var(--text-pure);">Algorithmic Best Value Deals</h2>
-          <p style="color: var(--text-muted); font-size: 13px; margin-top: 2px;">Ranked by 5-Factor Deal Score (Price 40%, Rating 20%, Trust 15%, Discount 15%, Speed 10%).</p>
-        </div>
+    <!-- Section 2: Discover Deals -->
+    <section>
+      <div class="section-title">
+        <span>Curated Discoveries</span>
+        <small>Real-time lowest prices</small>
       </div>
 
-      <div class="hot-picks-grid" id="searchResultsGrid">
-        <!-- Rendered dynamically by search.js -->
+      <div class="minimal-product-grid" id="searchResultsGrid">
+        <!-- Dynamic minimal cards rendered by search.js -->
       </div>
     </section>
 
-    <!-- Clean Dark 5D Footer -->
-    <footer class="fabrid-footer">
-      <div class="container" style="display: flex; justify-content: space-between; font-size: 12px; color: var(--text-muted);">
-        <div>&copy; 2026 PriceHunt® 5D Store. Powered by Hybrid Matching & Deal Scoring Engines.</div>
-        <div>Hyper-dimensional Web Architecture</div>
-      </div>
+    <!-- Minimal Footer -->
+    <footer class="minimal-footer">
+      <div>&copy; 2026 PriceHunt. Clean e-commerce discovery.</div>
+      <div>Designed for simplicity</div>
     </footer>
 
   </div>
@@ -174,23 +123,5 @@
   <script src="js/api.js"></script>
   <script src="js/auth.js"></script>
   <script src="js/search.js"></script>
-
-  <!-- 5D Interactive Parallax Physics Gyro Script -->
-  <script>
-    document.addEventListener('mousemove', (e) => {
-      const stage = document.getElementById('stage5D');
-      const cards = document.querySelectorAll('.category-squircle-card-5d');
-      
-      const mouseX = (e.clientX / window.innerWidth - 0.5);
-      const mouseY = (e.clientY / window.innerHeight - 0.5);
-
-      cards.forEach(card => {
-        const depth = parseFloat(card.getAttribute('data-depth') || 0.4);
-        const rotateX = -mouseY * 20 * depth;
-        const rotateY = mouseX * 20 * depth;
-        card.style.transform = `translateY(-6px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(${depth * 40}px)`;
-      });
-    });
-  </script>
 </body>
 </html>
