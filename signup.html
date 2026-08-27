@@ -3,53 +3,53 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sign Up — PriceHunt</title>
+  <title>Create Account — PriceHunt® Store</title>
   <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
-<body style="background-color: var(--canvas-mist);">
+<body style="background-color: var(--bg-canvas);">
 
   <div style="min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem 1rem;">
     
-    <a href="index.html" style="font-size: 2rem; font-weight: 400; letter-spacing: -0.06em; margin-bottom: 2rem;">
-      pricehunt<span style="display: inline-block; width: 10px; height: 10px; border-radius: 9999px; background: var(--shop-violet); margin-left: 2px;"></span>
+    <a href="index.html" class="nav-brand" style="font-size: 2.2rem; margin-bottom: 2rem;">
+      pricehunt<span class="sup">®</span>
     </a>
 
-    <div style="background: var(--pure-white); border-radius: var(--radius-card); box-shadow: var(--shadow-elevated-card); width: 100%; max-width: 420px; padding: 36px;">
+    <div style="background: var(--bg-card); border: 1px solid var(--border-dark); border-radius: var(--radius-card); box-shadow: var(--shadow-card); width: 100%; max-width: 420px; padding: 36px;">
       
-      <h2 style="font-size: 22px; font-weight: 500; letter-spacing: -0.04em; margin-bottom: 6px;">Create Account</h2>
-      <p style="color: var(--muted-gray); font-size: 14px; margin-bottom: 24px;">Start discovering best prices effortlessly.</p>
+      <h2 style="font-size: 24px; font-weight: 700; color: var(--text-pure); margin-bottom: 6px;">Create Account</h2>
+      <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 24px;">Start comparing products with zero cost.</p>
 
       <div id="alertBox" class="alert-box"></div>
 
       <form id="signupForm">
         <div style="margin-bottom: 16px;">
-          <label style="display: block; font-size: 12px; color: var(--muted-gray); margin-bottom: 6px;">FULL NAME</label>
-          <input type="text" id="name" class="shop-select" placeholder="Alex Johnson" required>
+          <label style="display: block; font-size: 11px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; font-weight: 700;">FULL NAME</label>
+          <input type="text" id="name" class="dark-select" placeholder="Alex Johnson" required style="width: 100%; background: #110d24; border: 1px solid var(--border-dark); border-radius: var(--radius-pill); padding: 10px 16px; color: var(--text-pure);">
         </div>
 
         <div style="margin-bottom: 16px;">
-          <label style="display: block; font-size: 12px; color: var(--muted-gray); margin-bottom: 6px;">EMAIL</label>
-          <input type="email" id="email" class="shop-select" placeholder="alex@example.com" required>
+          <label style="display: block; font-size: 11px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; font-weight: 700;">EMAIL</label>
+          <input type="email" id="email" class="dark-select" placeholder="alex@example.com" required style="width: 100%; background: #110d24; border: 1px solid var(--border-dark); border-radius: var(--radius-pill); padding: 10px 16px; color: var(--text-pure);">
         </div>
 
         <div style="margin-bottom: 16px;">
-          <label style="display: block; font-size: 12px; color: var(--muted-gray); margin-bottom: 6px;">PASSWORD</label>
-          <input type="password" id="password" class="shop-select" placeholder="Min. 6 characters" required minlength="6">
+          <label style="display: block; font-size: 11px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; font-weight: 700;">PASSWORD</label>
+          <input type="password" id="password" class="dark-select" placeholder="Min. 6 characters" required minlength="6" style="width: 100%; background: #110d24; border: 1px solid var(--border-dark); border-radius: var(--radius-pill); padding: 10px 16px; color: var(--text-pure);">
         </div>
 
-        <div style="margin-bottom: 20px;">
-          <label style="display: block; font-size: 12px; color: var(--muted-gray); margin-bottom: 6px;">CONFIRM PASSWORD</label>
-          <input type="password" id="confirmPassword" class="shop-select" placeholder="Repeat password" required minlength="6">
+        <div style="margin-bottom: 24px;">
+          <label style="display: block; font-size: 11px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; font-weight: 700;">CONFIRM PASSWORD</label>
+          <input type="password" id="confirmPassword" class="dark-select" placeholder="Repeat password" required minlength="6" style="width: 100%; background: #110d24; border: 1px solid var(--border-dark); border-radius: var(--radius-pill); padding: 10px 16px; color: var(--text-pure);">
         </div>
 
-        <button type="submit" id="submitBtn" class="pill-btn pill-btn-violet" style="width: 100%; padding: 12px;">
-          Create Free Account
+        <button type="submit" id="submitBtn" class="btn-hunt-now" style="width: 100%; padding: 12px; font-size: 14px; justify-content: center;">
+          Create Account
         </button>
       </form>
 
-      <div style="text-align: center; margin-top: 24px; font-size: 13px; color: var(--muted-gray);">
-        Already registered? <a href="login.html" style="color: var(--shop-violet); font-weight: 500;">Log In</a>
+      <div style="text-align: center; margin-top: 24px; font-size: 13px; color: var(--text-muted);">
+        Already registered? <a href="login.html" style="color: var(--accent-lavender); font-weight: 600;">Sign In</a>
       </div>
 
     </div>

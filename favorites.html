@@ -3,58 +3,54 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wishlist — PriceHunt</title>
+  <title>Saved Wishlist — PriceHunt® Store</title>
   <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <!-- Top App Download Banner -->
-  <aside class="app-download-banner">
-    <span>📱 Download PriceHunt app • Available on iOS & Android</span>
-  </aside>
-
-  <div class="app-shell">
+  <div class="page-canvas">
     
-    <!-- Persistent Sidebar Nav Rail -->
-    <aside class="sidebar-rail">
-      <div>
-        <a href="index.html" class="nav-rail-logo">PH<span style="color: var(--shop-violet);">.</span></a>
-        <ul class="nav-rail-items">
-          <li><a href="index.html" class="nav-rail-btn" title="Home">🏠</a></li>
-          <li><a href="search.html" class="nav-rail-btn" title="Search">🔍</a></li>
-          <li><a href="dashboard.html" class="nav-rail-btn" title="Dashboard">⚡</a></li>
-          <li><a href="favorites.html" class="nav-rail-btn active" title="Wishlist">🤍</a></li>
-          <li><a href="alerts.html" class="nav-rail-btn" title="Alerts">🔔</a></li>
-        </ul>
-      </div>
-      <div>
-        <a href="profile.html" class="nav-rail-avatar">👤</a>
-      </div>
-    </aside>
+    <!-- Top Header -->
+    <header class="fabrid-nav">
+      <a href="index.html" class="nav-brand">
+        pricehunt<span class="sup">®</span>
+      </a>
 
-    <!-- Main Viewport -->
-    <main class="main-viewport">
-      <div class="container" style="padding: 3rem 1.5rem;">
-        
-        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 2rem;">
-          <div>
-            <h1 style="font-size: 24px; font-weight: 500; letter-spacing: -0.05em;">Saved Wishlist</h1>
-            <p style="color: var(--muted-gray); font-size: 14px;">Your tracked constellation of products.</p>
-          </div>
-          <a href="search.html" class="pill-btn pill-btn-white">+ Add More</a>
+      <ul class="nav-menu">
+        <li><a href="index.html">Shop</a></li>
+        <li><a href="search.html">Categories</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="favorites.html" class="active">Wishlist</a></li>
+        <li><a href="alerts.html">Alerts</a></li>
+      </ul>
+
+      <div class="nav-right-actions">
+        <a href="profile.html" class="nav-icon-btn">👤</a>
+        <a href="search.html" class="btn-hunt-now"><span>•</span> Hunt Now</a>
+      </div>
+    </header>
+
+    <main class="container" style="padding: 3rem 1.5rem;">
+      <div class="section-header-row">
+        <div>
+          <h2>My Saved Wishlist</h2>
+          <p>Track live price movements across your saved items.</p>
         </div>
-
-        <div class="shop-grid-4" id="favoritesGrid"></div>
-
+        <a href="search.html" class="btn-hunt-now">+ Add More</a>
       </div>
 
-      <footer class="shop-footer">
-        <div class="container" style="font-size: 11px; text-align: center; color: var(--cool-stone);">
-          &copy; 2026 PriceHunt. Pillow-soft shopping discovery.
-        </div>
-      </footer>
+      <div class="hot-picks-grid" id="favoritesGrid"></div>
     </main>
+
+    <!-- Clean Dark Footer -->
+    <footer class="fabrid-footer">
+      <div class="container footer-bottom-bar">
+        <div>&copy; 2026 PriceHunt® Store. All rights reserved.</div>
+        <div>Luxury Dark E-Commerce Architecture</div>
+      </div>
+    </footer>
+
   </div>
 
   <script src="js/api.js"></script>
@@ -66,11 +62,11 @@
         const favs = await Api.request('/favorites');
         if (!favs || favs.length === 0) {
           grid.innerHTML = `
-            <div style="grid-column: 1/-1; text-align: center; padding: 4rem 1rem; background: white; border-radius: var(--radius-card); box-shadow: var(--shadow-elevated-card);">
+            <div style="grid-column: 1/-1; text-align: center; padding: 4rem 1rem; background: var(--bg-card); border-radius: var(--radius-card); border: 1px solid var(--border-dark);">
               <div style="font-size: 2.5rem; margin-bottom: 1rem;">🤍</div>
-              <h4 style="font-weight: 500; font-size: 18px; margin-bottom: 0.5rem;">Your wishlist is empty</h4>
-              <p style="color: var(--muted-gray); font-size: 14px; margin-bottom: 1.5rem;">Save items while browsing to track price drops.</p>
-              <a href="search.html" class="pill-btn pill-btn-violet">Discover Items</a>
+              <h4 style="font-weight: 700; font-size: 18px; color: var(--text-pure); margin-bottom: 0.5rem;">Your wishlist is empty</h4>
+              <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 1.5rem;">Save items while browsing to track price drops.</p>
+              <a href="search.html" class="btn-hunt-now">Discover Deals</a>
             </div>
           `;
           return;
@@ -79,17 +75,17 @@
         grid.innerHTML = favs.map(f => {
           const p = f.product;
           return `
-            <div class="shop-card">
-              <div class="shop-card-image-wrap">
-                <img src="${p.imageUrl}" alt="${p.name}">
+            <div class="hot-product-card">
+              <div class="hot-card-head">
+                <span class="tag-new">${p.brand}</span>
+                <span class="price-tag">₹${(p.minPrice || 63999).toLocaleString('en-IN')}</span>
               </div>
-              <div class="shop-card-body">
-                <div class="shop-card-brand">${p.brand}</div>
-                <h3 class="shop-card-title">${p.name}</h3>
-                <div class="shop-card-footer">
-                  <div class="shop-card-price">₹${(p.minPrice || 63999).toLocaleString('en-IN')}</div>
-                  <a href="product.html?id=${p.id}" class="shop-card-action">Compare ➔</a>
-                </div>
+              <div class="hot-card-img-wrap">
+                <img src="${p.imageUrl}" alt="${p.name}">
+                <a href="product.html?id=${p.id}" class="hot-card-pill-btn">• Compare</a>
+              </div>
+              <div class="hot-card-body">
+                <div class="hot-card-title">${p.name}</div>
               </div>
             </div>
           `;
