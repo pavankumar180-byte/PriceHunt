@@ -3,33 +3,104 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Price Comparison — PriceHunt® Store</title>
+  <title>Product Details & Price Comparison — NovaTrend</title>
   <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
-    .dark-product-hero {
+    .product-hero-layout {
       display: grid;
-      grid-template-columns: 420px 1fr;
-      gap: 32px;
-      background: var(--bg-card);
-      border-radius: var(--radius-card);
-      border: 1px solid var(--border-dark);
-      box-shadow: var(--shadow-card);
-      padding: 36px;
+      grid-template-columns: 460px 1fr;
+      gap: 2.5rem;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
       margin: 2rem 0;
+      box-shadow: var(--shadow-sm);
+    }
+    .product-hero-photo-box {
+      background-color: var(--bg-thumbnail);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      min-height: 380px;
+    }
+    .product-hero-photo-box img {
+      max-height: 340px;
+      object-fit: contain;
+    }
+    .deal-pill-box {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .deal-pill-card {
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      padding: 12px 18px;
+    }
+    .deal-pill-card small {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 2px;
+    }
+    .deal-pill-card .val {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+    .deal-table-wrapper {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      margin-top: 1.5rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .deal-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+    .deal-table th {
+      padding: 14px 18px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-secondary);
+      background-color: var(--bg-secondary);
+      border-bottom: 1px solid var(--border-color);
+    }
+    .deal-table td {
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--border-color);
+      font-size: 14px;
+      color: var(--text-main);
+      vertical-align: middle;
+    }
+    .deal-table tr:last-child td {
+      border-bottom: none;
     }
     .modal-overlay {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(6, 4, 14, 0.85);
-      backdrop-filter: blur(12px);
+      background-color: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(8px);
       display: none;
       align-items: center;
       justify-content: center;
       z-index: 999;
     }
     @media (max-width: 900px) {
-      .dark-product-hero {
+      .product-hero-layout {
         grid-template-columns: 1fr;
       }
     }
@@ -37,157 +108,169 @@
 </head>
 <body>
 
-  <div class="page-canvas">
-    
-    <!-- Top Header -->
-    <header class="fabrid-nav">
-      <a href="index.html" class="nav-brand">
-        pricehunt<span class="sup">®</span>
-      </a>
+  <!-- Top Announcement Bar -->
+  <aside class="top-announcement-bar">
+    <div class="announcement-content">
+      <div class="announcement-item"><span>🚚</span> Free Worldwide Shipping Over $50</div>
+      <span class="announcement-divider">|</span>
+      <div class="announcement-item"><span>⚡</span> Summer Sale Up To 70% Off</div>
+      <span class="announcement-divider">|</span>
+      <div class="announcement-item"><span>⚡</span> Limited Time Flash Deals</div>
+    </div>
+  </aside>
 
-      <ul class="nav-menu">
-        <li><a href="index.html">Shop</a></li>
-        <li><a href="search.html">Categories</a></li>
-        <li><a href="dashboard.html">Dashboard</a></li>
-        <li><a href="favorites.html">Wishlist</a></li>
-        <li><a href="alerts.html">Alerts</a></li>
+  <!-- Main Navigation Bar -->
+  <header class="main-header">
+    <div class="container header-container">
+      <a href="index.html" class="nav-brand">NovaTrend</a>
+
+      <ul class="nav-menu-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="search.html" class="nav-link">Shop</a></li>
+        <li><a href="index.html#new-arrivals" class="nav-link">New Arrivals</a></li>
+        <li><a href="index.html#best-sellers" class="nav-link">Best Sellers</a></li>
+        <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
       </ul>
 
-      <div class="nav-right-actions">
-        <a href="profile.html" class="nav-icon-btn">👤</a>
-        <a href="favorites.html" class="nav-icon-btn">🤍</a>
-        <a href="search.html" class="btn-hunt-now"><span>•</span> Hunt Now</a>
+      <div class="header-actions">
+        <a href="favorites.html" class="action-icon-btn" title="Wishlist">
+          ♡
+          <span class="badge-count" id="favBadgeCount">0</span>
+        </a>
+        <a href="login.html" class="action-icon-btn" title="Account">👤</a>
+        <a href="dashboard.html" class="action-icon-btn" title="Cart">
+          🛍️
+          <span class="badge-count" id="cartBadgeCount">0</span>
+        </a>
+        <button type="button" class="theme-toggle-btn" title="Toggle Dark/Light Mode">☀️</button>
       </div>
-    </header>
+    </div>
+  </header>
 
-    <!-- Main Comparison Viewport -->
-    <main class="container" id="productDetailContainer">
+  <main class="container" id="productDetailContainer">
+    
+    <!-- Breadcrumb -->
+    <div style="margin-top: 1.5rem; font-size: 13px; color: var(--text-muted);">
+      <a href="index.html">Home</a> ➔ <a href="search.html">Shop</a> ➔ <span id="productCategory" style="color: var(--text-main); font-weight: 500;">Product Details</span>
+    </div>
+
+    <!-- Product Hero Layout -->
+    <div class="product-hero-layout">
       
-      <!-- Breadcrumb -->
-      <div style="margin-top: 1.5rem; font-size: 12px; color: var(--text-muted);">
-        <a href="search.html">Catalog</a> ➔ <span id="productCategory">Electronics</span>
+      <div class="product-hero-photo-box">
+        <img id="productImage" src="" alt="Product Photo">
       </div>
 
-      <!-- Product Summary Hero -->
-      <div class="dark-product-hero">
-        
-        <div style="background: rgba(255, 255, 255, 0.02); border-radius: var(--radius-inner); padding: 24px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border-dark);">
-          <img id="productImage" src="" alt="Product" style="max-height: 320px; object-fit: contain; filter: drop-shadow(0 20px 30px rgba(0,0,0,0.5));">
-        </div>
+      <div>
+        <h1 id="productTitle" style="font-size: 26px; font-weight: 800; color: var(--text-main); margin-bottom: 8px; line-height: 1.25;">
+          Loading Product Details...
+        </h1>
+        <p id="productDescription" style="color: var(--text-secondary); font-size: 14px; line-height: 1.6; margin-bottom: 1.5rem;"></p>
 
-        <div>
-          <h1 id="productTitle" style="font-size: 26px; font-weight: 700; color: var(--text-pure); margin-bottom: 8px; line-height: 1.25;">
-            Loading Product Details...
-          </h1>
-          <p id="productDescription" style="color: var(--text-muted); font-size: 14px; line-height: 1.5; margin-bottom: 24px;"></p>
-
-          <!-- Deal Highlight Cards -->
-          <div style="display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap;">
-            <div style="background: rgba(124, 58, 237, 0.15); border: 1px solid rgba(124, 58, 237, 0.35); border-radius: var(--radius-inner); padding: 12px 18px;">
-              <small style="color: var(--accent-lavender); font-size: 11px; font-weight: 700; text-transform: uppercase;">⚡ Best Overall Deal</small>
-              <div id="bestDealDisplay" style="font-size: 22px; font-weight: 800; color: var(--text-pure);">—</div>
-              <small id="bestDealStore" style="color: var(--text-muted); font-size: 11px;"></small>
-            </div>
-
-            <div style="background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: var(--radius-inner); padding: 12px 18px;">
-              <small style="color: #34d399; font-size: 11px; font-weight: 700; text-transform: uppercase;">💰 Lowest Price</small>
-              <div id="lowestPriceDisplay" style="font-size: 22px; font-weight: 800; color: var(--text-pure);">—</div>
-              <small id="lowestPriceStore" style="color: var(--text-muted); font-size: 11px;"></small>
-            </div>
-
-            <div style="display: flex; align-items: center;">
-              <button id="openAlertModalBtn" class="btn-hunt-now" style="padding: 10px 20px;">
-                🔔 Set Price Alert
-              </button>
-            </div>
+        <!-- Deal Highlights -->
+        <div class="deal-pill-box">
+          <div class="deal-pill-card">
+            <small>⚡ Best Overall Deal</small>
+            <div id="bestDealDisplay" class="val">—</div>
+            <span id="bestDealStore" style="font-size: 11px; color: var(--text-muted);"></span>
           </div>
 
-          <!-- Specifications list -->
-          <div style="font-size: 11px; font-weight: 700; color: var(--text-muted); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em;">Specifications</div>
-          <div id="productSpecsList" style="font-size: 13px;"></div>
+          <div class="deal-pill-card">
+            <small style="color: #10b981;">💰 Lowest Price</small>
+            <div id="lowestPriceDisplay" class="val">—</div>
+            <span id="lowestPriceStore" style="font-size: 11px; color: var(--text-muted);"></span>
+          </div>
+
+          <div style="display: flex; align-items: center;">
+            <button type="button" id="openAlertModalBtn" class="btn-primary" style="padding: 12px 20px;">
+              🔔 Set Price Alert
+            </button>
+          </div>
         </div>
 
+        <!-- Specifications -->
+        <div style="font-size: 12px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;">Specifications</div>
+        <div id="productSpecsList" style="font-size: 13px; color: var(--text-secondary); line-height: 1.6;"></div>
       </div>
 
-      <!-- Live Multi-Platform Comparison Table -->
-      <div style="margin-bottom: 3.5rem;">
-        <div class="section-header-row">
-          <div>
-            <h2>Live Multi-Platform Comparison Matrix</h2>
-            <p>Real-time verified listings across Amazon, Flipkart, Myntra, and Croma.</p>
-          </div>
-        </div>
+    </div>
 
-        <div class="dark-table-card">
-          <table class="dark-table">
-            <thead>
-              <tr>
-                <th>Store Platform</th>
-                <th>Price</th>
-                <th>Discount</th>
-                <th>Rating & Reviews</th>
-                <th>Delivery</th>
-                <th>Deal Score</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody id="comparisonTableBody">
-              <!-- Rendered dynamically by comparison.js -->
-            </tbody>
-          </table>
-        </div>
+    <!-- Live Multi-Store Comparison Matrix -->
+    <div style="margin-bottom: 3.5rem;">
+      <div class="section-header" style="margin-bottom: 0.5rem;">
+        <h2>Multi-Platform Price Comparison Matrix</h2>
       </div>
+      <p style="color: var(--text-secondary); font-size: 13px; margin-bottom: 1rem;">Verified real-time offers across Amazon, Flipkart, Myntra, and Brand Official stores.</p>
 
-      <!-- 90-Day Price History Trajectory -->
-      <div class="dark-table-card" style="padding: 28px; margin-bottom: 4rem;">
-        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 20px;">
-          <div>
-            <div style="font-size: 18px; font-weight: 700; color: var(--text-pure);">90-Day Price Trajectory</div>
-            <small style="color: var(--text-muted); font-size: 12px;">Historical time-series tracking</small>
-          </div>
-          <span style="background: rgba(124, 58, 237, 0.2); color: var(--accent-lavender); padding: 4px 12px; border-radius: var(--radius-pill); font-size: 11px; font-weight: 600;">Lowest in 90 days</span>
-        </div>
-        <canvas id="priceHistoryCanvas" style="width: 100%; max-height: 220px;"></canvas>
-      </div>
-
-    </main>
-
-    <!-- Price Alert Modal -->
-    <div class="modal-overlay" id="alertModal">
-      <div style="background: var(--bg-card); border: 1px solid var(--border-dark); border-radius: var(--radius-card); box-shadow: var(--shadow-card-hover); width: 100%; max-width: 440px; padding: 32px; position: relative;">
-        <button id="closeAlertModalBtn" style="position: absolute; top: 16px; right: 16px; background: none; border: none; color: var(--text-muted); font-size: 1.25rem; cursor: pointer;">✕</button>
-        
-        <h3 style="font-size: 20px; font-weight: 700; color: var(--text-pure); margin-bottom: 8px;">Set Price Drop Alert</h3>
-        <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 20px;">
-          We will notify you immediately when <strong id="modalProductName" style="color: var(--text-pure);">this product</strong> drops below your target price.
-        </p>
-
-        <form id="createAlertForm">
-          <div style="margin-bottom: 16px;">
-            <small style="color: var(--text-muted); font-size: 11px; text-transform: uppercase;">CURRENT LOWEST PRICE</small>
-            <div id="modalCurrentPrice" style="font-size: 24px; font-weight: 800; color: var(--text-pure);">₹0</div>
-          </div>
-
-          <div style="margin-bottom: 20px;">
-            <label style="display: block; font-size: 11px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; font-weight: 700;">YOUR TARGET PRICE (₹)</label>
-            <input type="number" id="targetPriceInput" class="dark-select" placeholder="e.g. 60000" required>
-          </div>
-
-          <button type="submit" class="btn-hunt-now" style="width: 100%; padding: 12px; font-size: 14px;">Activate Price Alert</button>
-        </form>
+      <div class="deal-table-wrapper">
+        <table class="deal-table">
+          <thead>
+            <tr>
+              <th>Store Platform</th>
+              <th>Price</th>
+              <th>Discount</th>
+              <th>Rating & Reviews</th>
+              <th>Delivery</th>
+              <th>Deal Score</th>
+              <th>Direct Store Link</th>
+            </tr>
+          </thead>
+          <tbody id="comparisonTableBody">
+            <!-- Populated by comparison.js -->
+          </tbody>
+        </table>
       </div>
     </div>
 
-    <!-- Clean Dark Footer -->
-    <footer class="fabrid-footer">
-      <div class="container footer-bottom-bar">
-        <div>&copy; 2026 PriceHunt® Store. All rights reserved.</div>
-        <div>Real-Time Multi-Store Price Comparison</div>
+    <!-- 90-Day Price Trajectory -->
+    <div class="deal-table-wrapper" style="padding: 2rem; margin-bottom: 4rem;">
+      <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1.5rem;">
+        <div>
+          <h3 style="font-size: 17px; font-weight: 700; color: var(--text-main);">90-Day Price Trajectory</h3>
+          <small style="color: var(--text-muted); font-size: 12px;">Historical time-series tracking across stores</small>
+        </div>
+        <span style="background-color: var(--primary-light); color: var(--primary); padding: 4px 12px; border-radius: var(--radius-pill); font-size: 12px; font-weight: 600;">Historical Lowest Period</span>
       </div>
-    </footer>
+      <canvas id="priceHistoryCanvas" style="width: 100%; max-height: 240px;"></canvas>
+    </div>
 
+  </main>
+
+  <!-- Price Alert Modal -->
+  <div class="modal-overlay" id="alertModal">
+    <div style="background-color: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); width: 100%; max-width: 440px; padding: 2rem; position: relative;">
+      <button type="button" id="closeAlertModalBtn" style="position: absolute; top: 16px; right: 16px; font-size: 1.25rem; color: var(--text-muted);">✕</button>
+      
+      <h3 style="font-size: 19px; font-weight: 800; color: var(--text-main); margin-bottom: 6px;">Set Price Drop Alert</h3>
+      <p style="color: var(--text-secondary); font-size: 13px; margin-bottom: 1.5rem;">
+        Receive an instant notification when <strong id="modalProductName" style="color: var(--text-main);">this product</strong> drops below your target price.
+      </p>
+
+      <form id="createAlertForm">
+        <div style="margin-bottom: 1rem;">
+          <small style="color: var(--text-muted); font-size: 11px; text-transform: uppercase;">CURRENT LOWEST PRICE</small>
+          <div id="modalCurrentPrice" style="font-size: 22px; font-weight: 800; color: var(--text-main);">$0.00</div>
+        </div>
+
+        <div style="margin-bottom: 1.5rem;">
+          <label style="display: block; font-size: 11px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; font-weight: 700;">YOUR TARGET PRICE ($)</label>
+          <input type="number" id="targetPriceInput" class="catalog-select" placeholder="e.g. 99" required style="width: 100%; padding: 10px 14px;">
+        </div>
+
+        <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">Activate Alert</button>
+      </form>
+    </div>
   </div>
 
+  <!-- Store Footer -->
+  <footer class="main-footer">
+    <div class="container footer-bottom-bar">
+      <div>&copy; 2026 NovaTrend Inc. All rights reserved.</div>
+      <div>Designed for seamless comparison in Light and Dark Mode.</div>
+    </div>
+  </footer>
+
+  <script src="js/theme.js"></script>
   <script src="js/api.js"></script>
   <script src="js/auth.js"></script>
   <script src="js/comparison.js"></script>

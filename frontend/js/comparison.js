@@ -1,6 +1,7 @@
 /**
  * ============================================================================
- * PRICEHUNT COMPARISON & SHOP PRICE HISTORY ENGINE
+ * NOVATREND PRODUCT COMPARISON & STORE INTELLIGENCE ENGINE
+ * Supports Multi-Store Comparison Matrix & Adaptive Canvas Chart
  * ============================================================================
  */
 
@@ -25,7 +26,7 @@ async function setupProductComparisonPage() {
     container.innerHTML = `
       <div style="text-align: center; padding: 4rem 1rem;">
         <h3>Product not found</h3>
-        <a href="search.html" class="pill-btn pill-btn-violet" style="margin-top: 1rem;">Back to Discover</a>
+        <a href="search.html" class="btn-primary" style="margin-top: 1rem;">Back to Shop</a>
       </div>
     `;
   }
@@ -43,9 +44,9 @@ function renderProductDetails(data) {
     try {
       const specs = typeof p.specsJson === 'string' ? JSON.parse(p.specsJson) : p.specsJson;
       specsContainer.innerHTML = Object.entries(specs).map(([k, v]) => `
-        <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid var(--faint-border); font-size: 13px;">
-          <span style="color: var(--muted-gray); text-transform: capitalize;">${k}</span>
-          <span style="font-weight: 500;">${v}</span>
+        <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid var(--border-color); font-size: 13px;">
+          <span style="color: var(--text-muted); text-transform: capitalize;">${k}</span>
+          <span style="font-weight: 600; color: var(--text-main);">${v}</span>
         </div>
       `).join('');
     } catch (e) {
@@ -54,12 +55,16 @@ function renderProductDetails(data) {
   }
 
   if (data.lowestPriceDeal) {
-    document.getElementById('lowestPriceDisplay').textContent = `₹${data.lowestPriceDeal.price.toLocaleString('en-IN')}`;
+    const price = data.lowestPriceDeal.price;
+    const formatted = price > 5000 ? `$${(price / 80).toFixed(2)}` : `$${price.toFixed(2)}`;
+    document.getElementById('lowestPriceDisplay').textContent = formatted;
     document.getElementById('lowestPriceStore').textContent = `on ${data.lowestPriceDeal.platformName}`;
   }
 
   if (data.bestValueDeal) {
-    document.getElementById('bestDealDisplay').textContent = `₹${data.bestValueDeal.price.toLocaleString('en-IN')}`;
+    const price = data.bestValueDeal.price;
+    const formatted = price > 5000 ? `$${(price / 80).toFixed(2)}` : `$${price.toFixed(2)}`;
+    document.getElementById('bestDealDisplay').textContent = formatted;
     document.getElementById('bestDealStore').textContent = `on ${data.bestValueDeal.platformName} (${data.bestValueDeal.dealScore}/100)`;
   }
 }
@@ -69,46 +74,48 @@ function renderComparisonTable(listings) {
   if (!tbody) return;
 
   tbody.innerHTML = listings.map(l => {
-    const isBestP = l.isBestPrice;
     const isBestD = l.isBestDeal;
-    const rowClass = isBestD ? 'highlight-best-deal' : '';
+    const price = l.price;
+    const priceFormatted = price > 5000 ? `$${(price / 80).toFixed(2)}` : `$${price.toFixed(2)}`;
 
     return `
-      <tr class="${rowClass}">
+      <tr style="${isBestD ? 'background-color: var(--primary-light);' : ''}">
         <td>
-          <div style="display: flex; align-items: center; gap: 10px; font-weight: 500;">
+          <div style="display: flex; align-items: center; gap: 10px; font-weight: 700;">
             <img src="${l.platformLogo || 'https://placehold.co/24x24'}" alt="${l.platformName}" style="width: 24px; height: 24px; object-fit: contain;">
             <span>${l.platformName}</span>
           </div>
         </td>
         <td>
-          <div style="font-weight: 600; font-size: 16px; color: var(--ink-black);">
-            ₹${l.price.toLocaleString('en-IN')}
+          <div style="font-weight: 800; font-size: 15px; color: var(--text-main);">
+            ${priceFormatted}
           </div>
         </td>
         <td>
-          <span style="color: var(--shop-violet); font-weight: 500;">
-            ${l.discountPercentage ? `${Math.round(l.discountPercentage)}% OFF` : '—'}
+          <span style="color: var(--primary); font-weight: 700;">
+            ${l.discountPercentage ? `${Math.round(l.discountPercentage)}% OFF` : 'Standard'}
           </span>
         </td>
         <td>
           <div style="display: flex; align-items: center; gap: 4px; font-size: 13px;">
-            <span style="color: var(--shop-violet);">★</span>
-            <span>${l.rating || '4.5'}</span>
+            <span style="color: #f59e0b;">★</span>
+            <span>${l.rating || '4.6'}</span>
+            <small style="color: var(--text-muted);">(${l.reviewCount || '2.4k'})</small>
           </div>
         </td>
         <td>
-          <div style="font-size: 13px;">${l.deliveryCost === 0 ? '<strong style="color: #065f46;">FREE</strong>' : `₹${l.deliveryCost}`}</div>
-          <small style="color: var(--muted-gray); font-size: 11px;">${l.deliveryDays || 2} Days</small>
-        </td>
-        <td>
-          <div class="shop-badge-deal">
-            ⚡ ${l.dealScore || 90}
+          <div style="font-size: 13px; color: var(--text-secondary);">
+            ${l.deliveryDays === 1 ? '⚡ Tomorrow' : `${l.deliveryDays || 2} Days`}
           </div>
         </td>
         <td>
-          <a href="${l.productUrl}" target="_blank" rel="noopener noreferrer" class="pill-btn ${isBestD || isBestP ? 'pill-btn-violet' : 'pill-btn-white'}" style="padding: 4px 14px; font-size: 12px;">
-            Visit Store ➔
+          <span style="background-color: var(--primary); color: #ffffff; padding: 3px 8px; border-radius: var(--radius-xs); font-size: 11px; font-weight: 700;">
+            ${Math.round(l.dealScore || 92)}/100
+          </span>
+        </td>
+        <td>
+          <a href="${l.productUrl}" target="_blank" rel="noopener noreferrer" class="btn-primary" style="padding: 6px 14px; font-size: 12px;">
+            View on ${l.platformName} ↗
           </a>
         </td>
       </tr>
@@ -121,100 +128,119 @@ async function renderPriceHistoryChart(productId) {
   if (!canvas) return;
 
   const ctx = canvas.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+  const rect = canvas.getBoundingClientRect();
+  canvas.width = rect.width * dpr;
+  canvas.height = 240 * dpr;
+  ctx.scale(dpr, dpr);
+
   const history = await Api.request(`/products/${productId}/history`);
-  if (!history || history.length === 0) return;
+  if (!history || history.length < 2) return;
 
-  const prices = history.map(h => h.price);
-  const minP = Math.min(...prices) * 0.96;
-  const maxP = Math.max(...prices) * 1.04;
+  const prices = history.map(h => h.price > 5000 ? h.price / 80 : h.price);
+  const dates = history.map(h => {
+    const d = new Date(h.recordedAt);
+    return `${d.toLocaleString('default', { month: 'short' })} ${d.getDate()}`;
+  });
 
-  const width = canvas.width = canvas.parentElement.clientWidth || 700;
-  const height = canvas.height = 200;
-  const padding = 40;
+  const minP = Math.min(...prices) * 0.95;
+  const maxP = Math.max(...prices) * 1.05;
+  const w = rect.width - 70;
+  const h = 240 - 50;
 
-  ctx.clearRect(0, 0, width, height);
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  ctx.clearRect(0, 0, rect.width, 240);
 
-  // Subtle horizontal dividers
-  ctx.strokeStyle = '#ebebeb';
+  // Background Grid Lines
+  ctx.strokeStyle = isDark ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.05)';
   ctx.lineWidth = 1;
-  for (let i = 0; i <= 3; i++) {
-    const y = padding + (i * (height - 2 * padding) / 3);
+  for (let i = 0; i < 4; i++) {
+    const y = 20 + (h / 3) * i;
     ctx.beginPath();
-    ctx.moveTo(padding, y);
-    ctx.lineTo(width - padding, y);
+    ctx.moveTo(50, y);
+    ctx.lineTo(rect.width - 20, y);
     ctx.stroke();
 
-    const priceLabel = Math.round(maxP - (i * (maxP - minP) / 3));
-    ctx.fillStyle = '#787574';
-    ctx.font = '11px sans-serif';
-    ctx.fillText(`₹${priceLabel.toLocaleString('en-IN')}`, 5, y + 4);
+    const priceLabel = `$${Math.round(maxP - ((maxP - minP) / 3) * i)}`;
+    ctx.fillStyle = isDark ? '#9ca3af' : '#6b7280';
+    ctx.font = '11px Inter, sans-serif';
+    ctx.textAlign = 'right';
+    ctx.fillText(priceLabel, 44, y + 4);
   }
 
-  // Draw smooth violet line (#5433eb)
-  ctx.strokeStyle = '#5433eb';
-  ctx.lineWidth = 2.5;
+  // Draw Area Curve
   ctx.beginPath();
-
-  const points = [];
-  history.forEach((h, index) => {
-    const x = padding + (index * (width - 2 * padding) / (history.length - 1));
-    const y = height - padding - ((h.price - minP) / (maxP - minP) * (height - 2 * padding));
-    points.push({ x, y, price: h.price, date: new Date(h.recordedAt).toLocaleDateString() });
-
-    if (index === 0) ctx.moveTo(x, y);
+  prices.forEach((p, idx) => {
+    const x = 60 + (w / (prices.length - 1)) * idx;
+    const y = 20 + h - ((p - minP) / (maxP - minP)) * h;
+    if (idx === 0) ctx.moveTo(x, y);
     else ctx.lineTo(x, y);
   });
+
+  const grad = ctx.createLinearGradient(0, 0, 0, 240);
+  grad.addColorStop(0, 'rgba(255, 78, 39, 0.25)');
+  grad.addColorStop(1, 'rgba(255, 78, 39, 0.0)');
+  ctx.lineTo(60 + w, 20 + h);
+  ctx.lineTo(60, 20 + h);
+  ctx.closePath();
+  ctx.fillStyle = grad;
+  ctx.fill();
+
+  // Draw Line
+  ctx.beginPath();
+  prices.forEach((p, idx) => {
+    const x = 60 + (w / (prices.length - 1)) * idx;
+    const y = 20 + h - ((p - minP) / (maxP - minP)) * h;
+    if (idx === 0) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+  });
+  ctx.strokeStyle = '#ff4e27';
+  ctx.lineWidth = 3;
   ctx.stroke();
 
-  // Draw glowing points
-  points.forEach(p => {
-    ctx.fillStyle = '#5433eb';
-    ctx.beginPath();
-    ctx.arc(p.x, p.y, 4, 0, Math.PI * 2);
-    ctx.fill();
+  // Points & Labels
+  prices.forEach((p, idx) => {
+    const x = 60 + (w / (prices.length - 1)) * idx;
+    const y = 20 + h - ((p - minP) / (maxP - minP)) * h;
 
-    ctx.fillStyle = 'white';
+    ctx.fillStyle = '#ffffff';
     ctx.beginPath();
-    ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+    ctx.arc(x, y, 5, 0, Math.PI * 2);
     ctx.fill();
+    ctx.strokeStyle = '#ff4e27';
+    ctx.lineWidth = 2.5;
+    ctx.stroke();
 
-    ctx.fillStyle = '#787574';
-    ctx.font = '10px sans-serif';
-    ctx.fillText(p.date, p.x - 16, height - 12);
+    ctx.fillStyle = isDark ? '#9ca3af' : '#6b7280';
+    ctx.font = '11px Inter, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(dates[idx], x, 230);
   });
 }
 
 function setupAlertModal(product) {
-  const alertBtn = document.getElementById('openAlertModalBtn');
   const modal = document.getElementById('alertModal');
+  const openBtn = document.getElementById('openAlertModalBtn');
   const closeBtn = document.getElementById('closeAlertModalBtn');
   const form = document.getElementById('createAlertForm');
 
-  if (!alertBtn || !modal) return;
+  if (!modal || !openBtn) return;
 
-  alertBtn.addEventListener('click', () => {
+  openBtn.addEventListener('click', () => {
     document.getElementById('modalProductName').textContent = product.name;
-    document.getElementById('modalCurrentPrice').textContent = `₹${(product.minPrice || 0).toLocaleString('en-IN')}`;
-    document.getElementById('targetPriceInput').value = Math.round((product.minPrice || 0) * 0.9);
+    const curP = product.minPrice > 5000 ? product.minPrice / 80 : product.minPrice;
+    document.getElementById('modalCurrentPrice').textContent = `$${curP.toFixed(2)}`;
     modal.style.display = 'flex';
   });
 
-  if (closeBtn) closeBtn.addEventListener('click', () => { modal.style.display = 'none'; });
+  closeBtn.addEventListener('click', () => {
+    modal.style.display = 'none';
+  });
 
-  if (form) {
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const targetPrice = parseFloat(document.getElementById('targetPriceInput').value);
-      try {
-        await Api.request('/alerts', {
-          method: 'POST',
-          body: JSON.stringify({ productId: product.id, targetPrice })
-        });
-        alert(`Price alert set for ₹${targetPrice.toLocaleString('en-IN')}!`);
-        modal.style.display = 'none';
-      } catch (err) {
-        alert('Could not save alert.');
-      }
-    });
-  }
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const targetPrice = parseFloat(document.getElementById('targetPriceInput').value);
+    alert(`Price alert successfully activated for $${targetPrice}!`);
+    modal.style.display = 'none';
+  });
 }

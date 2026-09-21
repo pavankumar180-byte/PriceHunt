@@ -3,125 +3,732 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PriceHunt — Hunt the Best Price</title>
+  <title>NovaTrend — Discover Products You'll Love</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <div class="container">
-    
-    <!-- Minimal Header -->
-    <header class="minimal-nav">
-      <a href="index.html" class="minimal-brand">
-        pricehunt<span class="dot"></span>
+  <!-- =========================================================================
+       1. TOP ANNOUNCEMENT BAR
+       ========================================================================= -->
+  <aside class="top-announcement-bar">
+    <div class="announcement-content">
+      <div class="announcement-item">
+        <span>🚚</span> Free Worldwide Shipping Over $50
+      </div>
+      <span class="announcement-divider">|</span>
+      <div class="announcement-item">
+        <span>⚡</span> Summer Sale Up To 70% Off
+      </div>
+      <span class="announcement-divider">|</span>
+      <div class="announcement-item">
+        <span>⚡</span> Limited Time Flash Deals
+      </div>
+    </div>
+  </aside>
+
+  <!-- =========================================================================
+       2. MAIN NAVIGATION BAR
+       ========================================================================= -->
+  <header class="main-header">
+    <div class="container header-container">
+      
+      <!-- Brand Logo -->
+      <a href="index.html" class="nav-brand">
+        NovaTrend
       </a>
 
-      <ul class="minimal-menu">
-        <li><a href="index.html" class="active">Shop</a></li>
-        <li><a href="search.html">Categories</a></li>
-        <li><a href="dashboard.html">Dashboard</a></li>
-        <li><a href="favorites.html">Wishlist</a></li>
-        <li><a href="alerts.html">Alerts</a></li>
+      <!-- Menu Links -->
+      <ul class="nav-menu-links">
+        <li><a href="index.html" class="nav-link active">Home</a></li>
+        <li><a href="search.html" class="nav-link">Shop</a></li>
+        <li><a href="#new-arrivals" class="nav-link">New Arrivals</a></li>
+        <li><a href="#best-sellers" class="nav-link">Best Sellers</a></li>
+        <li>
+          <a href="search.html" class="nav-link">
+            Categories <span style="font-size: 11px;">▾</span>
+          </a>
+        </li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#blog" class="nav-link">Blog</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
       </ul>
 
-      <div class="minimal-actions">
-        <a href="profile.html" style="font-size: 14px; color: var(--text-muted);">Account</a>
-        <a href="search.html" class="btn-minimal-pill">Explore Deals</a>
-      </div>
-    </header>
+      <!-- Header Action Icons (Search, Wishlist, Profile, Cart, Theme Toggle) -->
+      <div class="header-actions">
+        <!-- Search Icon -->
+        <a href="search.html" class="action-icon-btn" title="Search Products">
+          🔍
+        </a>
 
-    <!-- Minimal Hero Statement -->
-    <section class="minimal-hero">
-      <span class="minimal-hero-tag">Price Comparison Engine</span>
-      <h1 class="minimal-hero-title">Hunt the best price across every store.</h1>
-      <p class="minimal-hero-sub">Compare real-time prices for shoes, laptops, watches, and phones across Amazon, Flipkart, and Myntra in seconds.</p>
+        <!-- Wishlist Icon -->
+        <a href="favorites.html" class="action-icon-btn" title="Wishlist">
+          ♡
+          <span class="badge-count" id="favBadgeCount">0</span>
+        </a>
 
-      <!-- Minimal Search Pill -->
-      <form class="minimal-search-pill search-form" action="search.html" method="GET">
-        <input type="text" class="minimal-search-input" name="q" placeholder="Search shoes, watches, laptops, smartphones..." required autocomplete="off">
-        <button type="submit" class="minimal-search-btn" title="Search">
-          ➔
+        <!-- Account Icon -->
+        <a href="login.html" class="action-icon-btn" title="My Account">
+          👤
+        </a>
+
+        <!-- Cart Icon -->
+        <a href="dashboard.html" class="action-icon-btn" title="Shopping Cart">
+          🛍️
+          <span class="badge-count" id="cartBadgeCount">0</span>
+        </a>
+
+        <!-- Dark / Light Mode Switcher -->
+        <button type="button" class="theme-toggle-btn" title="Toggle Dark/Light Mode">
+          ☀️
         </button>
-      </form>
-    </section>
-
-    <!-- Section 1: Categories -->
-    <section style="margin-bottom: 4rem;">
-      <div class="section-title">
-        <span>Featured Categories</span>
-        <a href="search.html" style="font-size: 13px; font-weight: 400; color: var(--text-muted);">View all ➔</a>
       </div>
 
-      <div class="minimal-category-grid">
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       3. HERO SECTION (DISCOVER PRODUCTS YOU'LL LOVE)
+       ========================================================================= -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="hero-grid">
         
-        <!-- Footwear -->
-        <a href="search.html?category=Shoes" class="minimal-category-card">
-          <span class="category-arrow-icon">↗</span>
-          <div class="category-img-wrap">
-            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&auto=format&fit=crop&q=80" alt="Shoes">
+        <!-- Hero Left Content -->
+        <div class="hero-left-content">
+          <span class="hero-tag">TRENDING NOW</span>
+          <h1 class="hero-title">
+            Discover Products<br>You'll Love
+          </h1>
+          <p class="hero-subtitle">
+            Shop the latest trending products curated for modern lifestyles.
+          </p>
+
+          <div class="hero-btn-group">
+            <a href="search.html" class="btn-primary">
+              Shop Now <span>➔</span>
+            </a>
+            <a href="#categories" class="btn-secondary">
+              Explore Collection
+            </a>
           </div>
-          <div class="category-title">Shoes & Sneakers</div>
-          <div class="category-count">Nike, Adidas, New Balance</div>
+
+          <!-- Social Proof Avatar Cluster -->
+          <div class="social-proof-wrap">
+            <div class="avatar-stack">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="Customer">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80" alt="Customer">
+              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&auto=format&fit=crop&q=80" alt="Customer">
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop&q=80" alt="Customer">
+            </div>
+            <span class="social-proof-text">Loved by 50,000+ customers worldwide</span>
+          </div>
+        </div>
+
+        <!-- Hero Right Visual & Orbiting Product Cards -->
+        <div class="hero-visual-wrapper">
+          <!-- Orange Curved Pod Background -->
+          <div class="hero-chair-pod"></div>
+
+          <!-- Main Model Photo in White Sweatshirt -->
+          <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=900&auto=format&fit=crop&q=80" alt="Fashion Model" class="hero-main-model">
+
+          <!-- 1. Floating Product Card: Top-Left (Air Max 270) -->
+          <a href="product.html?id=2" class="floating-product-card card-pos-top-left">
+            <div class="floating-card-thumb">
+              <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=100&auto=format&fit=crop&q=80" alt="Air Max 270">
+            </div>
+            <div class="floating-card-info">
+              <h6>Air Max 270</h6>
+              <span>$129.99</span>
+            </div>
+          </a>
+
+          <!-- 2. Floating Product Card: Mid-Left (Wireless Headphones) -->
+          <a href="product.html?id=3" class="floating-product-card card-pos-mid-left">
+            <div class="floating-card-thumb">
+              <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=100&auto=format&fit=crop&q=80" alt="Wireless Headphones">
+            </div>
+            <div class="floating-card-info">
+              <h6>Wireless Headphones</h6>
+              <span>$99.99</span>
+            </div>
+          </a>
+
+          <!-- 3. Floating Product Card: Top-Right (Smart Watch) -->
+          <a href="product.html?id=4" class="floating-product-card card-pos-top-right">
+            <div class="floating-card-thumb">
+              <img src="https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=100&auto=format&fit=crop&q=80" alt="Smart Watch">
+            </div>
+            <div class="floating-card-info">
+              <h6>Smart Watch</h6>
+              <span>$199.99</span>
+            </div>
+          </a>
+
+          <!-- 4. Floating Product Card: Bottom-Right (Water Bottle) -->
+          <a href="product.html?id=5" class="floating-product-card card-pos-bottom-right">
+            <div class="floating-card-thumb">
+              <img src="https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=100&auto=format&fit=crop&q=80" alt="Water Bottle">
+            </div>
+            <div class="floating-card-info">
+              <h6>Water Bottle</h6>
+              <span>$24.99</span>
+            </div>
+          </a>
+
+          <!-- Carousel Pagination Dots -->
+          <div class="hero-pagination-dots">
+            <span class="dot-pill active"></span>
+            <span class="dot-pill"></span>
+            <span class="dot-pill"></span>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       4. VALUE PROPS (4 COLUMNS)
+       ========================================================================= -->
+  <section class="value-props-section">
+    <div class="container">
+      <div class="value-props-grid">
+        
+        <div class="value-prop-item">
+          <div class="value-prop-icon">🚚</div>
+          <div>
+            <h5>Free Shipping</h5>
+            <p>On orders over $50</p>
+          </div>
+        </div>
+
+        <div class="value-prop-item">
+          <div class="value-prop-icon">🔒</div>
+          <div>
+            <h5>Secure Payments</h5>
+            <p>100% secure checkout</p>
+          </div>
+        </div>
+
+        <div class="value-prop-item">
+          <div class="value-prop-icon">🔄</div>
+          <div>
+            <h5>Easy Returns</h5>
+            <p>30-day return policy</p>
+          </div>
+        </div>
+
+        <div class="value-prop-item">
+          <div class="value-prop-icon">🎧</div>
+          <div>
+            <h5>24/7 Support</h5>
+            <p>Always here to help</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       5. SHOP BY CATEGORIES (6 PHOTO CARDS)
+       ========================================================================= -->
+  <section class="categories-section" id="categories">
+    <div class="container">
+      
+      <div class="section-header">
+        <h2>Shop by Categories</h2>
+        <a href="search.html" class="section-view-all">
+          View All Categories <span>➔</span>
+        </a>
+      </div>
+
+      <div class="categories-grid-6">
+        
+        <!-- Category 1: Fashion -->
+        <a href="search.html?category=Fashion" class="category-card">
+          <div class="category-photo">
+            <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=500&auto=format&fit=crop&q=80" alt="Fashion">
+          </div>
+          <div class="category-body">
+            <h4>Fashion</h4>
+            <span>Shop Now ➔</span>
+          </div>
         </a>
 
-        <!-- Laptops -->
-        <a href="search.html?category=Laptops" class="minimal-category-card">
-          <span class="category-arrow-icon">↗</span>
-          <div class="category-img-wrap">
-            <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400&auto=format&fit=crop&q=80" alt="Laptops">
+        <!-- Category 2: Electronics -->
+        <a href="search.html?category=Electronics" class="category-card">
+          <div class="category-photo">
+            <img src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=500&auto=format&fit=crop&q=80" alt="Electronics">
           </div>
-          <div class="category-title">Laptops</div>
-          <div class="category-count">MacBook, Dell, ASUS</div>
+          <div class="category-body">
+            <h4>Electronics</h4>
+            <span>Shop Now ➔</span>
+          </div>
         </a>
 
-        <!-- Audio -->
-        <a href="search.html?category=Headphones" class="minimal-category-card">
-          <span class="category-arrow-icon">↗</span>
-          <div class="category-img-wrap">
-            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&auto=format&fit=crop&q=80" alt="Audio">
+        <!-- Category 3: Beauty -->
+        <a href="search.html?category=Beauty" class="category-card">
+          <div class="category-photo">
+            <img src="https://images.unsplash.com/photo-1608248597359-bb59c086d4e1?w=500&auto=format&fit=crop&q=80" alt="Beauty">
           </div>
-          <div class="category-title">Headphones</div>
-          <div class="category-count">Sony XM5, AirPods Pro</div>
+          <div class="category-body">
+            <h4>Beauty</h4>
+            <span>Shop Now ➔</span>
+          </div>
         </a>
 
-        <!-- Watches -->
-        <a href="search.html?category=Watches" class="minimal-category-card">
-          <span class="category-arrow-icon">↗</span>
-          <div class="category-img-wrap">
-            <img src="https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=400&auto=format&fit=crop&q=80" alt="Watches">
+        <!-- Category 4: Fitness -->
+        <a href="search.html?category=Fitness" class="category-card">
+          <div class="category-photo">
+            <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=500&auto=format&fit=crop&q=80" alt="Fitness">
           </div>
-          <div class="category-title">Watches</div>
-          <div class="category-count">Apple Watch, Fossil</div>
+          <div class="category-body">
+            <h4>Fitness</h4>
+            <span>Shop Now ➔</span>
+          </div>
+        </a>
+
+        <!-- Category 5: Home Decor -->
+        <a href="search.html?category=HomeDecor" class="category-card">
+          <div class="category-photo">
+            <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=500&auto=format&fit=crop&q=80" alt="Home Decor">
+          </div>
+          <div class="category-body">
+            <h4>Home Decor</h4>
+            <span>Shop Now ➔</span>
+          </div>
+        </a>
+
+        <!-- Category 6: Accessories -->
+        <a href="search.html?category=Accessories" class="category-card">
+          <div class="category-photo">
+            <img src="https://images.unsplash.com/photo-1524805444758-089113d48a6d?w=500&auto=format&fit=crop&q=80" alt="Accessories">
+          </div>
+          <div class="category-body">
+            <h4>Accessories</h4>
+            <span>Shop Now ➔</span>
+          </div>
         </a>
 
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Section 2: Discover Deals -->
-    <section>
-      <div class="section-title">
-        <span>Curated Discoveries</span>
-        <small>Real-time lowest prices</small>
+  <!-- =========================================================================
+       6. NEW ARRIVALS (6 PRODUCT CARDS)
+       ========================================================================= -->
+  <section class="new-arrivals-section" id="new-arrivals">
+    <div class="container">
+      
+      <div class="section-header">
+        <h2>New Arrivals</h2>
+        <div style="display: flex; align-items: center; gap: 1.5rem;">
+          <a href="search.html" class="section-view-all">
+            View All New Arrivals <span>➔</span>
+          </a>
+          <div class="carousel-nav-arrows">
+            <button type="button" class="carousel-arrow-btn" title="Previous">‹</button>
+            <button type="button" class="carousel-arrow-btn" title="Next">›</button>
+          </div>
+        </div>
       </div>
 
-      <div class="minimal-product-grid" id="searchResultsGrid">
-        <!-- Dynamic minimal cards rendered by search.js -->
+      <div class="products-grid-6">
+        
+        <!-- Product 1: Essential Hoodie -->
+        <div class="product-item-card">
+          <div class="card-top-badges">
+            <span class="badge-tag tag-new">New</span>
+            <button type="button" class="btn-wishlist" title="Save to Wishlist">♡</button>
+          </div>
+          <a href="product.html?id=1" class="product-thumb-wrap">
+            <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=500&auto=format&fit=crop&q=80" alt="Essential Hoodie">
+          </a>
+          <div class="product-card-details">
+            <h3 class="product-card-title">Essential Hoodie</h3>
+            <div class="product-card-prices">
+              <span class="current-price">$59.99</span>
+            </div>
+            <div class="product-card-bottom-row">
+              <div class="product-stars">★★★★★ <span class="review-count-text">(128)</span></div>
+              <button type="button" class="btn-add-cart-circle" title="Add to Cart">🛍️</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 2: Air Max 270 -->
+        <div class="product-item-card">
+          <div class="card-top-badges">
+            <span class="badge-tag tag-discount">-20%</span>
+            <button type="button" class="btn-wishlist" title="Save to Wishlist">♡</button>
+          </div>
+          <a href="product.html?id=2" class="product-thumb-wrap">
+            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&auto=format&fit=crop&q=80" alt="Air Max 270">
+          </a>
+          <div class="product-card-details">
+            <h3 class="product-card-title">Air Max 270</h3>
+            <div class="product-card-prices">
+              <span class="current-price">$129.99</span>
+              <span class="original-price">$169.99</span>
+            </div>
+            <div class="product-card-bottom-row">
+              <div class="product-stars">★★★★★ <span class="review-count-text">(89)</span></div>
+              <button type="button" class="btn-add-cart-circle" title="Add to Cart">🛍️</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 3: Wireless Headphones -->
+        <div class="product-item-card">
+          <div class="card-top-badges">
+            <span class="badge-tag tag-new">New</span>
+            <button type="button" class="btn-wishlist" title="Save to Wishlist">♡</button>
+          </div>
+          <a href="product.html?id=3" class="product-thumb-wrap">
+            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&auto=format&fit=crop&q=80" alt="Wireless Headphones">
+          </a>
+          <div class="product-card-details">
+            <h3 class="product-card-title">Wireless Headphones</h3>
+            <div class="product-card-prices">
+              <span class="current-price">$99.99</span>
+            </div>
+            <div class="product-card-bottom-row">
+              <div class="product-stars">★★★★★ <span class="review-count-text">(156)</span></div>
+              <button type="button" class="btn-add-cart-circle" title="Add to Cart">🛍️</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 4: Smart Watch Series 9 -->
+        <div class="product-item-card">
+          <div class="card-top-badges">
+            <span class="badge-tag tag-discount">-15%</span>
+            <button type="button" class="btn-wishlist" title="Save to Wishlist">♡</button>
+          </div>
+          <a href="product.html?id=4" class="product-thumb-wrap">
+            <img src="https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=500&auto=format&fit=crop&q=80" alt="Smart Watch Series 9">
+          </a>
+          <div class="product-card-details">
+            <h3 class="product-card-title">Smart Watch Series 9</h3>
+            <div class="product-card-prices">
+              <span class="current-price">$199.99</span>
+              <span class="original-price">$234.99</span>
+            </div>
+            <div class="product-card-bottom-row">
+              <div class="product-stars">★★★★★ <span class="review-count-text">(103)</span></div>
+              <button type="button" class="btn-add-cart-circle" title="Add to Cart">🛍️</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 5: Stainless Steel Bottle -->
+        <div class="product-item-card">
+          <div class="card-top-badges">
+            <span class="badge-tag tag-new">New</span>
+            <button type="button" class="btn-wishlist" title="Save to Wishlist">♡</button>
+          </div>
+          <a href="product.html?id=5" class="product-thumb-wrap">
+            <img src="https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=500&auto=format&fit=crop&q=80" alt="Stainless Steel Bottle">
+          </a>
+          <div class="product-card-details">
+            <h3 class="product-card-title">Stainless Steel Bottle</h3>
+            <div class="product-card-prices">
+              <span class="current-price">$24.99</span>
+            </div>
+            <div class="product-card-bottom-row">
+              <div class="product-stars">★★★★★ <span class="review-count-text">(76)</span></div>
+              <button type="button" class="btn-add-cart-circle" title="Add to Cart">🛍️</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 6: Aviator Sunglasses -->
+        <div class="product-item-card">
+          <div class="card-top-badges">
+            <span class="badge-tag tag-discount">-10%</span>
+            <button type="button" class="btn-wishlist" title="Save to Wishlist">♡</button>
+          </div>
+          <a href="product.html?id=6" class="product-thumb-wrap">
+            <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=500&auto=format&fit=crop&q=80" alt="Aviator Sunglasses">
+          </a>
+          <div class="product-card-details">
+            <h3 class="product-card-title">Aviator Sunglasses</h3>
+            <div class="product-card-prices">
+              <span class="current-price">$89.99</span>
+              <span class="original-price">$99.99</span>
+            </div>
+            <div class="product-card-bottom-row">
+              <div class="product-stars">★★★★★ <span class="review-count-text">(57)</span></div>
+              <button type="button" class="btn-add-cart-circle" title="Add to Cart">🛍️</button>
+            </div>
+          </div>
+        </div>
+
       </div>
-    </section>
 
-    <!-- Minimal Footer -->
-    <footer class="minimal-footer">
-      <div>&copy; 2026 PriceHunt. Clean e-commerce discovery.</div>
-      <div>Designed for simplicity</div>
-    </footer>
+    </div>
+  </section>
 
-  </div>
+  <!-- =========================================================================
+       7. BEST SELLERS (3 HORIZONTAL BENTO CARDS)
+       ========================================================================= -->
+  <section class="bestsellers-section" id="best-sellers">
+    <div class="container">
+      
+      <div class="section-header">
+        <h2>Best Sellers</h2>
+        <a href="search.html" class="section-view-all">
+          View All Best Sellers <span>➔</span>
+        </a>
+      </div>
 
+      <div class="bestsellers-grid-3">
+        
+        <!-- Bestseller 1: Classic Hoodie -->
+        <div class="bestseller-card">
+          <div class="bestseller-thumb">
+            <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=400&auto=format&fit=crop&q=80" alt="Classic Hoodie">
+          </div>
+          <div class="bestseller-content">
+            <span class="bestseller-badge">Bestseller</span>
+            <h4>Classic Hoodie</h4>
+            <div class="price-tag">$59.99</div>
+            <div class="product-stars">★★★★★ <span class="review-count-text">(256)</span></div>
+            <p class="desc">Premium quality hoodie perfect for everyday wear.</p>
+            <div class="bestseller-actions">
+              <button type="button" class="btn-quick-add">Quick Add</button>
+              <button type="button" class="btn-wishlist" title="Wishlist">♡</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bestseller 2: Air Max 270 -->
+        <div class="bestseller-card">
+          <div class="bestseller-thumb">
+            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&auto=format&fit=crop&q=80" alt="Air Max 270">
+          </div>
+          <div class="bestseller-content">
+            <span class="bestseller-badge">Bestseller</span>
+            <h4>Air Max 270</h4>
+            <div class="price-tag">$129.99</div>
+            <div class="product-stars">★★★★★ <span class="review-count-text">(189)</span></div>
+            <p class="desc">Iconic comfort meets modern style.</p>
+            <div class="bestseller-actions">
+              <button type="button" class="btn-quick-add">Quick Add</button>
+              <button type="button" class="btn-wishlist" title="Wishlist">♡</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bestseller 3: Sony WH-1000XM5 -->
+        <div class="bestseller-card">
+          <div class="bestseller-thumb">
+            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&auto=format&fit=crop&q=80" alt="Sony WH-1000XM5">
+          </div>
+          <div class="bestseller-content">
+            <span class="bestseller-badge">Bestseller</span>
+            <h4>Sony WH-1000XM5</h4>
+            <div class="price-tag">$349.99</div>
+            <div class="product-stars">★★★★★ <span class="review-count-text">(324)</span></div>
+            <p class="desc">Industry-leading noise cancellation.</p>
+            <div class="bestseller-actions">
+              <button type="button" class="btn-quick-add">Quick Add</button>
+              <button type="button" class="btn-wishlist" title="Wishlist">♡</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       8. DUAL PROMO BANNER GRID (FLASH SALE & SUMMER COLLECTION)
+       ========================================================================= -->
+  <section class="promo-banners-section">
+    <div class="container">
+      <div class="promo-banners-grid">
+        
+        <!-- Banner 1: Flash Sale (Coral Gradient + Countdown Clock + Running Sneaker) -->
+        <div class="promo-banner-coral">
+          <div class="promo-banner-text">
+            <span class="promo-badge">Flash Sale</span>
+            <h3>Up To 70% Off</h3>
+            
+            <!-- Live Ticking Countdown Timer -->
+            <div class="countdown-clock">
+              <div class="countdown-box">
+                <span class="countdown-number" id="countdownDays">02</span>
+                <span class="countdown-label">Days</span>
+              </div>
+              <span class="countdown-sep">:</span>
+              <div class="countdown-box">
+                <span class="countdown-number" id="countdownHours">15</span>
+                <span class="countdown-label">Hours</span>
+              </div>
+              <span class="countdown-sep">:</span>
+              <div class="countdown-box">
+                <span class="countdown-number" id="countdownMins">45</span>
+                <span class="countdown-label">Mins</span>
+              </div>
+              <span class="countdown-sep">:</span>
+              <div class="countdown-box">
+                <span class="countdown-number" id="countdownSecs">30</span>
+                <span class="countdown-label">Secs</span>
+              </div>
+            </div>
+
+            <a href="search.html" class="btn-banner-white">Shop Sale Now</a>
+          </div>
+
+          <img src="https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=700&auto=format&fit=crop&q=80" alt="Running Shoe" class="promo-visual-sneaker">
+        </div>
+
+        <!-- Banner 2: Summer 2025 New Collection (Sleek Dark Card + Fitness Model) -->
+        <div class="promo-banner-dark">
+          <div class="promo-banner-text">
+            <span class="promo-badge" style="background: rgba(255,255,255,0.12);">New Collection</span>
+            <h3>Summer 2025</h3>
+            <p>Discover the latest trends and fresh styles.</p>
+            <a href="search.html" class="btn-banner-white">Shop Collection</a>
+          </div>
+
+          <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=700&auto=format&fit=crop&q=80" alt="Athletic Model" class="promo-model-fitness">
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       9. BOTTOM TRUST & GUARANTEE STRIP
+       ========================================================================= -->
+  <section class="trust-strip-section">
+    <div class="container">
+      <div class="trust-strip-grid">
+        
+        <div class="trust-strip-item">
+          <div class="trust-icon-circle">🛡️</div>
+          <div>
+            <h5>Premium Quality</h5>
+            <p>Made with the finest materials</p>
+          </div>
+        </div>
+
+        <div class="trust-strip-item">
+          <div class="trust-icon-circle">🚚</div>
+          <div>
+            <h5>Fast Delivery</h5>
+            <p>Quick and reliable shipping</p>
+          </div>
+        </div>
+
+        <div class="trust-strip-item">
+          <div class="trust-icon-circle">🔒</div>
+          <div>
+            <h5>Secure Checkout</h5>
+            <p>Your data is protected</p>
+          </div>
+        </div>
+
+        <div class="trust-strip-item">
+          <div class="trust-icon-circle">😊</div>
+          <div>
+            <h5>Customer Satisfaction</h5>
+            <p>100% satisfaction guarantee</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       10. MAIN STORE FOOTER
+       ========================================================================= -->
+  <footer class="main-footer" id="contact">
+    <div class="container">
+      <div class="footer-grid">
+        
+        <!-- Brand Info -->
+        <div>
+          <div class="nav-brand" style="color: #ffffff; margin-bottom: 1rem;">
+            NovaTrend
+          </div>
+          <p style="font-size: 13px; color: #9ca3af; line-height: 1.6; max-width: 280px; margin-bottom: 1.5rem;">
+            Premium curated shopping experience with multi-store best price intelligence.
+          </p>
+          <div style="font-size: 13px; color: #9ca3af;">
+            support@novatrend.com
+          </div>
+        </div>
+
+        <!-- Shop Categories -->
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="search.html?category=Fashion">Women's Fashion</a></li>
+            <li><a href="search.html?category=Fashion">Men's Apparel</a></li>
+            <li><a href="search.html?category=Shoes">Footwear & Sneakers</a></li>
+            <li><a href="search.html?category=Electronics">Electronics & Audio</a></li>
+            <li><a href="search.html?category=Accessories">Accessories & Watches</a></li>
+          </ul>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#about">About NovaTrend</a></li>
+            <li><a href="#careers">Careers</a></li>
+            <li><a href="#blog">Latest News</a></li>
+            <li><a href="#sustainability">Sustainability</a></li>
+            <li><a href="#affiliate">Affiliate Program</a></li>
+          </ul>
+        </div>
+
+        <!-- Customer Care -->
+        <div class="footer-col">
+          <h4>Customer Care</h4>
+          <ul>
+            <li><a href="#orders">Track Order</a></li>
+            <li><a href="#shipping">Shipping & Returns</a></li>
+            <li><a href="#faq">Frequently Asked Questions</a></li>
+            <li><a href="#privacy">Privacy Policy</a></li>
+            <li><a href="#terms">Terms of Service</a></li>
+          </ul>
+        </div>
+
+        <!-- Newsletter Subscription -->
+        <div class="footer-col footer-newsletter">
+          <h4>Stay in the loop</h4>
+          <p>Subscribe to receive exclusive deals, flash sale announcements, and new drop alerts.</p>
+          <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Subscribed to NovaTrend!');">
+            <input type="email" class="newsletter-input" placeholder="Your email address" required>
+            <button type="submit" class="btn-newsletter">Join</button>
+          </form>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom-bar">
+        <div>&copy; 2026 NovaTrend Inc. All rights reserved.</div>
+        <div>Engineered for flawless shopping in Light and Dark Mode.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Interactive Scripts -->
+  <script src="js/theme.js"></script>
   <script src="js/api.js"></script>
   <script src="js/auth.js"></script>
-  <script src="js/search.js"></script>
 </body>
 </html>

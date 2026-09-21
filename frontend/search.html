@@ -3,62 +3,83 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Discover & Compare — PriceHunt® Store</title>
+  <title>Shop & Discover — NovaTrend</title>
   <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
-    .dark-search-layout {
+    .catalog-layout {
       display: grid;
       grid-template-columns: 260px 1fr;
-      gap: 24px;
-      padding: 2rem 0;
+      gap: 2rem;
+      padding: 2.5rem 0 5rem;
     }
-    .dark-filter-panel {
-      background: var(--bg-card);
-      border-radius: var(--radius-card);
-      border: 1px solid var(--border-dark);
-      padding: 24px;
+    .filter-sidebar {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
       height: fit-content;
       position: sticky;
       top: 90px;
-      box-shadow: var(--shadow-card);
     }
-    .filter-item {
-      margin-bottom: 20px;
-      padding-bottom: 16px;
-      border-bottom: 1px solid var(--border-dark);
+    .filter-group {
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border-color);
     }
-    .filter-item:last-child {
+    .filter-group:last-child {
       border-bottom: none;
       margin-bottom: 0;
       padding-bottom: 0;
     }
-    .filter-label {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--text-muted);
-      margin-bottom: 8px;
-      font-weight: 700;
-    }
-    .dark-select {
-      width: 100%;
-      background: #110d24;
-      border: 1px solid var(--border-dark);
-      border-radius: var(--radius-pill);
-      padding: 8px 14px;
+    .filter-heading {
       font-size: 13px;
-      color: var(--text-pure);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-main);
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .catalog-select {
+      width: 100%;
+      background-color: var(--bg-input);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xs);
+      padding: 9px 12px;
+      font-size: 13px;
+      color: var(--text-main);
+      outline: none;
+      font-family: inherit;
+    }
+    .catalog-select:focus {
+      border-color: var(--primary);
+    }
+    .search-input-box {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 1.5rem;
+    }
+    .search-input-box input {
+      flex: 1;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      padding: 12px 16px;
+      font-size: 14px;
+      color: var(--text-main);
       outline: none;
     }
-    .dark-select:focus {
-      border-color: var(--accent-violet);
+    .search-input-box input:focus {
+      border-color: var(--primary);
     }
     @media (max-width: 900px) {
-      .dark-search-layout {
+      .catalog-layout {
         grid-template-columns: 1fr;
       }
-      .dark-filter-panel {
+      .filter-sidebar {
         position: static;
       }
     }
@@ -66,115 +87,134 @@
 </head>
 <body>
 
-  <div class="page-canvas">
-    
-    <!-- Top Header -->
-    <header class="fabrid-nav">
-      <a href="index.html" class="nav-brand">
-        pricehunt<span class="sup">®</span>
-      </a>
-
-      <ul class="nav-menu">
-        <li><a href="index.html">Shop</a></li>
-        <li><a href="search.html" class="active">Categories</a></li>
-        <li><a href="dashboard.html">Dashboard</a></li>
-        <li><a href="favorites.html">Wishlist</a></li>
-        <li><a href="alerts.html">Alerts</a></li>
-      </ul>
-
-      <div class="nav-right-actions">
-        <a href="profile.html" class="nav-icon-btn">👤</a>
-        <a href="favorites.html" class="nav-icon-btn">🤍</a>
-        <a href="search.html" class="btn-hunt-now"><span>•</span> Hunt Now</a>
+  <!-- Top Announcement Bar -->
+  <aside class="top-announcement-bar">
+    <div class="announcement-content">
+      <div class="announcement-item">
+        <span>🚚</span> Free Worldwide Shipping Over $50
       </div>
-    </header>
-
-    <!-- Top Floating Search Header -->
-    <div style="padding: 2rem 0 1rem;">
-      <div class="container">
-        <form class="fabrid-search-bar search-form" style="margin: 0 auto; max-width: 720px;">
-          <input type="text" id="searchQueryInput" class="fabrid-search-input" name="q" placeholder="Search shoes, watches, laptops, phones, headphones...">
-          <button type="submit" class="fabrid-search-btn">➔</button>
-        </form>
+      <span class="announcement-divider">|</span>
+      <div class="announcement-item">
+        <span>⚡</span> Summer Sale Up To 70% Off
+      </div>
+      <span class="announcement-divider">|</span>
+      <div class="announcement-item">
+        <span>⚡</span> Limited Time Flash Deals
       </div>
     </div>
+  </aside>
 
-    <!-- Main Results Layout -->
-    <div class="container dark-search-layout">
+  <!-- Main Navigation Bar -->
+  <header class="main-header">
+    <div class="container header-container">
+      <a href="index.html" class="nav-brand">NovaTrend</a>
+
+      <ul class="nav-menu-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="search.html" class="nav-link active">Shop</a></li>
+        <li><a href="index.html#new-arrivals" class="nav-link">New Arrivals</a></li>
+        <li><a href="index.html#best-sellers" class="nav-link">Best Sellers</a></li>
+        <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+      </ul>
+
+      <div class="header-actions">
+        <a href="favorites.html" class="action-icon-btn" title="Wishlist">
+          ♡
+          <span class="badge-count" id="favBadgeCount">0</span>
+        </a>
+        <a href="login.html" class="action-icon-btn" title="Account">👤</a>
+        <a href="dashboard.html" class="action-icon-btn" title="Cart">
+          🛍️
+          <span class="badge-count" id="cartBadgeCount">0</span>
+        </a>
+        <button type="button" class="theme-toggle-btn" title="Toggle Dark/Light Mode">☀️</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Catalog Content -->
+  <main class="container">
+    <div class="catalog-layout">
       
       <!-- Filter Sidebar -->
-      <aside class="dark-filter-panel">
-        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 16px;">
-          <div style="font-size: 16px; font-weight: 700; color: var(--text-pure);">Filter Catalog</div>
-          <button class="btn-hunt-now" style="padding: 3px 10px; font-size: 11px;" onclick="resetFilters()">Reset</button>
+      <aside class="filter-sidebar">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+          <h3 style="font-size: 15px; font-weight: 800; color: var(--text-main);">Filter Catalog</h3>
+          <button type="button" onclick="resetFilters()" style="font-size: 12px; font-weight: 600; color: var(--primary);">Reset</button>
         </div>
 
-        <div class="filter-item">
-          <div class="filter-label">Category</div>
-          <select id="categoryFilter" class="dark-select">
+        <div class="filter-group">
+          <div class="filter-heading">Category</div>
+          <select id="categoryFilter" class="catalog-select">
             <option value="">All Categories</option>
           </select>
         </div>
 
-        <div class="filter-item">
-          <div class="filter-label">Brand</div>
-          <select id="brandFilter" class="dark-select">
+        <div class="filter-group">
+          <div class="filter-heading">Brand</div>
+          <select id="brandFilter" class="catalog-select">
             <option value="">All Brands</option>
           </select>
         </div>
 
-        <div class="filter-item">
-          <div class="filter-label" style="display: flex; justify-content: space-between;">
+        <div class="filter-group">
+          <div class="filter-heading">
             <span>Max Price</span>
-            <span id="priceDisplay" style="color: var(--accent-lavender); font-weight: 700;">₹2,50,000</span>
+            <span id="priceDisplay" style="color: var(--primary); font-weight: 700;">$2,500</span>
           </div>
-          <input type="range" id="priceRange" min="5000" max="250000" step="5000" value="250000" style="width: 100%; accent-color: var(--accent-violet); cursor: pointer;">
+          <input type="range" id="priceRange" min="20" max="2500" step="20" value="2500" style="width: 100%; accent-color: var(--primary); cursor: pointer;">
         </div>
 
-        <div style="background: rgba(124, 58, 237, 0.1); border: 1px solid rgba(124, 58, 237, 0.2); border-radius: var(--radius-inner); padding: 12px; font-size: 12px; color: var(--accent-lavender); line-height: 1.4;">
-          ⚡ <strong>Live Matching:</strong> Scanning Amazon, Flipkart, Myntra, and Croma in real time.
+        <div style="background-color: var(--bg-secondary); border-radius: var(--radius-sm); padding: 12px; font-size: 12px; color: var(--text-secondary); line-height: 1.4;">
+          ⚡ <strong>Price Comparison:</strong> Scanning real-time listings across Amazon, Flipkart, Nike, and Myntra.
         </div>
       </aside>
 
-      <!-- Products Grid Results -->
+      <!-- Products Grid Section -->
       <section>
-        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 20px; flex-wrap: wrap; gap: 12px;">
+        <!-- Search Input Bar -->
+        <form class="search-input-box search-form" id="catalogSearchForm">
+          <input type="text" id="searchQueryInput" name="q" placeholder="Search shoes, hoodies, headphones, watches, bags..." autocomplete="off">
+          <button type="submit" class="btn-primary" style="padding: 12px 24px;">Search</button>
+        </form>
+
+        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 12px;">
           <div>
-            <div style="font-size: 20px; font-weight: 700; color: var(--text-pure);">
-              Results for <span id="queryDisplay" style="color: var(--accent-lavender);">All Products</span>
-            </div>
-            <small style="color: var(--text-muted); font-size: 12px;"><span id="resultCount">0</span> live verified deals</small>
+            <h2 style="font-size: 20px; font-weight: 800; color: var(--text-main);">
+              Results for <span id="queryDisplay" style="color: var(--primary);">All Products</span>
+            </h2>
+            <small style="color: var(--text-muted); font-size: 13px;"><span id="resultCount">0</span> products found</small>
           </div>
 
           <div style="display: flex; align-items: center; gap: 8px;">
-            <span style="font-size: 12px; color: var(--text-muted);">Sort:</span>
-            <select id="sortBy" class="dark-select" style="width: auto;">
-              <option value="best_deal">⚡ Best Value Deal</option>
-              <option value="price_asc">💰 Lowest Price</option>
-              <option value="price_desc">💵 Highest Price</option>
-              <option value="rating_desc">★ Highest Rated</option>
-              <option value="discount_desc">🏷️ Highest Discount</option>
+            <span style="font-size: 13px; color: var(--text-secondary); font-weight: 500;">Sort By:</span>
+            <select id="sortBy" class="catalog-select" style="width: auto; min-width: 150px;">
+              <option value="best_deal">⚡ Best Match</option>
+              <option value="price_asc">💰 Price: Low to High</option>
+              <option value="price_desc">💵 Price: High to Low</option>
+              <option value="rating_desc">★ Customer Rating</option>
             </select>
           </div>
         </div>
 
-        <div class="hot-picks-grid" id="searchResultsGrid">
-          <!-- Rendered dynamically by search.js -->
+        <!-- Products Grid -->
+        <div class="products-grid-6" id="searchResultsGrid" style="grid-template-columns: repeat(3, 1fr); gap: 1.5rem;">
+          <!-- Dynamically populated by search.js -->
         </div>
       </section>
 
     </div>
+  </main>
 
-    <!-- Clean Dark Footer -->
-    <footer class="fabrid-footer">
-      <div class="container footer-bottom-bar">
-        <div>&copy; 2026 PriceHunt® Store. All rights reserved.</div>
-        <div>Luxury Dark E-Commerce Architecture</div>
-      </div>
-    </footer>
+  <!-- Main Store Footer -->
+  <footer class="main-footer">
+    <div class="container footer-bottom-bar">
+      <div>&copy; 2026 NovaTrend Inc. All rights reserved.</div>
+      <div>Multi-store price comparison and discovery.</div>
+    </div>
+  </footer>
 
-  </div>
-
+  <script src="js/theme.js"></script>
   <script src="js/api.js"></script>
   <script src="js/auth.js"></script>
   <script src="js/search.js"></script>

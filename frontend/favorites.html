@@ -3,56 +3,71 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Saved Wishlist — PriceHunt® Store</title>
+  <title>My Saved Wishlist — NovaTrend</title>
   <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <div class="page-canvas">
-    
-    <!-- Top Header -->
-    <header class="fabrid-nav">
-      <a href="index.html" class="nav-brand">
-        pricehunt<span class="sup">®</span>
-      </a>
+  <!-- Top Announcement Bar -->
+  <aside class="top-announcement-bar">
+    <div class="announcement-content">
+      <div class="announcement-item"><span>🚚</span> Free Worldwide Shipping Over $50</div>
+      <span class="announcement-divider">|</span>
+      <div class="announcement-item"><span>⚡</span> Summer Sale Up To 70% Off</div>
+    </div>
+  </aside>
 
-      <ul class="nav-menu">
-        <li><a href="index.html">Shop</a></li>
-        <li><a href="search.html">Categories</a></li>
-        <li><a href="dashboard.html">Dashboard</a></li>
-        <li><a href="favorites.html" class="active">Wishlist</a></li>
-        <li><a href="alerts.html">Alerts</a></li>
+  <!-- Main Navigation Bar -->
+  <header class="main-header">
+    <div class="container header-container">
+      <a href="index.html" class="nav-brand">NovaTrend</a>
+
+      <ul class="nav-menu-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="search.html" class="nav-link">Shop</a></li>
+        <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+        <li><a href="favorites.html" class="nav-link active">Wishlist</a></li>
+        <li><a href="alerts.html" class="nav-link">Price Alerts</a></li>
       </ul>
 
-      <div class="nav-right-actions">
-        <a href="profile.html" class="nav-icon-btn">👤</a>
-        <a href="search.html" class="btn-hunt-now"><span>•</span> Hunt Now</a>
+      <div class="header-actions">
+        <a href="favorites.html" class="action-icon-btn" title="Wishlist">
+          ♡
+          <span class="badge-count" id="favBadgeCount">0</span>
+        </a>
+        <a href="login.html" class="action-icon-btn" title="Account">👤</a>
+        <a href="dashboard.html" class="action-icon-btn" title="Cart">
+          🛍️
+          <span class="badge-count" id="cartBadgeCount">0</span>
+        </a>
+        <button type="button" class="theme-toggle-btn" title="Toggle Dark/Light Mode">☀️</button>
       </div>
-    </header>
+    </div>
+  </header>
 
-    <main class="container" style="padding: 3rem 1.5rem;">
-      <div class="section-header-row">
-        <div>
-          <h2>My Saved Wishlist</h2>
-          <p>Track live price movements across your saved items.</p>
-        </div>
-        <a href="search.html" class="btn-hunt-now">+ Add More</a>
+  <main class="container" style="padding: 3rem 1.25rem 5rem;">
+    <div class="section-header">
+      <div>
+        <h2>Saved Wishlist</h2>
+        <p style="color: var(--text-secondary); font-size: 13px;">Products you're tracking for price drops and restocks.</p>
       </div>
+      <a href="search.html" class="btn-primary" style="padding: 10px 20px;">Explore More Products</a>
+    </div>
 
-      <div class="hot-picks-grid" id="favoritesGrid"></div>
-    </main>
+    <div class="products-grid-6" id="favoritesGrid" style="grid-template-columns: repeat(4, 1fr); gap: 1.5rem;">
+      <!-- Populated dynamically -->
+    </div>
+  </main>
 
-    <!-- Clean Dark Footer -->
-    <footer class="fabrid-footer">
-      <div class="container footer-bottom-bar">
-        <div>&copy; 2026 PriceHunt® Store. All rights reserved.</div>
-        <div>Luxury Dark E-Commerce Architecture</div>
-      </div>
-    </footer>
+  <footer class="main-footer">
+    <div class="container footer-bottom-bar">
+      <div>&copy; 2026 NovaTrend Inc. All rights reserved.</div>
+      <div>Curated with precision.</div>
+    </div>
+  </footer>
 
-  </div>
-
+  <script src="js/theme.js"></script>
   <script src="js/api.js"></script>
   <script src="js/auth.js"></script>
   <script>
@@ -62,11 +77,11 @@
         const favs = await Api.request('/favorites');
         if (!favs || favs.length === 0) {
           grid.innerHTML = `
-            <div style="grid-column: 1/-1; text-align: center; padding: 4rem 1rem; background: var(--bg-card); border-radius: var(--radius-card); border: 1px solid var(--border-dark);">
-              <div style="font-size: 2.5rem; margin-bottom: 1rem;">🤍</div>
-              <h4 style="font-weight: 700; font-size: 18px; color: var(--text-pure); margin-bottom: 0.5rem;">Your wishlist is empty</h4>
-              <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 1.5rem;">Save items while browsing to track price drops.</p>
-              <a href="search.html" class="btn-hunt-now">Discover Deals</a>
+            <div style="grid-column: 1/-1; text-align: center; padding: 4rem 1rem; background-color: var(--bg-surface); border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+              <div style="font-size: 2.5rem; margin-bottom: 0.75rem;">♡</div>
+              <h3 style="font-weight: 700; font-size: 18px; color: var(--text-main); margin-bottom: 0.5rem;">Your wishlist is empty</h3>
+              <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 1.5rem;">Save your favorite products to keep track of their best deals.</p>
+              <a href="search.html" class="btn-primary">Browse Trending Products</a>
             </div>
           `;
           return;
@@ -74,18 +89,25 @@
 
         grid.innerHTML = favs.map(f => {
           const p = f.product;
+          const priceUSD = p.minPrice ? `$${(p.minPrice / 80).toFixed(2)}` : '$59.99';
           return `
-            <div class="hot-product-card">
-              <div class="hot-card-head">
-                <span class="tag-new">${p.brand}</span>
-                <span class="price-tag">₹${(p.minPrice || 63999).toLocaleString('en-IN')}</span>
+            <div class="product-item-card">
+              <div class="card-top-badges">
+                <span class="badge-tag tag-new">${p.brand || 'Featured'}</span>
               </div>
-              <div class="hot-card-img-wrap">
+              <a href="product.html?id=${p.id}" class="product-thumb-wrap">
                 <img src="${p.imageUrl}" alt="${p.name}">
-                <a href="product.html?id=${p.id}" class="hot-card-pill-btn">• Compare</a>
-              </div>
-              <div class="hot-card-body">
-                <div class="hot-card-title">${p.name}</div>
+              </a>
+              <div class="product-card-details">
+                <h3 class="product-card-title">${p.name}</h3>
+                <div class="product-card-prices">
+                  <span class="current-price">${priceUSD}</span>
+                </div>
+                <div class="product-card-bottom-row">
+                  <a href="product.html?id=${p.id}" class="btn-primary" style="width: 100%; justify-content: center; padding: 8px 12px; font-size: 12px;">
+                    Compare Deals
+                  </a>
+                </div>
               </div>
             </div>
           `;

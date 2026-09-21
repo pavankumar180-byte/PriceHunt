@@ -3,90 +3,103 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard — PriceHunt® Store</title>
+  <title>Customer Dashboard — NovaTrend</title>
   <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <div class="page-canvas">
-    
-    <!-- Top Header -->
-    <header class="fabrid-nav">
-      <a href="index.html" class="nav-brand">
-        pricehunt<span class="sup">®</span>
-      </a>
+  <!-- Top Announcement Bar -->
+  <aside class="top-announcement-bar">
+    <div class="announcement-content">
+      <div class="announcement-item"><span>🚚</span> Free Worldwide Shipping Over $50</div>
+      <span class="announcement-divider">|</span>
+      <div class="announcement-item"><span>⚡</span> Summer Sale Up To 70% Off</div>
+    </div>
+  </aside>
 
-      <ul class="nav-menu">
-        <li><a href="index.html">Shop</a></li>
-        <li><a href="search.html">Categories</a></li>
-        <li><a href="dashboard.html" class="active">Dashboard</a></li>
-        <li><a href="favorites.html">Wishlist</a></li>
-        <li><a href="alerts.html">Alerts</a></li>
+  <!-- Main Navigation Bar -->
+  <header class="main-header">
+    <div class="container header-container">
+      <a href="index.html" class="nav-brand">NovaTrend</a>
+
+      <ul class="nav-menu-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="search.html" class="nav-link">Shop</a></li>
+        <li><a href="dashboard.html" class="nav-link active">Dashboard</a></li>
+        <li><a href="favorites.html" class="nav-link">Wishlist</a></li>
+        <li><a href="alerts.html" class="nav-link">Price Alerts</a></li>
       </ul>
 
-      <div class="nav-right-actions">
-        <a href="profile.html" class="nav-icon-btn">👤</a>
-        <button id="logoutBtn" class="btn-hunt-now" style="background: rgba(255, 255, 255, 0.1); box-shadow: none;">Log Out</button>
+      <div class="header-actions">
+        <a href="favorites.html" class="action-icon-btn" title="Wishlist">
+          ♡
+          <span class="badge-count" id="favBadgeCount">0</span>
+        </a>
+        <a href="login.html" class="action-icon-btn" title="Account">👤</a>
+        <a href="dashboard.html" class="action-icon-btn" title="Cart">
+          🛍️
+          <span class="badge-count" id="cartBadgeCount">0</span>
+        </a>
+        <button type="button" class="theme-toggle-btn" title="Toggle Dark/Light Mode">☀️</button>
       </div>
-    </header>
+    </div>
+  </header>
 
-    <main class="container" style="padding: 3rem 1.5rem;">
+  <main class="container" style="padding: 3rem 1.25rem 5rem;">
+    
+    <!-- Welcome Card -->
+    <div style="background-color: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 2.5rem; margin-bottom: 2rem; box-shadow: var(--shadow-sm);">
+      <span class="hero-tag">MEMBER OVERVIEW</span>
+      <h1 style="font-size: 26px; font-weight: 800; color: var(--text-main); margin-bottom: 6px;">
+        Welcome to your NovaTrend Portal
+      </h1>
+      <p style="color: var(--text-secondary); font-size: 14px; max-width: 520px; margin-bottom: 1.5rem;">
+        Track active price alerts, access your saved items, and discover today's top deals.
+      </p>
       
-      <!-- Welcome Hero Card -->
-      <div style="background: var(--bg-card); border: 1px solid var(--border-dark); border-radius: var(--radius-card); box-shadow: var(--shadow-card); padding: 36px; margin-bottom: 2rem;">
-        <h1 style="font-size: 28px; font-weight: 800; color: var(--text-pure); margin-bottom: 8px;">
-          Welcome back to <span style="color: var(--accent-lavender);">PriceHunt® Store</span>
-        </h1>
-        <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 24px;">Your centralized hub for tracking deals, price alerts, and multi-store comparisons.</p>
-        
-        <form class="fabrid-search-bar search-form" action="search.html" method="GET" style="margin: 0; max-width: 600px;">
-          <input type="text" class="fabrid-search-input" name="q" placeholder="Search shoes, watches, laptops, phones...">
-          <button type="submit" class="fabrid-search-btn">➔</button>
-        </form>
+      <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+        <a href="search.html" class="btn-primary">Browse All Deals</a>
+        <button type="button" id="logoutBtn" class="btn-secondary">Log Out</button>
       </div>
+    </div>
 
-      <!-- Quick Metrics -->
-      <div class="category-squircle-grid" style="grid-template-columns: repeat(3, 1fr); margin-bottom: 3rem;">
-        <div class="category-squircle-card" style="padding: 24px; text-align: left; align-items: flex-start;">
-          <div style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">Active Alerts</div>
-          <div style="font-size: 32px; font-weight: 800; color: var(--text-pure); margin-top: 4px;">2</div>
-        </div>
-        <div class="category-squircle-card" style="padding: 24px; text-align: left; align-items: flex-start;">
-          <div style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">Saved Wishlist</div>
-          <div style="font-size: 32px; font-weight: 800; color: var(--text-pure); margin-top: 4px;">3</div>
-        </div>
-        <div class="category-squircle-card" style="padding: 24px; text-align: left; align-items: flex-start;">
-          <div style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">Total Saved</div>
-          <div style="font-size: 32px; font-weight: 800; color: var(--accent-lavender); margin-top: 4px;">₹18,400</div>
-        </div>
+    <!-- Quick Metrics Grid -->
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-bottom: 3rem;">
+      <div style="background-color: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.5rem;">
+        <small style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">ACTIVE PRICE ALERTS</small>
+        <div style="font-size: 28px; font-weight: 800; color: var(--text-main); margin-top: 4px;">2</div>
       </div>
-
-      <!-- Today's Highest Deal Score Products -->
-      <div class="section-header-row">
-        <div>
-          <h2>Today's Recommended Deals</h2>
-          <p>Highest calculated deal scores across Amazon, Flipkart, and Myntra.</p>
-        </div>
-        <a href="search.html" class="link-arrow">View All Deals ➔</a>
+      <div style="background-color: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.5rem;">
+        <small style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">SAVED IN WISHLIST</small>
+        <div style="font-size: 28px; font-weight: 800; color: var(--text-main); margin-top: 4px;">4</div>
       </div>
-
-      <div class="hot-picks-grid" id="searchResultsGrid">
-        <!-- Rendered by search.js -->
+      <div style="background-color: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.5rem;">
+        <small style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">TOTAL SAVINGS ESTIMATE</small>
+        <div style="font-size: 28px; font-weight: 800; color: var(--primary); margin-top: 4px;">$240.00</div>
       </div>
+    </div>
 
-    </main>
+    <!-- Recommended Deals -->
+    <div class="section-header">
+      <h2>Recommended For You</h2>
+      <a href="search.html" class="section-view-all">View All ➔</a>
+    </div>
 
-    <!-- Clean Dark Footer -->
-    <footer class="fabrid-footer">
-      <div class="container footer-bottom-bar">
-        <div>&copy; 2026 PriceHunt® Store. All rights reserved.</div>
-        <div>Luxury Dark E-Commerce Architecture</div>
-      </div>
-    </footer>
+    <div class="products-grid-6" id="searchResultsGrid" style="grid-template-columns: repeat(3, 1fr); gap: 1.5rem;">
+      <!-- Populated dynamically by search.js -->
+    </div>
 
-  </div>
+  </main>
 
+  <footer class="main-footer">
+    <div class="container footer-bottom-bar">
+      <div>&copy; 2026 NovaTrend Inc. All rights reserved.</div>
+      <div>Designed for modern lifestyles.</div>
+    </div>
+  </footer>
+
+  <script src="js/theme.js"></script>
   <script src="js/api.js"></script>
   <script src="js/auth.js"></script>
   <script src="js/search.js"></script>
