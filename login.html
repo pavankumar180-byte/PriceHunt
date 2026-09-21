@@ -3,48 +3,52 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sign In — PriceHunt® Store</title>
+  <title>Sign In — NovaTrend</title>
   <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
-<body style="background-color: var(--bg-canvas);">
+<body style="background-color: var(--bg-secondary);">
 
   <div style="min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem 1rem;">
     
-    <a href="index.html" class="nav-brand" style="font-size: 2.2rem; margin-bottom: 2rem;">
-      pricehunt<span class="sup">®</span>
+    <a href="index.html" class="nav-brand" style="font-size: 2rem; margin-bottom: 2rem;">
+      NovaTrend
     </a>
 
-    <div style="background: var(--bg-card); border: 1px solid var(--border-dark); border-radius: var(--radius-card); box-shadow: var(--shadow-card); width: 100%; max-width: 420px; padding: 36px;">
+    <div style="background-color: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-lg); box-shadow: var(--shadow-md); width: 100%; max-width: 420px; padding: 2.5rem;">
       
-      <h2 style="font-size: 24px; font-weight: 700; color: var(--text-pure); margin-bottom: 6px;">Sign In</h2>
-      <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 24px;">Access your saved wishlist and price drop triggers.</p>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+        <h2 style="font-size: 22px; font-weight: 800; color: var(--text-main);">Welcome Back</h2>
+        <button type="button" class="theme-toggle-btn" title="Toggle Dark/Light Mode" style="width: 32px; height: 32px; font-size: 14px;">☀️</button>
+      </div>
+      <p style="color: var(--text-secondary); font-size: 13px; margin-bottom: 1.5rem;">Sign in to access your saved deals and price alerts.</p>
 
       <div id="alertBox" class="alert-box"></div>
 
       <form id="loginForm">
-        <div style="margin-bottom: 16px;">
-          <label style="display: block; font-size: 11px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; font-weight: 700;">EMAIL</label>
-          <input type="email" id="email" class="dark-select" placeholder="name@example.com" value="demo@pricehunt.com" required style="width: 100%; background: #110d24; border: 1px solid var(--border-dark); border-radius: var(--radius-pill); padding: 10px 16px; color: var(--text-pure);">
+        <div style="margin-bottom: 1rem;">
+          <label style="display: block; font-size: 11px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; font-weight: 700;">EMAIL ADDRESS</label>
+          <input type="email" id="email" class="catalog-select" placeholder="name@example.com" value="demo@pricehunt.com" required style="width: 100%; padding: 11px 14px;">
         </div>
 
-        <div style="margin-bottom: 24px;">
+        <div style="margin-bottom: 1.5rem;">
           <label style="display: block; font-size: 11px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; font-weight: 700;">PASSWORD</label>
-          <input type="password" id="password" class="dark-select" placeholder="••••••••" value="password123" required style="width: 100%; background: #110d24; border: 1px solid var(--border-dark); border-radius: var(--radius-pill); padding: 10px 16px; color: var(--text-pure);">
+          <input type="password" id="password" class="catalog-select" placeholder="••••••••" value="password123" required style="width: 100%; padding: 11px 14px;">
         </div>
 
-        <button type="submit" id="submitBtn" class="btn-hunt-now" style="width: 100%; padding: 12px; font-size: 14px; justify-content: center;">
+        <button type="submit" id="submitBtn" class="btn-primary" style="width: 100%; justify-content: center; padding: 12px; font-size: 14px;">
           Sign In
         </button>
       </form>
 
-      <div style="text-align: center; margin-top: 24px; font-size: 13px; color: var(--text-muted);">
-        Don't have an account? <a href="signup.html" style="color: var(--accent-lavender); font-weight: 600;">Create Account</a>
+      <div style="text-align: center; margin-top: 1.5rem; font-size: 13px; color: var(--text-secondary);">
+        Don't have an account? <a href="signup.html" style="color: var(--primary); font-weight: 600;">Create Account</a>
       </div>
 
     </div>
   </div>
 
+  <script src="js/theme.js"></script>
   <script src="js/api.js"></script>
   <script src="js/auth.js"></script>
 </body>

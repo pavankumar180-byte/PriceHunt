@@ -3,98 +3,108 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Account Profile — PriceHunt® Store</title>
+  <title>Customer Profile — NovaTrend</title>
   <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <div class="page-canvas">
-    
-    <!-- Top Header -->
-    <header class="fabrid-nav">
-      <a href="index.html" class="nav-brand">
-        pricehunt<span class="sup">®</span>
-      </a>
+  <!-- Top Announcement Bar -->
+  <aside class="top-announcement-bar">
+    <div class="announcement-content">
+      <div class="announcement-item"><span>🚚</span> Free Worldwide Shipping Over $50</div>
+      <span class="announcement-divider">|</span>
+      <div class="announcement-item"><span>⚡</span> Summer Sale Up To 70% Off</div>
+    </div>
+  </aside>
 
-      <ul class="nav-menu">
-        <li><a href="index.html">Shop</a></li>
-        <li><a href="search.html">Categories</a></li>
-        <li><a href="dashboard.html">Dashboard</a></li>
-        <li><a href="favorites.html">Wishlist</a></li>
-        <li><a href="alerts.html">Alerts</a></li>
+  <!-- Main Navigation Bar -->
+  <header class="main-header">
+    <div class="container header-container">
+      <a href="index.html" class="nav-brand">NovaTrend</a>
+
+      <ul class="nav-menu-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="search.html" class="nav-link">Shop</a></li>
+        <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+        <li><a href="favorites.html" class="nav-link">Wishlist</a></li>
+        <li><a href="alerts.html" class="nav-link">Price Alerts</a></li>
       </ul>
 
-      <div class="nav-right-actions">
-        <a href="profile.html" class="nav-icon-btn">👤</a>
-        <a href="search.html" class="btn-hunt-now"><span>•</span> Hunt Now</a>
+      <div class="header-actions">
+        <a href="favorites.html" class="action-icon-btn" title="Wishlist">
+          ♡
+          <span class="badge-count" id="favBadgeCount">0</span>
+        </a>
+        <a href="profile.html" class="action-icon-btn active" title="Account">👤</a>
+        <a href="dashboard.html" class="action-icon-btn" title="Cart">
+          🛍️
+          <span class="badge-count" id="cartBadgeCount">0</span>
+        </a>
+        <button type="button" class="theme-toggle-btn" title="Toggle Dark/Light Mode">☀️</button>
       </div>
-    </header>
+    </div>
+  </header>
 
-    <main class="container" id="profileContainer" style="padding: 3rem 1.5rem; max-width: 760px;">
-      
-      <div style="margin-bottom: 2rem;">
-        <h1 style="font-size: 26px; font-weight: 800; color: var(--text-pure);">Account Profile & Settings</h1>
-        <p style="color: var(--text-muted); font-size: 13px;">Manage your personal profile and security configurations.</p>
+  <main class="container" style="padding: 3rem 1.25rem 5rem; max-width: 720px;">
+    <div class="section-header">
+      <div>
+        <h2>Account Settings</h2>
+        <p style="color: var(--text-secondary); font-size: 13px;">Manage your profile information and notification preferences.</p>
       </div>
+    </div>
 
-      <div style="background: var(--bg-card); border: 1px solid var(--border-dark); border-radius: var(--radius-card); box-shadow: var(--shadow-card); padding: 32px; margin-bottom: 24px;">
-        <h3 style="font-size: 18px; font-weight: 700; color: var(--text-pure); margin-bottom: 20px;">Profile Information</h3>
+    <div style="background-color: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 2rem; margin-bottom: 2rem; box-shadow: var(--shadow-sm);">
+      <h3 style="font-size: 17px; font-weight: 700; color: var(--text-main); margin-bottom: 1.25rem;">Personal Details</h3>
 
-        <div style="margin-bottom: 16px;">
-          <label style="display: block; font-size: 11px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; font-weight: 700;">NAME</label>
-          <input type="text" id="profileName" class="dark-select" value="John Doe" style="width: 100%; padding: 10px 16px; background: #110d24; border: 1px solid var(--border-dark); border-radius: var(--radius-pill); color: var(--text-pure);">
-        </div>
-
-        <div style="margin-bottom: 24px;">
-          <label style="display: block; font-size: 11px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; font-weight: 700;">EMAIL</label>
-          <input type="email" id="profileEmail" class="dark-select" value="demo@pricehunt.com" style="width: 100%; padding: 10px 16px; background: #110d24; border: 1px solid var(--border-dark); border-radius: var(--radius-pill); color: var(--text-pure);">
-        </div>
-
-        <div class="category-squircle-grid" style="grid-template-columns: repeat(3, 1fr); margin-bottom: 0; background: rgba(255, 255, 255, 0.02); border-radius: var(--radius-inner); padding: 16px;">
-          <div style="text-align: center;">
-            <div style="font-size: 11px; color: var(--text-muted); text-transform: uppercase;">Saved Wishlist</div>
-            <div id="profileFavCount" style="font-size: 22px; font-weight: 800; color: var(--text-pure);">3</div>
-          </div>
-          <div style="text-align: center;">
-            <div style="font-size: 11px; color: var(--text-muted); text-transform: uppercase;">Active Alerts</div>
-            <div id="profileAlertCount" style="font-size: 22px; font-weight: 800; color: var(--text-pure);">2</div>
-          </div>
-          <div style="text-align: center;">
-            <div style="font-size: 11px; color: var(--text-muted); text-transform: uppercase;">Membership</div>
-            <div style="font-size: 22px; font-weight: 800; color: var(--accent-lavender);">VIP Hunter</div>
-          </div>
-        </div>
+      <div style="margin-bottom: 1rem;">
+        <label style="display: block; font-size: 11px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; font-weight: 700;">FULL NAME</label>
+        <input type="text" id="profileName" class="catalog-select" value="John Doe" style="width: 100%; padding: 11px 14px;">
       </div>
 
-      <div style="background: var(--bg-card); border: 1px solid var(--border-dark); border-radius: var(--radius-card); box-shadow: var(--shadow-card); padding: 32px;">
-        <h3 style="font-size: 18px; font-weight: 700; color: var(--text-pure); margin-bottom: 20px;">Security & Password</h3>
-        
-        <div style="margin-bottom: 16px;">
-          <label style="display: block; font-size: 11px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; font-weight: 700;">CURRENT PASSWORD</label>
-          <input type="password" class="dark-select" placeholder="••••••••" style="width: 100%; padding: 10px 16px; background: #110d24; border: 1px solid var(--border-dark); border-radius: var(--radius-pill); color: var(--text-pure);">
-        </div>
-
-        <div style="margin-bottom: 20px;">
-          <label style="display: block; font-size: 11px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; font-weight: 700;">NEW PASSWORD</label>
-          <input type="password" class="dark-select" placeholder="Min. 6 characters" style="width: 100%; padding: 10px 16px; background: #110d24; border: 1px solid var(--border-dark); border-radius: var(--radius-pill); color: var(--text-pure);">
-        </div>
-
-        <button class="btn-hunt-now">Save Profile Changes</button>
+      <div style="margin-bottom: 1.5rem;">
+        <label style="display: block; font-size: 11px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; font-weight: 700;">EMAIL ADDRESS</label>
+        <input type="email" id="profileEmail" class="catalog-select" value="demo@pricehunt.com" style="width: 100%; padding: 11px 14px;">
       </div>
 
-    </main>
-
-    <!-- Clean Dark Footer -->
-    <footer class="fabrid-footer">
-      <div class="container footer-bottom-bar">
-        <div>&copy; 2026 PriceHunt® Store. All rights reserved.</div>
-        <div>Luxury Dark E-Commerce Architecture</div>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; background-color: var(--bg-secondary); border-radius: var(--radius-sm); padding: 1rem; text-align: center;">
+        <div>
+          <small style="font-size: 11px; color: var(--text-muted);">SAVED</small>
+          <div style="font-size: 20px; font-weight: 800; color: var(--text-main);">4</div>
+        </div>
+        <div>
+          <small style="font-size: 11px; color: var(--text-muted);">ALERTS</small>
+          <div style="font-size: 20px; font-weight: 800; color: var(--text-main);">2</div>
+        </div>
+        <div>
+          <small style="font-size: 11px; color: var(--text-muted);">STATUS</small>
+          <div style="font-size: 20px; font-weight: 800; color: var(--primary);">Member</div>
+        </div>
       </div>
-    </footer>
+    </div>
 
-  </div>
+    <div style="background-color: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 2rem; box-shadow: var(--shadow-sm);">
+      <h3 style="font-size: 17px; font-weight: 700; color: var(--text-main); margin-bottom: 1.25rem;">Security</h3>
+      <div style="margin-bottom: 1rem;">
+        <label style="display: block; font-size: 11px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; font-weight: 700;">CURRENT PASSWORD</label>
+        <input type="password" class="catalog-select" placeholder="••••••••" style="width: 100%; padding: 11px 14px;">
+      </div>
+      <div style="margin-bottom: 1.5rem;">
+        <label style="display: block; font-size: 11px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; font-weight: 700;">NEW PASSWORD</label>
+        <input type="password" class="catalog-select" placeholder="Min. 6 characters" style="width: 100%; padding: 11px 14px;">
+      </div>
+      <button type="button" class="btn-primary">Save Changes</button>
+    </div>
+  </main>
 
+  <footer class="main-footer">
+    <div class="container footer-bottom-bar">
+      <div>&copy; 2026 NovaTrend Inc. All rights reserved.</div>
+      <div>Designed for modern lifestyles.</div>
+    </div>
+  </footer>
+
+  <script src="js/theme.js"></script>
   <script src="js/api.js"></script>
   <script src="js/auth.js"></script>
 </body>

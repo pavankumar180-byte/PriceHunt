@@ -18,7 +18,120 @@ const MOCK_DATA = {
   ],
   products: [
     // -------------------------------------------------------------
-    // SMARTPHONES
+    // NOVATREND STOREFRONT PRODUCTS (FROM REFERENCE TEMPLATE)
+    // -------------------------------------------------------------
+    {
+      id: 1,
+      name: 'Essential Hoodie',
+      brand: 'NovaTrend',
+      model: 'Essential 2025',
+      category: 'Fashion',
+      imageUrl: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=500&auto=format&fit=crop&q=80',
+      description: 'Ultra-soft fleece cotton hoodie designed for minimalist streetwear comfort and everyday longevity.',
+      specsJson: '{"material": "100% Organic Cotton", "fit": "Relaxed Regular", "color": "Warm Beige", "wash": "Machine Wash Cold"}',
+      minPrice: 4799,
+      maxPrice: 5999,
+      maxDiscount: 20.0,
+      bestRating: 4.9,
+      listingCount: 3,
+      listings: [
+        { id: 101, platformId: 1, platformName: 'Amazon', platformLogo: 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg', platformTrustScore: 4.8, title: 'Essential Fleece Hoodie (Warm Beige)', price: 4799, originalPrice: 5999, discountPercentage: 20.0, rating: 4.9, reviewCount: 128, sellerName: 'NovaTrend Official', sellerRating: 4.9, deliveryCost: 0, deliveryDays: 1, inStock: true, productUrl: 'https://www.amazon.com', dealScore: 97.5, isBestPrice: true, isBestDeal: true },
+        { id: 102, platformId: 4, platformName: 'Myntra', platformLogo: 'https://images.indianexpress.com/2021/01/myntra.png', platformTrustScore: 4.7, title: 'NovaTrend Mens Essential Casual Hoodie', price: 5199, originalPrice: 5999, discountPercentage: 13.3, rating: 4.8, reviewCount: 94, sellerName: 'Myntra Retail', sellerRating: 4.7, deliveryCost: 0, deliveryDays: 2, inStock: true, productUrl: 'https://www.myntra.com', dealScore: 93.0, isBestPrice: false, isBestDeal: false }
+      ]
+    },
+    {
+      id: 2,
+      name: 'Air Max 270',
+      brand: 'Nike',
+      model: 'Air Max 270',
+      category: 'Footwear',
+      imageUrl: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&auto=format&fit=crop&q=80',
+      description: 'Nike Air unit provides unrivaled, all-day comfort. The sleek, running-inspired design roots you to Nike heritage.',
+      specsJson: '{"type": "Lifestyle / Running", "cushioning": "Max Air 270 unit", "color": "White / Pure Platinum", "closure": "Lace-up"}',
+      minPrice: 10399,
+      maxPrice: 13599,
+      maxDiscount: 23.5,
+      bestRating: 4.8,
+      listingCount: 3,
+      listings: [
+        { id: 103, platformId: 1, platformName: 'Amazon', platformLogo: 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg', platformTrustScore: 4.8, title: 'Nike Mens Air Max 270 Running Shoe', price: 10399, originalPrice: 13599, discountPercentage: 23.5, rating: 4.8, reviewCount: 89, sellerName: 'Nike Official Store', sellerRating: 4.9, deliveryCost: 0, deliveryDays: 1, inStock: true, productUrl: 'https://www.nike.com', dealScore: 98.2, isBestPrice: true, isBestDeal: true },
+        { id: 104, platformId: 2, platformName: 'Flipkart', platformLogo: 'https://logos-world.net/wp-content/uploads/2020/11/Flipkart-Logo.png', platformTrustScore: 4.7, title: 'NIKE Air Max 270 Sneakers For Men', price: 10999, originalPrice: 13599, discountPercentage: 19.1, rating: 4.7, reviewCount: 65, sellerName: 'SuperComNet', sellerRating: 4.6, deliveryCost: 0, deliveryDays: 2, inStock: true, productUrl: 'https://www.flipkart.com', dealScore: 94.0, isBestPrice: false, isBestDeal: false }
+      ]
+    },
+    {
+      id: 3,
+      name: 'Wireless Headphones',
+      brand: 'NovaSound',
+      model: 'Air Studio Over-Ear',
+      category: 'Electronics',
+      imageUrl: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&auto=format&fit=crop&q=80',
+      description: 'Precision acoustics, 40-hour battery stamina, Active Noise Cancellation, and ultra-plush protein memory foam earcups.',
+      specsJson: '{"type": "Over-Ear Wireless", "battery": "40 Hours", "anc": "Hybrid ANC", "connection": "Bluetooth 5.3 + AUX"}',
+      minPrice: 7999,
+      maxPrice: 9999,
+      maxDiscount: 20.0,
+      bestRating: 4.7,
+      listingCount: 2,
+      listings: [
+        { id: 105, platformId: 1, platformName: 'Amazon', platformLogo: 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg', platformTrustScore: 4.8, title: 'NovaSound Wireless ANC Studio Headphones', price: 7999, originalPrice: 9999, discountPercentage: 20.0, rating: 4.7, reviewCount: 156, sellerName: 'NovaSound Direct', sellerRating: 4.8, deliveryCost: 0, deliveryDays: 1, inStock: true, productUrl: 'https://www.amazon.com', dealScore: 95.8, isBestPrice: true, isBestDeal: true }
+      ]
+    },
+    {
+      id: 4,
+      name: 'Smart Watch Series 9',
+      brand: 'Apple',
+      model: 'Series 9 GPS',
+      category: 'Accessories',
+      imageUrl: 'https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=500&auto=format&fit=crop&q=80',
+      description: 'Smarter, brighter, mightier. Advanced health and fitness sensors, Double Tap gesture, and Always-On Retina display.',
+      specsJson: '{"case": "45mm Midnight Aluminum", "display": "2000-nit Always-On OLED", "chip": "S9 SiP", "battery": "Up to 18 Hours"}',
+      minPrice: 15999,
+      maxPrice: 18799,
+      maxDiscount: 14.8,
+      bestRating: 4.8,
+      listingCount: 3,
+      listings: [
+        { id: 106, platformId: 1, platformName: 'Amazon', platformLogo: 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg', platformTrustScore: 4.8, title: 'Apple Watch Series 9 [GPS 45mm] Smartwatch', price: 15999, originalPrice: 18799, discountPercentage: 14.8, rating: 4.8, reviewCount: 103, sellerName: 'Appario Retail', sellerRating: 4.8, deliveryCost: 0, deliveryDays: 1, inStock: true, productUrl: 'https://www.amazon.com', dealScore: 96.0, isBestPrice: true, isBestDeal: true }
+      ]
+    },
+    {
+      id: 5,
+      name: 'Stainless Steel Bottle',
+      brand: 'HydroLife',
+      model: 'Vacuum Pro 750ml',
+      category: 'Accessories',
+      imageUrl: 'https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=500&auto=format&fit=crop&q=80',
+      description: 'Double-wall vacuum insulated water bottle crafted with food-grade 18/8 stainless steel. Keeps drinks cold for 24 hours.',
+      specsJson: '{"capacity": "750 ml", "material": "18/8 Stainless Steel", "insulation": "Cold 24h / Hot 12h", "bpa": "BPA-Free"}',
+      minPrice: 1999,
+      maxPrice: 2499,
+      maxDiscount: 20.0,
+      bestRating: 4.9,
+      listingCount: 2,
+      listings: [
+        { id: 107, platformId: 1, platformName: 'Amazon', platformLogo: 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg', platformTrustScore: 4.8, title: 'HydroLife Matte Black Stainless Steel Insulated Bottle', price: 1999, originalPrice: 2499, discountPercentage: 20.0, rating: 4.9, reviewCount: 76, sellerName: 'HydroDirect', sellerRating: 4.9, deliveryCost: 0, deliveryDays: 1, inStock: true, productUrl: 'https://www.amazon.com', dealScore: 98.0, isBestPrice: true, isBestDeal: true }
+      ]
+    },
+    {
+      id: 6,
+      name: 'Aviator Sunglasses',
+      brand: 'Ray-Ban',
+      model: 'Aviator Classic',
+      category: 'Accessories',
+      imageUrl: 'https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=500&auto=format&fit=crop&q=80',
+      description: 'Timeless tear-drop shaped pilot shades with polished black frame and crystal green polarized UV400 lenses.',
+      specsJson: '{"frame": "Polished Black Metal", "lens": "Crystal Green Polarized", "uv": "100% UV400 Protection", "bridge": "14mm"}',
+      minPrice: 7199,
+      maxPrice: 7999,
+      maxDiscount: 10.0,
+      bestRating: 4.7,
+      listingCount: 2,
+      listings: [
+        { id: 108, platformId: 1, platformName: 'Amazon', platformLogo: 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg', platformTrustScore: 4.8, title: 'Ray-Ban Aviator Classic Polarized Sunglasses', price: 7199, originalPrice: 7999, discountPercentage: 10.0, rating: 4.7, reviewCount: 57, sellerName: 'RayBan Authorized', sellerRating: 4.8, deliveryCost: 0, deliveryDays: 1, inStock: true, productUrl: 'https://www.amazon.com', dealScore: 94.2, isBestPrice: true, isBestDeal: true }
+      ]
+    },
+    // -------------------------------------------------------------
+    // ADDITIONAL SMARTPHONES & TECH
     // -------------------------------------------------------------
     {
       id: 1,

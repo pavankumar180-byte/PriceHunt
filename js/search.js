@@ -1,6 +1,7 @@
 /**
  * ============================================================================
- * PRICEHUNT MINIMAL CARD RENDERER
+ * NOVATREND / PRICEHUNT PRODUCT SEARCH & CATALOG RENDERER
+ * Matches the Reference Template Card Structure with Wishlist & Cart Actions
  * ============================================================================
  */
 
@@ -37,7 +38,7 @@ async function setupSearchResultsPage() {
   if (searchInput) searchInput.value = query;
 
   const queryDisplay = document.getElementById('queryDisplay');
-  if (queryDisplay) queryDisplay.textContent = query ? `"${query}"` : 'All Products';
+  if (queryDisplay) queryDisplay.textContent = query ? `"${query}"` : (category || 'All Products');
 
   await loadAndRenderProducts(query, category);
   setupFilterListeners();
@@ -50,7 +51,7 @@ async function loadAndRenderProducts(query = '', category = '') {
 
   grid.innerHTML = `
     <div style="grid-column: 1/-1; text-align: center; padding: 4rem 0; color: var(--text-muted);">
-      <p style="font-size: 14px;">Loading catalog...</p>
+      <p style="font-size: 15px;">Loading latest arrivals and trending products...</p>
     </div>
   `;
 
@@ -59,59 +60,66 @@ async function loadAndRenderProducts(query = '', category = '') {
     allProducts = await Api.request(endpoint);
 
     if (countEl) countEl.textContent = allProducts.length;
-    renderMinimalCards(allProducts);
+    renderNovaTrendCards(allProducts);
     populateFilterDropdowns(allProducts);
   } catch (err) {
     grid.innerHTML = `
       <div style="grid-column: 1/-1; text-align: center; padding: 3rem; color: var(--text-muted);">
-        <p>Could not load items.</p>
+        <p>Could not load items at this time.</p>
       </div>
     `;
   }
 }
 
-function renderMinimalCards(products) {
+function renderNovaTrendCards(products) {
   const grid = document.getElementById('searchResultsGrid');
   if (!grid) return;
 
   if (products.length === 0) {
     grid.innerHTML = `
-      <div style="grid-column: 1/-1; text-align: center; padding: 4rem 1rem; background: var(--bg-surface); border-radius: var(--radius-card); border: 1px solid var(--border-subtle);">
-        <div style="font-size: 2rem; margin-bottom: 0.5rem;">🛍️</div>
-        <h4 style="font-weight: 500; font-size: 16px; color: var(--text-pure); margin-bottom: 0.25rem;">No items found</h4>
-        <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 1.25rem;">Try searching for shoes, watches, laptops, or smartphones</p>
-        <button class="btn-minimal-pill" onclick="resetFilters()">Reset Filters</button>
+      <div style="grid-column: 1/-1; text-align: center; padding: 4rem 1rem; background-color: var(--bg-surface); border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+        <div style="font-size: 2.2rem; margin-bottom: 0.5rem;">🛍️</div>
+        <h4 style="font-weight: 700; font-size: 17px; color: var(--text-main); margin-bottom: 0.25rem;">No products found</h4>
+        <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 1.25rem;">Try searching for hoodies, sneakers, headphones, or watches</p>
+        <button class="btn-primary" onclick="resetFilters()">Reset Filters</button>
       </div>
     `;
     return;
   }
 
   grid.innerHTML = products.map(p => {
-    const priceFormatted = p.minPrice ? `₹${p.minPrice.toLocaleString('en-IN')}` : 'Check Prices';
+    const priceFormatted = p.minPrice ? `$${(p.minPrice / 80).toFixed(2)}` : '$59.99';
+    const origPriceFormatted = p.maxPrice ? `$${(p.maxPrice / 80).toFixed(2)}` : null;
     const isFav = checkIfFav(p.id);
+    const discountText = p.maxDiscount && p.maxDiscount > 10 ? `-${Math.round(p.maxDiscount)}%` : 'New';
+    const badgeClass = discountText.includes('%') ? 'tag-discount' : 'tag-new';
 
     return `
-      <div class="minimal-product-card">
-        <div class="product-img-box">
-          <img src="${p.imageUrl}" alt="${p.name}" loading="lazy" onerror="this.src='https://placehold.co/400x300?text=Product'">
+      <div class="product-item-card">
+        <div class="card-top-badges">
+          <span class="badge-tag ${badgeClass}">${discountText}</span>
+          <button type="button" class="btn-wishlist ${isFav ? 'active' : ''}" onclick="toggleFavorite(${p.id}, this)" title="Save to Wishlist">
+            ${isFav ? '❤️' : '♡'}
+          </button>
         </div>
 
-        <div class="product-meta">
-          <div class="product-brand">${p.brand}</div>
-          <div class="product-name" title="${p.name}">${p.name}</div>
+        <a href="product.html?id=${p.id}" class="product-thumb-wrap">
+          <img src="${p.imageUrl}" alt="${p.name}" loading="lazy" onerror="this.src='https://placehold.co/400x300?text=Product'">
+        </a>
+
+        <div class="product-card-details">
+          <h3 class="product-card-title" title="${p.name}">${p.name}</h3>
           
-          <div class="product-card-footer">
-            <div>
-              <div class="product-price">${priceFormatted}</div>
-              <small style="color: var(--text-subtle); font-size: 11px;">★ ${p.bestRating || '4.7'}</small>
-            </div>
-            
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <button onclick="toggleFavorite(${p.id}, this)" style="background: none; border: none; cursor: pointer; font-size: 14px; color: ${isFav ? '#ef4444' : 'var(--text-subtle)'};">
-                ${isFav ? '❤️' : '🤍'}
-              </button>
-              <a href="product.html?id=${p.id}" class="btn-compare-pill">Compare</a>
-            </div>
+          <div class="product-card-prices">
+            <span class="current-price">${priceFormatted}</span>
+            ${origPriceFormatted ? `<span class="original-price">${origPriceFormatted}</span>` : ''}
+          </div>
+
+          <div class="product-card-bottom-row">
+            <div class="product-stars">★★★★★ <span class="review-count-text">(${p.bestRating ? Math.round(p.bestRating * 30) : 110})</span></div>
+            <a href="product.html?id=${p.id}" class="btn-add-cart-circle" title="View & Compare Store Deals">
+              🛍️
+            </a>
           </div>
         </div>
       </div>
@@ -129,7 +137,7 @@ function setupFilterListeners() {
   if (sortSelect) sortSelect.addEventListener('change', applyActiveFilters);
   if (priceRange && priceDisplay) {
     priceRange.addEventListener('input', () => {
-      priceDisplay.textContent = `₹${parseInt(priceRange.value).toLocaleString('en-IN')}`;
+      priceDisplay.textContent = `$${parseInt(priceRange.value).toLocaleString()}`;
       applyActiveFilters();
     });
   }
@@ -139,12 +147,13 @@ function setupFilterListeners() {
 
 function applyActiveFilters() {
   const sort = document.getElementById('sortBy')?.value || 'best_deal';
-  const maxPrice = parseInt(document.getElementById('priceRange')?.value || 250000);
+  const maxPriceUSD = parseInt(document.getElementById('priceRange')?.value || 2500);
+  const maxPriceINR = maxPriceUSD * 80;
   const selectedCategory = document.getElementById('categoryFilter')?.value || '';
   const selectedBrand = document.getElementById('brandFilter')?.value || '';
 
   let filtered = [...allProducts].filter(p => {
-    const matchesPrice = (p.minPrice || 0) <= maxPrice;
+    const matchesPrice = (p.minPrice || 0) <= maxPriceINR;
     const matchesCat = !selectedCategory || p.category.toLowerCase() === selectedCategory.toLowerCase();
     const matchesBrand = !selectedBrand || p.brand.toLowerCase() === selectedBrand.toLowerCase();
     return matchesPrice && matchesCat && matchesBrand;
@@ -157,7 +166,7 @@ function applyActiveFilters() {
   const countEl = document.getElementById('resultCount');
   if (countEl) countEl.textContent = filtered.length;
 
-  renderMinimalCards(filtered);
+  renderNovaTrendCards(filtered);
 }
 
 function populateFilterDropdowns(products) {
@@ -195,29 +204,33 @@ function resetFilters() {
   if (catSelect) catSelect.value = '';
   if (brandSelect) brandSelect.value = '';
   if (priceRange) {
-    priceRange.value = 250000;
-    if (priceDisplay) priceDisplay.textContent = '₹2,50,000';
+    priceRange.value = 2500;
+    if (priceDisplay) priceDisplay.textContent = '$2,500';
   }
   if (sortSelect) sortSelect.value = 'best_deal';
 
-  renderMinimalCards(allProducts);
+  renderNovaTrendCards(allProducts);
 }
 
 function checkIfFav(productId) {
-  const favs = JSON.parse(localStorage.getItem('pricehunt_favorites') || '[]');
+  const favs = JSON.parse(localStorage.getItem('novatrend_favorites') || '[]');
   return favs.includes(productId);
 }
 
 function toggleFavorite(productId, btn) {
-  let favs = JSON.parse(localStorage.getItem('pricehunt_favorites') || '[]');
+  let favs = JSON.parse(localStorage.getItem('novatrend_favorites') || '[]');
   if (favs.includes(productId)) {
     favs = favs.filter(id => id !== productId);
-    btn.textContent = '🤍';
-    btn.style.color = 'var(--text-subtle)';
+    btn.textContent = '♡';
+    btn.classList.remove('active');
   } else {
     favs.push(productId);
     btn.textContent = '❤️';
-    btn.style.color = '#ef4444';
+    btn.classList.add('active');
   }
-  localStorage.setItem('pricehunt_favorites', JSON.stringify(favs));
+  localStorage.setItem('novatrend_favorites', JSON.stringify(favs));
+  localStorage.setItem('novatrend_fav_count', favs.length);
+  
+  const favBadge = document.getElementById('favBadgeCount');
+  if (favBadge) favBadge.textContent = favs.length;
 }
