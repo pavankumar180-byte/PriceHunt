@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NovaTrend — Discover Products You'll Love</title>
+  <title>PriceHunt — Discover Products You'll Love at the Best Price</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,7 +38,7 @@
       
       <!-- Brand Logo -->
       <a href="index.html" class="nav-brand">
-        NovaTrend
+        PriceHunt
       </a>
 
       <!-- Menu Links -->
@@ -137,7 +137,7 @@
           <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=900&auto=format&fit=crop&q=80" alt="Fashion Model" class="hero-main-model">
 
           <!-- 1. Floating Product Card: Top-Left (Air Max 270) -->
-          <a href="product.html?id=2" class="floating-product-card card-pos-top-left">
+          <a href="product.html?id=2" class="floating-product-card card-pos-top-left" onclick="openQuickCompare(2); return false;" title="Click to compare prices across stores">
             <div class="floating-card-thumb">
               <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=100&auto=format&fit=crop&q=80" alt="Air Max 270">
             </div>
@@ -148,7 +148,7 @@
           </a>
 
           <!-- 2. Floating Product Card: Mid-Left (Wireless Headphones) -->
-          <a href="product.html?id=3" class="floating-product-card card-pos-mid-left">
+          <a href="product.html?id=3" class="floating-product-card card-pos-mid-left" onclick="openQuickCompare(3); return false;" title="Click to compare prices across stores">
             <div class="floating-card-thumb">
               <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=100&auto=format&fit=crop&q=80" alt="Wireless Headphones">
             </div>
@@ -159,7 +159,7 @@
           </a>
 
           <!-- 3. Floating Product Card: Top-Right (Smart Watch) -->
-          <a href="product.html?id=4" class="floating-product-card card-pos-top-right">
+          <a href="product.html?id=4" class="floating-product-card card-pos-top-right" onclick="openQuickCompare(4); return false;" title="Click to compare prices across stores">
             <div class="floating-card-thumb">
               <img src="https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=100&auto=format&fit=crop&q=80" alt="Smart Watch">
             </div>
@@ -170,7 +170,7 @@
           </a>
 
           <!-- 4. Floating Product Card: Bottom-Right (Water Bottle) -->
-          <a href="product.html?id=5" class="floating-product-card card-pos-bottom-right">
+          <a href="product.html?id=5" class="floating-product-card card-pos-bottom-right" onclick="openQuickCompare(5); return false;" title="Click to compare prices across stores">
             <div class="floating-card-thumb">
               <img src="https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=100&auto=format&fit=crop&q=80" alt="Water Bottle">
             </div>
@@ -358,7 +358,7 @@
             </div>
             <div class="product-card-bottom-row">
               <div class="product-stars">★★★★★ <span class="review-count-text">(128)</span></div>
-              <button type="button" class="btn-add-cart-circle" title="Add to Cart">🛍️</button>
+              <button type="button" class="btn-add-cart-circle" title="Compare Prices across Amazon, Flipkart, Myntra" onclick="openQuickCompare(1)">🛍️</button>
             </div>
           </div>
         </div>
@@ -380,7 +380,7 @@
             </div>
             <div class="product-card-bottom-row">
               <div class="product-stars">★★★★★ <span class="review-count-text">(89)</span></div>
-              <button type="button" class="btn-add-cart-circle" title="Add to Cart">🛍️</button>
+              <button type="button" class="btn-add-cart-circle" title="Compare Prices across Amazon, Flipkart, Myntra" onclick="openQuickCompare(2)">🛍️</button>
             </div>
           </div>
         </div>
@@ -401,7 +401,7 @@
             </div>
             <div class="product-card-bottom-row">
               <div class="product-stars">★★★★★ <span class="review-count-text">(156)</span></div>
-              <button type="button" class="btn-add-cart-circle" title="Add to Cart">🛍️</button>
+              <button type="button" class="btn-add-cart-circle" title="Compare Prices across Amazon, Flipkart, Croma" onclick="openQuickCompare(3)">🛍️</button>
             </div>
           </div>
         </div>
@@ -423,7 +423,7 @@
             </div>
             <div class="product-card-bottom-row">
               <div class="product-stars">★★★★★ <span class="review-count-text">(103)</span></div>
-              <button type="button" class="btn-add-cart-circle" title="Add to Cart">🛍️</button>
+              <button type="button" class="btn-add-cart-circle" title="Compare Prices across Amazon, Flipkart, Croma" onclick="openQuickCompare(4)">🛍️</button>
             </div>
           </div>
         </div>
@@ -444,7 +444,7 @@
             </div>
             <div class="product-card-bottom-row">
               <div class="product-stars">★★★★★ <span class="review-count-text">(76)</span></div>
-              <button type="button" class="btn-add-cart-circle" title="Add to Cart">🛍️</button>
+              <button type="button" class="btn-add-cart-circle" title="Compare Prices across Amazon, Flipkart" onclick="openQuickCompare(5)">🛍️</button>
             </div>
           </div>
         </div>
@@ -466,7 +466,7 @@
             </div>
             <div class="product-card-bottom-row">
               <div class="product-stars">★★★★★ <span class="review-count-text">(57)</span></div>
-              <button type="button" class="btn-add-cart-circle" title="Add to Cart">🛍️</button>
+              <button type="button" class="btn-add-cart-circle" title="Compare Prices across Amazon, Flipkart, Myntra" onclick="openQuickCompare(6)">🛍️</button>
             </div>
           </div>
         </div>
@@ -503,7 +503,7 @@
             <div class="product-stars">★★★★★ <span class="review-count-text">(256)</span></div>
             <p class="desc">Premium quality hoodie perfect for everyday wear.</p>
             <div class="bestseller-actions">
-              <button type="button" class="btn-quick-add">Quick Add</button>
+              <button type="button" class="btn-quick-add" onclick="openQuickCompare(1)" title="Compare Prices across Stores">Quick Add</button>
               <button type="button" class="btn-wishlist" title="Wishlist">♡</button>
             </div>
           </div>
@@ -521,7 +521,7 @@
             <div class="product-stars">★★★★★ <span class="review-count-text">(189)</span></div>
             <p class="desc">Iconic comfort meets modern style.</p>
             <div class="bestseller-actions">
-              <button type="button" class="btn-quick-add">Quick Add</button>
+              <button type="button" class="btn-quick-add" onclick="openQuickCompare(2)" title="Compare Prices across Stores">Quick Add</button>
               <button type="button" class="btn-wishlist" title="Wishlist">♡</button>
             </div>
           </div>
@@ -539,7 +539,7 @@
             <div class="product-stars">★★★★★ <span class="review-count-text">(324)</span></div>
             <p class="desc">Industry-leading noise cancellation.</p>
             <div class="bestseller-actions">
-              <button type="button" class="btn-quick-add">Quick Add</button>
+              <button type="button" class="btn-quick-add" onclick="openQuickCompare(3)" title="Compare Prices across Stores">Quick Add</button>
               <button type="button" class="btn-wishlist" title="Wishlist">♡</button>
             </div>
           </div>
@@ -661,13 +661,13 @@
         <!-- Brand Info -->
         <div>
           <div class="nav-brand" style="color: #ffffff; margin-bottom: 1rem;">
-            NovaTrend
+            PriceHunt
           </div>
           <p style="font-size: 13px; color: #9ca3af; line-height: 1.6; max-width: 280px; margin-bottom: 1.5rem;">
-            Premium curated shopping experience with multi-store best price intelligence.
+            Premium curated shopping experience with multi-store real-time price intelligence across Amazon, Flipkart, Myntra, Croma, and Reliance Digital.
           </p>
           <div style="font-size: 13px; color: #9ca3af;">
-            support@novatrend.com
+            support@pricehunt.com
           </div>
         </div>
 
@@ -687,7 +687,7 @@
         <div class="footer-col">
           <h4>Company</h4>
           <ul>
-            <li><a href="#about">About NovaTrend</a></li>
+            <li><a href="#about">About PriceHunt</a></li>
             <li><a href="#careers">Careers</a></li>
             <li><a href="#blog">Latest News</a></li>
             <li><a href="#sustainability">Sustainability</a></li>
@@ -711,7 +711,7 @@
         <div class="footer-col footer-newsletter">
           <h4>Stay in the loop</h4>
           <p>Subscribe to receive exclusive deals, flash sale announcements, and new drop alerts.</p>
-          <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Subscribed to NovaTrend!');">
+          <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Subscribed to PriceHunt!');">
             <input type="email" class="newsletter-input" placeholder="Your email address" required>
             <button type="submit" class="btn-newsletter">Join</button>
           </form>
@@ -720,15 +720,25 @@
       </div>
 
       <div class="footer-bottom-bar">
-        <div>&copy; 2026 NovaTrend Inc. All rights reserved.</div>
+        <div>&copy; 2026 PriceHunt Inc. All rights reserved.</div>
         <div>Engineered for flawless shopping in Light and Dark Mode.</div>
       </div>
     </div>
   </footer>
 
+  <!-- Quick Compare Modal Overlay -->
+  <div class="quick-compare-modal-overlay" id="quickCompareModal" onclick="if(event.target === this) closeQuickCompare()">
+    <div class="quick-compare-dialog" onclick="event.stopPropagation()">
+      <button type="button" class="modal-close-btn" onclick="closeQuickCompare()" title="Close">✕</button>
+      <div id="quickCompareContent">
+        <!-- Dynamically rendered by openQuickCompare -->
+      </div>
+    </div>
+  </div>
+
   <!-- Interactive Scripts -->
-  <script src="js/theme.js"></script>
   <script src="js/api.js"></script>
+  <script src="js/theme.js"></script>
   <script src="js/auth.js"></script>
 </body>
 </html>

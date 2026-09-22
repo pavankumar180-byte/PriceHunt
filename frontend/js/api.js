@@ -1,8 +1,8 @@
 /**
  * ============================================================================
- * PRICEHUNT UNIFIED API CLIENT
- * Connects to Spring Boot REST API (http://localhost:8080/api)
- * Includes rich realistic product dataset (Smartphones, Laptops, Shoes, Watches, Audio)
+ * PRICEHUNT UNIFIED API CLIENT & MULTI-STORE INTELLIGENCE ENGINE
+ * Comprehensive comparisons across Amazon, Flipkart, Myntra, Croma, Reliance Digital, & Official Stores
+ * Smart Deal Scoring Algorithm & Instant Price Analysis
  * ============================================================================
  */
 
@@ -10,391 +10,190 @@ const API_BASE_URL = 'http://localhost:8080/api';
 
 const MOCK_DATA = {
   platforms: [
-    { id: 1, name: 'Amazon', websiteUrl: 'https://www.amazon.in', logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg', trustScore: 4.8 },
+    { id: 1, name: 'Amazon', websiteUrl: 'https://www.amazon.com', logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg', trustScore: 4.9 },
     { id: 2, name: 'Flipkart', websiteUrl: 'https://www.flipkart.com', logoUrl: 'https://logos-world.net/wp-content/uploads/2020/11/Flipkart-Logo.png', trustScore: 4.7 },
-    { id: 3, name: 'Croma', websiteUrl: 'https://www.croma.com', logoUrl: 'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1637759004/Croma%20Assets/CMS/Category%20icon/Final%20icon/Croma_Logo_acrkvn.svg', trustScore: 4.6 },
-    { id: 4, name: 'Myntra', websiteUrl: 'https://www.myntra.com', logoUrl: 'https://images.indianexpress.com/2021/01/myntra.png', trustScore: 4.7 },
-    { id: 5, name: 'Reliance Digital', websiteUrl: 'https://www.reliancedigital.in', logoUrl: 'https://www.reliancedigital.in/build/client/images/loaders/rd_logo.svg', trustScore: 4.55 }
+    { id: 3, name: 'Myntra', websiteUrl: 'https://www.myntra.com', logoUrl: 'https://images.indianexpress.com/2021/01/myntra.png', trustScore: 4.8 },
+    { id: 4, name: 'Croma', websiteUrl: 'https://www.croma.com', logoUrl: 'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1637759004/Croma%20Assets/CMS/Category%20icon/Final%20icon/Croma_Logo_acrkvn.svg', trustScore: 4.7 },
+    { id: 5, name: 'Reliance Digital', websiteUrl: 'https://www.reliancedigital.in', logoUrl: 'https://www.reliancedigital.in/build/client/images/loaders/rd_logo.svg', trustScore: 4.6 }
   ],
   products: [
     // -------------------------------------------------------------
-    // NOVATREND STOREFRONT PRODUCTS (FROM REFERENCE TEMPLATE)
+    // 1. Essential Hoodie
     // -------------------------------------------------------------
     {
       id: 1,
-      name: 'Essential Hoodie',
-      brand: 'NovaTrend',
-      model: 'Essential 2025',
+      name: 'Essential Fleece Hoodie',
+      brand: 'PriceHunt Select',
+      model: 'Essential Core 2026',
       category: 'Fashion',
-      imageUrl: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=500&auto=format&fit=crop&q=80',
-      description: 'Ultra-soft fleece cotton hoodie designed for minimalist streetwear comfort and everyday longevity.',
-      specsJson: '{"material": "100% Organic Cotton", "fit": "Relaxed Regular", "color": "Warm Beige", "wash": "Machine Wash Cold"}',
-      minPrice: 4799,
-      maxPrice: 5999,
-      maxDiscount: 20.0,
+      imageUrl: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=800&auto=format&fit=crop&q=80',
+      description: 'Handcrafted with 400 GSM heavyweight organic combed cotton. Features a double-lined hood, ribbed cuffs, and a tailored boxy cut built for luxurious comfort.',
+      specsJson: '{"material": "100% Heavyweight Organic Cotton", "fabricWeight": "400 GSM", "fit": "Modern Boxy Relaxed", "origin": "Ethically Crafted", "color": "Warm Sand Beige"}',
+      minPrice: 54.99,
+      maxPrice: 69.99,
+      maxDiscount: 21.4,
       bestRating: 4.9,
-      listingCount: 3,
+      listingCount: 5,
       listings: [
-        { id: 101, platformId: 1, platformName: 'Amazon', platformLogo: 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg', platformTrustScore: 4.8, title: 'Essential Fleece Hoodie (Warm Beige)', price: 4799, originalPrice: 5999, discountPercentage: 20.0, rating: 4.9, reviewCount: 128, sellerName: 'NovaTrend Official', sellerRating: 4.9, deliveryCost: 0, deliveryDays: 1, inStock: true, productUrl: 'https://www.amazon.com', dealScore: 97.5, isBestPrice: true, isBestDeal: true },
-        { id: 102, platformId: 4, platformName: 'Myntra', platformLogo: 'https://images.indianexpress.com/2021/01/myntra.png', platformTrustScore: 4.7, title: 'NovaTrend Mens Essential Casual Hoodie', price: 5199, originalPrice: 5999, discountPercentage: 13.3, rating: 4.8, reviewCount: 94, sellerName: 'Myntra Retail', sellerRating: 4.7, deliveryCost: 0, deliveryDays: 2, inStock: true, productUrl: 'https://www.myntra.com', dealScore: 93.0, isBestPrice: false, isBestDeal: false }
-      ]
-    },
-    {
-      id: 2,
-      name: 'Air Max 270',
-      brand: 'Nike',
-      model: 'Air Max 270',
-      category: 'Footwear',
-      imageUrl: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&auto=format&fit=crop&q=80',
-      description: 'Nike Air unit provides unrivaled, all-day comfort. The sleek, running-inspired design roots you to Nike heritage.',
-      specsJson: '{"type": "Lifestyle / Running", "cushioning": "Max Air 270 unit", "color": "White / Pure Platinum", "closure": "Lace-up"}',
-      minPrice: 10399,
-      maxPrice: 13599,
-      maxDiscount: 23.5,
-      bestRating: 4.8,
-      listingCount: 3,
-      listings: [
-        { id: 103, platformId: 1, platformName: 'Amazon', platformLogo: 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg', platformTrustScore: 4.8, title: 'Nike Mens Air Max 270 Running Shoe', price: 10399, originalPrice: 13599, discountPercentage: 23.5, rating: 4.8, reviewCount: 89, sellerName: 'Nike Official Store', sellerRating: 4.9, deliveryCost: 0, deliveryDays: 1, inStock: true, productUrl: 'https://www.nike.com', dealScore: 98.2, isBestPrice: true, isBestDeal: true },
-        { id: 104, platformId: 2, platformName: 'Flipkart', platformLogo: 'https://logos-world.net/wp-content/uploads/2020/11/Flipkart-Logo.png', platformTrustScore: 4.7, title: 'NIKE Air Max 270 Sneakers For Men', price: 10999, originalPrice: 13599, discountPercentage: 19.1, rating: 4.7, reviewCount: 65, sellerName: 'SuperComNet', sellerRating: 4.6, deliveryCost: 0, deliveryDays: 2, inStock: true, productUrl: 'https://www.flipkart.com', dealScore: 94.0, isBestPrice: false, isBestDeal: false }
-      ]
-    },
-    {
-      id: 3,
-      name: 'Wireless Headphones',
-      brand: 'NovaSound',
-      model: 'Air Studio Over-Ear',
-      category: 'Electronics',
-      imageUrl: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&auto=format&fit=crop&q=80',
-      description: 'Precision acoustics, 40-hour battery stamina, Active Noise Cancellation, and ultra-plush protein memory foam earcups.',
-      specsJson: '{"type": "Over-Ear Wireless", "battery": "40 Hours", "anc": "Hybrid ANC", "connection": "Bluetooth 5.3 + AUX"}',
-      minPrice: 7999,
-      maxPrice: 9999,
-      maxDiscount: 20.0,
-      bestRating: 4.7,
-      listingCount: 2,
-      listings: [
-        { id: 105, platformId: 1, platformName: 'Amazon', platformLogo: 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg', platformTrustScore: 4.8, title: 'NovaSound Wireless ANC Studio Headphones', price: 7999, originalPrice: 9999, discountPercentage: 20.0, rating: 4.7, reviewCount: 156, sellerName: 'NovaSound Direct', sellerRating: 4.8, deliveryCost: 0, deliveryDays: 1, inStock: true, productUrl: 'https://www.amazon.com', dealScore: 95.8, isBestPrice: true, isBestDeal: true }
-      ]
-    },
-    {
-      id: 4,
-      name: 'Smart Watch Series 9',
-      brand: 'Apple',
-      model: 'Series 9 GPS',
-      category: 'Accessories',
-      imageUrl: 'https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=500&auto=format&fit=crop&q=80',
-      description: 'Smarter, brighter, mightier. Advanced health and fitness sensors, Double Tap gesture, and Always-On Retina display.',
-      specsJson: '{"case": "45mm Midnight Aluminum", "display": "2000-nit Always-On OLED", "chip": "S9 SiP", "battery": "Up to 18 Hours"}',
-      minPrice: 15999,
-      maxPrice: 18799,
-      maxDiscount: 14.8,
-      bestRating: 4.8,
-      listingCount: 3,
-      listings: [
-        { id: 106, platformId: 1, platformName: 'Amazon', platformLogo: 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg', platformTrustScore: 4.8, title: 'Apple Watch Series 9 [GPS 45mm] Smartwatch', price: 15999, originalPrice: 18799, discountPercentage: 14.8, rating: 4.8, reviewCount: 103, sellerName: 'Appario Retail', sellerRating: 4.8, deliveryCost: 0, deliveryDays: 1, inStock: true, productUrl: 'https://www.amazon.com', dealScore: 96.0, isBestPrice: true, isBestDeal: true }
-      ]
-    },
-    {
-      id: 5,
-      name: 'Stainless Steel Bottle',
-      brand: 'HydroLife',
-      model: 'Vacuum Pro 750ml',
-      category: 'Accessories',
-      imageUrl: 'https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=500&auto=format&fit=crop&q=80',
-      description: 'Double-wall vacuum insulated water bottle crafted with food-grade 18/8 stainless steel. Keeps drinks cold for 24 hours.',
-      specsJson: '{"capacity": "750 ml", "material": "18/8 Stainless Steel", "insulation": "Cold 24h / Hot 12h", "bpa": "BPA-Free"}',
-      minPrice: 1999,
-      maxPrice: 2499,
-      maxDiscount: 20.0,
-      bestRating: 4.9,
-      listingCount: 2,
-      listings: [
-        { id: 107, platformId: 1, platformName: 'Amazon', platformLogo: 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg', platformTrustScore: 4.8, title: 'HydroLife Matte Black Stainless Steel Insulated Bottle', price: 1999, originalPrice: 2499, discountPercentage: 20.0, rating: 4.9, reviewCount: 76, sellerName: 'HydroDirect', sellerRating: 4.9, deliveryCost: 0, deliveryDays: 1, inStock: true, productUrl: 'https://www.amazon.com', dealScore: 98.0, isBestPrice: true, isBestDeal: true }
-      ]
-    },
-    {
-      id: 6,
-      name: 'Aviator Sunglasses',
-      brand: 'Ray-Ban',
-      model: 'Aviator Classic',
-      category: 'Accessories',
-      imageUrl: 'https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=500&auto=format&fit=crop&q=80',
-      description: 'Timeless tear-drop shaped pilot shades with polished black frame and crystal green polarized UV400 lenses.',
-      specsJson: '{"frame": "Polished Black Metal", "lens": "Crystal Green Polarized", "uv": "100% UV400 Protection", "bridge": "14mm"}',
-      minPrice: 7199,
-      maxPrice: 7999,
-      maxDiscount: 10.0,
-      bestRating: 4.7,
-      listingCount: 2,
-      listings: [
-        { id: 108, platformId: 1, platformName: 'Amazon', platformLogo: 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg', platformTrustScore: 4.8, title: 'Ray-Ban Aviator Classic Polarized Sunglasses', price: 7199, originalPrice: 7999, discountPercentage: 10.0, rating: 4.7, reviewCount: 57, sellerName: 'RayBan Authorized', sellerRating: 4.8, deliveryCost: 0, deliveryDays: 1, inStock: true, productUrl: 'https://www.amazon.com', dealScore: 94.2, isBestPrice: true, isBestDeal: true }
-      ]
-    },
-    // -------------------------------------------------------------
-    // ADDITIONAL SMARTPHONES & TECH
-    // -------------------------------------------------------------
-    {
-      id: 1,
-      name: 'Apple iPhone 15 (128 GB, Blue)',
-      brand: 'Apple',
-      model: 'iPhone 15',
-      category: 'Smartphones',
-      imageUrl: 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=600&auto=format&fit=crop&q=80',
-      description: 'Dynamic Island, 48MP Main camera, USB-C, A16 Bionic chip, and all-day battery life.',
-      specsJson: '{"storage": "128GB", "ram": "6GB", "color": "Blue", "display": "6.1-inch Super Retina XDR"}',
-      minPrice: 63999,
-      maxPrice: 65490,
-      maxDiscount: 19.9,
-      bestRating: 4.6,
-      listingCount: 3,
-      listings: [
-        { id: 1, platformId: 1, platformName: 'Amazon', platformLogo: 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg', platformTrustScore: 4.8, title: 'Apple iPhone 15 (128 GB) - Blue', price: 64999, originalPrice: 79900, discountPercentage: 18.6, rating: 4.6, reviewCount: 3840, sellerName: 'Appario Retail', sellerRating: 4.8, deliveryCost: 0, deliveryDays: 1, inStock: true, productUrl: 'https://www.amazon.in/dp/B0CHX1W1XY', dealScore: 92.4, isBestPrice: false, isBestDeal: true },
-        { id: 2, platformId: 2, platformName: 'Flipkart', platformLogo: 'https://logos-world.net/wp-content/uploads/2020/11/Flipkart-Logo.png', platformTrustScore: 4.7, title: 'Apple iPhone 15 (Blue, 128 GB)', price: 63999, originalPrice: 79900, discountPercentage: 19.9, rating: 4.5, reviewCount: 4210, sellerName: 'SuperComNet', sellerRating: 4.6, deliveryCost: 0, deliveryDays: 2, inStock: true, productUrl: 'https://www.flipkart.com', dealScore: 91.8, isBestPrice: true, isBestDeal: false },
-        { id: 3, platformId: 3, platformName: 'Croma', platformLogo: 'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1637759004/Croma%20Assets/CMS/Category%20icon/Final%20icon/Croma_Logo_acrkvn.svg', platformTrustScore: 4.6, title: 'Apple iPhone 15 128GB Blue (5G, A16 Bionic)', price: 65490, originalPrice: 79900, discountPercentage: 18.0, rating: 4.4, reviewCount: 520, sellerName: 'Croma Official', sellerRating: 4.7, deliveryCost: 0, deliveryDays: 1, inStock: true, productUrl: 'https://www.croma.com', dealScore: 88.5, isBestPrice: false, isBestDeal: false }
-      ]
-    },
-    {
-      id: 2,
-      name: 'Samsung Galaxy S24 Ultra 5G (Titanium Gray, 256GB)',
-      brand: 'Samsung',
-      model: 'Galaxy S24 Ultra',
-      category: 'Smartphones',
-      imageUrl: 'https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=600&auto=format&fit=crop&q=80',
-      description: 'Galaxy AI is here. Titanium frame, 200MP camera, built-in S Pen, and Snapdragon 8 Gen 3 for Galaxy.',
-      specsJson: '{"storage": "256GB", "ram": "12GB", "color": "Titanium Gray", "display": "6.8-inch QHD+ AMOLED", "chip": "Snapdragon 8 Gen 3"}',
-      minPrice: 119999,
-      maxPrice: 129999,
-      maxDiscount: 10.0,
-      bestRating: 4.7,
-      listingCount: 3,
-      listings: [
-        { id: 4, platformId: 2, platformName: 'Flipkart', platformLogo: 'https://logos-world.net/wp-content/uploads/2020/11/Flipkart-Logo.png', platformTrustScore: 4.7, title: 'SAMSUNG Galaxy S24 Ultra 5G (Titanium Gray, 256 GB)', price: 119999, originalPrice: 129999, discountPercentage: 7.7, rating: 4.7, reviewCount: 1890, sellerName: 'IndiFlashMart', sellerRating: 4.7, deliveryCost: 0, deliveryDays: 2, inStock: true, productUrl: 'https://www.flipkart.com', dealScore: 94.2, isBestPrice: true, isBestDeal: true },
-        { id: 5, platformId: 1, platformName: 'Amazon', platformLogo: 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg', platformTrustScore: 4.8, title: 'Samsung Galaxy S24 Ultra 5G (Titanium Gray, 12GB, 256GB Storage)', price: 121999, originalPrice: 129999, discountPercentage: 6.2, rating: 4.6, reviewCount: 2250, sellerName: 'STPL Exclusive', sellerRating: 4.8, deliveryCost: 0, deliveryDays: 1, inStock: true, productUrl: 'https://www.amazon.in', dealScore: 91.0, isBestPrice: false, isBestDeal: false }
+        { id: 101, platformId: 3, platformName: 'Myntra', platformLogo: 'https://images.indianexpress.com/2021/01/myntra.png', price: 54.99, originalPrice: 69.99, discountPercentage: 21.4, rating: 4.9, reviewCount: 420, sellerName: 'FashionHub Verified', sellerRating: 4.9, deliveryDays: 2, inStock: true, productUrl: 'https://www.myntra.com', dealScore: 98.4, isBestPrice: true, isBestDeal: true },
+        { id: 102, platformId: 1, platformName: 'Amazon', platformLogo: 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg', price: 59.99, originalPrice: 69.99, discountPercentage: 14.3, rating: 4.8, reviewCount: 1280, sellerName: 'Appario Retail', sellerRating: 4.8, deliveryDays: 1, inStock: true, productUrl: 'https://www.amazon.com', dealScore: 95.0, isBestPrice: false, isBestDeal: false },
+        { id: 103, platformId: 2, platformName: 'Flipkart', platformLogo: 'https://logos-world.net/wp-content/uploads/2020/11/Flipkart-Logo.png', price: 64.99, originalPrice: 69.99, discountPercentage: 7.1, rating: 4.7, reviewCount: 650, sellerName: 'SuperComNet', sellerRating: 4.6, deliveryDays: 3, inStock: true, productUrl: 'https://www.flipkart.com', dealScore: 89.2, isBestPrice: false, isBestDeal: false },
+        { id: 104, platformId: 4, platformName: 'Ajio', platformLogo: 'https://assets.ajio.com/static/img/Ajio-Logo.svg', price: 62.99, originalPrice: 69.99, discountPercentage: 10.0, rating: 4.6, reviewCount: 310, sellerName: 'Reliance Retail', sellerRating: 4.7, deliveryDays: 2, inStock: true, productUrl: 'https://www.ajio.com', dealScore: 91.5, isBestPrice: false, isBestDeal: false },
+        { id: 105, platformId: 5, platformName: 'Brand Store', platformLogo: 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg', price: 69.99, originalPrice: 69.99, discountPercentage: 0.0, rating: 5.0, reviewCount: 89, sellerName: 'PriceHunt Direct', sellerRating: 5.0, deliveryDays: 2, inStock: true, productUrl: 'https://www.pricehunt.com', dealScore: 86.0, isBestPrice: false, isBestDeal: false }
       ]
     },
 
     // -------------------------------------------------------------
-    // LAPTOPS
+    // 2. Air Max 270
+    // -------------------------------------------------------------
+    {
+      id: 2,
+      name: 'Nike Air Max 270',
+      brand: 'Nike',
+      model: 'Air Max 270 Pure White',
+      category: 'Footwear',
+      imageUrl: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&auto=format&fit=crop&q=80',
+      description: 'Boasting Nikes biggest heel Air unit yet, the Air Max 270 delivers super-soft cushioning that feels as impossible as it looks with an engineered breathable mesh upper.',
+      specsJson: '{"cushioning": "Max Air 270 Heel Unit", "upper": "Engineered Breathable Mesh", "outsole": "Dual-Density Solid Rubber", "color": "White / Bright Crimson / Platinum"}',
+      minPrice: 129.99,
+      maxPrice: 169.99,
+      maxDiscount: 23.5,
+      bestRating: 4.9,
+      listingCount: 5,
+      listings: [
+        { id: 201, platformId: 1, platformName: 'Amazon', platformLogo: 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg', price: 129.99, originalPrice: 169.99, discountPercentage: 23.5, rating: 4.8, reviewCount: 3410, sellerName: 'Nike Authorized Prime', sellerRating: 4.9, deliveryDays: 1, inStock: true, productUrl: 'https://www.amazon.com', dealScore: 98.6, isBestPrice: true, isBestDeal: true },
+        { id: 202, platformId: 3, platformName: 'Myntra', platformLogo: 'https://images.indianexpress.com/2021/01/myntra.png', price: 134.99, originalPrice: 169.99, discountPercentage: 20.6, rating: 4.8, reviewCount: 1890, sellerName: 'Nike India Marketing', sellerRating: 4.9, deliveryDays: 2, inStock: true, productUrl: 'https://www.myntra.com', dealScore: 95.4, isBestPrice: false, isBestDeal: false },
+        { id: 203, platformId: 2, platformName: 'Flipkart', platformLogo: 'https://logos-world.net/wp-content/uploads/2020/11/Flipkart-Logo.png', price: 139.99, originalPrice: 169.99, discountPercentage: 17.6, rating: 4.7, reviewCount: 2150, sellerName: 'SuperComNet Sports', sellerRating: 4.7, deliveryDays: 2, inStock: true, productUrl: 'https://www.flipkart.com', dealScore: 92.1, isBestPrice: false, isBestDeal: false },
+        { id: 204, platformId: 4, platformName: 'Ajio', platformLogo: 'https://assets.ajio.com/static/img/Ajio-Logo.svg', price: 145.00, originalPrice: 169.99, discountPercentage: 14.7, rating: 4.6, reviewCount: 540, sellerName: 'Reliance Brands Luxe', sellerRating: 4.6, deliveryDays: 3, inStock: true, productUrl: 'https://www.ajio.com', dealScore: 88.5, isBestPrice: false, isBestDeal: false },
+        { id: 205, platformId: 5, platformName: 'Nike Official', platformLogo: 'https://upload.wikimedia.org/wikipedia/commons/a/a6/Logo_NIKE.svg', price: 160.00, originalPrice: 169.99, discountPercentage: 5.9, rating: 4.9, reviewCount: 4890, sellerName: 'Nike Official Online', sellerRating: 5.0, deliveryDays: 2, inStock: true, productUrl: 'https://www.nike.com', dealScore: 87.0, isBestPrice: false, isBestDeal: false }
+      ]
+    },
+
+    // -------------------------------------------------------------
+    // 3. Wireless Headphones
     // -------------------------------------------------------------
     {
       id: 3,
-      name: 'Apple MacBook Air M3 Chip (13.6-inch, 8GB RAM, 256GB SSD, Space Grey)',
+      name: 'Sony WH-1000XM5 ANC Headphones',
+      brand: 'Sony',
+      model: 'WH-1000XM5',
+      category: 'Electronics',
+      imageUrl: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&auto=format&fit=crop&q=80',
+      description: 'Industry-leading Active Noise Cancellation with two dedicated processors, eight beamforming microphones, and up to 30 hours of hi-res wireless playback.',
+      specsJson: '{"noiseCancelling": "Dual Processor V1 + QN1", "batteryLife": "30 Hours (ANC On)", "codecs": "LDAC, AAC, SBC", "charging": "3 min quick charge for 3 hrs"}',
+      minPrice: 329.99,
+      maxPrice: 399.99,
+      maxDiscount: 17.5,
+      bestRating: 4.9,
+      listingCount: 5,
+      listings: [
+        { id: 301, platformId: 1, platformName: 'Amazon', platformLogo: 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg', price: 329.99, originalPrice: 399.99, discountPercentage: 17.5, rating: 4.8, reviewCount: 5820, sellerName: 'Amazon Electronics Direct', sellerRating: 4.9, deliveryDays: 1, inStock: true, productUrl: 'https://www.amazon.com', dealScore: 99.1, isBestPrice: true, isBestDeal: true },
+        { id: 302, platformId: 4, platformName: 'Croma', platformLogo: 'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1637759004/Croma%20Assets/CMS/Category%20icon/Final%20icon/Croma_Logo_acrkvn.svg', price: 339.99, originalPrice: 399.99, discountPercentage: 15.0, rating: 4.8, reviewCount: 1240, sellerName: 'Croma Retail', sellerRating: 4.8, deliveryDays: 1, inStock: true, productUrl: 'https://www.croma.com', dealScore: 96.0, isBestPrice: false, isBestDeal: false },
+        { id: 303, platformId: 5, platformName: 'Reliance Digital', platformLogo: 'https://www.reliancedigital.in/build/client/images/loaders/rd_logo.svg', price: 344.99, originalPrice: 399.99, discountPercentage: 13.8, rating: 4.7, reviewCount: 890, sellerName: 'Reliance Electronics', sellerRating: 4.7, deliveryDays: 2, inStock: true, productUrl: 'https://www.reliancedigital.in', dealScore: 93.4, isBestPrice: false, isBestDeal: false },
+        { id: 304, platformId: 2, platformName: 'Flipkart', platformLogo: 'https://logos-world.net/wp-content/uploads/2020/11/Flipkart-Logo.png', price: 349.99, originalPrice: 399.99, discountPercentage: 12.5, rating: 4.7, reviewCount: 3120, sellerName: 'OmniTech Retail', sellerRating: 4.7, deliveryDays: 2, inStock: true, productUrl: 'https://www.flipkart.com', dealScore: 92.0, isBestPrice: false, isBestDeal: false },
+        { id: 305, platformId: 3, platformName: 'Sony Center', platformLogo: 'https://upload.wikimedia.org/wikipedia/commons/c/ca/Sony_logo.svg', price: 399.99, originalPrice: 399.99, discountPercentage: 0.0, rating: 4.9, reviewCount: 940, sellerName: 'Sony Authorized Store', sellerRating: 5.0, deliveryDays: 2, inStock: true, productUrl: 'https://www.sony.com', dealScore: 85.2, isBestPrice: false, isBestDeal: false }
+      ]
+    },
+
+    // -------------------------------------------------------------
+    // 4. Smart Watch Series 9
+    // -------------------------------------------------------------
+    {
+      id: 4,
+      name: 'Apple Watch Series 9 (GPS 45mm)',
+      brand: 'Apple',
+      model: 'Series 9 Aluminum',
+      category: 'Accessories',
+      imageUrl: 'https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=800&auto=format&fit=crop&q=80',
+      description: 'Powered by S9 SiP with Double Tap gesture control, 2000-nit Always-On Retina display, advanced ECG, blood oxygen, and precision temperature tracking.',
+      specsJson: '{"caseSize": "45mm Midnight Aluminum", "display": "2000-nit Always-On OLED", "chip": "Apple S9 SiP", "battery": "18 Hours All-Day"}',
+      minPrice: 199.99,
+      maxPrice: 249.00,
+      maxDiscount: 19.7,
+      bestRating: 4.9,
+      listingCount: 5,
+      listings: [
+        { id: 401, platformId: 1, platformName: 'Amazon', platformLogo: 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg', price: 199.99, originalPrice: 249.00, discountPercentage: 19.7, rating: 4.8, reviewCount: 4120, sellerName: 'Apple Authorized Prime', sellerRating: 4.9, deliveryDays: 1, inStock: true, productUrl: 'https://www.amazon.com', dealScore: 98.7, isBestPrice: true, isBestDeal: true },
+        { id: 402, platformId: 4, platformName: 'Croma', platformLogo: 'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1637759004/Croma%20Assets/CMS/Category%20icon/Final%20icon/Croma_Logo_acrkvn.svg', price: 209.99, originalPrice: 249.00, discountPercentage: 15.7, rating: 4.8, reviewCount: 830, sellerName: 'Croma Apple Specialist', sellerRating: 4.8, deliveryDays: 1, inStock: true, productUrl: 'https://www.croma.com', dealScore: 95.2, isBestPrice: false, isBestDeal: false },
+        { id: 403, platformId: 5, platformName: 'Reliance Digital', platformLogo: 'https://www.reliancedigital.in/build/client/images/loaders/rd_logo.svg', price: 214.99, originalPrice: 249.00, discountPercentage: 13.7, rating: 4.7, reviewCount: 620, sellerName: 'Reliance Tech', sellerRating: 4.7, deliveryDays: 2, inStock: true, productUrl: 'https://www.reliancedigital.in', dealScore: 92.8, isBestPrice: false, isBestDeal: false },
+        { id: 404, platformId: 2, platformName: 'Flipkart', platformLogo: 'https://logos-world.net/wp-content/uploads/2020/11/Flipkart-Logo.png', price: 219.99, originalPrice: 249.00, discountPercentage: 11.6, rating: 4.7, reviewCount: 1950, sellerName: 'IndiFlashMart', sellerRating: 4.7, deliveryDays: 2, inStock: true, productUrl: 'https://www.flipkart.com', dealScore: 91.0, isBestPrice: false, isBestDeal: false },
+        { id: 405, platformId: 3, platformName: 'Apple Store', platformLogo: 'https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg', price: 249.00, originalPrice: 249.00, discountPercentage: 0.0, rating: 5.0, reviewCount: 8900, sellerName: 'Apple Official', sellerRating: 5.0, deliveryDays: 1, inStock: true, productUrl: 'https://www.apple.com', dealScore: 88.0, isBestPrice: false, isBestDeal: false }
+      ]
+    },
+
+    // -------------------------------------------------------------
+    // 5. Stainless Steel Bottle
+    // -------------------------------------------------------------
+    {
+      id: 5,
+      name: 'HydroPro Matte Steel Bottle (750ml)',
+      brand: 'HydroPro',
+      model: 'Vacuum Insulated 750',
+      category: 'Accessories',
+      imageUrl: 'https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=800&auto=format&fit=crop&q=80',
+      description: 'Double-walled TempShield vacuum insulation keeps beverages iced for up to 24 hours or piping hot for 12 hours. Pure 18/8 pro-grade stainless steel.',
+      specsJson: '{"capacity": "750ml / 25oz", "insulation": "TempShield Vacuum Wall", "material": "Pro-Grade 18/8 Stainless Steel", "lid": "Leak-Proof Flex Straw"}',
+      minPrice: 24.99,
+      maxPrice: 34.99,
+      maxDiscount: 28.6,
+      bestRating: 4.9,
+      listingCount: 4,
+      listings: [
+        { id: 501, platformId: 1, platformName: 'Amazon', platformLogo: 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg', price: 24.99, originalPrice: 34.99, discountPercentage: 28.6, rating: 4.9, reviewCount: 2890, sellerName: 'HydroDirect Prime', sellerRating: 4.9, deliveryDays: 1, inStock: true, productUrl: 'https://www.amazon.com', dealScore: 99.0, isBestPrice: true, isBestDeal: true },
+        { id: 502, platformId: 3, platformName: 'Myntra', platformLogo: 'https://images.indianexpress.com/2021/01/myntra.png', price: 27.99, originalPrice: 34.99, discountPercentage: 20.0, rating: 4.8, reviewCount: 650, sellerName: 'FitLife Gear', sellerRating: 4.8, deliveryDays: 2, inStock: true, productUrl: 'https://www.myntra.com', dealScore: 94.6, isBestPrice: false, isBestDeal: false },
+        { id: 503, platformId: 2, platformName: 'Flipkart', platformLogo: 'https://logos-world.net/wp-content/uploads/2020/11/Flipkart-Logo.png', price: 29.99, originalPrice: 34.99, discountPercentage: 14.3, rating: 4.6, reviewCount: 420, sellerName: 'DailyGoods India', sellerRating: 4.6, deliveryDays: 3, inStock: true, productUrl: 'https://www.flipkart.com', dealScore: 90.2, isBestPrice: false, isBestDeal: false },
+        { id: 504, platformId: 4, platformName: 'Croma', platformLogo: 'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1637759004/Croma%20Assets/CMS/Category%20icon/Final%20icon/Croma_Logo_acrkvn.svg', price: 32.00, originalPrice: 34.99, discountPercentage: 8.5, rating: 4.7, reviewCount: 180, sellerName: 'Croma Lifestyle', sellerRating: 4.7, deliveryDays: 1, inStock: true, productUrl: 'https://www.croma.com', dealScore: 88.0, isBestPrice: false, isBestDeal: false }
+      ]
+    },
+
+    // -------------------------------------------------------------
+    // 6. Aviator Sunglasses
+    // -------------------------------------------------------------
+    {
+      id: 6,
+      name: 'Ray-Ban Aviator Classic Polarized',
+      brand: 'Ray-Ban',
+      model: 'RB3025 Aviator',
+      category: 'Accessories',
+      imageUrl: 'https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=800&auto=format&fit=crop&q=80',
+      description: 'The archetype of all aviators. First designed in 1937 for US aviators, featuring crystal green G-15 polarized lenses with 100% UV protection and a durable gold/black metal frame.',
+      specsJson: '{"frameMaterial": "Polished Metal", "lensTreatment": "Polarized G-15 Green", "lensWidth": "58 mm", "bridge": "14 mm", "uvProtection": "100% UV400"}',
+      minPrice: 89.99,
+      maxPrice: 139.99,
+      maxDiscount: 35.7,
+      bestRating: 4.8,
+      listingCount: 4,
+      listings: [
+        { id: 601, platformId: 1, platformName: 'Amazon', platformLogo: 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg', price: 89.99, originalPrice: 139.99, discountPercentage: 35.7, rating: 4.8, reviewCount: 3120, sellerName: 'Luxottica Direct', sellerRating: 4.9, deliveryDays: 1, inStock: true, productUrl: 'https://www.amazon.com', dealScore: 99.4, isBestPrice: true, isBestDeal: true },
+        { id: 602, platformId: 3, platformName: 'Myntra', platformLogo: 'https://images.indianexpress.com/2021/01/myntra.png', price: 99.99, originalPrice: 139.99, discountPercentage: 28.6, rating: 4.7, reviewCount: 1450, sellerName: 'RayBan Authorized Retail', sellerRating: 4.8, deliveryDays: 2, inStock: true, productUrl: 'https://www.myntra.com', dealScore: 94.8, isBestPrice: false, isBestDeal: false },
+        { id: 603, platformId: 2, platformName: 'Flipkart', platformLogo: 'https://logos-world.net/wp-content/uploads/2020/11/Flipkart-Logo.png', price: 104.99, originalPrice: 139.99, discountPercentage: 25.0, rating: 4.6, reviewCount: 890, sellerName: 'VisionWorld India', sellerRating: 4.6, deliveryDays: 2, inStock: true, productUrl: 'https://www.flipkart.com', dealScore: 91.5, isBestPrice: false, isBestDeal: false },
+        { id: 604, platformId: 4, platformName: 'Sunglass Hut', platformLogo: 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg', price: 129.99, originalPrice: 139.99, discountPercentage: 7.1, rating: 4.9, reviewCount: 480, sellerName: 'Sunglass Hut Official', sellerRating: 4.9, deliveryDays: 2, inStock: true, productUrl: 'https://www.sunglasshut.com', dealScore: 87.2, isBestPrice: false, isBestDeal: false }
+      ]
+    },
+
+    // -------------------------------------------------------------
+    // 7. Apple MacBook Air M3
+    // -------------------------------------------------------------
+    {
+      id: 7,
+      name: 'Apple MacBook Air M3 (13.6-inch)',
       brand: 'Apple',
       model: 'MacBook Air M3',
       category: 'Laptops',
-      imageUrl: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&auto=format&fit=crop&q=80',
-      description: 'Strikingly thin and fast with the latest M3 processor, Liquid Retina display, and up to 18 hours of battery.',
-      specsJson: '{"storage": "256GB SSD", "ram": "8GB Unified", "color": "Space Grey", "display": "13.6-inch Liquid Retina"}',
-      minPrice: 102990,
-      maxPrice: 104990,
-      maxDiscount: 10.3,
-      bestRating: 4.7,
-      listingCount: 3,
+      imageUrl: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=800&auto=format&fit=crop&q=80',
+      description: 'Liquid Retina display, breakthrough M3 chip with 8-core CPU and 10-core GPU, up to 18 hours of battery, MagSafe charging, and 1080p FaceTime HD camera.',
+      specsJson: '{"chip": "Apple M3 Chip", "ram": "8GB Unified Memory", "storage": "256GB NVMe SSD", "display": "13.6-inch Liquid Retina", "weight": "1.24 kg"}',
+      minPrice: 999.00,
+      maxPrice: 1099.00,
+      maxDiscount: 9.1,
+      bestRating: 4.9,
+      listingCount: 5,
       listings: [
-        { id: 6, platformId: 2, platformName: 'Flipkart', platformLogo: 'https://logos-world.net/wp-content/uploads/2020/11/Flipkart-Logo.png', platformTrustScore: 4.7, title: 'Apple MacBook Air M3 - (8 GB/256 GB SSD)', price: 102990, originalPrice: 114900, discountPercentage: 10.3, rating: 4.6, reviewCount: 640, sellerName: 'TrueCom', sellerRating: 4.5, deliveryCost: 0, deliveryDays: 2, inStock: true, productUrl: 'https://www.flipkart.com', dealScore: 91.5, isBestPrice: true, isBestDeal: false },
-        { id: 7, platformId: 1, platformName: 'Amazon', platformLogo: 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg', platformTrustScore: 4.8, title: 'Apple 2024 MacBook Air 13″ Laptop with M3 chip', price: 104990, originalPrice: 114900, discountPercentage: 8.6, rating: 4.7, reviewCount: 890, sellerName: 'Appario Retail', sellerRating: 4.8, deliveryCost: 0, deliveryDays: 1, inStock: true, productUrl: 'https://www.amazon.in', dealScore: 93.0, isBestPrice: false, isBestDeal: true }
-      ]
-    },
-    {
-      id: 4,
-      name: 'Dell XPS 15 9530 Laptop (Intel Core i7-13700H, 16GB RAM, 1TB SSD, RTX 4050)',
-      brand: 'Dell',
-      model: 'XPS 15',
-      category: 'Laptops',
-      imageUrl: 'https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=600&auto=format&fit=crop&q=80',
-      description: 'Stunning 3.5K OLED InfinityEdge display, RTX 4050 6GB graphics, machined aluminum chassis.',
-      specsJson: '{"storage": "1TB NVMe SSD", "ram": "16GB DDR5", "processor": "Intel Core i7-13700H", "display": "15.6-inch OLED 3.5K"}',
-      minPrice: 184990,
-      maxPrice: 189990,
-      maxDiscount: 18.1,
-      bestRating: 4.5,
-      listingCount: 2,
-      listings: [
-        { id: 8, platformId: 2, platformName: 'Flipkart', platformLogo: 'https://logos-world.net/wp-content/uploads/2020/11/Flipkart-Logo.png', platformTrustScore: 4.7, title: 'DELL XPS 15 Core i7 13th Gen - (16 GB/1 TB SSD/RTX 4050)', price: 184990, originalPrice: 225990, discountPercentage: 18.1, rating: 4.4, reviewCount: 145, sellerName: 'FlashTech', sellerRating: 4.5, deliveryCost: 0, deliveryDays: 3, inStock: true, productUrl: 'https://www.flipkart.com', dealScore: 91.0, isBestPrice: true, isBestDeal: false },
-        { id: 9, platformId: 1, platformName: 'Amazon', platformLogo: 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg', platformTrustScore: 4.8, title: 'Dell XPS 15 9530 Laptop, Intel i7-13700H, RTX 4050', price: 189990, originalPrice: 225990, discountPercentage: 15.9, rating: 4.5, reviewCount: 210, sellerName: 'Dell Authorized', sellerRating: 4.8, deliveryCost: 0, deliveryDays: 2, inStock: true, productUrl: 'https://www.amazon.in', dealScore: 92.5, isBestPrice: false, isBestDeal: true }
-      ]
-    },
-    {
-      id: 5,
-      name: 'ASUS ROG Zephyrus G14 Gaming Laptop (Ryzen 9, 16GB RAM, 1TB SSD, RTX 4060)',
-      brand: 'ASUS',
-      model: 'ROG Zephyrus G14',
-      category: 'Laptops',
-      imageUrl: 'https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=600&auto=format&fit=crop&q=80',
-      description: 'Ultra-portable gaming beast with 3K 120Hz OLED display, AMD Ryzen 9 8945HS, and NVIDIA GeForce RTX 4060.',
-      specsJson: '{"storage": "1TB SSD", "ram": "16GB LPDDR5X", "processor": "AMD Ryzen 9 8945HS", "gpu": "RTX 4060 8GB"}',
-      minPrice: 149990,
-      maxPrice: 159990,
-      maxDiscount: 14.3,
-      bestRating: 4.6,
-      listingCount: 2,
-      listings: [
-        { id: 10, platformId: 1, platformName: 'Amazon', platformLogo: 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg', platformTrustScore: 4.8, title: 'ASUS ROG Zephyrus G14 (2024) 3K OLED, Ryzen 9, RTX 4060', price: 149990, originalPrice: 174990, discountPercentage: 14.3, rating: 4.6, reviewCount: 380, sellerName: 'Appario Retail', sellerRating: 4.8, deliveryCost: 0, deliveryDays: 1, inStock: true, productUrl: 'https://www.amazon.in', dealScore: 94.5, isBestPrice: true, isBestDeal: true },
-        { id: 11, platformId: 2, platformName: 'Flipkart', platformLogo: 'https://logos-world.net/wp-content/uploads/2020/11/Flipkart-Logo.png', platformTrustScore: 4.7, title: 'ASUS ROG Zephyrus G14 OLED Ryzen 9 - (16 GB/1 TB SSD)', price: 154990, originalPrice: 174990, discountPercentage: 11.4, rating: 4.5, reviewCount: 190, sellerName: 'OmniTech', sellerRating: 4.6, deliveryCost: 0, deliveryDays: 2, inStock: true, productUrl: 'https://www.flipkart.com', dealScore: 90.2, isBestPrice: false, isBestDeal: false }
-      ]
-    },
-
-    // -------------------------------------------------------------
-    // SHOES & SNEAKERS
-    // -------------------------------------------------------------
-    {
-      id: 6,
-      name: 'Nike Air Jordan 1 Retro High OG (Chicago Red/White/Black)',
-      brand: 'Nike',
-      model: 'Air Jordan 1 Retro',
-      category: 'Shoes',
-      imageUrl: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&auto=format&fit=crop&q=80',
-      description: 'The iconic high-top basketball sneaker crafted with genuine premium leather and encapsulated Nike Air cushioning.',
-      specsJson: '{"type": "High-Top Sneaker", "material": "Genuine Leather", "color": "Chicago Red/White/Black", "sole": "Rubber Cupsole"}',
-      minPrice: 14995,
-      maxPrice: 16995,
-      maxDiscount: 16.7,
-      bestRating: 4.8,
-      listingCount: 3,
-      listings: [
-        { id: 12, platformId: 4, platformName: 'Myntra', platformLogo: 'https://images.indianexpress.com/2021/01/myntra.png', platformTrustScore: 4.7, title: 'Nike Air Jordan 1 Retro High OG Sneakers', price: 14995, originalPrice: 17995, discountPercentage: 16.7, rating: 4.8, reviewCount: 1240, sellerName: 'Nike Official Store', sellerRating: 4.9, deliveryCost: 0, deliveryDays: 2, inStock: true, productUrl: 'https://www.myntra.com', dealScore: 96.0, isBestPrice: true, isBestDeal: true },
-        { id: 13, platformId: 1, platformName: 'Amazon', platformLogo: 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg', platformTrustScore: 4.8, title: 'Nike Mens Air Jordan 1 Retro High Basketball Shoes', price: 15995, originalPrice: 17995, discountPercentage: 11.1, rating: 4.7, reviewCount: 850, sellerName: 'SoleHub India', sellerRating: 4.7, deliveryCost: 0, deliveryDays: 1, inStock: true, productUrl: 'https://www.amazon.in', dealScore: 92.4, isBestPrice: false, isBestDeal: false }
-      ]
-    },
-    {
-      id: 7,
-      name: 'Adidas Ultraboost Light Running Shoes (Core Black / Solar Red)',
-      brand: 'Adidas',
-      model: 'Ultraboost Light',
-      category: 'Shoes',
-      imageUrl: 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?w=600&auto=format&fit=crop&q=80',
-      description: 'Experience epic energy with the lightest Ultraboost ever made. Light BOOST midsole with Continental Better Rubber outsole.',
-      specsJson: '{"type": "Performance Running", "cushioning": "Light BOOST", "weight": "299g", "color": "Core Black"}',
-      minPrice: 9999,
-      maxPrice: 12999,
-      maxDiscount: 47.4,
-      bestRating: 4.6,
-      listingCount: 3,
-      listings: [
-        { id: 14, platformId: 4, platformName: 'Myntra', platformLogo: 'https://images.indianexpress.com/2021/01/myntra.png', platformTrustScore: 4.7, title: 'Adidas Men Ultraboost Light Running Shoes', price: 9999, originalPrice: 18999, discountPercentage: 47.4, rating: 4.6, reviewCount: 2310, sellerName: 'Adidas India Marketing', sellerRating: 4.8, deliveryCost: 0, deliveryDays: 2, inStock: true, productUrl: 'https://www.myntra.com', dealScore: 97.2, isBestPrice: true, isBestDeal: true },
-        { id: 15, platformId: 1, platformName: 'Amazon', platformLogo: 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg', platformTrustScore: 4.8, title: 'Adidas Mens Ultraboost Light Road Running Shoe', price: 11499, originalPrice: 18999, discountPercentage: 39.5, rating: 4.5, reviewCount: 1420, sellerName: 'Appario Retail', sellerRating: 4.8, deliveryCost: 0, deliveryDays: 1, inStock: true, productUrl: 'https://www.amazon.in', dealScore: 92.0, isBestPrice: false, isBestDeal: false }
-      ]
-    },
-    {
-      id: 8,
-      name: 'New Balance 550 Vintage White Lifestyle Sneakers',
-      brand: 'New Balance',
-      model: '550',
-      category: 'Shoes',
-      imageUrl: 'https://images.unsplash.com/photo-1551107696-a4b0c5a0d9a2?w=600&auto=format&fit=crop&q=80',
-      description: 'Simple and clean, not overbuilt. A tribute to the 1989 basketball pro shoe that defined a generation.',
-      specsJson: '{"type": "Lifestyle / Heritage", "material": "Leather & Suede", "color": "White with Navy", "sole": "Non-marking Rubber"}',
-      minPrice: 8499,
-      maxPrice: 9999,
-      maxDiscount: 22.7,
-      bestRating: 4.7,
-      listingCount: 2,
-      listings: [
-        { id: 16, platformId: 4, platformName: 'Myntra', platformLogo: 'https://images.indianexpress.com/2021/01/myntra.png', platformTrustScore: 4.7, title: 'New Balance Unisex 550 Retro Low-Top Sneakers', price: 8499, originalPrice: 10999, discountPercentage: 22.7, rating: 4.7, reviewCount: 680, sellerName: 'Brandz Retail', sellerRating: 4.7, deliveryCost: 0, deliveryDays: 2, inStock: true, productUrl: 'https://www.myntra.com', dealScore: 94.0, isBestPrice: true, isBestDeal: true },
-        { id: 17, platformId: 2, platformName: 'Flipkart', platformLogo: 'https://logos-world.net/wp-content/uploads/2020/11/Flipkart-Logo.png', platformTrustScore: 4.7, title: 'NEW BALANCE 550 Sneakers For Men', price: 8999, originalPrice: 10999, discountPercentage: 18.2, rating: 4.6, reviewCount: 450, sellerName: 'OmniTech', sellerRating: 4.6, deliveryCost: 0, deliveryDays: 3, inStock: true, productUrl: 'https://www.flipkart.com', dealScore: 90.5, isBestPrice: false, isBestDeal: false }
-      ]
-    },
-
-    // -------------------------------------------------------------
-    // WATCHES & SMARTWATCHES
-    // -------------------------------------------------------------
-    {
-      id: 9,
-      name: 'Apple Watch Ultra 2 (GPS + Cellular, 49mm Titanium Case with Ocean Band)',
-      brand: 'Apple',
-      model: 'Watch Ultra 2',
-      category: 'Watches',
-      imageUrl: 'https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=600&auto=format&fit=crop&q=80',
-      description: 'The most rugged and capable Apple Watch. Powered by S9 SiP with 3000-nit display and 36-hour battery life.',
-      specsJson: '{"case": "49mm Aerospace Titanium", "display": "3000-nit Always-On Retina", "battery": "Up to 36 Hours", "waterproof": "100m"}',
-      minPrice: 84900,
-      maxPrice: 89900,
-      maxDiscount: 5.6,
-      bestRating: 4.8,
-      listingCount: 3,
-      listings: [
-        { id: 18, platformId: 1, platformName: 'Amazon', platformLogo: 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg', platformTrustScore: 4.8, title: 'Apple Watch Ultra 2 [GPS + Cellular 49 mm] Titanium Case', price: 84900, originalPrice: 89900, discountPercentage: 5.6, rating: 4.8, reviewCount: 950, sellerName: 'Appario Retail', sellerRating: 4.8, deliveryCost: 0, deliveryDays: 1, inStock: true, productUrl: 'https://www.amazon.in', dealScore: 95.2, isBestPrice: true, isBestDeal: true },
-        { id: 19, platformId: 3, platformName: 'Croma', platformLogo: 'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1637759004/Croma%20Assets/CMS/Category%20icon/Final%20icon/Croma_Logo_acrkvn.svg', platformTrustScore: 4.6, title: 'Apple Watch Ultra 2 GPS + Cellular 49mm', price: 86900, originalPrice: 89900, discountPercentage: 3.3, rating: 4.7, reviewCount: 220, sellerName: 'Croma Official', sellerRating: 4.7, deliveryCost: 0, deliveryDays: 1, inStock: true, productUrl: 'https://www.croma.com', dealScore: 90.1, isBestPrice: false, isBestDeal: false }
-      ]
-    },
-    {
-      id: 10,
-      name: 'Samsung Galaxy Watch 6 Classic (47mm, Bluetooth, Rotating Bezel, Silver)',
-      brand: 'Samsung',
-      model: 'Galaxy Watch 6 Classic',
-      category: 'Watches',
-      imageUrl: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&auto=format&fit=crop&q=80',
-      description: 'Timeless stainless steel style featuring physical rotating bezel, Advanced Sleep Coaching, and BioActive sensor.',
-      specsJson: '{"size": "47mm Stainless Steel", "display": "Sapphire Crystal Super AMOLED", "bezel": "Rotating", "battery": "Up to 40 Hours"}',
-      minPrice: 28999,
-      maxPrice: 36999,
-      maxDiscount: 30.9,
-      bestRating: 4.6,
-      listingCount: 3,
-      listings: [
-        { id: 20, platformId: 2, platformName: 'Flipkart', platformLogo: 'https://logos-world.net/wp-content/uploads/2020/11/Flipkart-Logo.png', platformTrustScore: 4.7, title: 'SAMSUNG Galaxy Watch6 Classic (Bluetooth, 47mm, Silver)', price: 28999, originalPrice: 41999, discountPercentage: 30.9, rating: 4.6, reviewCount: 1540, sellerName: 'IndiFlashMart', sellerRating: 4.7, deliveryCost: 0, deliveryDays: 2, inStock: true, productUrl: 'https://www.flipkart.com', dealScore: 94.6, isBestPrice: true, isBestDeal: true },
-        { id: 21, platformId: 1, platformName: 'Amazon', platformLogo: 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg', platformTrustScore: 4.8, title: 'Samsung Galaxy Watch6 Classic Bluetooth (47mm, Silver)', price: 29999, originalPrice: 41999, discountPercentage: 28.6, rating: 4.5, reviewCount: 1850, sellerName: 'STPL Exclusive', sellerRating: 4.8, deliveryCost: 0, deliveryDays: 1, inStock: true, productUrl: 'https://www.amazon.in', dealScore: 92.1, isBestPrice: false, isBestDeal: false }
-      ]
-    },
-    {
-      id: 11,
-      name: 'Fossil Grant Chronograph Dark Brown Leather Watch (FS4813)',
-      brand: 'Fossil',
-      model: 'Grant Chronograph',
-      category: 'Watches',
-      imageUrl: 'https://images.unsplash.com/photo-1524805444758-089113d48a6d?w=600&auto=format&fit=crop&q=80',
-      description: 'Vintage-inspired classic quartz chronograph watch with Roman numeral indexes and genuine supple brown leather band.',
-      specsJson: '{"case": "44mm Stainless Steel", "strap": "22mm Genuine Leather", "movement": "Quartz Chronograph", "waterproof": "50m"}',
-      minPrice: 7495,
-      maxPrice: 9995,
-      maxDiscount: 44.4,
-      bestRating: 4.5,
-      listingCount: 3,
-      listings: [
-        { id: 22, platformId: 4, platformName: 'Myntra', platformLogo: 'https://images.indianexpress.com/2021/01/myntra.png', platformTrustScore: 4.7, title: 'Fossil Men Grant Chronograph Analogue Watch FS4813', price: 7495, originalPrice: 13495, discountPercentage: 44.4, rating: 4.6, reviewCount: 3410, sellerName: 'Fossil India Retail', sellerRating: 4.8, deliveryCost: 0, deliveryDays: 2, inStock: true, productUrl: 'https://www.myntra.com', dealScore: 96.5, isBestPrice: true, isBestDeal: true },
-        { id: 23, platformId: 1, platformName: 'Amazon', platformLogo: 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg', platformTrustScore: 4.8, title: 'Fossil Grant Chronograph Black Dial Men Watch - FS4813', price: 7995, originalPrice: 13495, discountPercentage: 40.7, rating: 4.5, reviewCount: 5120, sellerName: 'Appario Retail', sellerRating: 4.8, deliveryCost: 0, deliveryDays: 1, inStock: true, productUrl: 'https://www.amazon.in', dealScore: 93.2, isBestPrice: false, isBestDeal: false }
-      ]
-    },
-
-    // -------------------------------------------------------------
-    // AUDIO & HEADPHONES
-    // -------------------------------------------------------------
-    {
-      id: 12,
-      name: 'Sony WH-1000XM5 Wireless Noise Canceling Headphones (Black)',
-      brand: 'Sony',
-      model: 'WH-1000XM5',
-      category: 'Headphones',
-      imageUrl: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&auto=format&fit=crop&q=80',
-      description: 'Industry leading noise cancellation with two processors and 8 microphones. 30-hour battery life.',
-      specsJson: '{"type": "Over-Ear", "anc": "Yes (Auto NC Optimizer)", "battery": "30 Hours", "color": "Black"}',
-      minPrice: 25990,
-      maxPrice: 27990,
-      maxDiscount: 25.7,
-      bestRating: 4.6,
-      listingCount: 3,
-      listings: [
-        { id: 24, platformId: 2, platformName: 'Flipkart', platformLogo: 'https://logos-world.net/wp-content/uploads/2020/11/Flipkart-Logo.png', platformTrustScore: 4.7, title: 'SONY WH-1000XM5 Bluetooth Headset (Black, Over Ear)', price: 25990, originalPrice: 34990, discountPercentage: 25.7, rating: 4.6, reviewCount: 4110, sellerName: 'OmniTech', sellerRating: 4.6, deliveryCost: 0, deliveryDays: 2, inStock: true, productUrl: 'https://www.flipkart.com', dealScore: 94.8, isBestPrice: true, isBestDeal: true },
-        { id: 25, platformId: 1, platformName: 'Amazon', platformLogo: 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg', platformTrustScore: 4.8, title: 'Sony WH-1000XM5 Wireless ANC Headphones - Black', price: 26990, originalPrice: 34990, discountPercentage: 22.8, rating: 4.5, reviewCount: 5420, sellerName: 'Appario Retail', sellerRating: 4.8, deliveryCost: 0, deliveryDays: 1, inStock: true, productUrl: 'https://www.amazon.in', dealScore: 92.0, isBestPrice: false, isBestDeal: false }
-      ]
-    },
-    {
-      id: 13,
-      name: 'Apple AirPods Pro (2nd Gen with USB-C MagSafe Case)',
-      brand: 'Apple',
-      model: 'AirPods Pro 2',
-      category: 'Headphones',
-      imageUrl: 'https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?w=600&auto=format&fit=crop&q=80',
-      description: 'Up to 2x more Active Noise Cancellation, Adaptive Audio, Transparency mode, and Personalized Spatial Audio.',
-      specsJson: '{"type": "In-Ear True Wireless", "chip": "Apple H2", "anc": "Yes", "battery": "Up to 30 Hours with Case"}',
-      minPrice: 19999,
-      maxPrice: 24900,
-      maxDiscount: 19.7,
-      bestRating: 4.8,
-      listingCount: 3,
-      listings: [
-        { id: 26, platformId: 2, platformName: 'Flipkart', platformLogo: 'https://logos-world.net/wp-content/uploads/2020/11/Flipkart-Logo.png', platformTrustScore: 4.7, title: 'Apple AirPods Pro (2nd generation) with MagSafe Case (USB-C)', price: 19999, originalPrice: 24900, discountPercentage: 19.7, rating: 4.8, reviewCount: 8740, sellerName: 'SuperComNet', sellerRating: 4.7, deliveryCost: 0, deliveryDays: 2, inStock: true, productUrl: 'https://www.flipkart.com', dealScore: 96.8, isBestPrice: true, isBestDeal: true },
-        { id: 27, platformId: 1, platformName: 'Amazon', platformLogo: 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg', platformTrustScore: 4.8, title: 'Apple AirPods Pro (2nd Generation) with USB-C', price: 20990, originalPrice: 24900, discountPercentage: 15.7, rating: 4.7, reviewCount: 11200, sellerName: 'Appario Retail', sellerRating: 4.8, deliveryCost: 0, deliveryDays: 1, inStock: true, productUrl: 'https://www.amazon.in', dealScore: 93.4, isBestPrice: false, isBestDeal: false }
+        { id: 701, platformId: 1, platformName: 'Amazon', platformLogo: 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg', price: 999.00, originalPrice: 1099.00, discountPercentage: 9.1, rating: 4.9, reviewCount: 1840, sellerName: 'Apple Authorized Prime', sellerRating: 4.9, deliveryDays: 1, inStock: true, productUrl: 'https://www.amazon.com', dealScore: 98.8, isBestPrice: true, isBestDeal: true },
+        { id: 702, platformId: 4, platformName: 'Croma', platformLogo: 'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1637759004/Croma%20Assets/CMS/Category%20icon/Final%20icon/Croma_Logo_acrkvn.svg', price: 1029.00, originalPrice: 1099.00, discountPercentage: 6.4, rating: 4.8, reviewCount: 650, sellerName: 'Croma Apple Specialist', sellerRating: 4.8, deliveryDays: 1, inStock: true, productUrl: 'https://www.croma.com', dealScore: 95.0, isBestPrice: false, isBestDeal: false },
+        { id: 703, platformId: 2, platformName: 'Flipkart', platformLogo: 'https://logos-world.net/wp-content/uploads/2020/11/Flipkart-Logo.png', price: 1049.00, originalPrice: 1099.00, discountPercentage: 4.5, rating: 4.8, reviewCount: 1220, sellerName: 'SuperComNet Laptops', sellerRating: 4.7, deliveryDays: 2, inStock: true, productUrl: 'https://www.flipkart.com', dealScore: 93.1, isBestPrice: false, isBestDeal: false },
+        { id: 704, platformId: 5, platformName: 'Reliance Digital', platformLogo: 'https://www.reliancedigital.in/build/client/images/loaders/rd_logo.svg', price: 1059.00, originalPrice: 1099.00, discountPercentage: 3.6, rating: 4.7, reviewCount: 410, sellerName: 'Reliance Digital Store', sellerRating: 4.7, deliveryDays: 2, inStock: true, productUrl: 'https://www.reliancedigital.in', dealScore: 91.5, isBestPrice: false, isBestDeal: false },
+        { id: 705, platformId: 3, platformName: 'Apple Store', platformLogo: 'https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg', price: 1099.00, originalPrice: 1099.00, discountPercentage: 0.0, rating: 5.0, reviewCount: 5400, sellerName: 'Apple Official Store', sellerRating: 5.0, deliveryDays: 1, inStock: true, productUrl: 'https://www.apple.com', dealScore: 89.0, isBestPrice: false, isBestDeal: false }
       ]
     }
   ]
@@ -444,7 +243,7 @@ const Api = {
       const err = await res.json().catch(() => ({ message: 'Server error' }));
       throw new Error(err.message || 'Request failed');
     } catch (error) {
-      console.info(`[PriceHunt Mock Engine] Processing request: ${endpoint}`);
+      console.info(`[PriceHunt Intelligence Engine] Processing endpoint: ${endpoint}`);
       return this.mockFallback(endpoint, options);
     }
   },
@@ -473,7 +272,6 @@ const Api = {
       const url = new URL(`http://localhost${endpoint}`);
       const q = (url.searchParams.get('q') || '').toLowerCase();
       const cat = (url.searchParams.get('category') || '').toLowerCase();
-      const sortBy = url.searchParams.get('sortBy') || 'best_deal';
 
       let results = [...MOCK_DATA.products];
       if (q) {
@@ -508,12 +306,12 @@ const Api = {
     if (endpoint.startsWith('/products/') && endpoint.endsWith('/history')) {
       const id = parseInt(endpoint.split('/')[2]);
       const prod = MOCK_DATA.products.find(p => p.id === id) || MOCK_DATA.products[0];
-      const p = prod.minPrice || 50000;
+      const p = prod.minPrice || 129.99;
       return [
-        { id: 1, platformName: 'Amazon', price: Math.round(p * 1.15), recordedAt: '2026-06-01T10:00:00' },
-        { id: 2, platformName: 'Amazon', price: Math.round(p * 1.10), recordedAt: '2026-06-30T10:00:00' },
-        { id: 3, platformName: 'Amazon', price: Math.round(p * 1.04), recordedAt: '2026-07-25T10:00:00' },
-        { id: 4, platformName: 'Amazon', price: p, recordedAt: '2026-08-20T10:00:00' }
+        { id: 1, platformName: 'Amazon', price: parseFloat((p * 1.25).toFixed(2)), recordedAt: '2026-06-01T10:00:00' },
+        { id: 2, platformName: 'Amazon', price: parseFloat((p * 1.18).toFixed(2)), recordedAt: '2026-06-30T10:00:00' },
+        { id: 3, platformName: 'Amazon', price: parseFloat((p * 1.08).toFixed(2)), recordedAt: '2026-07-25T10:00:00' },
+        { id: 4, platformName: 'Amazon', price: parseFloat(p.toFixed(2)), recordedAt: '2026-08-20T10:00:00' }
       ];
     }
 
@@ -524,12 +322,12 @@ const Api = {
 
     // 5. User Watchlist & Alerts
     if (endpoint === '/favorites') {
-      const favs = JSON.parse(localStorage.getItem('pricehunt_favorites') || '[1, 6, 9]');
+      const favs = JSON.parse(localStorage.getItem('pricehunt_favorites') || '[1, 2, 3, 4]');
       return MOCK_DATA.products.filter(p => favs.includes(p.id)).map(p => ({ id: p.id, product: p, createdAt: new Date().toISOString() }));
     }
 
     if (endpoint === '/alerts') {
-      const alerts = JSON.parse(localStorage.getItem('pricehunt_alerts') || '[{"id":1,"productId":1,"targetPrice":62000,"active":true},{"id":2,"productId":6,"targetPrice":13500,"active":true}]');
+      const alerts = JSON.parse(localStorage.getItem('pricehunt_alerts') || '[{"id":1,"productId":2,"targetPrice":119.99,"active":true},{"id":2,"productId":3,"targetPrice":299.99,"active":true}]');
       return alerts.map(a => ({
         id: a.id,
         targetPrice: a.targetPrice,
@@ -543,7 +341,7 @@ const Api = {
       return {
         ...u,
         createdAt: '2026-01-15T08:30:00',
-        favoritesCount: 3,
+        favoritesCount: 4,
         activeAlertsCount: 2
       };
     }

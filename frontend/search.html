@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shop & Discover — NovaTrend</title>
+  <title>Shop & Compare Prices — PriceHunt</title>
   <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
@@ -24,56 +24,39 @@
     }
     .filter-group {
       margin-bottom: 1.5rem;
-      padding-bottom: 1.25rem;
-      border-bottom: 1px solid var(--border-color);
-    }
-    .filter-group:last-child {
-      border-bottom: none;
-      margin-bottom: 0;
-      padding-bottom: 0;
     }
     .filter-heading {
       font-size: 13px;
       font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
       color: var(--text-main);
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       display: flex;
       justify-content: space-between;
-      align-items: center;
     }
     .catalog-select {
       width: 100%;
-      background-color: var(--bg-input);
+      padding: 10px 14px;
       border: 1px solid var(--border-color);
-      border-radius: var(--radius-xs);
-      padding: 9px 12px;
-      font-size: 13px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-surface);
       color: var(--text-main);
+      font-size: 13px;
       outline: none;
-      font-family: inherit;
-    }
-    .catalog-select:focus {
-      border-color: var(--primary);
     }
     .search-input-box {
       display: flex;
-      gap: 8px;
-      margin-bottom: 1.5rem;
+      gap: 10px;
+      margin-bottom: 2rem;
     }
     .search-input-box input {
       flex: 1;
-      background-color: var(--bg-surface);
+      padding: 12px 16px;
       border: 1px solid var(--border-color);
       border-radius: var(--radius-sm);
-      padding: 12px 16px;
-      font-size: 14px;
+      background-color: var(--bg-surface);
       color: var(--text-main);
+      font-size: 14px;
       outline: none;
-    }
-    .search-input-box input:focus {
-      border-color: var(--primary);
     }
     @media (max-width: 900px) {
       .catalog-layout {
@@ -107,7 +90,7 @@
   <!-- Main Navigation Bar -->
   <header class="main-header">
     <div class="container header-container">
-      <a href="index.html" class="nav-brand">NovaTrend</a>
+      <a href="index.html" class="nav-brand">PriceHunt</a>
 
       <ul class="nav-menu-links">
         <li><a href="index.html" class="nav-link">Home</a></li>
