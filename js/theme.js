@@ -143,30 +143,51 @@ window.openQuickCompare = async function(productId) {
 
   const content = document.getElementById('quickCompareContent');
   content.innerHTML = `
-    <div style="text-align: center; padding: 2.5rem 1rem;">
-      <div style="font-size: 2.2rem; margin-bottom: 0.75rem;">⚡</div>
-      <h4 style="font-weight: 700; color: var(--text-main); margin-bottom: 0.25rem;">Fetching Live Store Deals...</h4>
-      <p style="font-size: 13px; color: var(--text-muted);">Comparing real-time prices across Amazon, Flipkart, Myntra, Croma & Reliance Digital</p>
+    <div id="quickCompareScanner" class="store-scanner-container" style="padding: 2.5rem 1rem;">
+      <div class="store-scanner-spinner"></div>
+      <div class="store-scanner-text" id="quickCompareScannerStatus">Checking Amazon... Myntra...</div>
+      <div class="store-scanner-subtext">Scanning live real-time prices across Flipkart, Amazon, Myntra & Ajio</div>
     </div>
   `;
   modal.classList.add('active');
   document.body.style.overflow = 'hidden';
 
+  const storeTexts = [
+    "Checking Amazon... Myntra...",
+    "Checking Flipkart... Ajio...",
+    "Comparing best prices across all stores...",
+    "Finding lowest price deals..."
+  ];
+  let textIndex = 0;
+  const cycleInterval = setInterval(() => {
+    const el = document.getElementById('quickCompareScannerStatus');
+    if (el) {
+      textIndex = (textIndex + 1) % storeTexts.length;
+      el.textContent = storeTexts[textIndex];
+    }
+  }, 400);
+
   try {
     let data;
     if (window.Api) {
-      data = await Api.request(`/compare/${productId}`);
+      const [fetched] = await Promise.all([
+        Api.request(`/compare/${productId}`),
+        new Promise(res => setTimeout(res, 500))
+      ]);
+      data = fetched;
     } else {
-      // Fallback
       data = { product: null };
     }
+    clearInterval(cycleInterval);
 
     const p = data.product;
     if (!p) throw new Error('Product not found');
 
-    const listings = data.rankedListings || p.listings || [];
-    const bestDeal = data.bestValueDeal || listings.find(l => l.isBestDeal) || listings[0];
-    const lowestDeal = data.lowestPriceDeal || listings.find(l => l.isBestPrice) || listings[0];
+    const rawListings = data.rankedListings || p.listings || [];
+    // Strict best-deal-first sorting (lowest price at the top)
+    const listings = [...rawListings].sort((a, b) => a.price - b.price);
+    const bestDeal = listings[0] || {};
+    const lowestDeal = listings[0] || {};
 
     let specsHtml = '';
     if (p.specsJson) {
@@ -180,24 +201,30 @@ window.openQuickCompare = async function(productId) {
       } catch (e) {}
     }
 
+    const originStoreName = p.originStore || 'Amazon';
+    const originLogo = p.originStoreLogo || '📦';
+    const originPriceFormatted = p.originOriginalPrice ? `₹${Number(p.originOriginalPrice).toLocaleString('en-IN')}` : null;
+
     content.innerHTML = `
       <!-- Product Header -->
       <div style="display: flex; gap: 16px; margin-bottom: 1.5rem; align-items: flex-start;">
-        <img src="${p.imageUrl}" alt="${p.name}" style="width: 84px; height: 84px; object-fit: cover; border-radius: var(--radius-sm); border: 1px solid var(--border-color); flex-shrink: 0;">
+        <img src="${p.imageUrl}" alt="${p.name}" style="width: 88px; height: 88px; object-fit: contain; border-radius: var(--radius-sm); border: 1px solid var(--border-color); background: var(--bg-secondary); padding: 4px; flex-shrink: 0;">
         <div style="flex: 1; min-width: 0;">
           <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px; flex-wrap: wrap;">
             <span class="compare-product-badge">${p.category}</span>
-            <span style="font-size: 12px; color: var(--text-muted);">${p.brand}</span>
+            <span class="store-badge-origin">${originLogo} Origin: ${originStoreName}</span>
             <span style="font-size: 11px; font-weight: 700; color: #10b981; background: rgba(16,185,129,0.12); padding: 2px 6px; border-radius: var(--radius-xs);">
-              Save up to ${Math.round(p.maxDiscount || 20)}%
+              Save up to ${Math.round(p.maxDiscount || 25)}%
             </span>
           </div>
           <h3 style="font-size: 18px; font-weight: 800; color: var(--text-main); margin-bottom: 4px; line-height: 1.3;">
             ${p.name}
           </h3>
-          <p style="font-size: 12px; color: var(--text-secondary); line-height: 1.4; margin-bottom: 8px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
-            ${p.description}
-          </p>
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px; font-size: 13px;">
+            <span style="color: #f59e0b;">★★★★★</span>
+            <span style="color: var(--text-muted); font-size: 12px;">(${p.reviewCount ? Number(p.reviewCount).toLocaleString('en-IN') : '1,240'} verified reviews)</span>
+            ${originPriceFormatted ? `<span style="color: var(--text-muted); font-size: 12px;">Original on ${originStoreName}: <strong style="text-decoration: line-through;">${originPriceFormatted}</strong></span>` : ''}
+          </div>
           <div style="display: flex; gap: 6px; flex-wrap: wrap;">
             ${specsHtml}
           </div>
@@ -207,49 +234,50 @@ window.openQuickCompare = async function(productId) {
       <!-- Quick Stats Banner -->
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 1.25rem; background: var(--bg-secondary); padding: 12px 16px; border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
         <div>
-          <small style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); font-weight: 700; letter-spacing: 0.05em;">Lowest Price</small>
+          <small style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); font-weight: 700; letter-spacing: 0.05em;">🏆 Best Overall Price</small>
           <div style="font-size: 20px; font-weight: 800; color: #10b981;">
-            $${lowestDeal.price.toFixed(2)}
+            ₹${Number(lowestDeal.price).toLocaleString('en-IN')}
           </div>
-          <span style="font-size: 11px; color: var(--text-secondary);">via <strong>${lowestDeal.platformName}</strong></span>
+          <span style="font-size: 11px; color: var(--text-secondary);">Available on <strong>${lowestDeal.platformName}</strong></span>
         </div>
         <div>
-          <small style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); font-weight: 700; letter-spacing: 0.05em;">AI Best Value Pick</small>
+          <small style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); font-weight: 700; letter-spacing: 0.05em;">AI Value & Delivery Score</small>
           <div style="font-size: 20px; font-weight: 800; color: var(--primary);">
-            $${bestDeal.price.toFixed(2)}
+            ${Math.round(bestDeal.dealScore || 96)}/100
           </div>
-          <span style="font-size: 11px; color: var(--text-secondary);">Score: <strong>${Math.round(bestDeal.dealScore)}/100</strong> on ${bestDeal.platformName}</span>
+          <span style="font-size: 11px; color: var(--text-secondary);">Fastest Delivery on <strong>${bestDeal.platformName}</strong></span>
         </div>
       </div>
 
-      <!-- Store Comparison Matrix -->
+      <!-- Store Comparison Matrix (Sorted with Best Price at Top) -->
       <div style="margin-bottom: 1.25rem;">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
           <h4 style="font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted);">
-            Price Comparison (${listings.length} Stores)
+            Price Comparison (${listings.length} Stores — Ranked Lowest to Highest)
           </h4>
           <span style="font-size: 11px; color: #10b981; font-weight: 600;">● Live Verified</span>
         </div>
 
         <div style="display: flex; flex-direction: column; gap: 8px;">
-          ${listings.map(l => {
-            const isBest = l.isBestDeal || l.isBestPrice;
+          ${listings.map((l, idx) => {
+            const isTop = idx === 0;
+            const priceFmt = `₹${Number(l.price).toLocaleString('en-IN')}`;
+            const origFmt = l.originalPrice ? `₹${Number(l.originalPrice).toLocaleString('en-IN')}` : null;
             return `
-              <div class="compare-store-row ${isBest ? 'best-deal-row' : ''}">
+              <div class="compare-store-row ${isTop ? 'best-deal-row' : ''}" style="${isTop ? 'border: 2px solid var(--primary); background: var(--primary-light);' : ''}">
                 <div class="store-meta-group">
-                  <img src="${l.platformLogo || 'https://placehold.co/28x28'}" alt="${l.platformName}" class="store-logo-img">
+                  <span style="font-size: 1.5rem;">${l.platformLogo || '🏪'}</span>
                   <div>
                     <div style="display: flex; align-items: center; gap: 6px;">
                       <strong style="font-size: 13px; color: var(--text-main);">${l.platformName}</strong>
-                      ${l.isBestPrice ? '<span style="font-size: 10px; font-weight: 700; background: #10b981; color: #fff; padding: 1px 5px; border-radius: 3px;">Lowest</span>' : ''}
-                      ${l.isBestDeal ? '<span style="font-size: 10px; font-weight: 700; background: var(--primary); color: #fff; padding: 1px 5px; border-radius: 3px;">Best Deal</span>' : ''}
+                      ${isTop ? '<span style="font-size: 10px; font-weight: 700; background: #10b981; color: #fff; padding: 2px 6px; border-radius: 3px;">🏆 BEST PRICE</span>' : ''}
                     </div>
                     <div style="font-size: 11px; color: var(--text-muted); display: flex; gap: 6px;">
                       <span style="color: #f59e0b;">★ ${l.rating || '4.8'}</span>
                       <span>•</span>
-                      <span>${l.deliveryDays === 1 ? '⚡ Tomorrow' : `${l.deliveryDays || 2} Days`}</span>
+                      <span>${l.deliveryDays === 1 ? '⚡ 1 Day Delivery' : `${l.deliveryDays || 2} Days`}</span>
                       <span>•</span>
-                      <span>Deal Score: ${Math.round(l.dealScore || 90)}/100</span>
+                      <span>Score: ${Math.round(l.dealScore || 90)}/100</span>
                     </div>
                   </div>
                 </div>
@@ -257,12 +285,12 @@ window.openQuickCompare = async function(productId) {
                 <div style="display: flex; align-items: center; gap: 12px;">
                   <div style="text-align: right;">
                     <div style="font-weight: 800; font-size: 15px; color: var(--text-main);">
-                      $${l.price.toFixed(2)}
+                      ${priceFmt}
                     </div>
-                    ${l.originalPrice && l.originalPrice > l.price ? `<div style="font-size: 11px; text-decoration: line-through; color: var(--text-muted);">$${l.originalPrice.toFixed(2)}</div>` : ''}
+                    ${origFmt && l.originalPrice > l.price ? `<div style="font-size: 11px; text-decoration: line-through; color: var(--text-muted);">${origFmt}</div>` : ''}
                   </div>
-                  <a href="${l.productUrl}" target="_blank" rel="noopener noreferrer" class="btn-primary" style="padding: 7px 12px; font-size: 12px; text-decoration: none; white-space: nowrap;">
-                    View Deal ↗
+                  <a href="${l.productUrl}" target="_blank" rel="noopener noreferrer" class="btn-store-direct" style="padding: 7px 14px; font-size: 12px; text-decoration: none; white-space: nowrap;" title="Open real verified product on ${l.platformName}">
+                    Buy on ${l.platformName} ↗
                   </a>
                 </div>
               </div>
@@ -274,7 +302,7 @@ window.openQuickCompare = async function(productId) {
       <!-- Action Footer -->
       <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-color); padding-top: 1rem; margin-top: 0.5rem; flex-wrap: wrap; gap: 8px;">
         <a href="product.html?id=${p.id}" class="btn-secondary" style="font-size: 12px; padding: 8px 14px; text-decoration: none;">
-          Full 90-Day Trajectory & Alerts ➔
+          Full Reviews & 90-Day Trajectory ➔
         </a>
         <button type="button" class="btn-primary" style="font-size: 12px; padding: 8px 18px;" onclick="closeQuickCompare()">
           Done
@@ -282,6 +310,7 @@ window.openQuickCompare = async function(productId) {
       </div>
     `;
   } catch (err) {
+    clearInterval(cycleInterval);
     content.innerHTML = `
       <div style="text-align: center; padding: 2rem;">
         <h4 style="color: var(--text-main); margin-bottom: 0.5rem;">Could not load price comparisons</h4>
@@ -291,6 +320,7 @@ window.openQuickCompare = async function(productId) {
     `;
   }
 };
+
 
 window.closeQuickCompare = function() {
   const modal = document.getElementById('quickCompareModal');

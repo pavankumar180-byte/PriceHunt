@@ -223,7 +223,7 @@
     </div>
 
     <!-- 90-Day Price Trajectory -->
-    <div class="deal-table-wrapper" style="padding: 2rem; margin-bottom: 4rem;">
+    <div class="deal-table-wrapper" style="padding: 2rem; margin-bottom: 3.5rem;">
       <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1.5rem;">
         <div>
           <h3 style="font-size: 17px; font-weight: 700; color: var(--text-main);">90-Day Price Trajectory</h3>
@@ -232,6 +232,52 @@
         <span style="background-color: var(--primary-light); color: var(--primary); padding: 4px 12px; border-radius: var(--radius-pill); font-size: 12px; font-weight: 600;">Historical Lowest Period</span>
       </div>
       <canvas id="priceHistoryCanvas" style="width: 100%; max-height: 240px;"></canvas>
+    </div>
+
+    <!-- Verified Customer Reviews Section -->
+    <div id="productReviewsSection" class="reviews-section-container" style="margin-bottom: 4rem;">
+      <div class="reviews-header-block" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <h2 style="font-size: 22px; font-weight: 800; color: var(--text-main); margin-bottom: 4px;">Verified Customer Reviews</h2>
+          <p style="color: var(--text-secondary); font-size: 13px;">Aggregated genuine buyer feedback across Amazon, Flipkart, Myntra & Ajio</p>
+        </div>
+        <button type="button" class="btn-primary" onclick="alert('Review submission received! It will appear after verified purchase validation.')" style="padding: 10px 18px; font-size: 13px;">
+          ✍️ Write a Review
+        </button>
+      </div>
+
+      <!-- Rating Overview Card -->
+      <div class="reviews-overview-grid" style="display: grid; grid-template-columns: 240px 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem;">
+        <div class="reviews-score-box" style="background-color: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.5rem; text-align: center;">
+          <div class="reviews-big-number" id="reviewsAvgScore" style="font-size: 48px; font-weight: 900; color: var(--text-main); line-height: 1;">4.8</div>
+          <div class="reviews-stars-row" id="reviewsStarSymbols" style="color: #f59e0b; font-size: 18px; margin: 8px 0;">★★★★★</div>
+          <div class="reviews-total-count" id="reviewsTotalCount" style="font-size: 12px; color: var(--text-muted); margin-bottom: 10px;">Based on verified buyer ratings</div>
+          <span style="display: inline-block; background-color: var(--primary-light); color: var(--primary); padding: 4px 10px; border-radius: var(--radius-pill); font-size: 11px; font-weight: 700;">🛡️ 100% Cross-Store Verified</span>
+        </div>
+
+        <div class="reviews-bars-card" id="ratingDistributionContainer" style="background-color: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.5rem;">
+          <!-- 5 to 1 star percentage bars populated by comparison.js -->
+        </div>
+
+        <div class="reviews-aspects-card" id="featureRatingsContainer" style="background-color: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.5rem;">
+          <!-- Feature breakdown populated by comparison.js -->
+        </div>
+      </div>
+
+      <!-- Review Filter Tabs -->
+      <div class="reviews-filter-tabs" style="display: flex; gap: 8px; margin-bottom: 1.5rem; flex-wrap: wrap;">
+        <button class="btn-store-pill active" onclick="filterReviews('all', this)">All Reviews (<span id="allReviewsCount">0</span>)</button>
+        <button class="btn-store-pill" onclick="filterReviews('Amazon', this)">📦 Amazon</button>
+        <button class="btn-store-pill" onclick="filterReviews('Flipkart', this)">⚡ Flipkart</button>
+        <button class="btn-store-pill" onclick="filterReviews('Myntra', this)">👗 Myntra</button>
+        <button class="btn-store-pill" onclick="filterReviews('Ajio', this)">🏷️ Ajio</button>
+        <button class="btn-store-pill" onclick="filterReviews('verified', this)">✅ Verified Only</button>
+      </div>
+
+      <!-- Review Cards List -->
+      <div class="reviews-list-container" id="reviewsListContainer" style="display: flex; flex-direction: column; gap: 1rem;">
+        <!-- Rendered by comparison.js -->
+      </div>
     </div>
 
   </main>

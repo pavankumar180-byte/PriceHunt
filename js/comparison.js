@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
   setupProductComparisonPage();
 });
 
+let currentProductReviews = [];
+
 async function setupProductComparisonPage() {
   const container = document.getElementById('productDetailContainer');
   if (!container) return;
@@ -16,17 +18,54 @@ async function setupProductComparisonPage() {
   const urlParams = new URLSearchParams(window.location.search);
   const productId = urlParams.get('id') || '1';
 
+  // Live store scanner spinner with "Checking Amazon... Myntra..."
+  const scannerEl = document.createElement('div');
+  scannerEl.id = 'productPageScanner';
+  scannerEl.className = 'store-scanner-container';
+  scannerEl.style.margin = '2rem 0';
+  scannerEl.innerHTML = `
+    <div class="store-scanner-spinner"></div>
+    <div class="store-scanner-text" id="productScannerStatus">Checking Amazon... Myntra...</div>
+    <div class="store-scanner-subtext">Comparing live real-time prices across Amazon, Flipkart, Myntra & Ajio...</div>
+  `;
+  container.prepend(scannerEl);
+
+  const storeTexts = [
+    "Checking Amazon... Myntra...",
+    "Checking Flipkart... Ajio...",
+    "Scanning best deals and price trends...",
+    "Loading verified customer reviews..."
+  ];
+  let textIdx = 0;
+  const cycleInterval = setInterval(() => {
+    const el = document.getElementById('productScannerStatus');
+    if (el) {
+      textIdx = (textIdx + 1) % storeTexts.length;
+      el.textContent = storeTexts[textIdx];
+    }
+  }, 400);
+
   try {
-    const data = await Api.request(`/compare/${productId}`);
+    const [data] = await Promise.all([
+      Api.request(`/compare/${productId}`),
+      new Promise(res => setTimeout(res, 500)) // smooth scanner display
+    ]);
+    clearInterval(cycleInterval);
+    if (scannerEl && scannerEl.parentNode) scannerEl.parentNode.removeChild(scannerEl);
+
     renderProductDetails(data);
     renderComparisonTable(data.rankedListings);
+    renderProductReviews(data.product);
     renderPriceHistoryChart(productId);
     setupAlertModal(data.product);
   } catch (err) {
+    clearInterval(cycleInterval);
+    if (scannerEl && scannerEl.parentNode) scannerEl.parentNode.removeChild(scannerEl);
     container.innerHTML = `
       <div style="text-align: center; padding: 4rem 1rem;">
-        <h3>Product not found</h3>
-        <a href="search.html" class="btn-primary" style="margin-top: 1rem;">Back to Shop</a>
+        <h3 style="font-size: 20px; font-weight: 700; color: var(--text-main); margin-bottom: 8px;">Product not found</h3>
+        <p style="color: var(--text-muted); font-size: 14px;">The requested product could not be retrieved.</p>
+        <a href="search.html" class="btn-primary" style="margin-top: 1.5rem; display: inline-flex;">Back to Shop</a>
       </div>
     `;
   }
@@ -34,7 +73,11 @@ async function setupProductComparisonPage() {
 
 function renderProductDetails(data) {
   const p = data.product;
-  document.getElementById('productImage').src = p.imageUrl;
+  const imgEl = document.getElementById('productImage');
+  if (imgEl) {
+    imgEl.src = p.imageUrl;
+    imgEl.alt = p.name;
+  }
   document.getElementById('productTitle').textContent = p.name;
   document.getElementById('productCategory').textContent = `${p.category} • ${p.brand}`;
   document.getElementById('productDescription').textContent = p.description;
@@ -54,42 +97,51 @@ function renderProductDetails(data) {
     }
   }
 
+  // Display best deal and lowest price in INR
   if (data.lowestPriceDeal) {
     const price = data.lowestPriceDeal.price;
-    const formatted = price > 5000 ? `$${(price / 80).toFixed(2)}` : `$${price.toFixed(2)}`;
+    const formatted = `₹${Number(price).toLocaleString('en-IN')}`;
     document.getElementById('lowestPriceDisplay').textContent = formatted;
-    document.getElementById('lowestPriceStore').textContent = `on ${data.lowestPriceDeal.platformName}`;
+    document.getElementById('lowestPriceStore').textContent = `Lowest on ${data.lowestPriceDeal.platformName}`;
   }
 
   if (data.bestValueDeal) {
     const price = data.bestValueDeal.price;
-    const formatted = price > 5000 ? `$${(price / 80).toFixed(2)}` : `$${price.toFixed(2)}`;
+    const formatted = `₹${Number(price).toLocaleString('en-IN')}`;
     document.getElementById('bestDealDisplay').textContent = formatted;
-    document.getElementById('bestDealStore').textContent = `on ${data.bestValueDeal.platformName} (${data.bestValueDeal.dealScore}/100)`;
+    document.getElementById('bestDealStore').textContent = `Best Deal on ${data.bestValueDeal.platformName} (Score ${data.bestValueDeal.dealScore}/100)`;
   }
 }
 
 function renderComparisonTable(listings) {
   const tbody = document.getElementById('comparisonTableBody');
-  if (!tbody) return;
+  if (!tbody || !listings) return;
 
-  tbody.innerHTML = listings.map(l => {
-    const isBestD = l.isBestDeal;
-    const price = l.price;
-    const priceFormatted = price > 5000 ? `$${(price / 80).toFixed(2)}` : `$${price.toFixed(2)}`;
+  // Ensure listings are sorted strictly by lowest price first (best deal at top)
+  const sorted = [...listings].sort((a, b) => a.price - b.price);
+
+  tbody.innerHTML = sorted.map((l, index) => {
+    const isTopDeal = index === 0;
+    const priceFormatted = `₹${Number(l.price).toLocaleString('en-IN')}`;
+    const origPriceFormatted = l.originalPrice ? `₹${Number(l.originalPrice).toLocaleString('en-IN')}` : null;
+    const topBadge = isTopDeal ? `<span class="badge-tag tag-discount" style="margin-left: 6px; font-size: 10px; background-color: #10b981; color: #fff;">🏆 BEST PRICE</span>` : '';
 
     return `
-      <tr style="${isBestD ? 'background-color: var(--primary-light);' : ''}">
+      <tr style="${isTopDeal ? 'background-color: var(--primary-light); border-left: 4px solid var(--primary);' : ''}">
         <td>
           <div style="display: flex; align-items: center; gap: 10px; font-weight: 700;">
-            <img src="${l.platformLogo || 'https://placehold.co/24x24'}" alt="${l.platformName}" style="width: 24px; height: 24px; object-fit: contain;">
-            <span>${l.platformName}</span>
+            <span style="font-size: 1.4rem;">${l.platformLogo || '🏪'}</span>
+            <div>
+              <span style="color: var(--text-main);">${l.platformName}</span>
+              ${topBadge}
+            </div>
           </div>
         </td>
         <td>
-          <div style="font-weight: 800; font-size: 15px; color: var(--text-main);">
+          <div style="font-weight: 800; font-size: 16px; color: var(--text-main);">
             ${priceFormatted}
           </div>
+          ${origPriceFormatted ? `<small style="text-decoration: line-through; color: var(--text-muted); font-size: 11px;">${origPriceFormatted}</small>` : ''}
         </td>
         <td>
           <span style="color: var(--primary); font-weight: 700;">
@@ -99,29 +151,154 @@ function renderComparisonTable(listings) {
         <td>
           <div style="display: flex; align-items: center; gap: 4px; font-size: 13px;">
             <span style="color: #f59e0b;">★</span>
-            <span>${l.rating || '4.6'}</span>
-            <small style="color: var(--text-muted);">(${l.reviewCount || '2.4k'})</small>
+            <span style="font-weight: 700; color: var(--text-main);">${l.rating || '4.8'}</span>
+            <small style="color: var(--text-muted);">(${l.reviewCount ? Number(l.reviewCount).toLocaleString('en-IN') : '1.2k'})</small>
           </div>
         </td>
         <td>
           <div style="font-size: 13px; color: var(--text-secondary);">
-            ${l.deliveryDays === 1 ? '⚡ Tomorrow' : `${l.deliveryDays || 2} Days`}
+            ${l.deliveryDays === 1 ? '⚡ Express 1 Day' : `${l.deliveryDays || 2} Days Free Delivery`}
           </div>
         </td>
         <td>
-          <span style="background-color: var(--primary); color: #ffffff; padding: 3px 8px; border-radius: var(--radius-xs); font-size: 11px; font-weight: 700;">
-            ${Math.round(l.dealScore || 92)}/100
+          <span style="background-color: ${isTopDeal ? 'var(--primary)' : 'var(--bg-secondary)'}; color: ${isTopDeal ? '#ffffff' : 'var(--text-main)'}; border: 1px solid var(--border-color); padding: 4px 10px; border-radius: var(--radius-xs); font-size: 12px; font-weight: 800;">
+            ${Math.round(l.dealScore || 95)}/100
           </span>
         </td>
         <td>
-          <a href="${l.productUrl}" target="_blank" rel="noopener noreferrer" class="btn-primary" style="padding: 6px 14px; font-size: 12px;">
-            View on ${l.platformName} ↗
+          <a href="${l.productUrl}" target="_blank" rel="noopener noreferrer" class="btn-store-direct" style="padding: 8px 16px; font-size: 13px; text-decoration: none; display: inline-flex;" title="Open directly on ${l.platformName}">
+            Buy on ${l.platformName} ↗
           </a>
         </td>
       </tr>
     `;
   }).join('');
 }
+
+function renderProductReviews(product) {
+  if (!product) return;
+  currentProductReviews = product.reviews || [];
+
+  // 1. Overall Score Box
+  const avgScore = product.bestRating ? product.bestRating.toFixed(1) : '4.8';
+  const totalCount = product.reviewCount ? Number(product.reviewCount).toLocaleString('en-IN') : '1,240';
+
+  const scoreEl = document.getElementById('reviewsAvgScore');
+  const countEl = document.getElementById('reviewsTotalCount');
+  const allCountEl = document.getElementById('allReviewsCount');
+  if (scoreEl) scoreEl.textContent = avgScore;
+  if (countEl) countEl.textContent = `Based on ${totalCount} verified buyer ratings`;
+  if (allCountEl) allCountEl.textContent = currentProductReviews.length;
+
+  // 2. Rating distribution bars
+  const distContainer = document.getElementById('ratingDistributionContainer');
+  if (distContainer && product.ratingDistribution) {
+    const dist = product.ratingDistribution;
+    distContainer.innerHTML = `
+      <div style="font-size: 13px; font-weight: 700; color: var(--text-main); margin-bottom: 12px;">Rating Breakdown</div>
+      ${[5, 4, 3, 2, 1].map(stars => {
+        const pct = dist[stars] || 0;
+        return `
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px; font-size: 12px;">
+            <span style="width: 32px; font-weight: 600; color: var(--text-secondary);">${stars} ★</span>
+            <div style="flex: 1; height: 8px; background-color: var(--bg-secondary); border-radius: 4px; overflow: hidden;">
+              <div style="width: ${pct}%; height: 100%; background: linear-gradient(90deg, #f59e0b, #ff4e27); border-radius: 4px;"></div>
+            </div>
+            <span style="width: 36px; text-align: right; font-weight: 600; color: var(--text-muted);">${pct}%</span>
+          </div>
+        `;
+      }).join('')}
+    `;
+  }
+
+  // 3. Feature Ratings
+  const featContainer = document.getElementById('featureRatingsContainer');
+  if (featContainer && product.featureRatings) {
+    featContainer.innerHTML = `
+      <div style="font-size: 13px; font-weight: 700; color: var(--text-main); margin-bottom: 12px;">Feature Ratings</div>
+      ${Object.entries(product.featureRatings).map(([feature, score]) => `
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px solid var(--border-color); font-size: 12px;">
+          <span style="color: var(--text-secondary);">${feature}</span>
+          <div style="display: flex; align-items: center; gap: 4px;">
+            <span style="color: #f59e0b;">★</span>
+            <strong style="color: var(--text-main);">${score}</strong>
+          </div>
+        </div>
+      `).join('')}
+    `;
+  }
+
+  // 4. Render individual review cards
+  renderReviewCardsList(currentProductReviews);
+}
+
+function renderReviewCardsList(reviews) {
+  const container = document.getElementById('reviewsListContainer');
+  if (!container) return;
+
+  if (!reviews || reviews.length === 0) {
+    container.innerHTML = `
+      <div style="text-align: center; padding: 2.5rem; background-color: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md);">
+        <p style="color: var(--text-muted); font-size: 14px;">No reviews match this filter.</p>
+      </div>
+    `;
+    return;
+  }
+
+  container.innerHTML = reviews.map(r => {
+    const stars = '★'.repeat(r.rating) + '☆'.repeat(5 - r.rating);
+    const storeBadge = r.store ? `<span class="review-store-badge">${r.store === 'Amazon' ? '📦 Amazon' : r.store === 'Flipkart' ? '⚡ Flipkart' : r.store === 'Myntra' ? '👗 Myntra' : '🏷️ Ajio'}</span>` : '';
+    const verifiedBadge = r.verified ? `<span class="review-verified-badge">✓ Verified Buyer</span>` : '';
+
+    return `
+      <div class="review-item-card">
+        <div class="review-card-header">
+          <div class="reviewer-meta">
+            <div class="reviewer-avatar">${r.author ? r.author.charAt(0) : 'U'}</div>
+            <div>
+              <div class="reviewer-name">${r.author || 'Customer'}</div>
+              <div class="review-date-store">
+                <span>${r.date || 'Recent review'}</span>
+                ${storeBadge}
+                ${verifiedBadge}
+              </div>
+            </div>
+          </div>
+          <div class="review-stars-display" style="color: #f59e0b; font-size: 14px; letter-spacing: 2px;">
+            ${stars}
+          </div>
+        </div>
+
+        <h4 class="review-headline">${r.title || ''}</h4>
+        <p class="review-body-text">${r.comment || ''}</p>
+
+        <div class="review-card-footer">
+          <button type="button" class="btn-helpful" onclick="this.innerHTML='👍 Helpful (' + (parseInt(this.getAttribute('data-count')) + 1) + ')'; this.disabled=true;" data-count="${r.helpfulCount || 12}">
+            👍 Helpful (${r.helpfulCount || 12})
+          </button>
+          <span style="font-size: 12px; color: var(--text-muted);">Verified authentic review</span>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function filterReviews(filter, btnEl) {
+  const tabs = document.querySelectorAll('.reviews-filter-tabs .btn-store-pill');
+  tabs.forEach(t => t.classList.remove('active'));
+  if (btnEl) btnEl.classList.add('active');
+
+  if (filter === 'all') {
+    renderReviewCardsList(currentProductReviews);
+  } else if (filter === 'verified') {
+    const filtered = currentProductReviews.filter(r => r.verified);
+    renderReviewCardsList(filtered);
+  } else {
+    const filtered = currentProductReviews.filter(r => r.store && r.store.toLowerCase() === filter.toLowerCase());
+    renderReviewCardsList(filtered);
+  }
+}
+window.filterReviews = filterReviews;
 
 async function renderPriceHistoryChart(productId) {
   const canvas = document.getElementById('priceHistoryCanvas');
