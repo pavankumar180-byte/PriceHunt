@@ -49,20 +49,51 @@ async function loadAndRenderProducts(query = '', category = '') {
   const countEl = document.getElementById('resultCount');
   if (!grid) return;
 
+  // Multi-store loading scanner + skeleton loader
   grid.innerHTML = `
-    <div style="grid-column: 1/-1; text-align: center; padding: 4rem 0; color: var(--text-muted);">
-      <p style="font-size: 15px;">Loading latest arrivals and trending products...</p>
+    <div style="grid-column: 1/-1;">
+      <div id="store-scanner-container" class="store-scanner-container">
+        <div class="store-scanner-spinner"></div>
+        <div class="store-scanner-text" id="liveScannerStatus">Checking Amazon... Myntra...</div>
+        <div class="store-scanner-subtext">Scanning real-time prices across Flipkart, Amazon, Myntra & Ajio</div>
+      </div>
     </div>
+    <div class="skeleton-card"><div class="skeleton-thumb skeleton-box"></div><div class="skeleton-box" style="height:18px;margin-bottom:8px;"></div><div class="skeleton-box" style="height:14px;width:60%;"></div></div>
+    <div class="skeleton-card"><div class="skeleton-thumb skeleton-box"></div><div class="skeleton-box" style="height:18px;margin-bottom:8px;"></div><div class="skeleton-box" style="height:14px;width:60%;"></div></div>
+    <div class="skeleton-card"><div class="skeleton-thumb skeleton-box"></div><div class="skeleton-box" style="height:18px;margin-bottom:8px;"></div><div class="skeleton-box" style="height:14px;width:60%;"></div></div>
+    <div class="skeleton-card"><div class="skeleton-thumb skeleton-box"></div><div class="skeleton-box" style="height:18px;margin-bottom:8px;"></div><div class="skeleton-box" style="height:14px;width:60%;"></div></div>
   `;
+
+  // Dynamic cycling text between requested stores
+  const storeTexts = [
+    "Checking Amazon... Myntra...",
+    "Checking Flipkart... Ajio...",
+    "Comparing best prices across all stores...",
+    "Finding lowest price deals..."
+  ];
+  let textIndex = 0;
+  const cycleInterval = setInterval(() => {
+    const el = document.getElementById('liveScannerStatus');
+    if (el) {
+      textIndex = (textIndex + 1) % storeTexts.length;
+      el.textContent = storeTexts[textIndex];
+    }
+  }, 400);
 
   try {
     const endpoint = `/products/search?q=${encodeURIComponent(query)}&category=${encodeURIComponent(category)}`;
-    allProducts = await Api.request(endpoint);
+    const [fetchedProducts] = await Promise.all([
+      Api.request(endpoint),
+      new Promise(res => setTimeout(res, 600)) // smooth scanning animation display
+    ]);
+    clearInterval(cycleInterval);
+    allProducts = fetchedProducts;
 
     if (countEl) countEl.textContent = allProducts.length;
     renderNovaTrendCards(allProducts);
     populateFilterDropdowns(allProducts);
   } catch (err) {
+    clearInterval(cycleInterval);
     grid.innerHTML = `
       <div style="grid-column: 1/-1; text-align: center; padding: 3rem; color: var(--text-muted);">
         <p>Could not load items at this time.</p>
@@ -80,7 +111,7 @@ function renderNovaTrendCards(products) {
       <div style="grid-column: 1/-1; text-align: center; padding: 4rem 1rem; background-color: var(--bg-surface); border-radius: var(--radius-md); border: 1px solid var(--border-color);">
         <div style="font-size: 2.2rem; margin-bottom: 0.5rem;">🛍️</div>
         <h4 style="font-weight: 700; font-size: 17px; color: var(--text-main); margin-bottom: 0.25rem;">No products found</h4>
-        <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 1.25rem;">Try searching for hoodies, sneakers, headphones, or watches</p>
+        <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 1.25rem;">Try searching for iPhone, Nike, Sony, Ray-Ban, Puma, or MacBook</p>
         <button class="btn-primary" onclick="resetFilters()">Reset Filters</button>
       </div>
     `;
@@ -88,10 +119,13 @@ function renderNovaTrendCards(products) {
   }
 
   grid.innerHTML = products.map(p => {
-    const priceFormatted = p.minPrice ? `$${(p.minPrice / 80).toFixed(2)}` : '$59.99';
-    const origPriceFormatted = p.maxPrice ? `$${(p.maxPrice / 80).toFixed(2)}` : null;
+    const dealPrice = p.minPrice ? `₹${Number(p.minPrice).toLocaleString('en-IN')}` : '₹4,999';
+    const originOrigPrice = p.originOriginalPrice ? `₹${Number(p.originOriginalPrice).toLocaleString('en-IN')}` : (p.maxPrice ? `₹${Number(p.maxPrice).toLocaleString('en-IN')}` : null);
+    const originStoreName = p.originStore || 'Amazon';
+    const originLogo = p.originStoreLogo || '📦';
+    const directUrl = p.directStoreUrl || (p.listings && p.listings[0] ? p.listings[0].productUrl : 'https://www.amazon.in');
     const isFav = checkIfFav(p.id);
-    const discountText = p.maxDiscount && p.maxDiscount > 10 ? `-${Math.round(p.maxDiscount)}%` : 'New';
+    const discountText = p.maxDiscount && p.maxDiscount > 5 ? `-${Math.round(p.maxDiscount)}% OFF` : 'TOP SELLER';
     const badgeClass = discountText.includes('%') ? 'tag-discount' : 'tag-new';
 
     return `
@@ -108,18 +142,30 @@ function renderNovaTrendCards(products) {
         </a>
 
         <div class="product-card-details">
-          <h3 class="product-card-title" title="${p.name}">${p.name}</h3>
-          
-          <div class="product-card-prices">
-            <span class="current-price">${priceFormatted}</span>
-            ${origPriceFormatted ? `<span class="original-price">${origPriceFormatted}</span>` : ''}
+          <div class="card-origin-tag">
+            <span class="store-badge-origin">${originLogo} From ${originStoreName}</span>
           </div>
 
-          <div class="product-card-bottom-row">
-            <div class="product-stars">★★★★★ <span class="review-count-text">(${p.bestRating ? Math.round(p.bestRating * 30) : 110})</span></div>
-            <a href="product.html?id=${p.id}" class="btn-add-cart-circle" title="View & Compare Store Deals">
-              🛍️
+          <a href="product.html?id=${p.id}" style="text-decoration: none; color: inherit;">
+            <h3 class="product-card-title" title="${p.name}">${p.name}</h3>
+          </a>
+          
+          <div class="product-card-prices">
+            <span class="current-price" title="Best Comparison Price">${dealPrice}</span>
+            ${originOrigPrice ? `<span class="original-price" title="Original price on ${originStoreName}">${originOrigPrice}</span>` : ''}
+          </div>
+
+          <div class="card-direct-actions">
+            <a href="${directUrl}" target="_blank" rel="noopener noreferrer" class="btn-store-direct" title="Open verified product on ${originStoreName}">
+              Buy on ${originStoreName} ↗
             </a>
+            <a href="product.html?id=${p.id}" class="btn-compare-link" title="Compare all stores and read customer reviews">
+              Compare ➔
+            </a>
+          </div>
+
+          <div class="product-card-bottom-row" style="margin-top: 10px;">
+            <div class="product-stars">★★★★★ <span class="review-count-text">(${p.reviewCount || (p.bestRating ? Math.round(p.bestRating * 85) : 340)} reviews)</span></div>
           </div>
         </div>
       </div>
