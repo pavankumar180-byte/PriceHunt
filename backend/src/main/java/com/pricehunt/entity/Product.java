@@ -34,6 +34,9 @@ public class Product {
     @Column(name = "specs_json", columnDefinition = "TEXT")
     private String specsJson;
 
+    @Column(name = "product_identifier", length = 100)
+    private String productIdentifier;
+
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
 
@@ -76,6 +79,9 @@ public class Product {
 
     public String getSpecsJson() { return specsJson; }
     public void setSpecsJson(String specsJson) { this.specsJson = specsJson; }
+
+    public String getProductIdentifier() { return productIdentifier; }
+    public void setProductIdentifier(String productIdentifier) { this.productIdentifier = productIdentifier; }
 
     public LocalDateTime getCreatedAt() { return createdAt; }
     public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }

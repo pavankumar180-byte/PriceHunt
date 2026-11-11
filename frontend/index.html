@@ -7,25 +7,25 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
   <!-- =========================================================================
-       1. TOP ANNOUNCEMENT BAR
+       1. TOP ANNOUNCEMENT BAR (PRICE TRACKING & STORE INTELLIGENCE)
        ========================================================================= -->
   <aside class="top-announcement-bar">
     <div class="announcement-content">
       <div class="announcement-item">
-        <span>🚚</span> Free Worldwide Shipping Over $50
+        <span>🔍</span> Real-Time Price Tracking across Amazon, Flipkart, Myntra & Ajio
       </div>
       <span class="announcement-divider">|</span>
       <div class="announcement-item">
-        <span>⚡</span> Summer Sale Up To 70% Off
+        <span>⚡</span> Instant Price Drop Comparison
       </div>
       <span class="announcement-divider">|</span>
       <div class="announcement-item">
-        <span>⚡</span> Limited Time Flash Deals
+        <span>💰</span> Save up to 40% with Verified INR (₹) Deals
       </div>
     </div>
   </aside>
@@ -47,10 +47,54 @@
         <li><a href="search.html" class="nav-link">Shop</a></li>
         <li><a href="#new-arrivals" class="nav-link">New Arrivals</a></li>
         <li><a href="#best-sellers" class="nav-link">Best Sellers</a></li>
-        <li>
+        <li class="nav-dropdown-item">
           <a href="search.html" class="nav-link">
             Categories <span style="font-size: 11px;">▾</span>
           </a>
+          <div class="nav-dropdown-menu">
+            <a href="search.html?category=Smartphones" class="dropdown-link">
+              <span class="dropdown-icon">📱</span>
+              <div>
+                <strong>Smartphones</strong>
+                <small>15 Products • iPhone, Galaxy, OnePlus</small>
+              </div>
+            </a>
+            <a href="search.html?category=Laptops" class="dropdown-link">
+              <span class="dropdown-icon">💻</span>
+              <div>
+                <strong>Laptops</strong>
+                <small>10 Products • MacBook, ASUS, Lenovo, HP</small>
+              </div>
+            </a>
+            <a href="search.html?category=Electronics%20%26%20Gadgets" class="dropdown-link">
+              <span class="dropdown-icon">🎧</span>
+              <div>
+                <strong>Electronics &amp; Gadgets</strong>
+                <small>20 Products • Earbuds, Watch, Charger</small>
+              </div>
+            </a>
+            <a href="search.html?category=Fashion%20%26%20Clothing" class="dropdown-link">
+              <span class="dropdown-icon">👕</span>
+              <div>
+                <strong>Fashion &amp; Clothing</strong>
+                <small>20 Products • Shirts, Tees, Jeans, Kurtas</small>
+              </div>
+            </a>
+            <a href="search.html?category=Footwear" class="dropdown-link">
+              <span class="dropdown-icon">👟</span>
+              <div>
+                <strong>Footwear</strong>
+                <small>15 Products • Sneakers, Running, Formals</small>
+              </div>
+            </a>
+            <a href="search.html?category=Accessories" class="dropdown-link">
+              <span class="dropdown-icon">🎒</span>
+              <div>
+                <strong>Accessories</strong>
+                <small>20 Products • Backpacks, Watches, Belts</small>
+              </div>
+            </a>
+          </div>
         </li>
         <li><a href="#about" class="nav-link">About</a></li>
         <li><a href="#blog" class="nav-link">Blog</a></li>
@@ -136,47 +180,47 @@
           <!-- Main Model Photo in White Sweatshirt -->
           <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=900&auto=format&fit=crop&q=80" alt="Fashion Model" class="hero-main-model">
 
-          <!-- 1. Floating Product Card: Top-Left (Air Max 270) -->
+          <!-- 1. Floating Product Card: Top-Left (Apple iPhone 16) -->
           <a href="product.html?id=2" class="floating-product-card card-pos-top-left" onclick="openQuickCompare(2); return false;" title="Click to compare prices across stores">
             <div class="floating-card-thumb">
-              <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=100&auto=format&fit=crop&q=80" alt="Nike Air Max 270">
+              <img src="https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?w=100&auto=format&fit=crop&q=80" alt="Apple iPhone 16">
             </div>
             <div class="floating-card-info">
-              <h6>Air Max 270</h6>
-              <span>₹11,495</span>
+              <h6>Apple iPhone 16</h6>
+              <span>₹74,999</span>
             </div>
           </a>
 
-          <!-- 2. Floating Product Card: Mid-Left (Sony WH-1000XM5) -->
-          <a href="product.html?id=3" class="floating-product-card card-pos-mid-left" onclick="openQuickCompare(3); return false;" title="Click to compare prices across stores">
+          <!-- 2. Floating Product Card: Mid-Left (Apple MacBook Air 13-inch) -->
+          <a href="product.html?id=17" class="floating-product-card card-pos-mid-left" onclick="openQuickCompare(17); return false;" title="Click to compare prices across stores">
             <div class="floating-card-thumb">
-              <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=100&auto=format&fit=crop&q=80" alt="Sony WH-1000XM5">
+              <img src="https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?w=100&auto=format&fit=crop&q=80" alt="MacBook Air 13-inch">
             </div>
             <div class="floating-card-info">
-              <h6>Sony WH-1000XM5</h6>
-              <span>₹26,990</span>
+              <h6>MacBook Air 13"</h6>
+              <span>₹82,990</span>
             </div>
           </a>
 
-          <!-- 3. Floating Product Card: Top-Right (Apple Watch Series 9) -->
-          <a href="product.html?id=4" class="floating-product-card card-pos-top-right" onclick="openQuickCompare(4); return false;" title="Click to compare prices across stores">
+          <!-- 3. Floating Product Card: Top-Right (Sony WH-CH720N) -->
+          <a href="product.html?id=35" class="floating-product-card card-pos-top-right" onclick="openQuickCompare(35); return false;" title="Click to compare prices across stores">
             <div class="floating-card-thumb">
-              <img src="https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=100&auto=format&fit=crop&q=80" alt="Apple Watch Series 9">
+              <img src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=100&auto=format&fit=crop&q=80" alt="Sony WH-CH720N">
             </div>
             <div class="floating-card-info">
-              <h6>Apple Watch 9</h6>
-              <span>₹37,999</span>
+              <h6>Sony WH-CH720N</h6>
+              <span>₹8,490</span>
             </div>
           </a>
 
-          <!-- 4. Floating Product Card: Bottom-Right (Levi's 511 Slim Jeans) -->
-          <a href="product.html?id=5" class="floating-product-card card-pos-bottom-right" onclick="openQuickCompare(5); return false;" title="Click to compare prices across stores">
+          <!-- 4. Floating Product Card: Bottom-Right (Safari Pixibeat 36L Backpack) -->
+          <a href="product.html?id=81" class="floating-product-card card-pos-bottom-right" onclick="openQuickCompare(81); return false;" title="Click to compare prices across stores">
             <div class="floating-card-thumb">
-              <img src="https://images.unsplash.com/photo-1542272604-780c96856592?w=100&auto=format&fit=crop&q=80" alt="Levi's 511 Slim Jeans">
+              <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=100&auto=format&fit=crop&q=80" alt="Safari Pixibeat Backpack">
             </div>
             <div class="floating-card-info">
-              <h6>Levi's 511</h6>
-              <span>₹1,799</span>
+              <h6>Safari Pixibeat 36L</h6>
+              <span>₹1,499</span>
             </div>
           </a>
 
@@ -193,127 +237,400 @@
     </div>
   </section>
 
+
   <!-- =========================================================================
-       4. VALUE PROPS (4 COLUMNS)
+       4. PRODUCT URL COMPARISON & REAL-TIME MULTI-STORE INTELLIGENCE ENGINE
        ========================================================================= -->
-  <section class="value-props-section">
+  <section class="url-comparison-section" id="url-compare" style="padding: 3.5rem 0; background-color: var(--bg-secondary); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
     <div class="container">
-      <div class="value-props-grid">
+      
+      <!-- Section Header -->
+      <div style="text-align: center; max-width: 780px; margin: 0 auto 2.5rem auto;">
+        <span class="badge-tag" style="background-color: var(--primary-light); color: var(--primary); font-size: 11px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; padding: 6px 14px; border-radius: var(--radius-pill); margin-bottom: 12px; display: inline-block;">
+          ⚡ Live Multi-Store Price Finder
+        </span>
+        <h2 style="font-size: 32px; font-weight: 800; color: var(--text-main); margin-bottom: 10px; font-family: var(--font-display);">
+          Compare Prices Across Websites
+        </h2>
+        <p style="font-size: 16px; color: var(--text-secondary); line-height: 1.5;">
+          Paste a product link and discover where you can buy it for the lowest price.
+        </p>
+      </div>
+
+      <!-- URL Input Control Card -->
+      <div style="background-color: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 2rem; box-shadow: var(--shadow-md); max-width: 960px; margin: 0 auto;">
         
-        <div class="value-prop-item">
-          <div class="value-prop-icon">🚚</div>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+          <div style="flex: 1; min-width: 280px; position: relative;">
+            <input type="url" id="productUrlInput" 
+                   placeholder="https://www.amazon.in/dp/PRODUCT_ID"
+                   style="width: 100%; height: 56px; padding: 0 100px 0 20px; font-size: 15px; border-radius: var(--radius-md); border: 2px solid var(--border-color); background-color: var(--bg-input); color: var(--text-main); outline: none; transition: var(--transition);"
+                   onfocus="this.style.borderColor='var(--primary)';" onblur="this.style.borderColor='var(--border-color)';">
+            <div style="position: absolute; right: 10px; top: 10px; display: flex; gap: 6px;">
+              <button type="button" id="btnPasteUrl" title="Paste link from clipboard"
+                      style="background-color: var(--bg-secondary); border: 1px solid var(--border-color); color: var(--text-main); font-size: 12px; font-weight: 700; padding: 8px 12px; border-radius: var(--radius-sm); cursor: pointer; transition: var(--transition);">
+                📋 Paste
+              </button>
+              <button type="button" id="btnClearUrl" title="Clear input"
+                      style="background-color: transparent; border: none; color: var(--text-muted); font-size: 14px; font-weight: 700; padding: 8px 10px; cursor: pointer;">
+                ✕
+              </button>
+            </div>
+          </div>
+
+          <button type="button" id="btnCompareUrl" class="btn-primary" 
+                  style="height: 56px; padding: 0 28px; font-size: 15px; font-weight: 800; border-radius: var(--radius-md); display: inline-flex; align-items: center; gap: 8px; justify-content: center; cursor: pointer;">
+            <span>🔍</span> Compare Prices
+          </button>
+        </div>
+
+        <!-- Quick Sample Product Links from 100 Verified Catalog -->
+        <div style="margin-top: 1.25rem; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 12px;">
+          <span style="color: var(--text-muted); font-weight: 600;">Try genuine product link:</span>
+          <button type="button" class="sample-url-pill" data-url="https://www.amazon.in/s?k=Apple+iPhone+17+smartphone" style="background-color: var(--bg-secondary); border: 1px solid var(--border-color); color: var(--text-main); padding: 4px 10px; border-radius: var(--radius-pill); cursor: pointer; font-size: 11px; font-weight: 600;">
+            📦 Amazon iPhone 17
+          </button>
+          <button type="button" class="sample-url-pill" data-url="https://www.flipkart.com/search?q=Apple+iPhone+16+128GB" style="background-color: var(--bg-secondary); border: 1px solid var(--border-color); color: var(--text-main); padding: 4px 10px; border-radius: var(--radius-pill); cursor: pointer; font-size: 11px; font-weight: 600;">
+            ⚡ Flipkart iPhone 16
+          </button>
+          <button type="button" class="sample-url-pill" data-url="https://www.amazon.in/s?k=Samsung+Galaxy+S25+Ultra" style="background-color: var(--bg-secondary); border: 1px solid var(--border-color); color: var(--text-main); padding: 4px 10px; border-radius: var(--radius-pill); cursor: pointer; font-size: 11px; font-weight: 600;">
+            ⚡ Amazon Galaxy S25 Ultra
+          </button>
+          <button type="button" class="sample-url-pill" data-url="https://www.amazon.in/s?k=Apple+MacBook+Air+13+inch+M-series" style="background-color: var(--bg-secondary); border: 1px solid var(--border-color); color: var(--text-main); padding: 4px 10px; border-radius: var(--radius-pill); cursor: pointer; font-size: 11px; font-weight: 600;">
+            💻 Amazon MacBook Air 13"
+          </button>
+          <button type="button" class="sample-url-pill" data-url="https://www.amazon.in/s?k=Apple+AirPods+4" style="background-color: var(--bg-secondary); border: 1px solid var(--border-color); color: var(--text-main); padding: 4px 10px; border-radius: var(--radius-pill); cursor: pointer; font-size: 11px; font-weight: 600;">
+            🎧 Amazon AirPods 4
+          </button>
+          <button type="button" class="sample-url-pill" data-url="https://www.flipkart.com/search?q=Puma+Smashic+sneakers" style="background-color: var(--bg-secondary); border: 1px solid var(--border-color); color: var(--text-main); padding: 4px 10px; border-radius: var(--radius-pill); cursor: pointer; font-size: 11px; font-weight: 600;">
+            👟 Flipkart Puma Smashic
+          </button>
+          <button type="button" class="sample-url-pill" data-url="https://www.myntra.com/men-oversized-graphic-t-shirt" style="background-color: var(--bg-secondary); border: 1px solid var(--border-color); color: var(--text-main); padding: 4px 10px; border-radius: var(--radius-pill); cursor: pointer; font-size: 11px; font-weight: 600;">
+            👕 Myntra Oversized T-Shirt
+          </button>
+          <button type="button" class="sample-url-pill" data-url="https://www.amazon.in/s?k=Safari+Pixibeat+36L+laptop+backpack" style="background-color: var(--bg-secondary); border: 1px solid var(--border-color); color: var(--text-main); padding: 4px 10px; border-radius: var(--radius-pill); cursor: pointer; font-size: 11px; font-weight: 600;">
+            🎒 Amazon Safari Pixibeat
+          </button>
+          <button type="button" class="sample-url-pill" data-url="https://www.ajio.com/search/?text=USB+C+hub+multiport" style="background-color: var(--bg-secondary); border: 1px solid var(--border-color); color: var(--text-main); padding: 4px 10px; border-radius: var(--radius-pill); cursor: pointer; font-size: 11px; font-weight: 600;">
+            🔌 AJIO USB-C Hub
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Loading State Indicator -->
+      <div id="comparisonLoader" style="display: none; max-width: 600px; margin: 2rem auto; text-align: center;">
+        <div class="store-scanner-container" style="background-color: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 2rem; box-shadow: var(--shadow-sm);">
+          <div class="store-scanner-spinner" style="margin: 0 auto 1rem auto;"></div>
+          <h4 id="comparisonLoadingStatus" style="font-size: 16px; font-weight: 800; color: var(--text-main); margin-bottom: 6px;">
+            Analyzing product link & security checks...
+          </h4>
+          <p style="font-size: 13px; color: var(--text-secondary);">
+            Matching exact variants across Amazon, Flipkart, Croma, Reliance Digital & Myntra...
+          </p>
+        </div>
+      </div>
+
+      <!-- Error Message Box -->
+      <div id="comparisonErrorBox" style="display: none; max-width: 960px; margin: 1.5rem auto 0 auto; background-color: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: var(--radius-md); padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 12px;">
+        <span style="font-size: 24px;">⚠️</span>
+        <div style="flex: 1;">
+          <strong style="color: #ef4444; font-size: 14px; display: block;">Comparison Error</strong>
+          <span id="comparisonErrorMessage" style="font-size: 13px; color: var(--text-main);"></span>
+        </div>
+        <button type="button" onclick="hideComparisonError()" style="background: none; border: none; font-size: 16px; color: var(--text-muted); cursor: pointer;">✕</button>
+      </div>
+
+      <!-- Comparison Results Container -->
+      <div id="urlComparisonResults" style="display: none; max-width: 960px; margin: 2.5rem auto 0 auto;">
+        
+        <!-- 1. Product Identity Card -->
+        <div style="background-color: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 1.75rem; box-shadow: var(--shadow-sm); margin-bottom: 1.5rem; display: grid; grid-template-columns: 140px 1fr; gap: 1.5rem; align-items: center;">
+          <div style="width: 140px; height: 140px; background-color: var(--bg-thumbnail); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 10px;">
+            <img id="comparedProductImage" src="" alt="Product Photo" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+          </div>
           <div>
-            <h5>Free Shipping</h5>
-            <p>On orders over $50</p>
+            <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 6px; flex-wrap: wrap;">
+              <span id="comparedProductBrand" style="font-size: 12px; font-weight: 700; text-transform: uppercase; color: var(--primary);"></span>
+              <span id="comparedProductSku" style="font-size: 11px; color: var(--text-muted); background-color: var(--bg-secondary); padding: 2px 6px; border-radius: var(--radius-xs);"></span>
+            </div>
+            <h3 id="comparedProductTitle" style="font-size: 20px; font-weight: 800; color: var(--text-main); margin-bottom: 6px; line-height: 1.3;"></h3>
+            <div id="comparedProductModel" style="font-size: 13px; color: var(--text-secondary); margin-bottom: 10px;"></div>
+            <div id="comparedProductSpecs" style="display: flex; gap: 6px; flex-wrap: wrap;"></div>
           </div>
         </div>
 
-        <div class="value-prop-item">
-          <div class="value-prop-icon">🔒</div>
+        <!-- 2. Price Summary Highlights Strip -->
+        <div style="background: linear-gradient(135deg, rgba(255, 78, 39, 0.08), rgba(16, 185, 129, 0.08)); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem 1.5rem; margin-bottom: 1.75rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; align-items: center;">
           <div>
-            <h5>Secure Payments</h5>
-            <p>100% secure checkout</p>
+            <small style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: #10b981;">Lowest Available Price</small>
+            <div id="summaryLowestPrice" style="font-size: 24px; font-weight: 900; color: #10b981;">—</div>
+          </div>
+          <div>
+            <small style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--text-muted);">Highest Available Price</small>
+            <div id="summaryHighestPrice" style="font-size: 20px; font-weight: 800; color: var(--text-main);">—</div>
+          </div>
+          <div>
+            <small style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--primary);">Maximum Potential Savings</small>
+            <div id="summaryPotentialSavings" style="font-size: 20px; font-weight: 800; color: var(--primary);">—</div>
           </div>
         </div>
 
-        <div class="value-prop-item">
-          <div class="value-prop-icon">🔄</div>
-          <div>
-            <h5>Easy Returns</h5>
-            <p>30-day return policy</p>
-          </div>
+        <!-- 3. Verified Seller Offers Header -->
+        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1rem;">
+          <h3 style="font-size: 18px; font-weight: 800; color: var(--text-main);">Verified Marketplace Offers</h3>
+          <span style="font-size: 12px; color: var(--text-muted);">Total Cost = Selling Price + Delivery Charge</span>
         </div>
 
-        <div class="value-prop-item">
-          <div class="value-prop-icon">🎧</div>
+        <!-- Seller Offers Container -->
+        <div id="sellerOffersContainer" style="margin-bottom: 2.5rem;">
+          <!-- Dynamically populated by url-comparison.js -->
+        </div>
+
+        <!-- 4. 30-DAY PRICE HISTORY (SECTION 5) -->
+        <div id="historyChartSection" style="background-color: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 2rem; box-shadow: var(--shadow-sm); margin-bottom: 2.5rem; position: relative;">
+          
+          <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1rem; flex-wrap: wrap; gap: 1rem;">
+            <div>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <h3 style="font-size: 20px; font-weight: 800; color: var(--text-main); font-family: var(--font-display);">30-DAY PRICE HISTORY</h3>
+                <span style="background-color: var(--primary-light); color: var(--primary); font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: var(--radius-pill);">GENUINE RECORDS</span>
+              </div>
+              <p style="font-size: 13px; color: var(--text-secondary); margin-top: 4px;">
+                Authentic stored price history over previous 30 days. Each seller represented with a distinct color.
+              </p>
+            </div>
+            <div id="sellerFilterCheckboxes" style="display: flex; gap: 12px; flex-wrap: wrap;">
+              <!-- Populated by url-comparison.js -->
+            </div>
+          </div>
+
+          <!-- History Tracking Notice (For new or established tracking) -->
+          <div id="historyTrackingNotice" style="background-color: var(--bg-secondary); border-left: 4px solid var(--primary); padding: 10px 14px; border-radius: var(--radius-xs); font-size: 13px; color: var(--text-secondary); margin-bottom: 1.5rem;">
+            Loading authentic historical records...
+          </div>
+
+          <!-- Canvas Chart -->
+          <div style="position: relative; width: 100%; min-height: 280px;">
+            <canvas id="history30DayCanvas" style="width: 100%; height: 280px; display: block;"></canvas>
+            
+            <!-- Floating Hover Tooltip -->
+            <div id="chartHoverTooltip" style="display: none; position: absolute; pointer-events: none; background-color: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 8px 12px; box-shadow: var(--shadow-md); z-index: 10; min-width: 150px;"></div>
+          </div>
+
+          <!-- Price Summary Metrics Grid -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; margin-top: 1.5rem; border-top: 1px solid var(--border-color); padding-top: 1.5rem;">
+            <div style="background-color: var(--bg-secondary); padding: 12px; border-radius: var(--radius-sm);">
+              <small style="display: block; font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Current Price</small>
+              <div id="histCurrentPrice" style="font-size: 16px; font-weight: 800; color: var(--text-main); margin-top: 2px;">—</div>
+            </div>
+            <div style="background-color: var(--bg-secondary); padding: 12px; border-radius: var(--radius-sm);">
+              <small style="display: block; font-size: 11px; font-weight: 700; color: #10b981; text-transform: uppercase;">30d Lowest</small>
+              <div id="histLowestPrice" style="font-size: 16px; font-weight: 800; color: #10b981; margin-top: 2px;">—</div>
+            </div>
+            <div style="background-color: var(--bg-secondary); padding: 12px; border-radius: var(--radius-sm);">
+              <small style="display: block; font-size: 11px; font-weight: 700; color: #ef4444; text-transform: uppercase;">30d Highest</small>
+              <div id="histHighestPrice" style="font-size: 16px; font-weight: 800; color: #ef4444; margin-top: 2px;">—</div>
+            </div>
+            <div style="background-color: var(--bg-secondary); padding: 12px; border-radius: var(--radius-sm);">
+              <small style="display: block; font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">30d Average</small>
+              <div id="histAvgPrice" style="font-size: 16px; font-weight: 800; color: var(--text-main); margin-top: 2px;">—</div>
+            </div>
+            <div style="background-color: var(--bg-secondary); padding: 12px; border-radius: var(--radius-sm);">
+              <small style="display: block; font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Net Price Change</small>
+              <div id="histTotalChange" style="font-size: 16px; font-weight: 800; color: var(--text-main); margin-top: 2px;">—</div>
+            </div>
+            <div style="background-color: var(--bg-secondary); padding: 12px; border-radius: var(--radius-sm);">
+              <small style="display: block; font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">30d Trend (%)</small>
+              <div id="histPctChange" style="font-size: 14px; font-weight: 800; color: var(--text-muted); margin-top: 2px;">—</div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- 5. AUTOMATIC PRICE TRACKING CONTROL (SECTION 6) -->
+        <div style="background-color: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 1.75rem; box-shadow: var(--shadow-sm); margin-bottom: 2.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem;">
           <div>
-            <h5>24/7 Support</h5>
-            <p>Always here to help</p>
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 6px;">
+              <h4 style="font-size: 16px; font-weight: 800; color: var(--text-main);">Automatic 24-Hour Price Monitoring</h4>
+              <span id="trackingStatusBadge" style="font-size: 11px; font-weight: 800; padding: 2px 8px; border-radius: var(--radius-pill); background-color: var(--bg-secondary); color: var(--text-muted);">
+                CHECKING...
+              </span>
+            </div>
+            <div style="font-size: 12px; color: var(--text-secondary); line-height: 1.5;">
+              <span>Last checked: <strong id="trackingLastCheck">—</strong></span> • 
+              <span>Next scheduled check: <strong id="trackingNextCheck">—</strong></span>
+            </div>
+            <div style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">
+              Data Source: <span id="trackingDataSource">Official Marketplace Adapters &amp; Verified Multi-Store Feeds</span>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 10px; align-items: center;">
+            <button type="button" id="btnRefreshTracking" class="btn-secondary" style="font-size: 13px; font-weight: 700; padding: 10px 16px;">
+              🔄 Refresh Prices Now
+            </button>
+            <button type="button" id="btnToggleTracking" class="btn-primary" style="font-size: 13px; font-weight: 700; padding: 10px 18px;">
+              🔔 Enable 24h Price Tracking
+            </button>
           </div>
         </div>
 
       </div>
+
+      <!-- 6. MARKETPLACE INTEGRATION STATUS DASHBOARD (SECTION 11) -->
+      <div style="max-width: 960px; margin: 3.5rem auto 0 auto;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+          <div>
+            <h4 style="font-size: 16px; font-weight: 800; color: var(--text-main);">E-Commerce Marketplace Integrations</h4>
+            <p style="font-size: 12px; color: var(--text-secondary);">Direct API connection status and permissions for supported marketplaces.</p>
+          </div>
+          <button type="button" onclick="loadIntegrationsStatus()" class="btn-secondary" style="padding: 6px 12px; font-size: 12px;">
+            ↻ Check Status
+          </button>
+        </div>
+
+        <div id="integrationsStatusGrid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem;">
+          <!-- Populated by url-comparison.js -->
+        </div>
+      </div>
+
+      <!-- 7. 100 VERIFIED RESEARCH PRODUCTS & DIRECT STORE LINKS DIRECTORY -->
+      <div id="verifiedProductsDirectory" style="max-width: 960px; margin: 3.5rem auto 0 auto; background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 2rem; box-shadow: var(--shadow-sm);">
+        
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
+          <div>
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+              <span style="font-size: 22px;">🌐</span>
+              <h3 style="font-size: 20px; font-weight: 800; color: var(--text-main); margin: 0;">100 Verified Research Products &amp; Store Links</h3>
+            </div>
+            <p style="font-size: 13px; color: var(--text-secondary); margin: 0;">
+              Direct product URLs across Amazon India, Flipkart, Myntra, and AJIO. Click <strong>“⚡ Compare in PriceHunt”</strong> to run an instant comparison or <strong>“Visit Store ↗”</strong> to open the retailer's live product.
+            </p>
+          </div>
+          <span style="font-size: 12px; font-weight: 700; color: var(--primary); background: var(--primary-light); padding: 6px 12px; border-radius: var(--radius-pill); border: 1px solid rgba(255, 78, 39, 0.2);">
+            100 Verified Links
+          </span>
+        </div>
+
+        <!-- Filter Controls: Categories + Live Search -->
+        <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 1.25rem;">
+          
+          <div id="directoryCategoryPills" style="display: flex; gap: 6px; flex-wrap: wrap;">
+            <button type="button" class="dir-cat-pill active" data-cat="all">All (100)</button>
+            <button type="button" class="dir-cat-pill" data-cat="Smartphones">📱 Smartphones (15)</button>
+            <button type="button" class="dir-cat-pill" data-cat="Laptops">💻 Laptops (10)</button>
+            <button type="button" class="dir-cat-pill" data-cat="Electronics & Gadgets">🎧 Electronics &amp; Gadgets (20)</button>
+            <button type="button" class="dir-cat-pill" data-cat="Fashion & Clothing">👕 Fashion &amp; Clothing (20)</button>
+            <button type="button" class="dir-cat-pill" data-cat="Footwear">👟 Footwear (15)</button>
+            <button type="button" class="dir-cat-pill" data-cat="Accessories">🎒 Accessories (20)</button>
+          </div>
+
+          <div style="display: flex; gap: 10px; align-items: center;">
+            <div style="position: relative; flex: 1;">
+              <span style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); font-size: 14px; color: var(--text-muted);">🔍</span>
+              <input type="text" id="directorySearchInput" placeholder="Quick filter by product name or store (e.g. iPhone 17, Galaxy S25, Vivobook, Nike)..." 
+                     style="width: 100%; height: 42px; padding: 0 14px 0 38px; border: 1px solid var(--border-color); border-radius: var(--radius-md); background: var(--bg-secondary); color: var(--text-main); font-size: 13px; font-weight: 500; outline: none; transition: var(--transition);">
+            </div>
+            <span id="directoryCountLabel" style="font-size: 12px; color: var(--text-muted); font-weight: 600; white-space: nowrap;">
+              Showing 100 of 100
+            </span>
+          </div>
+
+        </div>
+
+        <!-- Scrollable Products Directory List -->
+        <div id="directoryProductsList" style="display: flex; flex-direction: column; gap: 8px; max-height: 520px; overflow-y: auto; padding-right: 6px;">
+          <!-- Dynamically populated by url-comparison.js -->
+        </div>
+
+      </div>
+
     </div>
   </section>
 
+
   <!-- =========================================================================
-       5. SHOP BY CATEGORIES (6 PHOTO CARDS)
+       5. SHOP BY CATEGORIES (6 OFFICIAL CATALOGUE CATEGORIES)
        ========================================================================= -->
   <section class="categories-section" id="categories">
     <div class="container">
       
       <div class="section-header">
-        <h2>Shop by Categories</h2>
+        <div>
+          <h2>Shop by Categories</h2>
+          <p style="color: var(--text-secondary); font-size: 13px; margin-top: 4px;">Explore 100 trending products researched across Amazon, Flipkart, Myntra & AJIO.</p>
+        </div>
         <a href="search.html" class="section-view-all">
-          View All Categories <span>➔</span>
+          View All 100 Products <span>➔</span>
         </a>
       </div>
 
       <div class="categories-grid-6">
         
-        <!-- Category 1: Fashion -->
-        <a href="search.html?category=Fashion" class="category-card">
+        <!-- Category 1: Smartphones (15 Products) -->
+        <a href="search.html?category=Smartphones" class="category-card" title="Browse 15 Trending Smartphones">
           <div class="category-photo">
-            <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=500&auto=format&fit=crop&q=80" alt="Fashion">
+            <img src="https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=500&auto=format&fit=crop&q=80" alt="Smartphones" loading="lazy">
           </div>
           <div class="category-body">
-            <h4>Fashion</h4>
-            <span>Shop Now ➔</span>
+            <h4>Smartphones</h4>
+            <span>15 Products ➔</span>
           </div>
         </a>
 
-        <!-- Category 2: Electronics -->
-        <a href="search.html?category=Electronics" class="category-card">
+        <!-- Category 2: Laptops (10 Products) -->
+        <a href="search.html?category=Laptops" class="category-card" title="Browse 10 High Performance Laptops">
           <div class="category-photo">
-            <img src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=500&auto=format&fit=crop&q=80" alt="Electronics">
+            <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=500&auto=format&fit=crop&q=80" alt="Laptops" loading="lazy">
           </div>
           <div class="category-body">
-            <h4>Electronics</h4>
-            <span>Shop Now ➔</span>
+            <h4>Laptops</h4>
+            <span>10 Products ➔</span>
           </div>
         </a>
 
-        <!-- Category 3: Beauty -->
-        <a href="search.html?category=Beauty" class="category-card">
+        <!-- Category 3: Electronics & Gadgets (20 Products) -->
+        <a href="search.html?category=Electronics%20%26%20Gadgets" class="category-card" title="Browse 20 Electronics & Gadgets">
           <div class="category-photo">
-            <img src="https://images.unsplash.com/photo-1608248597359-bb59c086d4e1?w=500&auto=format&fit=crop&q=80" alt="Beauty">
+            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&auto=format&fit=crop&q=80" alt="Electronics & Gadgets" loading="lazy">
           </div>
           <div class="category-body">
-            <h4>Beauty</h4>
-            <span>Shop Now ➔</span>
+            <h4>Electronics &amp; Gadgets</h4>
+            <span>20 Products ➔</span>
           </div>
         </a>
 
-        <!-- Category 4: Fitness -->
-        <a href="search.html?category=Fitness" class="category-card">
+        <!-- Category 4: Fashion & Clothing (20 Products) -->
+        <a href="search.html?category=Fashion%20%26%20Clothing" class="category-card" title="Browse 20 Fashion & Clothing Items">
           <div class="category-photo">
-            <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=500&auto=format&fit=crop&q=80" alt="Fitness">
+            <img src="https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?w=500&auto=format&fit=crop&q=80" alt="Fashion & Clothing" loading="lazy">
           </div>
           <div class="category-body">
-            <h4>Fitness</h4>
-            <span>Shop Now ➔</span>
+            <h4>Fashion &amp; Clothing</h4>
+            <span>20 Products ➔</span>
           </div>
         </a>
 
-        <!-- Category 5: Home Decor -->
-        <a href="search.html?category=HomeDecor" class="category-card">
+        <!-- Category 5: Footwear (15 Products) -->
+        <a href="search.html?category=Footwear" class="category-card" title="Browse 15 Footwear & Sneakers">
           <div class="category-photo">
-            <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=500&auto=format&fit=crop&q=80" alt="Home Decor">
+            <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=500&auto=format&fit=crop&q=80" alt="Footwear" loading="lazy">
           </div>
           <div class="category-body">
-            <h4>Home Decor</h4>
-            <span>Shop Now ➔</span>
+            <h4>Footwear</h4>
+            <span>15 Products ➔</span>
           </div>
         </a>
 
-        <!-- Category 6: Accessories -->
-        <a href="search.html?category=Accessories" class="category-card">
+        <!-- Category 6: Accessories (20 Products) -->
+        <a href="search.html?category=Accessories" class="category-card" title="Browse 20 Backpacks, Watches & Accessories">
           <div class="category-photo">
-            <img src="https://images.unsplash.com/photo-1524805444758-089113d48a6d?w=500&auto=format&fit=crop&q=80" alt="Accessories">
+            <img src="https://images.unsplash.com/photo-1524805444758-089113d48a6d?w=500&auto=format&fit=crop&q=80" alt="Accessories" loading="lazy">
           </div>
           <div class="category-body">
             <h4>Accessories</h4>
-            <span>Shop Now ➔</span>
+            <span>20 Products ➔</span>
           </div>
         </a>
 
@@ -322,34 +639,37 @@
   </section>
 
   <!-- =========================================================================
-       6. NEW ARRIVALS (6 PRODUCT CARDS)
+       6. NEW ARRIVALS (6 HIGH-DEMAND CATALOGUE CANDIDATES)
        ========================================================================= -->
   <section class="new-arrivals-section" id="new-arrivals">
     <div class="container">
       
       <div class="section-header">
-        <h2>New Arrivals</h2>
+        <div>
+          <h2>New Arrivals</h2>
+          <p style="color: var(--text-secondary); font-size: 13px; margin-top: 4px;">Top newly added candidate listings with verified multi-store price comparisons.</p>
+        </div>
         <div style="display: flex; align-items: center; gap: 1.5rem;">
           <a href="search.html" class="section-view-all">
             View All New Arrivals <span>➔</span>
           </a>
           <div class="carousel-nav-arrows">
-            <button type="button" class="carousel-arrow-btn" title="Previous">‹</button>
-            <button type="button" class="carousel-arrow-btn" title="Next">›</button>
+            <button type="button" class="carousel-arrow-btn" title="Previous" onclick="window.location.href='search.html'">‹</button>
+            <button type="button" class="carousel-arrow-btn" title="Next" onclick="window.location.href='search.html'">›</button>
           </div>
         </div>
       </div>
 
       <div class="products-grid-6">
         
-        <!-- Product 1: Apple iPhone 15 -->
+        <!-- Product 1: Apple iPhone 16 (#2) -->
         <div class="product-item-card">
           <div class="card-top-badges">
-            <span class="badge-tag tag-discount">-20%</span>
-            <button type="button" class="btn-wishlist" title="Save to Wishlist">♡</button>
+            <span class="badge-tag tag-discount">-6%</span>
+            <button type="button" class="btn-wishlist" onclick="toggleFavorite(2, this)" title="Save to Wishlist">♡</button>
           </div>
-          <a href="product.html?id=1" class="product-thumb-wrap">
-            <img src="https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=500&auto=format&fit=crop&q=80" alt="Apple iPhone 15">
+          <a href="product.html?id=2" class="product-thumb-wrap">
+            <img src="https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?w=500&auto=format&fit=crop&q=80" alt="Apple iPhone 16" loading="lazy">
           </a>
           <div class="product-card-details">
             <div class="card-store-banner">
@@ -357,34 +677,139 @@
                 <img src="https://logos-world.net/wp-content/uploads/2020/11/Flipkart-Logo.png" alt="Flipkart">
                 Flipkart
               </span>
-              <span class="store-savings-badge">Save ₹15,901</span>
+              <span class="store-savings-badge">Save ₹4,901</span>
             </div>
-            <h3 class="product-card-title"><a href="product.html?id=1" style="color: inherit; text-decoration: none;">Apple iPhone 15 (128 GB)</a></h3>
+            <h3 class="product-card-title"><a href="product.html?id=2" style="color: inherit; text-decoration: none;">Apple iPhone 16</a></h3>
             <div class="product-store-pricing">
               <div class="store-price-row">
-                <span class="store-deal-price">₹63,999</span>
+                <span class="store-deal-price">₹74,999</span>
                 <span class="store-original-price">₹79,900</span>
               </div>
-              <small class="store-origin-label">Original price on Flipkart</small>
+              <small class="store-origin-label">Best price on Flipkart</small>
             </div>
-            <div class="product-stars">★★★★★ <span class="review-count-text">(4,210)</span></div>
+            <div class="product-stars">★★★★★ <span class="review-count-text">(2,858)</span></div>
             <div class="product-card-actions-row">
-              <a href="https://www.flipkart.com/search?q=Apple+iPhone+15+128GB+Blue" target="_blank" rel="noopener noreferrer" class="btn-visit-store">
+              <a href="https://www.flipkart.com/search?q=Apple+iPhone+16+128GB" target="_blank" rel="noopener noreferrer" class="btn-visit-store">
                 Buy on Flipkart ↗
               </a>
-              <button type="button" class="btn-compare-action" title="Compare across Amazon, Flipkart, Ajio" onclick="openQuickCompare(1)">🛍️</button>
+              <button type="button" class="btn-compare-action" title="Compare across Amazon, Flipkart, Myntra, AJIO" onclick="openQuickCompare(2)">🛍️</button>
             </div>
           </div>
         </div>
 
-        <!-- Product 2: Nike Air Max 270 -->
+        <!-- Product 2: Samsung Galaxy S25 Ultra (#3) -->
         <div class="product-item-card">
           <div class="card-top-badges">
-            <span class="badge-tag tag-discount">-28%</span>
-            <button type="button" class="btn-wishlist" title="Save to Wishlist">♡</button>
+            <span class="badge-tag tag-discount">-11%</span>
+            <button type="button" class="btn-wishlist" onclick="toggleFavorite(3, this)" title="Save to Wishlist">♡</button>
           </div>
-          <a href="product.html?id=2" class="product-thumb-wrap">
-            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&auto=format&fit=crop&q=80" alt="Nike Air Max 270">
+          <a href="product.html?id=3" class="product-thumb-wrap">
+            <img src="https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=500&auto=format&fit=crop&q=80" alt="Samsung Galaxy S25 Ultra" loading="lazy">
+          </a>
+          <div class="product-card-details">
+            <div class="card-store-banner">
+              <span class="store-origin-tag">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon">
+                Amazon
+              </span>
+              <span class="store-savings-badge">Save ₹15,000</span>
+            </div>
+            <h3 class="product-card-title"><a href="product.html?id=3" style="color: inherit; text-decoration: none;">Samsung Galaxy S25 Ultra</a></h3>
+            <div class="product-store-pricing">
+              <div class="store-price-row">
+                <span class="store-deal-price">₹1,24,999</span>
+                <span class="store-original-price">₹1,39,999</span>
+              </div>
+              <small class="store-origin-label">Best price on Amazon</small>
+            </div>
+            <div class="product-stars">★★★★★ <span class="review-count-text">(3,120)</span></div>
+            <div class="product-card-actions-row">
+              <a href="https://www.amazon.in/s?k=Samsung+Galaxy+S25+Ultra" target="_blank" rel="noopener noreferrer" class="btn-visit-store">
+                Buy on Amazon ↗
+              </a>
+              <button type="button" class="btn-compare-action" title="Compare across Amazon, Flipkart, Myntra, AJIO" onclick="openQuickCompare(3)">🛍️</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 3: Apple MacBook Air 13-inch (#17) -->
+        <div class="product-item-card">
+          <div class="card-top-badges">
+            <span class="badge-tag tag-discount">-17%</span>
+            <button type="button" class="btn-wishlist" onclick="toggleFavorite(17, this)" title="Save to Wishlist">♡</button>
+          </div>
+          <a href="product.html?id=17" class="product-thumb-wrap">
+            <img src="https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?w=500&auto=format&fit=crop&q=80" alt="Apple MacBook Air 13-inch" loading="lazy">
+          </a>
+          <div class="product-card-details">
+            <div class="card-store-banner">
+              <span class="store-origin-tag">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon">
+                Amazon
+              </span>
+              <span class="store-savings-badge">Save ₹16,910</span>
+            </div>
+            <h3 class="product-card-title"><a href="product.html?id=17" style="color: inherit; text-decoration: none;">Apple MacBook Air 13"</a></h3>
+            <div class="product-store-pricing">
+              <div class="store-price-row">
+                <span class="store-deal-price">₹82,990</span>
+                <span class="store-original-price">₹99,900</span>
+              </div>
+              <small class="store-origin-label">Best price on Amazon</small>
+            </div>
+            <div class="product-stars">★★★★★ <span class="review-count-text">(4,190)</span></div>
+            <div class="product-card-actions-row">
+              <a href="https://www.amazon.in/s?k=Apple+MacBook+Air+13+inch+M-series" target="_blank" rel="noopener noreferrer" class="btn-visit-store">
+                Buy on Amazon ↗
+              </a>
+              <button type="button" class="btn-compare-action" title="Compare across Amazon, Flipkart, Myntra, AJIO" onclick="openQuickCompare(17)">🛍️</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 4: Sony WH-CH720N (#35) -->
+        <div class="product-item-card">
+          <div class="card-top-badges">
+            <span class="badge-tag tag-discount">-43%</span>
+            <button type="button" class="btn-wishlist" onclick="toggleFavorite(35, this)" title="Save to Wishlist">♡</button>
+          </div>
+          <a href="product.html?id=35" class="product-thumb-wrap">
+            <img src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=500&auto=format&fit=crop&q=80" alt="Sony WH-CH720N" loading="lazy">
+          </a>
+          <div class="product-card-details">
+            <div class="card-store-banner">
+              <span class="store-origin-tag">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon">
+                Amazon
+              </span>
+              <span class="store-savings-badge">Save ₹6,500</span>
+            </div>
+            <h3 class="product-card-title"><a href="product.html?id=35" style="color: inherit; text-decoration: none;">Sony WH-CH720N ANC</a></h3>
+            <div class="product-store-pricing">
+              <div class="store-price-row">
+                <span class="store-deal-price">₹8,490</span>
+                <span class="store-original-price">₹14,990</span>
+              </div>
+              <small class="store-origin-label">Best price on Amazon</small>
+            </div>
+            <div class="product-stars">★★★★★ <span class="review-count-text">(3,585)</span></div>
+            <div class="product-card-actions-row">
+              <a href="https://www.amazon.in/s?k=Sony+WH-CH720N+headphones" target="_blank" rel="noopener noreferrer" class="btn-visit-store">
+                Buy on Amazon ↗
+              </a>
+              <button type="button" class="btn-compare-action" title="Compare across Amazon, Flipkart, Myntra, AJIO" onclick="openQuickCompare(35)">🛍️</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 5: Men's oversized graphic T-shirt (#46) -->
+        <div class="product-item-card">
+          <div class="card-top-badges">
+            <span class="badge-tag tag-discount">-53%</span>
+            <button type="button" class="btn-wishlist" onclick="toggleFavorite(46, this)" title="Save to Wishlist">♡</button>
+          </div>
+          <a href="product.html?id=46" class="product-thumb-wrap">
+            <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=500&auto=format&fit=crop&q=80" alt="Men's oversized graphic T-shirt" loading="lazy">
           </a>
           <div class="product-card-details">
             <div class="card-store-banner">
@@ -392,34 +817,34 @@
                 <img src="https://images.indianexpress.com/2021/01/myntra.png" alt="Myntra">
                 Myntra
               </span>
-              <span class="store-savings-badge">Save ₹4,000</span>
+              <span class="store-savings-badge">Save ₹800</span>
             </div>
-            <h3 class="product-card-title"><a href="product.html?id=2" style="color: inherit; text-decoration: none;">Nike Air Max 270 Sneakers</a></h3>
+            <h3 class="product-card-title"><a href="product.html?id=46" style="color: inherit; text-decoration: none;">Men's Oversized T-shirt</a></h3>
             <div class="product-store-pricing">
               <div class="store-price-row">
-                <span class="store-deal-price">₹9,995</span>
-                <span class="store-original-price">₹13,995</span>
+                <span class="store-deal-price">₹699</span>
+                <span class="store-original-price">₹1,499</span>
               </div>
-              <small class="store-origin-label">Original price on Myntra</small>
+              <small class="store-origin-label">Best price on Myntra</small>
             </div>
-            <div class="product-stars">★★★★★ <span class="review-count-text">(1,890)</span></div>
+            <div class="product-stars">★★★★★ <span class="review-count-text">(3,420)</span></div>
             <div class="product-card-actions-row">
-              <a href="https://www.myntra.com/search?q=Nike%20Air%20Max%20270" target="_blank" rel="noopener noreferrer" class="btn-visit-store">
+              <a href="https://www.myntra.com/men-oversized-graphic-t-shirt" target="_blank" rel="noopener noreferrer" class="btn-visit-store">
                 Buy on Myntra ↗
               </a>
-              <button type="button" class="btn-compare-action" title="Compare across Amazon, Myntra, Flipkart" onclick="openQuickCompare(2)">🛍️</button>
+              <button type="button" class="btn-compare-action" title="Compare across Amazon, Flipkart, Myntra, AJIO" onclick="openQuickCompare(46)">🛍️</button>
             </div>
           </div>
         </div>
 
-        <!-- Product 3: Sony WH-1000XM5 -->
+        <!-- Product 6: Safari Pixibeat 36L Backpack (#81) -->
         <div class="product-item-card">
           <div class="card-top-badges">
-            <span class="badge-tag tag-discount">-23%</span>
-            <button type="button" class="btn-wishlist" title="Save to Wishlist">♡</button>
+            <span class="badge-tag tag-discount">-62%</span>
+            <button type="button" class="btn-wishlist" onclick="toggleFavorite(81, this)" title="Save to Wishlist">♡</button>
           </div>
-          <a href="product.html?id=3" class="product-thumb-wrap">
-            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&auto=format&fit=crop&q=80" alt="Sony WH-1000XM5">
+          <a href="product.html?id=81" class="product-thumb-wrap">
+            <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500&auto=format&fit=crop&q=80" alt="Safari Pixibeat 36L backpack" loading="lazy">
           </a>
           <div class="product-card-details">
             <div class="card-store-banner">
@@ -427,127 +852,22 @@
                 <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon">
                 Amazon
               </span>
-              <span class="store-savings-badge">Save ₹8,000</span>
+              <span class="store-savings-badge">Save ₹2,400</span>
             </div>
-            <h3 class="product-card-title"><a href="product.html?id=3" style="color: inherit; text-decoration: none;">Sony WH-1000XM5 Headphones</a></h3>
+            <h3 class="product-card-title"><a href="product.html?id=81" style="color: inherit; text-decoration: none;">Safari Pixibeat 36L Backpack</a></h3>
             <div class="product-store-pricing">
               <div class="store-price-row">
-                <span class="store-deal-price">₹26,990</span>
-                <span class="store-original-price">₹34,990</span>
+                <span class="store-deal-price">₹1,499</span>
+                <span class="store-original-price">₹3,899</span>
               </div>
-              <small class="store-origin-label">Original price on Amazon</small>
+              <small class="store-origin-label">Best price on Amazon</small>
             </div>
-            <div class="product-stars">★★★★★ <span class="review-count-text">(5,820)</span></div>
+            <div class="product-stars">★★★★★ <span class="review-count-text">(1,840)</span></div>
             <div class="product-card-actions-row">
-              <a href="https://www.amazon.in/s?k=Sony+WH-1000XM5" target="_blank" rel="noopener noreferrer" class="btn-visit-store">
+              <a href="https://www.amazon.in/s?k=Safari+Pixibeat+36L+laptop+backpack" target="_blank" rel="noopener noreferrer" class="btn-visit-store">
                 Buy on Amazon ↗
               </a>
-              <button type="button" class="btn-compare-action" title="Compare across Amazon, Flipkart, Croma" onclick="openQuickCompare(3)">🛍️</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Product 4: Apple Watch Series 9 -->
-        <div class="product-item-card">
-          <div class="card-top-badges">
-            <span class="badge-tag tag-discount">-13%</span>
-            <button type="button" class="btn-wishlist" title="Save to Wishlist">♡</button>
-          </div>
-          <a href="product.html?id=4" class="product-thumb-wrap">
-            <img src="https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=500&auto=format&fit=crop&q=80" alt="Apple Watch Series 9">
-          </a>
-          <div class="product-card-details">
-            <div class="card-store-banner">
-              <span class="store-origin-tag">
-                <img src="https://logos-world.net/wp-content/uploads/2020/11/Flipkart-Logo.png" alt="Flipkart">
-                Flipkart
-              </span>
-              <span class="store-savings-badge">Save ₹5,901</span>
-            </div>
-            <h3 class="product-card-title"><a href="product.html?id=4" style="color: inherit; text-decoration: none;">Apple Watch Series 9 (45mm)</a></h3>
-            <div class="product-store-pricing">
-              <div class="store-price-row">
-                <span class="store-deal-price">₹38,999</span>
-                <span class="store-original-price">₹44,900</span>
-              </div>
-              <small class="store-origin-label">Original price on Flipkart</small>
-            </div>
-            <div class="product-stars">★★★★★ <span class="review-count-text">(1,950)</span></div>
-            <div class="product-card-actions-row">
-              <a href="https://www.flipkart.com/search?q=Apple+Watch+Series+9+45mm" target="_blank" rel="noopener noreferrer" class="btn-visit-store">
-                Buy on Flipkart ↗
-              </a>
-              <button type="button" class="btn-compare-action" title="Compare across Amazon, Flipkart, Croma" onclick="openQuickCompare(4)">🛍️</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Product 5: Levi's 511 Slim Jeans -->
-        <div class="product-item-card">
-          <div class="card-top-badges">
-            <span class="badge-tag tag-discount">-45%</span>
-            <button type="button" class="btn-wishlist" title="Save to Wishlist">♡</button>
-          </div>
-          <a href="product.html?id=5" class="product-thumb-wrap">
-            <img src="https://images.unsplash.com/photo-1542272604-780c96856592?w=500&auto=format&fit=crop&q=80" alt="Levi's 511 Slim Jeans">
-          </a>
-          <div class="product-card-details">
-            <div class="card-store-banner">
-              <span class="store-origin-tag">
-                <img src="https://assets.ajio.com/static/img/Ajio-Logo.svg" alt="Ajio">
-                Ajio
-              </span>
-              <span class="store-savings-badge">Save ₹1,500</span>
-            </div>
-            <h3 class="product-card-title"><a href="product.html?id=5" style="color: inherit; text-decoration: none;">Levi's 511 Slim Fit Jeans</a></h3>
-            <div class="product-store-pricing">
-              <div class="store-price-row">
-                <span class="store-deal-price">₹1,799</span>
-                <span class="store-original-price">₹3,299</span>
-              </div>
-              <small class="store-origin-label">Original price on Ajio</small>
-            </div>
-            <div class="product-stars">★★★★★ <span class="review-count-text">(1,420)</span></div>
-            <div class="product-card-actions-row">
-              <a href="https://www.ajio.com/search/?text=Levis%20511%20Slim%20Fit%20Jeans" target="_blank" rel="noopener noreferrer" class="btn-visit-store">
-                Buy on Ajio ↗
-              </a>
-              <button type="button" class="btn-compare-action" title="Compare across Ajio, Myntra, Amazon" onclick="openQuickCompare(5)">🛍️</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Product 6: Ray-Ban Aviator Polarized -->
-        <div class="product-item-card">
-          <div class="card-top-badges">
-            <span class="badge-tag tag-discount">-35%</span>
-            <button type="button" class="btn-wishlist" title="Save to Wishlist">♡</button>
-          </div>
-          <a href="product.html?id=6" class="product-thumb-wrap">
-            <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=500&auto=format&fit=crop&q=80" alt="Ray-Ban Aviator Sunglasses">
-          </a>
-          <div class="product-card-details">
-            <div class="card-store-banner">
-              <span class="store-origin-tag">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon">
-                Amazon
-              </span>
-              <span class="store-savings-badge">Save ₹3,700</span>
-            </div>
-            <h3 class="product-card-title"><a href="product.html?id=6" style="color: inherit; text-decoration: none;">Ray-Ban Aviator Polarized</a></h3>
-            <div class="product-store-pricing">
-              <div class="store-price-row">
-                <span class="store-deal-price">₹6,890</span>
-                <span class="store-original-price">₹10,590</span>
-              </div>
-              <small class="store-origin-label">Original price on Amazon</small>
-            </div>
-            <div class="product-stars">★★★★★ <span class="review-count-text">(3,120)</span></div>
-            <div class="product-card-actions-row">
-              <a href="https://www.amazon.in/s?k=Ray-Ban+Aviator+Classic+Polarized+RB3025" target="_blank" rel="noopener noreferrer" class="btn-visit-store">
-                Buy on Amazon ↗
-              </a>
-              <button type="button" class="btn-compare-action" title="Compare across Amazon, Myntra, Flipkart" onclick="openQuickCompare(6)">🛍️</button>
+              <button type="button" class="btn-compare-action" title="Compare across Amazon, Flipkart, Myntra, AJIO" onclick="openQuickCompare(81)">🛍️</button>
             </div>
           </div>
         </div>
@@ -564,7 +884,10 @@
     <div class="container">
       
       <div class="section-header">
-        <h2>Best Sellers</h2>
+        <div>
+          <h2>Best Sellers</h2>
+          <p style="color: var(--text-secondary); font-size: 13px; margin-top: 4px;">Top-rated products with the highest demand and best buyer satisfaction scores.</p>
+        </div>
         <a href="search.html" class="section-view-all">
           View All Best Sellers <span>➔</span>
         </a>
@@ -572,83 +895,83 @@
 
       <div class="bestsellers-grid-3">
         
-        <!-- Bestseller 1: iPhone 15 -->
+        <!-- Bestseller 1: Apple iPhone 16 (#2) -->
         <div class="bestseller-card">
           <div class="bestseller-thumb">
-            <img src="https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=400&auto=format&fit=crop&q=80" alt="iPhone 15">
+            <img src="https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?w=400&auto=format&fit=crop&q=80" alt="iPhone 16" loading="lazy">
           </div>
           <div class="bestseller-content">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-              <span class="bestseller-badge">#1 Bestseller</span>
+              <span class="bestseller-badge">#1 Smartphone</span>
               <span class="store-origin-tag" style="font-size: 11px;">⚡ Flipkart</span>
             </div>
-            <h4><a href="product.html?id=1" style="color: inherit; text-decoration: none;">Apple iPhone 15 (128GB)</a></h4>
+            <h4><a href="product.html?id=2" style="color: inherit; text-decoration: none;">Apple iPhone 16</a></h4>
             <div class="price-tag" style="display: flex; align-items: baseline; gap: 8px;">
-              <span>₹65,999</span>
+              <span>₹74,999</span>
               <small style="font-size: 12px; text-decoration: line-through; color: var(--text-muted); font-weight: 500;">₹79,900</small>
             </div>
-            <div class="product-stars">★★★★★ <span class="review-count-text">(4,280 verified reviews)</span></div>
-            <p class="desc">A16 Bionic chip, Dynamic Island & 48MP main camera.</p>
+            <div class="product-stars">★★★★★ <span class="review-count-text">(2,858 verified reviews)</span></div>
+            <p class="desc">A18 chip, Camera Control button, and Apple Intelligence features.</p>
             <div class="bestseller-actions">
-              <a href="https://www.flipkart.com/search?q=Apple+iPhone+15" target="_blank" rel="noopener noreferrer" class="btn-visit-store" style="text-decoration: none;">
+              <a href="https://www.flipkart.com/search?q=Apple+iPhone+16+128GB" target="_blank" rel="noopener noreferrer" class="btn-visit-store" style="text-decoration: none;">
                 Buy on Flipkart ↗
               </a>
-              <button type="button" class="btn-quick-add" onclick="openQuickCompare(1)" title="Compare Live across Amazon, Flipkart, Myntra, Ajio">Compare</button>
-              <button type="button" class="btn-wishlist" title="Wishlist">♡</button>
+              <button type="button" class="btn-quick-add" onclick="openQuickCompare(2)" title="Compare Live across Amazon, Flipkart, Myntra, AJIO">Compare</button>
+              <button type="button" class="btn-wishlist" onclick="toggleFavorite(2, this)" title="Wishlist">♡</button>
             </div>
           </div>
         </div>
 
-        <!-- Bestseller 2: Nike Air Max 270 -->
+        <!-- Bestseller 2: ASUS Vivobook 15 (#18) -->
         <div class="bestseller-card">
           <div class="bestseller-thumb">
-            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&auto=format&fit=crop&q=80" alt="Nike Air Max 270">
+            <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=400&auto=format&fit=crop&q=80" alt="ASUS Vivobook 15" loading="lazy">
           </div>
           <div class="bestseller-content">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-              <span class="bestseller-badge">Trending Footwear</span>
-              <span class="store-origin-tag" style="font-size: 11px;">👗 Myntra</span>
+              <span class="bestseller-badge">Top Laptop Deal</span>
+              <span class="store-origin-tag" style="font-size: 11px;">⚡ Flipkart</span>
             </div>
-            <h4><a href="product.html?id=2" style="color: inherit; text-decoration: none;">Nike Air Max 270 Sneakers</a></h4>
+            <h4><a href="product.html?id=18" style="color: inherit; text-decoration: none;">ASUS Vivobook 15</a></h4>
             <div class="price-tag" style="display: flex; align-items: baseline; gap: 8px;">
-              <span>₹11,495</span>
-              <small style="font-size: 12px; text-decoration: line-through; color: var(--text-muted); font-weight: 500;">₹13,995</small>
+              <span>₹37,990</span>
+              <small style="font-size: 12px; text-decoration: line-through; color: var(--text-muted); font-weight: 500;">₹49,990</small>
             </div>
-            <div class="product-stars">★★★★★ <span class="review-count-text">(1,840 verified reviews)</span></div>
-            <p class="desc">Iconic large Air unit delivers bouncy all-day comfort.</p>
+            <div class="product-stars">★★★★★ <span class="review-count-text">(3,420 verified reviews)</span></div>
+            <p class="desc">15.6-inch FHD anti-glare display, fast SSD, and thin lightweight build.</p>
             <div class="bestseller-actions">
-              <a href="https://www.myntra.com/search?q=Nike%20Air%20Max%20270" target="_blank" rel="noopener noreferrer" class="btn-visit-store" style="text-decoration: none;">
-                Buy on Myntra ↗
+              <a href="https://www.flipkart.com/search?q=ASUS+Vivobook+15+laptop" target="_blank" rel="noopener noreferrer" class="btn-visit-store" style="text-decoration: none;">
+                Buy on Flipkart ↗
               </a>
-              <button type="button" class="btn-quick-add" onclick="openQuickCompare(2)" title="Compare Live across Amazon, Flipkart, Myntra, Ajio">Compare</button>
-              <button type="button" class="btn-wishlist" title="Wishlist">♡</button>
+              <button type="button" class="btn-quick-add" onclick="openQuickCompare(18)" title="Compare Live across Amazon, Flipkart, Myntra, AJIO">Compare</button>
+              <button type="button" class="btn-wishlist" onclick="toggleFavorite(18, this)" title="Wishlist">♡</button>
             </div>
           </div>
         </div>
 
-        <!-- Bestseller 3: Sony WH-1000XM5 -->
+        <!-- Bestseller 3: Puma Smashic Sneakers (#72) -->
         <div class="bestseller-card">
           <div class="bestseller-thumb">
-            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&auto=format&fit=crop&q=80" alt="Sony WH-1000XM5">
+            <img src="https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=400&auto=format&fit=crop&q=80" alt="Puma Smashic sneakers" loading="lazy">
           </div>
           <div class="bestseller-content">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-              <span class="bestseller-badge">Audio Leader</span>
-              <span class="store-origin-tag" style="font-size: 11px;">📦 Amazon</span>
+              <span class="bestseller-badge">Footwear Bestseller</span>
+              <span class="store-origin-tag" style="font-size: 11px;">⚡ Flipkart</span>
             </div>
-            <h4><a href="product.html?id=3" style="color: inherit; text-decoration: none;">Sony WH-1000XM5 ANC</a></h4>
+            <h4><a href="product.html?id=72" style="color: inherit; text-decoration: none;">Puma Smashic Sneakers</a></h4>
             <div class="price-tag" style="display: flex; align-items: baseline; gap: 8px;">
-              <span>₹26,990</span>
-              <small style="font-size: 12px; text-decoration: line-through; color: var(--text-muted); font-weight: 500;">₹34,990</small>
+              <span>₹2,199</span>
+              <small style="font-size: 12px; text-decoration: line-through; color: var(--text-muted); font-weight: 500;">₹4,499</small>
             </div>
-            <div class="product-stars">★★★★★ <span class="review-count-text">(2,450 verified reviews)</span></div>
-            <p class="desc">Industry-leading noise cancellation with dual processors.</p>
+            <div class="product-stars">★★★★★ <span class="review-count-text">(2,610 verified reviews)</span></div>
+            <p class="desc">SoftFoam+ cushioned court sneakers with classic Puma style and rubber grip.</p>
             <div class="bestseller-actions">
-              <a href="https://www.amazon.in/dp/B09XS7JWHH" target="_blank" rel="noopener noreferrer" class="btn-visit-store" style="text-decoration: none;">
-                Buy on Amazon ↗
+              <a href="https://www.flipkart.com/search?q=Puma+Smashic+sneakers" target="_blank" rel="noopener noreferrer" class="btn-visit-store" style="text-decoration: none;">
+                Buy on Flipkart ↗
               </a>
-              <button type="button" class="btn-quick-add" onclick="openQuickCompare(3)" title="Compare Live across Amazon, Flipkart, Myntra, Ajio">Compare</button>
-              <button type="button" class="btn-wishlist" title="Wishlist">♡</button>
+              <button type="button" class="btn-quick-add" onclick="openQuickCompare(72)" title="Compare Live across Amazon, Flipkart, Myntra, AJIO">Compare</button>
+              <button type="button" class="btn-wishlist" onclick="toggleFavorite(72, this)" title="Wishlist">♡</button>
             </div>
           </div>
         </div>
@@ -716,48 +1039,6 @@
     </div>
   </section>
 
-  <!-- =========================================================================
-       9. BOTTOM TRUST & GUARANTEE STRIP
-       ========================================================================= -->
-  <section class="trust-strip-section">
-    <div class="container">
-      <div class="trust-strip-grid">
-        
-        <div class="trust-strip-item">
-          <div class="trust-icon-circle">🛡️</div>
-          <div>
-            <h5>Premium Quality</h5>
-            <p>Made with the finest materials</p>
-          </div>
-        </div>
-
-        <div class="trust-strip-item">
-          <div class="trust-icon-circle">🚚</div>
-          <div>
-            <h5>Fast Delivery</h5>
-            <p>Quick and reliable shipping</p>
-          </div>
-        </div>
-
-        <div class="trust-strip-item">
-          <div class="trust-icon-circle">🔒</div>
-          <div>
-            <h5>Secure Checkout</h5>
-            <p>Your data is protected</p>
-          </div>
-        </div>
-
-        <div class="trust-strip-item">
-          <div class="trust-icon-circle">😊</div>
-          <div>
-            <h5>Customer Satisfaction</h5>
-            <p>100% satisfaction guarantee</p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
 
   <!-- =========================================================================
        10. MAIN STORE FOOTER
@@ -781,13 +1062,14 @@
 
         <!-- Shop Categories -->
         <div class="footer-col">
-          <h4>Shop</h4>
+          <h4>Catalogue Categories</h4>
           <ul>
-            <li><a href="search.html?category=Fashion">Women's Fashion</a></li>
-            <li><a href="search.html?category=Fashion">Men's Apparel</a></li>
-            <li><a href="search.html?category=Shoes">Footwear & Sneakers</a></li>
-            <li><a href="search.html?category=Electronics">Electronics & Audio</a></li>
-            <li><a href="search.html?category=Accessories">Accessories & Watches</a></li>
+            <li><a href="search.html?category=Smartphones">Smartphones (15)</a></li>
+            <li><a href="search.html?category=Laptops">Laptops (10)</a></li>
+            <li><a href="search.html?category=Electronics%20%26%20Gadgets">Electronics &amp; Gadgets (20)</a></li>
+            <li><a href="search.html?category=Fashion%20%26%20Clothing">Fashion &amp; Clothing (20)</a></li>
+            <li><a href="search.html?category=Footwear">Footwear (15)</a></li>
+            <li><a href="search.html?category=Accessories">Accessories (20)</a></li>
           </ul>
         </div>
 
@@ -848,5 +1130,7 @@
   <script src="js/api.js"></script>
   <script src="js/theme.js"></script>
   <script src="js/auth.js"></script>
+  <script src="js/catalog-links-data.js"></script>
+  <script src="js/url-comparison.js"></script>
 </body>
 </html>

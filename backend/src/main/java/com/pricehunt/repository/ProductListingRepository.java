@@ -15,6 +15,12 @@ public interface ProductListingRepository extends JpaRepository<ProductListing, 
 
     List<ProductListing> findByProductIdOrderByPriceAsc(Long productId);
 
+    java.util.Optional<ProductListing> findFirstByProductUrlContaining(String urlPart);
+
+    List<ProductListing> findByProductIdentifier(String productIdentifier);
+
+    List<ProductListing> findByPlatformId(Long platformId);
+
     @Query("SELECT l FROM ProductListing l WHERE LOWER(l.title) LIKE LOWER(CONCAT('%', :query, '%'))")
     List<ProductListing> searchByTitle(@Param("query") String query);
 

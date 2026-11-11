@@ -35,6 +35,8 @@ public class SecurityConfig {
                     "/api/auth/**",
                     "/api/products/**",
                     "/api/compare/**",
+                    "/api/track/**",
+                    "/api/integrations/**",
                     "/error",
                     "/h2-console/**"
                 ).permitAll()

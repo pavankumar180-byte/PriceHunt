@@ -17,3 +17,6 @@ backend/*.war
 
 # Logs & Temporary Data
 *.log
+tools/
+*.exe
+*.url

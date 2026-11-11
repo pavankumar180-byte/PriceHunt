@@ -3,9 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Product Details & Price Comparison — NovaTrend</title>
+  <title>PriceHunt — Product Details & Price Comparison</title>
   <link rel="stylesheet" href="css/style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     .product-hero-layout {
       display: grid;
@@ -111,22 +113,71 @@
   <!-- Top Announcement Bar -->
   <aside class="top-announcement-bar">
     <div class="announcement-content">
-      <div class="announcement-item"><span>🚚</span> Free Worldwide Shipping Over $50</div>
+      <div class="announcement-item"><span>🔍</span> Real-Time Price Tracking across Amazon, Flipkart, Myntra & Ajio</div>
       <span class="announcement-divider">|</span>
-      <div class="announcement-item"><span>⚡</span> Summer Sale Up To 70% Off</div>
+      <div class="announcement-item"><span>⚡</span> Best Deal Guarantee with Store Redirect</div>
       <span class="announcement-divider">|</span>
-      <div class="announcement-item"><span>⚡</span> Limited Time Flash Deals</div>
+      <div class="announcement-item"><span>💰</span> Verified INR (₹) Deals Ranked Lowest to Highest</div>
     </div>
   </aside>
 
   <!-- Main Navigation Bar -->
   <header class="main-header">
     <div class="container header-container">
-      <a href="index.html" class="nav-brand">NovaTrend</a>
+      <a href="index.html" class="nav-brand">PriceHunt</a>
 
       <ul class="nav-menu-links">
         <li><a href="index.html" class="nav-link">Home</a></li>
         <li><a href="search.html" class="nav-link">Shop</a></li>
+        <li class="nav-dropdown-item">
+          <a href="search.html" class="nav-link">
+            Categories <span style="font-size: 11px;">▾</span>
+          </a>
+          <div class="nav-dropdown-menu">
+            <a href="search.html?category=Smartphones" class="dropdown-link">
+              <span class="dropdown-icon">📱</span>
+              <div>
+                <strong>Smartphones</strong>
+                <small>15 Products • iPhone, Galaxy, OnePlus</small>
+              </div>
+            </a>
+            <a href="search.html?category=Laptops" class="dropdown-link">
+              <span class="dropdown-icon">💻</span>
+              <div>
+                <strong>Laptops</strong>
+                <small>10 Products • MacBook, ASUS, Lenovo, HP</small>
+              </div>
+            </a>
+            <a href="search.html?category=Electronics%20%26%20Gadgets" class="dropdown-link">
+              <span class="dropdown-icon">🎧</span>
+              <div>
+                <strong>Electronics &amp; Gadgets</strong>
+                <small>20 Products • Earbuds, Watch, Charger</small>
+              </div>
+            </a>
+            <a href="search.html?category=Fashion%20%26%20Clothing" class="dropdown-link">
+              <span class="dropdown-icon">👕</span>
+              <div>
+                <strong>Fashion &amp; Clothing</strong>
+                <small>20 Products • Shirts, Tees, Jeans, Kurtas</small>
+              </div>
+            </a>
+            <a href="search.html?category=Footwear" class="dropdown-link">
+              <span class="dropdown-icon">👟</span>
+              <div>
+                <strong>Footwear</strong>
+                <small>15 Products • Sneakers, Running, Formals</small>
+              </div>
+            </a>
+            <a href="search.html?category=Accessories" class="dropdown-link">
+              <span class="dropdown-icon">🎒</span>
+              <div>
+                <strong>Accessories</strong>
+                <small>20 Products • Backpacks, Watches, Belts</small>
+              </div>
+            </a>
+          </div>
+        </li>
         <li><a href="index.html#new-arrivals" class="nav-link">New Arrivals</a></li>
         <li><a href="index.html#best-sellers" class="nav-link">Best Sellers</a></li>
         <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
@@ -295,12 +346,12 @@
       <form id="createAlertForm">
         <div style="margin-bottom: 1rem;">
           <small style="color: var(--text-muted); font-size: 11px; text-transform: uppercase;">CURRENT LOWEST PRICE</small>
-          <div id="modalCurrentPrice" style="font-size: 22px; font-weight: 800; color: var(--text-main);">$0.00</div>
+          <div id="modalCurrentPrice" style="font-size: 22px; font-weight: 800; color: var(--text-main);">₹0</div>
         </div>
 
         <div style="margin-bottom: 1.5rem;">
-          <label style="display: block; font-size: 11px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; font-weight: 700;">YOUR TARGET PRICE ($)</label>
-          <input type="number" id="targetPriceInput" class="catalog-select" placeholder="e.g. 99" required style="width: 100%; padding: 10px 14px;">
+          <label style="display: block; font-size: 11px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; font-weight: 700;">YOUR TARGET PRICE (₹)</label>
+          <input type="number" id="targetPriceInput" class="catalog-select" placeholder="e.g. 54999" required style="width: 100%; padding: 10px 14px;">
         </div>
 
         <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">Activate Alert</button>
@@ -311,7 +362,7 @@
   <!-- Store Footer -->
   <footer class="main-footer">
     <div class="container footer-bottom-bar">
-      <div>&copy; 2026 NovaTrend Inc. All rights reserved.</div>
+      <div>&copy; 2026 PriceHunt Inc. All rights reserved.</div>
       <div>Designed for seamless comparison in Light and Dark Mode.</div>
     </div>
   </footer>

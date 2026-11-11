@@ -13,7 +13,15 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     List<Product> findByCategoryIgnoreCase(String category);
 
+    java.util.Optional<Product> findByName(String name);
+
     List<Product> findByBrandIgnoreCase(String brand);
+
+    java.util.Optional<Product> findByProductIdentifier(String productIdentifier);
+
+    java.util.Optional<Product> findFirstByProductIdentifierIgnoreCase(String productIdentifier);
+
+    List<Product> findByNameContainingIgnoreCase(String keyword);
 
     @Query("SELECT p FROM Product p WHERE " +
            "LOWER(p.name) LIKE LOWER(CONCAT('%', :query, '%')) OR " +

@@ -15,4 +15,7 @@ public interface PriceHistoryRepository extends JpaRepository<PriceHistory, Long
 
     @Query("SELECT ph FROM PriceHistory ph WHERE ph.productListing.product.id = :productId ORDER BY ph.recordedAt ASC")
     List<PriceHistory> findByProductIdOrderByRecordedAtAsc(@Param("productId") Long productId);
+
+    @Query("SELECT ph FROM PriceHistory ph WHERE (ph.productId = :productId OR ph.productListing.product.id = :productId) AND ph.recordedAt >= :after ORDER BY ph.recordedAt ASC")
+    List<PriceHistory> findByProductIdAndRecordedAtAfter(@Param("productId") Long productId, @Param("after") java.time.LocalDateTime after);
 }

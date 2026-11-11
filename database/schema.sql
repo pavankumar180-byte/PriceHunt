@@ -110,3 +110,24 @@ CREATE TABLE IF NOT EXISTS price_alerts (
     INDEX idx_alert_user (user_id),
     INDEX idx_alert_active (active)
 ) ENGINE=InnoDB;
+
+-- 8. Tracked Products Table (Automated 24-hour price monitoring)
+CREATE TABLE IF NOT EXISTS tracked_products (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    product_id BIGINT NOT NULL,
+    user_id BIGINT,
+    tracking_enabled BOOLEAN DEFAULT TRUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    last_checked_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    next_check_at TIMESTAMP,
+    status VARCHAR(50) DEFAULT 'ACTIVE',
+    data_source VARCHAR(150),
+    initial_price DECIMAL(10, 2),
+    current_price DECIMAL(10, 2),
+    lowest_price DECIMAL(10, 2),
+    highest_price DECIMAL(10, 2),
+    FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL,
+    INDEX idx_tracked_product (product_id),
+    INDEX idx_tracked_active (tracking_enabled)
+) ENGINE=InnoDB;

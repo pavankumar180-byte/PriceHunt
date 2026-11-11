@@ -31,7 +31,7 @@ public class ProductListing {
     @Column(name = "original_price", nullable = false, precision = 10, scale = 2)
     private BigDecimal originalPrice;
 
-    @Column(precision = 2, scale = 1)
+    @Column(columnDefinition = "DECIMAL(2, 1)")
     private Double rating = 4.0;
 
     @Column(name = "review_count")
@@ -40,7 +40,7 @@ public class ProductListing {
     @Column(name = "seller_name", length = 100)
     private String sellerName = "Authorized Seller";
 
-    @Column(name = "seller_rating", precision = 2, scale = 1)
+    @Column(name = "seller_rating", columnDefinition = "DECIMAL(2, 1)")
     private Double sellerRating = 4.5;
 
     @Column(name = "delivery_cost", precision = 6, scale = 2)
@@ -51,6 +51,24 @@ public class ProductListing {
 
     @Column(name = "in_stock")
     private Boolean inStock = true;
+
+    @Column(name = "availability", length = 50)
+    private String availability = "In Stock";
+
+    @Column(name = "source_type", length = 50)
+    private String sourceType = "VERIFIED_CATALOG";
+
+    @Column(name = "product_identifier", length = 100)
+    private String productIdentifier;
+
+    @Column(name = "match_type", length = 50)
+    private String matchType = "EXACT_MATCH";
+
+    @Column(name = "match_confidence")
+    private Double matchConfidence = 100.0;
+
+    @Column(name = "last_checked_at")
+    private LocalDateTime lastCheckedAt = LocalDateTime.now();
 
     @Column(name = "product_url", nullable = false, length = 500)
     private String productUrl;
@@ -100,7 +118,39 @@ public class ProductListing {
     public void setDeliveryDays(Integer deliveryDays) { this.deliveryDays = deliveryDays; }
 
     public Boolean getInStock() { return inStock; }
-    public void setInStock(Boolean inStock) { this.inStock = inStock; }
+    public void setInStock(Boolean inStock) { 
+        this.inStock = inStock; 
+        if (Boolean.FALSE.equals(inStock)) {
+            this.availability = "Out of Stock";
+        }
+    }
+
+    public String getAvailability() { return availability; }
+    public void setAvailability(String availability) { this.availability = availability; }
+
+    public String getSourceType() { return sourceType; }
+    public void setSourceType(String sourceType) { this.sourceType = sourceType; }
+
+    public String getProductIdentifier() { return productIdentifier; }
+    public void setProductIdentifier(String productIdentifier) { this.productIdentifier = productIdentifier; }
+
+    public String getMatchType() { return matchType; }
+    public void setMatchType(String matchType) { this.matchType = matchType; }
+
+    public Double getMatchConfidence() { return matchConfidence; }
+    public void setMatchConfidence(Double matchConfidence) { this.matchConfidence = matchConfidence; }
+
+    public LocalDateTime getLastCheckedAt() { return lastCheckedAt; }
+    public void setLastCheckedAt(LocalDateTime lastCheckedAt) { this.lastCheckedAt = lastCheckedAt; }
+
+    public BigDecimal getDeliveryCharge() { return deliveryCost; }
+    public void setDeliveryCharge(BigDecimal deliveryCharge) { this.deliveryCost = deliveryCharge; }
+
+    public BigDecimal getTotalCost() {
+        if (price == null) return null;
+        BigDecimal delivery = deliveryCost != null ? deliveryCost : BigDecimal.ZERO;
+        return price.add(delivery);
+    }
 
     public String getProductUrl() { return productUrl; }
     public void setProductUrl(String productUrl) { this.productUrl = productUrl; }

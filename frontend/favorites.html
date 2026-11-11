@@ -3,29 +3,82 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Saved Wishlist — NovaTrend</title>
+  <title>PriceHunt — My Saved Wishlist</title>
   <link rel="stylesheet" href="css/style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
   <!-- Top Announcement Bar -->
   <aside class="top-announcement-bar">
     <div class="announcement-content">
-      <div class="announcement-item"><span>🚚</span> Free Worldwide Shipping Over $50</div>
+      <div class="announcement-item"><span>🔍</span> Real-Time Price Tracking across Amazon, Flipkart, Myntra & Ajio</div>
       <span class="announcement-divider">|</span>
-      <div class="announcement-item"><span>⚡</span> Summer Sale Up To 70% Off</div>
+      <div class="announcement-item"><span>⚡</span> Best Deal Guarantee with Store Redirect</div>
+      <span class="announcement-divider">|</span>
+      <div class="announcement-item"><span>💰</span> Verified INR (₹) Deals Ranked Lowest to Highest</div>
     </div>
   </aside>
 
   <!-- Main Navigation Bar -->
   <header class="main-header">
     <div class="container header-container">
-      <a href="index.html" class="nav-brand">NovaTrend</a>
+      <a href="index.html" class="nav-brand">PriceHunt</a>
 
       <ul class="nav-menu-links">
         <li><a href="index.html" class="nav-link">Home</a></li>
         <li><a href="search.html" class="nav-link">Shop</a></li>
+        <li class="nav-dropdown-item">
+          <a href="search.html" class="nav-link">
+            Categories <span style="font-size: 11px;">▾</span>
+          </a>
+          <div class="nav-dropdown-menu">
+            <a href="search.html?category=Smartphones" class="dropdown-link">
+              <span class="dropdown-icon">📱</span>
+              <div>
+                <strong>Smartphones</strong>
+                <small>15 Products • iPhone, Galaxy, OnePlus</small>
+              </div>
+            </a>
+            <a href="search.html?category=Laptops" class="dropdown-link">
+              <span class="dropdown-icon">💻</span>
+              <div>
+                <strong>Laptops</strong>
+                <small>10 Products • MacBook, ASUS, Lenovo, HP</small>
+              </div>
+            </a>
+            <a href="search.html?category=Electronics%20%26%20Gadgets" class="dropdown-link">
+              <span class="dropdown-icon">🎧</span>
+              <div>
+                <strong>Electronics &amp; Gadgets</strong>
+                <small>20 Products • Earbuds, Watch, Charger</small>
+              </div>
+            </a>
+            <a href="search.html?category=Fashion%20%26%20Clothing" class="dropdown-link">
+              <span class="dropdown-icon">👕</span>
+              <div>
+                <strong>Fashion &amp; Clothing</strong>
+                <small>20 Products • Shirts, Tees, Jeans, Kurtas</small>
+              </div>
+            </a>
+            <a href="search.html?category=Footwear" class="dropdown-link">
+              <span class="dropdown-icon">👟</span>
+              <div>
+                <strong>Footwear</strong>
+                <small>15 Products • Sneakers, Running, Formals</small>
+              </div>
+            </a>
+            <a href="search.html?category=Accessories" class="dropdown-link">
+              <span class="dropdown-icon">🎒</span>
+              <div>
+                <strong>Accessories</strong>
+                <small>20 Products • Backpacks, Watches, Belts</small>
+              </div>
+            </a>
+          </div>
+        </li>
         <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
         <li><a href="favorites.html" class="nav-link active">Wishlist</a></li>
         <li><a href="alerts.html" class="nav-link">Price Alerts</a></li>
@@ -62,8 +115,8 @@
 
   <footer class="main-footer">
     <div class="container footer-bottom-bar">
-      <div>&copy; 2026 NovaTrend Inc. All rights reserved.</div>
-      <div>Curated with precision.</div>
+      <div>&copy; 2026 PriceHunt Inc. All rights reserved.</div>
+      <div>Designed for seamless comparison in Light and Dark Mode.</div>
     </div>
   </footer>
 
@@ -89,7 +142,7 @@
 
         grid.innerHTML = favs.map(f => {
           const p = f.product;
-          const priceUSD = p.minPrice ? `$${(p.minPrice / 80).toFixed(2)}` : '$59.99';
+          const priceINR = p.minPrice ? `₹${Number(p.minPrice).toLocaleString('en-IN')}` : '₹4,999';
           return `
             <div class="product-item-card">
               <div class="card-top-badges">
@@ -101,7 +154,7 @@
               <div class="product-card-details">
                 <h3 class="product-card-title">${p.name}</h3>
                 <div class="product-card-prices">
-                  <span class="current-price">${priceUSD}</span>
+                  <span class="current-price">${priceINR}</span>
                 </div>
                 <div class="product-card-bottom-row">
                   <a href="product.html?id=${p.id}" class="btn-primary" style="width: 100%; justify-content: center; padding: 8px 12px; font-size: 12px;">
