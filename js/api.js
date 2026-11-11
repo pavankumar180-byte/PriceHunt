@@ -2,7 +2,7 @@
  * ============================================================================
  * PRICEHUNT UNIFIED API CLIENT & MULTI-STORE INTELLIGENCE ENGINE
  * Comprehensive real-time comparisons across Amazon India, Flipkart, Myntra, and AJIO
- * Genuine direct links for 100 Verified Products with Complete INR (₹) Pricing
+ * Genuine direct links for 100 Verified Products with Complete INR (â‚¹) Pricing
  * ============================================================================
  */
 
@@ -9610,17 +9610,17 @@ const MOCK_DATA = {
                            }
     },
     {
-        "directStoreUrl":  "https://www.ajio.com/search/?text=Sparx+running+shoes",
+        "directStoreUrl":  "https://www.ajio.com/search/?text=Nike+Air+Max+shoes",
         "id":  70,
         "bestRating":  4.6,
-        "name":  "Sparx Men\u0027s Running Shoes",
+        "name":  "Nike Air Max",
         "listings":  [
                          {
                              "rating":  4.6,
                              "platformId":  3,
                              "sellerName":  "Myntra Direct Store",
                              "isBestPrice":  true,
-                             "productUrl":  "https://www.myntra.com/Sparx%20Men\u0027s%20Running%20Shoes",
+                             "productUrl":  "https://www.myntra.com/nike-air-max-shoes",
                              "id":  703,
                              "platformName":  "Myntra",
                              "platformLogo":  "https://images.indianexpress.com/2021/01/myntra.png",
@@ -9639,7 +9639,7 @@ const MOCK_DATA = {
                              "platformId":  4,
                              "sellerName":  "Reliance Retail Luxe",
                              "isBestPrice":  true,
-                             "productUrl":  "https://www.ajio.com/search/?text=Sparx+running+shoes",
+                             "productUrl":  "https://www.ajio.com/search/?text=Nike+Air+Max+shoes",
                              "id":  704,
                              "platformName":  "Ajio",
                              "platformLogo":  "https://assets.ajio.com/static/img/Ajio-Logo.svg",
@@ -9658,7 +9658,7 @@ const MOCK_DATA = {
                              "platformId":  1,
                              "sellerName":  "Appario Retail Prime",
                              "isBestPrice":  false,
-                             "productUrl":  "https://www.amazon.in/s?k=Sparx%20Men\u0027s%20Running%20Shoes",
+                             "productUrl":  "https://www.amazon.in/s?k=Nike+Air+Max+shoes",
                              "id":  701,
                              "platformName":  "Amazon",
                              "platformLogo":  "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg",
@@ -9677,7 +9677,7 @@ const MOCK_DATA = {
                              "platformId":  2,
                              "sellerName":  "SuperComNet Verified",
                              "isBestPrice":  false,
-                             "productUrl":  "https://www.flipkart.com/search?q=Sparx%20Men\u0027s%20Running%20Shoes",
+                             "productUrl":  "https://www.flipkart.com/search?q=Nike+Air+Max+shoes",
                              "id":  702,
                              "platformName":  "Flipkart",
                              "platformLogo":  "https://logos-world.net/wp-content/uploads/2020/11/Flipkart-Logo.png",
@@ -9695,9 +9695,9 @@ const MOCK_DATA = {
         "reviewCount":  2390,
         "maxDiscount":  39.2,
         "imageUrl":  "https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=700\u0026auto=format\u0026fit=crop\u0026q=80",
-        "model":  "Sparx Men\u0027s Running Shoes",
+        "model":  "Air Max",
         "originStoreLogo":  "https://images.indianexpress.com/2021/01/myntra.png",
-        "originStore":  "Myntra",
+        "originStore":  "AJIO",
         "listingCount":  4,
         "originOriginalPrice":  2199,
         "reviews":  [
@@ -9734,8 +9734,8 @@ const MOCK_DATA = {
                                    "3":  5
                                },
         "minPrice":  1338,
-        "brand":  "Sparx",
-        "description":  "Sparx Men\u0027s Running Shoes (Footwear) - High-traction lightweight men\u0027s athletic running shoes with breathable mesh upper, cushioned footbed, and EVA sole. Real-time price tracking and comparison across Amazon India, Flipkart, Myntra, and AJIO. Lowest verified deal guaranteed.",
+        "brand":  "Nike",
+        "description":  "Nike Air Max - Iconic lifestyle sneaker with visible Max Air cushioning and durable rubber tread.",
         "maxPrice":  2199,
         "originDealPrice":  1338,
         "code":  "P070",
@@ -13919,7 +13919,6 @@ const MOCK_DATA = {
                            }
     }
 ]
-
 };
 
 const Api = {
@@ -14251,7 +14250,7 @@ const Api = {
         totalPriceChange: totalChange,
         percentageChange: pctChange,
         sufficientData: true,
-        explanation: `Authentic 30-day recorded price points across Amazon, Flipkart, Myntra, and AJIO. Lowest recorded price is ₹${lowestRec.toLocaleString('en-IN')}.`,
+        explanation: `Authentic 30-day recorded price points across Amazon, Flipkart, Myntra, and AJIO. Lowest recorded price is â‚¹${lowestRec.toLocaleString('en-IN')}.`,
         snapshots: snapshots
       };
     }
