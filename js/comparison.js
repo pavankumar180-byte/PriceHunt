@@ -314,7 +314,7 @@ async function renderPriceHistoryChart(productId) {
   const history = await Api.request(`/products/${productId}/history`);
   if (!history || history.length < 2) return;
 
-  const prices = history.map(h => h.price > 5000 ? h.price / 80 : h.price);
+  const prices = history.map(h => Number(h.price));
   const dates = history.map(h => {
     const d = new Date(h.recordedAt);
     return `${d.toLocaleString('default', { month: 'short' })} ${d.getDate()}`;
@@ -338,7 +338,7 @@ async function renderPriceHistoryChart(productId) {
     ctx.lineTo(rect.width - 20, y);
     ctx.stroke();
 
-    const priceLabel = `$${Math.round(maxP - ((maxP - minP) / 3) * i)}`;
+    const priceLabel = `₹${Math.round(maxP - ((maxP - minP) / 3) * i).toLocaleString('en-IN')}`;
     ctx.fillStyle = isDark ? '#9ca3af' : '#6b7280';
     ctx.font = '11px Inter, sans-serif';
     ctx.textAlign = 'right';
@@ -405,8 +405,8 @@ function setupAlertModal(product) {
 
   openBtn.addEventListener('click', () => {
     document.getElementById('modalProductName').textContent = product.name;
-    const curP = product.minPrice > 5000 ? product.minPrice / 80 : product.minPrice;
-    document.getElementById('modalCurrentPrice').textContent = `$${curP.toFixed(2)}`;
+    const curP = Number(product.minPrice);
+    document.getElementById('modalCurrentPrice').textContent = `₹${curP.toLocaleString('en-IN')}`;
     modal.style.display = 'flex';
   });
 
@@ -417,7 +417,7 @@ function setupAlertModal(product) {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const targetPrice = parseFloat(document.getElementById('targetPriceInput').value);
-    alert(`Price alert successfully activated for $${targetPrice}!`);
+    alert(`Price alert successfully activated for ₹${targetPrice.toLocaleString('en-IN')}!`);
     modal.style.display = 'none';
   });
 }
