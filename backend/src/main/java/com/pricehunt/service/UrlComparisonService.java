@@ -191,10 +191,20 @@ public class UrlComparisonService {
     private Product findProductByUrlKeyword(String url) {
         try {
             URI u = new URI(url);
-            String path = u.getPath().toLowerCase();
-            String[] segments = path.split("[/\\-_]");
+            String target = ((u.getPath() != null ? u.getPath() : "") + " " + (u.getQuery() != null ? u.getQuery() : "")).toLowerCase();
+            target = java.net.URLDecoder.decode(target, java.nio.charset.StandardCharsets.UTF_8);
+
+            // Extract query param directly if present (e.g. k=..., q=..., text=...)
+            java.util.regex.Matcher m = java.util.regex.Pattern.compile("[?&](?:q|k|text)=([^&]+)", java.util.regex.Pattern.CASE_INSENSITIVE).matcher(url);
+            if (m.find()) {
+                String term = java.net.URLDecoder.decode(m.group(1).replace("+", " "), java.nio.charset.StandardCharsets.UTF_8).trim();
+                List<Product> directMatches = productRepository.searchProducts(term);
+                if (!directMatches.isEmpty()) return directMatches.get(0);
+            }
+
+            String[] segments = target.split("[/\\-_?&=+\\s]+");
             for (String seg : segments) {
-                if (seg.length() >= 4 && !seg.matches("^(product|item|dp|goods|html|php)$")) {
+                if (seg.length() >= 4 && !seg.matches("^(product|item|dp|goods|html|php|search|text|true|false)$")) {
                     List<Product> found = productRepository.searchProducts(seg);
                     if (!found.isEmpty()) return found.get(0);
                 }
